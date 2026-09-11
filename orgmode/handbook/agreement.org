@@ -9,6 +9,6 @@
 
 Four green ticks are a host rule for landing work. They are not the model. Do not report a count as if it were the crate.
 
-The Grok disk script =unanimous-green= now reads =ljos consensus= after the four seats ballot. Claude and Codex run the same seats without a Rhai host: =examples/unanimous-green/= in the ljos crate. =vissue vote ID --json= is the ballot document =ljos-consensus settle --issue= reads.
+The Rhai disk script =unanimous-green= reads =ljos consensus= after the four seats ballot. A Task host and a procedure-file host run the same seats without that runner: =examples/unanimous-green/= in the ljos crate. =vissue vote ID --json= is the ballot document =ljos-consensus settle --issue= reads.
 
 [[https://leidarljos.github.io/consensus/][consensus]] · [[https://github.com/seldon-code/seldon][seldon-code]]
