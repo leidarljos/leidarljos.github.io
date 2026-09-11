@@ -9,4 +9,4 @@ The workspace is the git remote of the current directory (=git:github.com/org/re
 
 If =packset status= says up and remember hangs or returns 400, the writer is wedged. =packset stop=, then =packset ensure=. Do not dump the sitting into a card.
 
-[[https://leidarljos.rgoswami.me/docs/privacy/][Privacy-of-write]]
+[[https://leidarljos.github.io/docs/privacy/][Privacy-of-write]]

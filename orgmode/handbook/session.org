@@ -9,4 +9,4 @@ Completing a node does not close a ticket. The tracker is the graph. Create and 
 
 File before you speak. An audit with no ids is unfinished work. A leftover that does not fit this sitting is a child ticket, then the original work continues.
 
-[[https://leidarljos.rgoswami.me/claimdag/][Session work / claimdag]]
+[[https://leidarljos.github.io/claimdag/][Session work / claimdag]]

@@ -9,4 +9,4 @@
 
 If the store is empty, that is an error.
 
-[[https://leidarljos.rgoswami.me/deedar/][Frozen product / deedar]]
+[[https://leidarljos.github.io/deedar/][Frozen product / deedar]]
