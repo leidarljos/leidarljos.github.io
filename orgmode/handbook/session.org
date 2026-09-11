@@ -6,7 +6,7 @@
 
 =ljos claim --assignee HEX NODE=. The assignee is 32 hex, not =user@host=. One live claim per assignee. A second claim returns =assignee busy= and the other node id. Complete the live node first.
 
-Completing a node does not close a ticket. The tracker is the graph. Create and claim tickets through =vissue=. Never hand-edit =issues.org=.
+Completing a node does not close a ticket. The tracker is the graph. Create and claim tickets through =vissue=. Never hand-edit =issues.org=. Crate docs: [[https://vissue.rgoswami.me][vissue.rgoswami.me]].
 
 File before you speak. An audit with no ids is unfinished work. A leftover that does not fit this sitting is a child ticket, then the original work continues.
 
