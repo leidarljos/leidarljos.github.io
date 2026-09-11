@@ -4,8 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>leiðarljós — citation is not a merge</title>
-  <meta name="description" content="Four stores, one pin. Standing knowledge, frozen product, graph, session work.">
+  <meta name="description" content="One seat over five habitats and argv law. Citation is not a merge. Completing a session node does not close a ticket.">
+  <link rel="canonical" href="https://leidarljos.github.io/">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <meta property="og:title" content="leiðarljós — citation is not a merge">
+  <meta property="og:description" content="One seat over five habitats and argv law. Citation is not a merge.">
+  <meta property="og:url" content="https://leidarljos.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
   <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
   <style>
@@ -13,84 +19,475 @@
       --ink: #0B0B0A;
       --cream: #F4F0E6;
       --gold: #E6A23C;
+      --line: #2A2824;
+      --mute: #b9b3a6;
+      --panel: #141310;
+      --serif: Iowan Old Style, Palatino Linotype, Palatino, Charter, Georgia, serif;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, Liberation Mono, monospace;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; padding: 0; background: var(--ink); color: var(--cream); }
     body {
-      font-family: Iowan Old Style, Palatino Linotype, Palatino, Charter, Georgia, serif;
+      font-family: var(--sans);
+      line-height: 1.55;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background:
+        radial-gradient(ellipse 70% 42% at 50% -8%, rgba(230, 162, 60, 0.09), transparent 58%),
+        var(--ink);
     }
-    main { flex: 1; max-width: 44rem; margin: 0 auto; padding: 3.5rem 1.25rem 2rem; }
-    header { text-align: center; }
-    header img { width: 120px; height: 120px; }
-    h1 {
-      font-size: 2.4rem;
+    a { color: var(--cream); text-underline-offset: 0.18em; }
+    a:hover { color: var(--gold); }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .skip {
+      position: absolute; left: -999px; top: 0;
+      background: var(--gold); color: var(--ink);
+      padding: 0.5rem 0.8rem; z-index: 20;
+    }
+    .skip:focus { left: 0.75rem; top: 0.75rem; }
+    .wrap { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; }
+    nav.top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 1rem 0 0.25rem; flex-wrap: wrap;
+    }
+    nav.top .brand {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      text-decoration: none; color: var(--cream); font-family: var(--serif);
+      font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    nav.top .brand img { width: 28px; height: 28px; }
+    nav.top ul {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem;
+      font-size: 0.92rem; color: var(--mute);
+    }
+    nav.top a { color: inherit; text-decoration: none; }
+    nav.top a:hover { color: var(--gold); }
+    .hero { text-align: center; padding: 3.2rem 0 1.5rem; }
+    .hero img.pin { width: 132px; height: 132px; }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 7vw, 4.4rem);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      margin: 0.85rem 0 0.35rem;
+      line-height: 1.05;
+    }
+    .tag {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+      margin: 0 0 1.15rem;
+    }
+    .lede {
+      max-width: 40rem; margin: 0 auto 1.6rem;
+      color: var(--mute); font-size: 1.05rem;
+    }
+    .pillars {
+      list-style: none; margin: 0 auto 2rem; padding: 0;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem;
+    }
+    .pillars li {
+      border: 1px solid #3a3428;
+      background: rgba(230, 162, 60, 0.05);
+      border-radius: 999px;
+      padding: 0.38rem 0.9rem;
+      font-size: 0.88rem;
+      color: var(--cream);
+    }
+    .pillars li::before {
+      content: "";
+      display: inline-block;
+      width: 0.45rem; height: 0.45rem;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-right: 0.45rem;
+      vertical-align: 0.05rem;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem;
+      margin-bottom: 2.2rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 8px; padding: 0.62rem 1.15rem;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    }
+    .btn-gold { background: var(--gold); color: var(--ink); }
+    .btn-gold:hover { color: var(--ink); filter: brightness(1.06); }
+    .btn-ghost { border: 1px solid var(--line); color: var(--cream); }
+    .term {
+      max-width: 44rem; margin: 0 auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    }
+    .term-bar {
+      display: flex; align-items: center; gap: 0.55rem;
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--line);
+      background: #1a1814;
+    }
+    .dots { display: flex; gap: 0.32rem; }
+    .dots i {
+      width: 0.62rem; height: 0.62rem; border-radius: 50%;
+      background: #3a3732; display: block;
+    }
+    .dots i:nth-child(1) { background: #6b4a1f; }
+    .dots i:nth-child(2) { background: #8a6a2c; }
+    .dots i:nth-child(3) { background: var(--gold); }
+    .term-title {
+      color: var(--mute); font-size: 0.78rem; letter-spacing: 0.04em;
+    }
+    .term-tabs {
+      margin-left: auto; display: flex; flex-wrap: wrap; gap: 0.25rem;
+    }
+    .term-tabs button {
+      appearance: none; border: 0; background: transparent;
+      color: var(--mute); font: 0.72rem/1 var(--mono);
+      padding: 0.28rem 0.45rem; border-radius: 5px; cursor: pointer;
+    }
+    .term-tabs button[aria-selected="true"],
+    .term-tabs button:hover { color: var(--gold); background: rgba(230, 162, 60, 0.1); }
+    .term-body {
+      margin: 0; padding: 1rem 1.05rem 1.15rem;
+      font: 0.86rem/1.55 var(--mono);
+      min-height: 12.5rem; white-space: pre-wrap; overflow-x: auto;
+    }
+    .term-body .p { color: var(--gold); }
+    .term-body .ok { color: var(--gold); }
+    .term-body .dim { color: var(--mute); }
+    .term-body .caret {
+      display: inline-block; width: 0.55ch; background: var(--gold);
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .disclaimer {
+      max-width: 44rem; margin: 0.7rem auto 0;
+      color: #8d877b; font-size: 0.8rem;
+    }
+    section { padding: 3.4rem 0 0.4rem; }
+    section h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3.4vw, 2.25rem);
       font-weight: 600;
       letter-spacing: -0.03em;
-      margin: 1rem 0 0.35rem;
+      text-align: center;
+      margin: 0 0 0.55rem;
+      position: relative;
+      padding-bottom: 0.75rem;
     }
-    .tag { color: var(--gold); margin: 0 0 2rem; }
-    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
-    th, td { text-align: left; padding: 0.65rem 0.4rem; border-bottom: 1px solid #2A2824; vertical-align: top; }
-    th { color: var(--gold); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; }
-    a { color: var(--cream); }
-    a:hover { color: var(--gold); }
-    .note { line-height: 1.45; }
+    section h2::after {
+      content: "";
+      position: absolute; left: 50%; bottom: 0;
+      transform: translateX(-50%);
+      width: 48px; height: 3px; border-radius: 2px;
+      background: var(--gold);
+    }
+    .sub {
+      text-align: center; color: var(--mute);
+      max-width: 42rem; margin: 0 auto 1.8rem;
+    }
+    .join {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem;
+      margin: 0 0 0.4rem;
+    }
+    .join article {
+      border: 1px solid var(--line); border-radius: 10px;
+      padding: 1rem 1.05rem; background: var(--panel);
+    }
+    .join h3 {
+      font-family: var(--serif); font-size: 1.05rem; margin: 0 0 0.35rem;
+    }
+    .join p { margin: 0; color: var(--mute); font-size: 0.95rem; }
+    .join code, .note code, .card code, .cell code, .install pre {
+      font-family: var(--mono); font-size: 0.88em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+    }
+    .card {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.15rem 1.15rem 1.05rem;
+      background: var(--panel);
+      min-height: 12.5rem;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .card:hover { border-color: #5a4a28; transform: translateY(-2px); }
+    .card .kind {
+      color: var(--gold); font-size: 0.72rem; letter-spacing: 0.08em;
+      text-transform: uppercase; font-weight: 700; margin: 0 0 0.4rem;
+    }
+    .card h3 {
+      font-family: var(--serif); font-size: 1.28rem;
+      margin: 0 0 0.45rem; letter-spacing: -0.02em;
+    }
+    .card h3 a { text-decoration: none; }
+    .card p { margin: 0 0 0.7rem; color: var(--mute); flex: 1; }
+    .card .write { font-size: 0.88rem; color: var(--cream); }
+    .law { border-style: dashed; }
+    .install-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;
+    }
+    .cmd {
+      border: 1px solid var(--line); border-radius: 12px;
+      background: var(--panel); overflow: hidden;
+    }
+    .cmd header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--line);
+      color: var(--mute); font-size: 0.8rem;
+    }
+    .cmd pre {
+      margin: 0; padding: 0.95rem 1rem;
+      font: 0.86rem/1.5 var(--mono); overflow-x: auto;
+    }
+    .cmd button {
+      appearance: none; border: 1px solid var(--line);
+      background: transparent; color: var(--cream);
+      border-radius: 6px; padding: 0.2rem 0.55rem;
+      font: 0.75rem/1 var(--sans); cursor: pointer;
+    }
+    .cmd button:hover { color: var(--gold); border-color: var(--gold); }
+    .cells {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;
+    }
+    .cell {
+      border: 1px solid var(--line); border-radius: 12px;
+      padding: 1rem; background: var(--panel);
+    }
+    .cell strong {
+      display: block; font-family: var(--serif);
+      font-size: 1.15rem; margin-bottom: 0.35rem;
+    }
+    .cell p { margin: 0; color: var(--mute); font-size: 0.92rem; }
+    .not-that {
+      margin: 1.2rem auto 0; max-width: 44rem;
+      border-left: 3px solid var(--gold);
+      padding: 0.15rem 0 0.15rem 1rem;
+      color: var(--mute);
+    }
+    .sources {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem;
+    }
+    .sources a {
+      border: 1px solid var(--line); border-radius: 999px;
+      padding: 0.4rem 0.85rem; text-decoration: none; font-size: 0.92rem;
+    }
+    .sources a:hover { border-color: var(--gold); }
     footer.antics {
-      border-top: 1px solid #2A2824;
+      border-top: 1px solid var(--line);
+      margin-top: 3.6rem;
       padding: 1.25rem 1rem 1.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      justify-content: center;
-      align-items: center;
-      color: #b9b3a6;
-      font-size: 0.9rem;
-      font-family: system-ui, sans-serif;
+      display: flex; flex-wrap: wrap; gap: 1.25rem;
+      justify-content: center; align-items: center;
+      color: #b9b3a6; font-size: 0.9rem; font-family: var(--sans);
     }
     footer.antics a { color: inherit; }
     footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
+    @media (max-width: 900px) {
+      .grid, .join { grid-template-columns: 1fr 1fr; }
+      .cells { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top: 2rem; }
+      .hero img.pin { width: 104px; height: 104px; }
+      .grid, .join, .install-row, .cells { grid-template-columns: 1fr; }
+      .term-body { min-height: 14rem; font-size: 0.8rem; }
+      .card { min-height: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .card { transition: none; }
+      .term-body .caret { animation: none; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <img src="icon.svg" alt="a gold pin">
+  <a class="skip" href="#habitats">Skip to habitats</a>
+  <div class="wrap">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="#">
+        <img src="icon.svg" alt="">
+        leiðarljós
+      </a>
+      <ul>
+        <li><a href="#habitats">Habitats</a></li>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#measure">Measure</a></li>
+        <li><a href="#source">Source</a></li>
+        <li><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <img class="pin" src="icon.svg" alt="a gold pin">
       <h1>leiðarljós</h1>
       <p class="tag">Citation is not a merge.</p>
+      <p class="lede">One seat over five habitats and argv law. It does not own them. One accession joins the stores. Completing a session node does not close a ticket.</p>
+      <ul class="pillars">
+        <li>Standing knowledge</li>
+        <li>Frozen product</li>
+        <li>Completing is not closing</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#install">Install ljos</a>
+        <a class="btn btn-ghost" href="#habitats">See the habitats</a>
+      </div>
+      <div class="term" aria-label="ljos terminal preview">
+        <div class="term-bar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="term-title">ljos</span>
+          <div class="term-tabs" role="tablist" aria-label="Demo commands">
+            <button type="button" role="tab" aria-selected="true" data-i="0">remember</button>
+            <button type="button" role="tab" aria-selected="false" data-i="1">search</button>
+            <button type="button" role="tab" aria-selected="false" data-i="2">consensus</button>
+            <button type="button" role="tab" aria-selected="false" data-i="3">policy</button>
+          </div>
+        </div>
+        <pre class="term-body" id="term-out" role="tabpanel"></pre>
+      </div>
+      <p class="disclaimer">Stylized preview — a seat prints the law and the habitat that owns the verb. This is not a live shell.</p>
     </header>
-    <p class="note">One identifier joins four stores. The pack names it. The tracker cites it. The deed store answers for the bytes. Completing a session node does not close a ticket.</p>
-    <table>
-      <thead>
-        <tr><th>Store</th><th>Question</th><th>Write</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href="https://github.com/leidarljos/packset">packset</a></td>
-          <td>What does this seat know, standing?</td>
-          <td><code>Remember:</code> / <code>Prefer:</code> only</td>
-        </tr>
-        <tr>
-          <td><a href="https://github.com/indynull/deedar">deedar</a></td>
-          <td>What did this unit produce?</td>
-          <td>Frozen bytes. <code>evidence</code> / <code>current</code></td>
-        </tr>
-        <tr>
-          <td><a href="https://github.com/leidarljos/vissue">vissue</a></td>
-          <td>What does this node stand on, and who agrees?</td>
-          <td>Graph. A deed citation, not a paste</td>
-        </tr>
-        <tr>
-          <td><a href="https://github.com/leidarljos/claimdag">claimdag</a></td>
-          <td>What is this session handing out?</td>
-          <td><code>claim</code> / <code>complete</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="note">The identifier is an accession: <code>deed-…</code> or <code>sha256:</code>.</p>
-  </main>
+
+    <section aria-labelledby="join-h">
+      <h2 id="join-h">One identifier. Four questions.</h2>
+      <p class="sub">The pin is an accession: <code>deed-…</code> or <code>sha256:</code>. The pack names it. The tracker cites it. The deed store answers for the bytes.</p>
+      <div class="join">
+        <article>
+          <h3>Name, do not paste</h3>
+          <p>A store holds a citation, not a copy of another store. Opening the bytes is a deed question.</p>
+        </article>
+        <article>
+          <h3>Write is explicit</h3>
+          <p><code>Remember:</code> and <code>Prefer:</code> are the pack. Cards stay frozen. Extract-on-write is refused.</p>
+        </article>
+        <article>
+          <h3>Session is not the ledger</h3>
+          <p><code>claim</code> / <code>complete</code> hand out this sitting. Completing a node leaves the cited ticket open.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="habitats" aria-labelledby="hab-h">
+      <h2 id="hab-h">Five habitats. Two that are not stores.</h2>
+      <p class="sub">ljos is the seat. Each habitat keeps its own writer. policyd is argv law. consensus is a model, not a habitat.</p>
+      <div class="grid">
+        <article class="card">
+          <p class="kind">Habitat · human · frozen</p>
+          <h3>cards</h3>
+          <p><code>USER.md</code> and <code>MEMORY.md</code> are the working core a person froze. Read-only. Never extract-on-write.</p>
+          <p class="write">Writer: the human. Lifetime: the sitting they froze.</p>
+        </article>
+        <article class="card">
+          <p class="kind">Habitat · standing</p>
+          <h3><a href="https://github.com/leidarljos/packset">packset</a></h3>
+          <p>What does this seat know, standing? Atoms from explicit write. Search fuses scorers; milli is a projection, not a second store.</p>
+          <p class="write">Write: <code>Remember:</code> / <code>Prefer:</code> only.</p>
+        </article>
+        <article class="card">
+          <p class="kind">Habitat · frozen product</p>
+          <h3><a href="https://github.com/indynull/deedar">deedar</a></h3>
+          <p>What did this unit produce? A deed is the noun. The next unit opens it by accession.</p>
+          <p class="write">Write: frozen bytes. <code>evidence</code> / <code>current</code>.</p>
+        </article>
+        <article class="card">
+          <p class="kind">Habitat · graph</p>
+          <h3><a href="https://github.com/leidarljos/vissue">vissue</a></h3>
+          <p>What does this node stand on, and who agrees? The tracker is the ledger. A deed citation, not a paste.</p>
+          <p class="write">Write: graph. Completing elsewhere does not close a ticket.</p>
+        </article>
+        <article class="card">
+          <p class="kind">Habitat · this session</p>
+          <h3><a href="https://github.com/leidarljos/claimdag">claimdag</a></h3>
+          <p>What is this session handing out? CAS claim and complete on a DAG. The host is the sole mutator.</p>
+          <p class="write">Write: <code>claim</code> / <code>complete</code>. Completing does not close a ticket.</p>
+        </article>
+        <article class="card law">
+          <p class="kind">Argv law · not a store</p>
+          <h3>policyd</h3>
+          <p>The pack is argv only. It is not a ledger, not a log, and not a stamp book. Reload is not a ritual.</p>
+          <p class="write"><code>ljos policy -- &lt;argv&gt;</code> checks the line. It does not own the TCB.</p>
+        </article>
+        <article class="card law">
+          <p class="kind">Model · not a store</p>
+          <h3><a href="https://github.com/leidarljos/consensus">consensus</a></h3>
+          <p>DeGroot / Friedkin–Johnsen over a trust graph. Seldon is the ODE engine. This crate does not link it.</p>
+          <p class="write"><code>ljos consensus</code> calls here first. <code>--seldon</code> execs <code>seldon</code> when it is on PATH.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="install" aria-labelledby="inst-h">
+      <h2 id="inst-h">Install</h2>
+      <p class="sub">The seat and the model. Habitats install from their own trees.</p>
+      <div class="install-row">
+        <div class="cmd">
+          <header>
+            <span>seat</span>
+            <button type="button" data-copy="cargo install --git https://github.com/leidarljos/ljos">Copy</button>
+          </header>
+          <pre>cargo install --git https://github.com/leidarljos/ljos</pre>
+        </div>
+        <div class="cmd">
+          <header>
+            <span>model</span>
+            <button type="button" data-copy="cargo install --git https://github.com/leidarljos/consensus">Copy</button>
+          </header>
+          <pre>cargo install --git https://github.com/leidarljos/consensus</pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="measure" aria-labelledby="meas-h">
+      <h2 id="meas-h">What Paper A is</h2>
+      <p class="sub">The claim is structural. It is not a chat-QA leaderboard, and we do not invent a number to look like one.</p>
+      <div class="cells">
+        <article class="cell">
+          <strong>n<sub>C1</sub> = 0</strong>
+          <p>Two writers on one card. The count is zero. Cards stay a single human freeze.</p>
+        </article>
+        <article class="cell">
+          <strong>named P<sub>ext</sub></strong>
+          <p>The write policy is named. Implicit extract is not a policy, and it is not ours.</p>
+        </article>
+        <article class="cell">
+          <strong>review-clock</strong>
+          <p>Keep-testing versus never-review. Grading moves the clock, not the live window.</p>
+        </article>
+        <article class="cell">
+          <strong>complementary write</strong>
+          <p>A review write is not a second Remember. The live set and the clock stay separate questions.</p>
+        </article>
+      </div>
+      <p class="not-that">Paper A is not a LongMemEval win. A LongMemEval number for this write policy does not exist here, and we will not report someone else’s.</p>
+    </section>
+
+    <section id="source" aria-labelledby="src-h">
+      <h2 id="src-h">Source</h2>
+      <p class="sub">Public trees. The seat does not swallow them.</p>
+      <div class="sources">
+        <a href="https://github.com/leidarljos/ljos">ljos</a>
+        <a href="https://github.com/leidarljos/consensus">consensus</a>
+        <a href="https://github.com/leidarljos/packset">packset</a>
+        <a href="https://github.com/leidarljos/vissue">vissue</a>
+        <a href="https://github.com/leidarljos/claimdag">claimdag</a>
+        <a href="https://github.com/indynull/deedar">deedar</a>
+      </div>
+    </section>
+  </div>
+
   <footer class="antics" role="contentinfo">
     <span>
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7,20H4V4h3V20z M14,20h-3V12h3V20z M21,20h-3V8h3V20z"/></svg>
@@ -102,5 +499,85 @@
       <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a>
     </span>
   </footer>
+  <script>
+    (function () {
+      var scenes = [
+        { cmd: "ljos remember \"the default fuse is CombMNZ\"",
+          out: "ljos: write only on explicit Remember:\nRemember: the default fuse is CombMNZ" },
+        { cmd: "ljos search fuse",
+          out: "standing · Remember: the default fuse is CombMNZ\nsearch asks the pack. It does not open a deed." },
+        { cmd: "ljos consensus",
+          out: "DeGroot / Friedkin–Johnsen over the trust graph.\nSeldon is the ODE when seldon is on PATH.\nThis crate does not invent a score." },
+        { cmd: "ljos policy -- ls",
+          out: "argv law. Not a store.\nls" }
+      ];
+      var el = document.getElementById("term-out");
+      var tabs = document.querySelectorAll(".term-tabs button");
+      var i = 0, timer, typing;
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function paint(n, typed) {
+        var s = scenes[n];
+        var body = typed ? typed : "$ " + s.cmd + "\n" + s.out;
+        el.innerHTML = body
+          .replace(/^\$ /m, "<span class=\"p\">$ </span>")
+          .replace(/^ljos:/m, "<span class=\"ok\">ljos:</span>")
+          .replace(/^(argv law\. Not a store\.)$/m, "<span class=\"dim\">$1</span>");
+        if (!typed) el.innerHTML += "<span class=\"caret\" aria-hidden=\"true\"></span>";
+        tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === n ? "true" : "false"); });
+      }
+
+      function play(n) {
+        i = n;
+        paint(n);
+        if (reduce) return;
+        var s = scenes[n];
+        var full = "$ " + s.cmd + "\n" + s.out;
+        var pos = 0;
+        clearInterval(typing);
+        typing = setInterval(function () {
+          pos += 2;
+          if (pos >= full.length) {
+            clearInterval(typing);
+            paint(n);
+            return;
+          }
+          paint(n, full.slice(0, pos) + "<span class=\"caret\" aria-hidden=\"true\"></span>");
+        }, 16);
+      }
+
+      function cycle() {
+        play(i);
+        i = (i + 1) % scenes.length;
+      }
+
+      tabs.forEach(function (b) {
+        b.addEventListener("click", function () {
+          clearInterval(timer);
+          play(+b.getAttribute("data-i"));
+          if (!reduce) timer = setInterval(function () {
+            i = (i + 1) % scenes.length;
+            play(i);
+          }, 5200);
+        });
+      });
+
+      if (reduce) paint(0);
+      else {
+        cycle();
+        timer = setInterval(cycle, 5200);
+      }
+
+      document.querySelectorAll("[data-copy]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var t = btn.getAttribute("data-copy");
+          function done() { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1400); }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(t).then(done).catch(done);
+          } else { done(); }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
