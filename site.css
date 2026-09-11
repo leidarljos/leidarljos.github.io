@@ -287,8 +287,77 @@ footer.antics {
 footer.antics a { color: inherit; }
 footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
 
+.field-map {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  overflow: hidden;
+}
+.field-map li {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.8rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--mute);
+}
+.field-map li:last-child { border-bottom: 0; }
+.field-map .name {
+  color: var(--cream);
+  font-family: var(--serif);
+  font-weight: 600;
+}
+.field-map .not {
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  grid-column: 1 / -1;
+  padding: 0.15rem 0 0;
+}
+
+.hb-notes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+.hb-note {
+  display: grid;
+  gap: 0.28rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.1rem 1.15rem 1.05rem;
+  background: var(--panel);
+  text-decoration: none;
+  color: inherit;
+  min-height: 8.5rem;
+}
+.hb-note:hover { border-color: #5a4a28; color: inherit; }
+.hb-note strong {
+  color: var(--cream);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.hb-note p { margin: 0; }
+
+.hb-back {
+  display: inline-block;
+  margin: 0 0 1.2rem;
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+}
+.hb-back:hover { color: var(--gold); }
+
 @media (max-width: 720px) {
   .docs-grid { grid-template-columns: 1fr; }
+  .hb-notes { grid-template-columns: 1fr; }
+  .field-map li { grid-template-columns: 1fr; gap: 0.2rem; }
   .hero { padding-top: 2rem; }
   .hero img.pin { width: 104px; height: 104px; }
   .term-body { min-height: 13rem; font-size: 0.8rem; }
