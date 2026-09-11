@@ -286,6 +286,9 @@
       padding: 0.4rem 0.85rem; text-decoration: none; font-size: 0.92rem;
     }
     .sources a:hover { border-color: var(--gold); }
+    table { width: 100%; border-collapse: collapse; margin: 1.2rem 0; }
+    th, td { text-align: left; padding: 0.55rem 0.4rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--gold); font-size: 0.85rem; }
     footer.antics {
       border-top: 1px solid var(--line);
       margin-top: 3.6rem;
@@ -325,7 +328,10 @@
       <ul>
         <li><a href="#habitats">Habitats</a></li>
         <li><a href="#install">Install</a></li>
-        <li><a href="#measure">Measure</a></li>
+        <li><a href="tutorial/">Tutorial</a></li>
+        <li><a href="howto/">How-to</a></li>
+        <li><a href="reference/">Reference</a></li>
+        <li><a href="explain/">Explain</a></li>
         <li><a href="#source">Source</a></li>
         <li><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
@@ -431,7 +437,7 @@
 
     <section id="install" aria-labelledby="inst-h">
       <h2 id="inst-h">Install</h2>
-      <p class="sub">The seat and the model. Habitats install from their own trees.</p>
+      <p class="sub">The seat and the model. Then one line per harness. Other projects may still speak one habitat alone.</p>
       <div class="install-row">
         <div class="cmd">
           <header>
@@ -448,30 +454,17 @@
           <pre>cargo install --git https://github.com/leidarljos/consensus</pre>
         </div>
       </div>
-    </section>
-
-    <section id="measure" aria-labelledby="meas-h">
-      <h2 id="meas-h">What Paper A is</h2>
-      <p class="sub">The claim is structural. It is not a chat-QA leaderboard, and we do not invent a number to look like one.</p>
-      <div class="cells">
-        <article class="cell">
-          <strong>n<sub>C1</sub> = 0</strong>
-          <p>Two writers on one card. The count is zero. Cards stay a single human freeze.</p>
-        </article>
-        <article class="cell">
-          <strong>named P<sub>ext</sub></strong>
-          <p>The write policy is named. Implicit extract is not a policy, and it is not ours.</p>
-        </article>
-        <article class="cell">
-          <strong>review-clock</strong>
-          <p>Keep-testing versus never-review. Grading moves the clock, not the live window.</p>
-        </article>
-        <article class="cell">
-          <strong>complementary write</strong>
-          <p>A review write is not a second Remember. The live set and the clock stay separate questions.</p>
-        </article>
-      </div>
-      <p class="not-that">Paper A is not a LongMemEval win. A LongMemEval number for this write policy does not exist here, and we will not report someone else’s.</p>
+      <table>
+        <thead><tr><th>Harness</th><th>Wire <code>ljos-mcp</code></th></tr></thead>
+        <tbody>
+          <tr><td>Grok</td><td><code>[mcp_servers.ljos] command = "ljos-mcp"</code> in <code>~/.grok/config.toml</code>. Restart Grok.</td></tr>
+          <tr><td>Claude</td><td><code>claude mcp add ljos -- ljos-mcp</code></td></tr>
+          <tr><td>Codex</td><td><code>codex mcp add ljos -- ljos-mcp</code></td></tr>
+          <tr><td>Cursor</td><td><code>{"mcpServers":{"ljos":{"command":"ljos-mcp"}}}</code> in MCP settings.</td></tr>
+          <tr><td>Pi</td><td>Point the MCP list at <code>ljos-mcp</code> on PATH.</td></tr>
+        </tbody>
+      </table>
+      <p class="sub"><a href="tutorial/">Tutorial</a> · <a href="howto/">How-to</a> · <a href="reference/">Reference</a> · <a href="explain/">Explain</a></p>
     </section>
 
     <section id="source" aria-labelledby="src-h">
