@@ -1,0 +1,85 @@
+#+title: First write
+#+options: toc:nil num:nil html-style:nil
+
+A reader who has never used the seat can finish this page with one
+lesson in the pack and the same text coming back from search.
+
+* Install every binary this walk uses
+
+#+begin_src console
+$ cargo install --git https://github.com/leidarljos/ljos ljos-cli
+$ cargo install --git https://github.com/leidarljos/packset packset-cli
+$ cargo install --git https://github.com/leidarljos/deedar deedar-cli
+$ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
+$ cargo install --git https://github.com/leidarljos/vissue vissue-cli
+$ cargo install --git https://github.com/leidarljos/consensus
+$ command -v ljos packset deedar claimdag vissue ljos-consensus
+#+end_src
+
+You should see six paths. If =packset= is missing, step 3 cannot start
+the writer.
+
+* Remember without a pack fails
+
+#+begin_src console
+$ ljos remember "the default fuse is CombMNZ"
+Error: PACKSET_URL unset; remember/prefer POST /v1/atoms
+#+end_src
+
+That error is the first success. The seat will not invent a store.
+
+* Start the writer and export the URL
+
+=packset ensure= prints =PACKSET_URL=. It does not put it in the next
+process.
+
+#+begin_src console
+$ packset ensure
+PACKSET_URL=http://127.0.0.1:8761
+$ export PACKSET_URL=http://127.0.0.1:8761
+$ packset status
+up  http://127.0.0.1:8761
+#+end_src
+
+If =status= is not =up=, stop. Do not continue.
+
+* Write one claim, then retrieve it
+
+#+begin_src console
+$ ljos remember "the default fuse is CombMNZ"
+{
+  "kind": "lesson",
+  "level": "explicit",
+  "text": "the default fuse is CombMNZ",
+  "id": "156eb2be-9898-46d8-bb2d-ce0dec1706b1"
+}
+$ ljos search fuse
+1.0000  lesson  156eb2be-…  the default fuse is CombMNZ
+#+end_src
+
+You should see =kind= of =lesson= and the same sentence in the search
+hit. That is the retrieve. If search is empty, the write did not land.
+
+* Prefer is the same path
+
+#+begin_src console
+$ ljos prefer "never extract on write"
+$ ljos search extract
+1.0000  preference  …  never extract on write
+#+end_src
+
+* Cards print files. They do not write them
+
+#+begin_src console
+$ ljos cards --dir /tmp/demo
+#+end_src
+
+With no =USER.md= or =MEMORY.md=, the command prints nothing and exits
+0. That is not a failure.
+
+* After this works
+
+Wire a harness only after search returned the sentence you wrote.
+[[https://leidarljos.github.io/docs/harnesses/][Harnesses]].
+Field notes: [[https://leidarljos.github.io/handbook/][Handbook]].
+Tracker docs: [[https://vissue.rgoswami.me][vissue.rgoswami.me]].

@@ -1,118 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Start — leiðarljós</title>
-  <meta name="description" content="Install the seat, write one claim on purpose, retrieve it.">
-  <link rel="canonical" href="https://leidarljos.github.io/docs/start/">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="Start — leiðarljós">
-  <meta property="og:description" content="Install the seat, write one claim on purpose, retrieve it.">
-  <meta property="og:url" content="https://leidarljos.github.io/docs/start/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
-  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
-  <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
-
+<!-- 2026-09-11 Fri 10:40 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>First write</title>
+<meta name="generator" content="Org Mode" />
+<style>
+.ef-D {
+  color: #000000; background-color: #ffffff; }
+.ef-vp {
+  color: #000000; }
+.ef-h {
+  color: #7f7f7f; }
+.ef-sc {
+  color: #228b22; font-weight: 700; }
+.ef-w {
+  color: #ff8e00; font-weight: 700; }
+.ef-e {
+  color: #ff0000; font-weight: 700; }
+.ef-l {
+  color: #ff0000; }
+.ef-lv {
+  color: #ff0000; }
+.ef-hi {
+  color: #ff0000; }
+.ef-c {
+  color: #b22222; }
+.ef-cd {
+  color: #b22222; }
+.ef-s {
+  color: #8b2252; }
+.ef-d {
+  color: #8b2252; }
+.ef-m {
+  color: #008b8b; }
+.ef-k {
+  color: #9370db; }
+.ef-b {
+  color: #483d8b; }
+.ef-f {
+  color: #0000ff; }
+.ef-v {
+  color: #a0522d; }
+.ef-t {
+  color: #228b22; }
+.ef-o {
+  color: #008b8b; }
+.ef-wr {
+  color: #ff0000; font-weight: 700; }
+.ef-nc {
+   }
+.ef-pp {
+  color: #483d8b; }
+.ef-rc {
+  font-weight: 700; }
+.ef-rb {
+  font-weight: 700; }
+.ef-ob {
+   }
+.ef-obb {
+   }
+.ef-obe {
+   }
+.ef-Oa {
+  color: #0000ff; }
+.ef-Ob {
+  color: #a0522d; }
+.ef-Oc {
+  color: #a020f0; }
+.ef-Od {
+  color: #b22222; }
+.ef-Oe {
+  color: #228b22; }
+.ef-Of {
+  color: #008b8b; }
+.ef-Og {
+  color: #483d8b; }
+.ef-Oh {
+  color: #8b2252; }
+.ef-hn {
+  color: #008b8b; }
+.ef-hq {
+  color: #9370db; }
+.ef-hs {
+  color: #008b8b; }
+.ef-rda {
+  color: #707183; }
+.ef-rdb {
+  color: #7388d6; }
+.ef-rdc {
+  color: #909183; }
+.ef-rdd {
+  color: #709870; }
+.ef-rde {
+  color: #907373; }
+.ef-rdf {
+  color: #6276ba; }
+.ef-rdg {
+  color: #858580; }
+.ef-rdh {
+  color: #80a880; }
+.ef-rdi {
+  color: #887070; }
+.ef-any {
+  color: #CDCD00; }
+.ef-anr {
+  color: #CD0000; }
+.ef-anb {
+  color: #000000; }
+.ef-ang {
+  color: #00CD00; }
+.ef-anB {
+  color: #0000EE; }
+.ef-anc {
+  color: #00CDCD; }
+.ef-anw {
+  color: #E5E5E5; }
+.ef-anm {
+  color: #CD00CD; }
+.ef-ANy {
+  color: #EEEE00; }
+.ef-ANr {
+  color: #EE0000; }
+.ef-ANb {
+   }
+.ef-ANg {
+  color: #00EE00; }
+.ef-ANB {
+  color: #0000FF; }
+.ef-ANc {
+  color: #00EEEE; }
+.ef-ANw {
+   }
+.ef-ANm {
+   }
+</style>
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/site.css">
+<meta name="theme-color" content="#0B0B0A">
+<script defer src="https://antics-api.turtletech.us/antics.js"></script>
+<script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="wrap narrow">
-    <nav class="top" aria-label="Site">
-      <a class="brand" href="/">
-        <img src="/icon.svg" alt="">
-        leiðarljós
-      </a>
-      <ul>
-        <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://vissue.rgoswami.me">vissue</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
-      </ul>
-    </nav>
-    <main id="main">
-      <div class="page">
-        <header class="intro">
-          <p class="kicker">Start</p>
-          <h1>First write</h1>
-          <p class="lead">This walk was run on the seat. The first command failed. That is part of the tutorial.</p>
-        </header>
-      <ul class="subnav" aria-label="Docs">
-        <li><a href="/docs/">Overview</a></li>
-        <li><a href="/docs/start/">Start</a></li>
-        <li><a href="/docs/habitats/">Habitats</a></li>
-        <li><a href="/docs/harnesses/">Harnesses</a></li>
-        <li><a href="/docs/privacy/">Privacy-of-write</a></li>
-        <li><a href="/docs/reference/">Reference</a></li>
-      </ul>
-        <h2>1. The binary is on PATH</h2>
-<pre>$ ljos --help
-One seat over cards, packset, deedar, vissue, claimdag, and policyd
-Commands:
-  remember   Standing knowledge. Remember: / Prefer: only. POST /v1/atoms
-  prefer
-  search
-  ...</pre>
-        <h2>2. Remember without a pack fails</h2>
-<pre>$ ljos remember "the default fuse is CombMNZ"
-Error: PACKSET_URL unset; remember/prefer POST /v1/atoms</pre>
-        <p><code>packset ensure</code> prints the URL. It does not export it into your shell.</p>
-<pre>$ packset ensure
+<div id="preamble" class="status">
+<nav class="top" aria-label="Site">
+  <a class="brand" href="/">
+    <img src="/icon.svg" alt="">
+    leiðarljós
+  </a>
+  <ul>
+    <li><a href="/docs/">Docs</a></li>
+    <li><a href="/docs/reference/">Reference</a></li>
+    <li><a href="/handbook/" aria-current="page">Handbook</a></li>
+    <li><a href="https://vissue.rgoswami.me">vissue</a></li>
+    <li><a href="https://github.com/leidarljos">GitHub</a></li>
+  </ul>
+</nav>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">First write</h1>
+</header><p>
+A reader who has never used the seat can finish this page with one
+lesson in the pack and the same text coming back from search.
+</p>
+<div id="outline-container-orgf76f6df" class="outline-2">
+<h2 id="orgf76f6df">Install every binary this walk uses</h2>
+<div class="outline-text-2" id="text-orgf76f6df">
+<div class="org-src-container">
+<pre class="src src-console">$ cargo install --git https://github.com/leidarljos/ljos ljos-cli
+$ cargo install --git https://github.com/leidarljos/packset packset-cli
+$ cargo install --git https://github.com/leidarljos/deedar deedar-cli
+$ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
+$ cargo install --git https://github.com/leidarljos/vissue vissue-cli
+$ cargo install --git https://github.com/leidarljos/consensus
+$ command -v ljos packset deedar claimdag vissue ljos-consensus
+</pre>
+</div>
+
+<p>
+You should see six paths. If <code>packset</code> is missing, step 3 cannot start
+the writer.
+</p>
+</div>
+</div>
+<div id="outline-container-org6f96a3a" class="outline-2">
+<h2 id="org6f96a3a">Remember without a pack fails</h2>
+<div class="outline-text-2" id="text-org6f96a3a">
+<div class="org-src-container">
+<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
+Error: PACKSET_URL unset; remember/prefer POST /v1/atoms
+</pre>
+</div>
+
+<p>
+That error is the first success. The seat will not invent a store.
+</p>
+</div>
+</div>
+<div id="outline-container-orga4a531a" class="outline-2">
+<h2 id="orga4a531a">Start the writer and export the URL</h2>
+<div class="outline-text-2" id="text-orga4a531a">
+<p>
+<code>packset ensure</code> prints <code>PACKSET_URL</code>. It does not put it in the next
+process.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-console">$ packset ensure
 PACKSET_URL=http://127.0.0.1:8761
-$ export PACKSET_URL=http://127.0.0.1:8761</pre>
-        <h2>3. One explicit write, then retrieve</h2>
-<pre>$ ljos remember "the default fuse is CombMNZ"
+$ export PACKSET_URL=http://127.0.0.1:8761
+$ packset status
+up  http://127.0.0.1:8761
+</pre>
+</div>
+
+<p>
+If <code>status</code> is not <code>up</code>, stop. Do not continue.
+</p>
+</div>
+</div>
+<div id="outline-container-org41cf166" class="outline-2">
+<h2 id="org41cf166">Write one claim, then retrieve it</h2>
+<div class="outline-text-2" id="text-org41cf166">
+<div class="org-src-container">
+<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
 {
   "kind": "lesson",
   "level": "explicit",
   "text": "the default fuse is CombMNZ",
-  "id": "156eb2be-9898-46d8-bb2d-ce0dec1706b1",
-  ...
+  "id": "156eb2be-9898-46d8-bb2d-ce0dec1706b1"
 }
 $ ljos search fuse
-1.0000  lesson  156eb2be-…  the default fuse is CombMNZ</pre>
-        <h2>4. Prefer is the same path, different kind</h2>
-<pre>$ ljos prefer "never extract on write"
-preference  01f2e067-…  never extract on write
-$ ljos search write
-1.0000  preference  01f2e067-…  never extract on write</pre>
-        <h2>5. Cards print files. They do not write them</h2>
-<pre>$ ljos cards --dir /tmp/demo
---- /tmp/demo/USER.md ---
-# User
-I write Remember: only.
---- /tmp/demo/MEMORY.md ---
-# Memory
-Overflow is an error.</pre>
-        <p>With no files in the directory, the command prints nothing and exits 0.</p>
-        <h2>6. The other habitats, as they actually answered</h2>
-<pre>$ ljos policy -- echo hi
-ljos: argv law. grok-policyd is the TCB when present. Reloading a pack is not a check.
-echo hi
+1.0000  lesson  156eb2be-…  the default fuse is CombMNZ
+</pre>
+</div>
 
-$ ljos-consensus settle --ballots '[{"agent":"a","choice":"ship"},{"agent":"b","choice":"hold"}]'
-{"options":["hold","ship"],"shares":[0.5,0.5],"rounds":1,"settled":true,"engine":"degroot-fj"}
+<p>
+You should see <code>kind</code> of <code>lesson</code> and the same sentence in the search
+hit. That is the retrieve. If search is empty, the write did not land.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc1baacb" class="outline-2">
+<h2 id="orgc1baacb">Prefer is the same path</h2>
+<div class="outline-text-2" id="text-orgc1baacb">
+<div class="org-src-container">
+<pre class="src src-console">$ ljos prefer "never extract on write"
+$ ljos search extract
+1.0000  preference  …  never extract on write
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge429b55" class="outline-2">
+<h2 id="orge429b55">Cards print files. They do not write them</h2>
+<div class="outline-text-2" id="text-orge429b55">
+<div class="org-src-container">
+<pre class="src src-console">$ ljos cards --dir /tmp/demo
+</pre>
+</div>
 
-$ ljos evidence deed-dead
-deedar: set DEEDAR_URL or pass --url; no store at ~/.local/share/deedar/store
-Error: deedar exited exit status: 1
-
-$ claimdag list
-no work graph at $DIR: the directory holds no work.bin. Claim something to create it</pre>
-        <p>Wire a harness only after this walk works on your machine. <a href="/docs/harnesses/">Harnesses</a>.</p>
-      </div>
-    </main>
-  </div>
-  <footer class="antics" role="contentinfo">
-    <span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7,20H4V4h3V20z M14,20h-3V12h3V20z M21,20h-3V8h3V20z"/></svg>
-      Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a>
-    </span>
-    <span>
-      provided by
-      <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 64 64" aria-hidden="true"><g fill-rule="evenodd"><ellipse cx="32" cy="11" fill="#80D25B" rx="7" ry="9"/><path fill="#80D25B" d="M20.3,46c0,0-3.2,9.9.3,13.8c3.5,3.9 6.1,3.4 6.1-6C26.8,44.3 20.3,46 20.3,46Z"/><path fill="#80D25B" d="M38.3,46c0,0-3.2,9.9.4,13.8c3.5,3.9 6.1,3.4 6.1-6C44.8,44.3 38.3,46 38.3,46Z" transform="matrix(-1 0 0 1 81.8 0)"/><path fill="#80D25B" d="M20.6,21.2c0,0-6.7-5.8-10.5-5.2C6.2,16.7 6,22.2 6,24c0,1.8 1.8,13.3 3.8,12.5c2-0.8 4-8.5 4-8.5c1.9,2.3 4.8,2.5 4.8,2.5L20.6,21.2Z"/><path fill="#80D25B" d="M57.6,21.2c0,0-6.6-5.8-10.5-5.2C43.2,16.7 43,22.2 43,24c0,1.8 1.8,13.3 3.8,12.5c2-0.8 4-8.5 4-8.5c1.9,2.3 4.8,2.5 4.8,2.5L57.6,21.2Z" transform="matrix(-1 0 0 1 100.623 0)"/><path fill="#BD7575" stroke="#595959" stroke-linecap="round" stroke-width="2" d="M32,53C40.8,53 48,44.5 48,34C48,23.5 46.7,17 32,17C17.3,17 16,23.5 16,34C16,44.5 23.2,53 32,53Z"/><polygon fill="#BD7575" stroke="#595959" stroke-linecap="round" stroke-width="2" points="32 22 38.9 26 38.9 34 32 38 25.1 34 25.1 26"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M30,8C28.9,8 28,8.9 28,10"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M36,8C34.9,8 34,8.9 34,10" transform="matrix(-1 0 0 1 70 0)"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M32.1,38.2L32.1,52.4M32,21.7L32,17M25.2,26L17.7,23.1M25.1,34.2L16.8,38.9"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M46.2,26L38.7,23.1" transform="matrix(-1 0 0 1 84.951 0)"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M47.1,34.2L38.8,38.9" transform="matrix(-1 0 0 1 85.891 0)"/></g></svg>
-      <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a>
-    </span>
-  </footer>
-
+<p>
+With no <code>USER.md</code> or <code>MEMORY.md</code>, the command prints nothing and exits
+</p>
+<ol class="org-ol">
+<li>That is not a failure.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8dbdb35" class="outline-2">
+<h2 id="org8dbdb35">After this works</h2>
+<div class="outline-text-2" id="text-org8dbdb35">
+<p>
+Wire a harness only after search returned the sentence you wrote.
+<a href="https://leidarljos.github.io/docs/harnesses/">Harnesses</a>.
+Field notes: <a href="https://leidarljos.github.io/handbook/">Handbook</a>.
+Tracker docs: <a href="https://vissue.rgoswami.me">vissue.rgoswami.me</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<footer class="antics" role="contentinfo">
+  <span>Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a></span>
+  <span>provided by <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a></span>
+</footer>
+</div>
 </body>
 </html>
