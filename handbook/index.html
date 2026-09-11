@@ -33,23 +33,33 @@
       <div class="page">
         <header class="intro">
           <p class="kicker">Handbook</p>
-          <h1>Notes from using the seat</h1>
-          <p class="lead">Written after running the binaries on this machine. Not a manifesto.</p>
+          <h1>The site is not the store</h1>
+          <p class="lead">Field notes. How this seat is supposed to be used. The first-success walk is <a href="/docs/start/">Start</a>.</p>
         </header>
-        <h2><code>PACKSET_URL</code> is not in the environment after <code>ensure</code></h2>
-        <p><code>packset ensure</code> printed <code>PACKSET_URL=http://127.0.0.1:8761</code>. The next <code>ljos remember</code> still failed until the URL was exported by hand. The tutorial starts there because that is the first thing that happened.</p>
-        <h2>Remember returns a lesson. Prefer returns a preference</h2>
-        <p>Both POST <code>/v1/atoms</code> with <code>level: explicit</code>. Search printed a score, the kind, the id, and the text. The workspace on the atom was the git remote of the directory the command was run from.</p>
-        <h2>Cards are silent when the files are missing</h2>
-        <p><code>ljos cards</code> in <code>/tmp</code> printed nothing. With <code>USER.md</code> and <code>MEMORY.md</code> present, it printed those two files and stopped. It did not create them.</p>
-        <h2>deedar and claimdag do not invent a store</h2>
-        <p><code>ljos evidence</code> failed: no <code>DEEDAR_URL</code> and no store under <code>~/.local/share/deedar/store</code>. <code>claimdag list</code> in an empty directory said there is no <code>work.bin</code> and that claiming creates it. The seat does not paper over that.</p>
-        <h2>Consensus without a trust graph is 50/50 in one round</h2>
-        <p>Two ballots, no edges, <code>ljos-consensus settle</code> returned shares <code>0.5 / 0.5</code>, <code>rounds: 1</code>, <code>engine: degroot-fj</code>. That is the discrete stepper. The Seldon C API is a separate path (<code>SELDON_SRC</code> / <code>--seldon</code>).</p>
-        <h2>policy prints argv</h2>
-        <p><code>ljos policy -- echo hi</code> printed a warning and then <code>echo hi</code>. It did not run the command and it did not reload a pack.</p>
+
         <h2>Citation is not a merge</h2>
-        <p>That sentence is still the law. It is not a substitute for the commands above working on your machine.</p>
+        <p>An accession can be named in the pack, on a ticket, and in a deed. That does not pour those habitats into one file. If you need the bytes, ask the deed store. If you need who agrees, ask the tracker. If you need what this sitting is handing out, ask the session DAG.</p>
+
+        <h2>Remember is a speech act</h2>
+        <p>Standing knowledge is written when someone says <code>Remember:</code> or <code>Prefer:</code>. A transcript is not a memory. Extract-on-write is how other products score. It is not how this seat writes.</p>
+
+        <h2>Completing is not closing</h2>
+        <p>A session node can go terminal and the ticket stay open. The DAG is this sitting. The tracker is the ledger. Mixing them is how work vanishes into a green checkbox.</p>
+
+        <h2>A vote is not consensus</h2>
+        <p>Four ticks in a drawer are a count. Consensus is a model over a trust graph (DeGroot, or the ODE when Seldon is on the path). If you only count, say you counted.</p>
+
+        <h2>Cards overflow is an error</h2>
+        <p><code>USER.md</code> and <code>MEMORY.md</code> are a human freeze. The seat will print them. It will not grow them. Dumping a session into the harness memory file is the thing we already killed.</p>
+
+        <h2>Reloading a pack is not a check</h2>
+        <p>Argv law lives in the policy daemon. <code>ljos policy</code> names the argv. It does not stamp the Janet, and it does not reload anything as a ritual.</p>
+
+        <h2>The pin is an accession</h2>
+        <p><code>deed-…</code> or <code>sha256:</code>. The pack may name it. The tracker may cite it. The deed store answers for the bytes. Opening the bytes is a deed question, not a paste.</p>
+
+        <h2>Other crates may ignore the seat</h2>
+        <p>A project can speak one habitat and never install <code>ljos</code>. The seat is for agents that must not invent a sixth store.</p>
       </div>
     </main>
   </div>
