@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>packset — leiðarljós</title>
+  <meta name="description" content="packset is the loopback writer for standing knowledge. One process owns the pack. Every client speaks HTTP to it.">
+  <link rel="canonical" href="https://leidarljos.github.io/packset/">
+  <link rel="stylesheet" href="../docs.css">
+  <link rel="icon" href="../icon.svg" type="image/svg+xml">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script defer src="../docs.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="top">
+      <a class="brand" href="https://leidarljos.github.io/">leiðarljós</a>
+      <a href="../tutorial/">Tutorial</a>
+      <a href="../howto/">How-to</a>
+      <a href="../reference/">Reference</a>
+      <a href="../explain/">Explain</a>
+      <a href="./">packset</a>
+      <a href="../claimdag/">claimdag</a>
+      <a href="../deedar/">deedar</a>
+    </nav>
+    <h1>packset</h1>
+    <p>The loopback writer for standing knowledge: one process owns the pack, and every client speaks HTTP to it.</p>
+
+    <h2>Install</h2>
+    <p>The CLI starts and inspects the writer. The writer is a second binary, <code>packsetd</code>, which <code>packset</code> finds beside itself or on <code>PATH</code>.</p>
+    <div class="cmd">
+      <header>
+        <span>cli + writer</span>
+        <button type="button" data-copy="cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon">Copy</button>
+      </header>
+      <pre>cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon</pre>
+    </div>
+    <p><code>PACKSET_URL</code> is the contract. <code>packset ensure</code> starts the writer if it is down and prints that URL.</p>
+
+    <h2>Commands</h2>
+    <p>From <code>packset --help</code>. Lifecycle first, then the <code>/v1</code> reads a shell runs.</p>
+    <table class="cmds">
+      <thead><tr><th>Command</th><th>Does</th><th></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>packset ensure</code></td>
+          <td>Start if down, then print the URL.</td>
+          <td><button type="button" data-copy="packset ensure">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset start</code></td>
+          <td>Start the writer.</td>
+          <td><button type="button" data-copy="packset start">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset stop</code></td>
+          <td>Stop the writer this seat started.</td>
+          <td><button type="button" data-copy="packset stop">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset status</code></td>
+          <td>Counts by kind, the pinned set, the index.</td>
+          <td><button type="button" data-copy="packset status">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset which</code></td>
+          <td>The <code>packsetd</code> this seat would start.</td>
+          <td><button type="button" data-copy="packset which">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset url</code></td>
+          <td>Print <code>PACKSET_URL</code>.</td>
+          <td><button type="button" data-copy="packset url">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset pin NAME</code></td>
+          <td>Read, or set, the pinned set. Needs a workspace.</td>
+          <td><button type="button" data-copy="packset pin NAME">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset atoms WORKSPACE</code></td>
+          <td>Live-now atoms, one JSON object a line. <code>--as-of TS</code> for those live at that time.</td>
+          <td><button type="button" data-copy="packset atoms WORKSPACE">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset accessions WORKSPACE</code></td>
+          <td>Deed accessions live atoms cite, one per line.</td>
+          <td><button type="button" data-copy="packset accessions WORKSPACE">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset citers ACCESSION WORKSPACE</code></td>
+          <td>The live atoms citing one accession.</td>
+          <td><button type="button" data-copy="packset citers ACCESSION WORKSPACE">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>packset export --into DIR WORKSPACE</code></td>
+          <td>Atoms to a satchel; cited accessions to stdout.</td>
+          <td><button type="button" data-copy="packset export --into DIR WORKSPACE">Copy</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Name a workspace on the command, or set <code>PACKSET_WORKSPACE</code>. <code>accessions</code> pipes into <code>deedar evidence -</code> or <code>deedar current -</code>.</p>
+    <div class="cmd">
+      <header>
+        <span>cited accessions, then the bytes</span>
+        <button type="button" data-copy="packset accessions WORKSPACE | deedar evidence -">Copy</button>
+      </header>
+      <pre>packset accessions WORKSPACE | deedar evidence -</pre>
+    </div>
+
+    <h2>Alone, or through ljos</h2>
+    <p>Use <strong>packset</strong> when the job is the writer itself: start it, pin a set, list atoms, export a satchel, or walk the accessions a pack cites. Other projects that only need standing knowledge speak this crate and ignore the seat.</p>
+    <p>Use <strong>ljos</strong> when an agent must write or retrieve through the seat and not invent another store. <code>ljos remember</code> / <code>ljos prefer</code> POST one explicit claim. <code>ljos search</code> retrieves. The seat does not start the writer, pin a set, or export.</p>
+
+    <p class="also">
+      <a href="https://github.com/leidarljos/packset">github.com/leidarljos/packset</a>
+      <a href="https://leidarljos.github.io/">leiðarljós</a>
+    </p>
+    <footer class="antics">Analytics by <a href="https://antics.turtletech.us/">antics</a>, provided by <a href="https://turtletech.us/">TurtleTech ehf</a>.</footer>
+  </div>
+</body>
+</html>
