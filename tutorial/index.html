@@ -2,44 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=/docs/start/">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/start/">
   <title>Tutorial — leiðarljós</title>
-  <link rel="stylesheet" href="../docs.css">
-  <link rel="icon" href="../icon.svg" type="image/svg+xml">
-  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script>location.replace('/docs/start/');</script>
 </head>
 <body>
-  <div class="wrap">
-    <nav class="top">
-      <a class="brand" href="../">leiðarljós</a>
-      <a href="./">Tutorial</a>
-      <a href="../howto/">How-to</a>
-      <a href="../reference/">Reference</a>
-      <a href="../explain/">Explain</a>
-      <a href="../packset/">packset</a>
-      <a href="../claimdag/">claimdag</a>
-      <a href="../deedar/">deedar</a>
-    </nav>
-    <h1>First session</h1>
-    <p>One explicit write. One retrieve. Cards stay unread-write. Fifteen minutes.</p>
-    <h2>1. Install the seat</h2>
-<pre>cargo install --git https://github.com/leidarljos/ljos
-cargo install --git https://github.com/leidarljos/consensus
-ljos --help</pre>
-    <h2>2. Write one claim, on purpose</h2>
-    <p>Standing knowledge is only written when you say so. There is no extract-on-write.</p>
-<pre>export PACKSET_URL=http://127.0.0.1:8761
-packset ensure
-ljos remember "the default fuse is CombMNZ"
-ljos search fuse</pre>
-    <h2>3. Read the cards. Do not write them</h2>
-<pre>ljos cards</pre>
-    <p><code>USER.md</code> and <code>MEMORY.md</code> are a human freeze. Overflow is an error. The harness memory file is dead.</p>
-    <h2>4. Wire one harness</h2>
-    <p>Pick the line for your client on the <a href="../howto/">how-to</a>. Restart that client. Ask it to <code>ljos search fuse</code>.</p>
-    <h2>5. Leave the other habitats alone until you need them</h2>
-    <p>A deed, a claim, a policy check, and consensus each have a verb. You do not need them for the first write.</p>
-    <footer class="antics">Analytics by <a href="https://antics.turtletech.us/">antics</a>, provided by <a href="https://turtletech.us/">TurtleTech ehf</a>.</footer>
-  </div>
+  <p>Moved to <a href="/docs/start/">/docs/start/</a>.</p>
 </body>
 </html>

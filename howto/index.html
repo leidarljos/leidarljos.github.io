@@ -2,65 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=/docs/harnesses/">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/harnesses/">
   <title>How-to — leiðarljós</title>
-  <link rel="stylesheet" href="../docs.css">
-  <link rel="icon" href="../icon.svg" type="image/svg+xml">
-  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script>location.replace('/docs/harnesses/');</script>
 </head>
 <body>
-  <div class="wrap">
-    <nav class="top">
-      <a class="brand" href="../">leiðarljós</a>
-      <a href="../tutorial/">Tutorial</a>
-      <a href="./">How-to</a>
-      <a href="../reference/">Reference</a>
-      <a href="../explain/">Explain</a>
-      <a href="../packset/">packset</a>
-      <a href="../claimdag/">claimdag</a>
-      <a href="../deedar/">deedar</a>
-    </nav>
-    <h1>How-to</h1>
-    <p>Task-shaped. One harness per heading. <code>ljos-mcp</code> must be on <code>PATH</code>.</p>
-
-    <h2>Grok</h2>
-<pre>[mcp_servers.ljos]
-command = "ljos-mcp"
-args = []
-startup_timeout_sec = 30</pre>
-    <p>Put that in <code>~/.grok/config.toml</code>. Restart Grok. The skill still names the five habitats; the MCP is the seat.</p>
-
-    <h2>Claude</h2>
-<pre>claude mcp add ljos -- ljos-mcp</pre>
-
-    <h2>Codex</h2>
-<pre>codex mcp add ljos -- ljos-mcp</pre>
-
-    <h2>Cursor</h2>
-<pre>{
-  "mcpServers": {
-    "ljos": { "command": "ljos-mcp" }
-  }
-}</pre>
-
-    <h2>Pi</h2>
-    <p>Add <code>ljos-mcp</code> to the MCP server list the same way you add any stdio server. Restart the session.</p>
-
-    <h2>Cite a deed on a ticket</h2>
-<pre>ljos evidence deed-…
-ljos deed &lt;id&gt; --add deed-…
-ljos recall &lt;id&gt;</pre>
-    <p>Citation is not a merge. Completing a session node does not close the ticket.</p>
-
-    <h2>Check argv without reloading a pack</h2>
-<pre>ljos policy -- ls -la</pre>
-    <p>The TCB is the policy daemon. Reloading a pack is not a check.</p>
-
-    <h2>Settle agreement</h2>
-<pre>ljos consensus &lt;id&gt;</pre>
-    <p>That is DeGroot / the ODE crate, then the tracker verb. It is not a vote count.</p>
-
-    <footer class="antics">Analytics by <a href="https://antics.turtletech.us/">antics</a>, provided by <a href="https://turtletech.us/">TurtleTech ehf</a>.</footer>
-  </div>
+  <p>Moved to <a href="/docs/harnesses/">/docs/harnesses/</a>.</p>
 </body>
 </html>
