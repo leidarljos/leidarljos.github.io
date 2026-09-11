@@ -368,3 +368,27 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
   .docs-card { transition: none; }
   .term-body .caret { animation: none; }
 }
+
+/* ox-html handbook */
+#preamble, #content, #postamble {
+  width: min(760px, calc(100% - 2rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+#postamble { margin-top: 2rem; }
+h1.title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+#content p { line-height: 1.65; }
+#content dl { margin: 1rem 0; }
+#content dt { color: var(--cream); font-family: var(--serif); font-weight: 600; }
+#content dd { color: var(--mute); margin: 0 0 0.6rem 0; }
+.org-src-container, pre.src {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  overflow: auto;
+}

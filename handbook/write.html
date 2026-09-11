@@ -4,7 +4,7 @@
 <!-- 2026-09-11 Fri 10:01 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Citation is not a merge.</title>
+<title>Remember is a speech act.</title>
 <meta name="generator" content="Org Mode" />
 <style>
 .ef-D {
@@ -160,34 +160,26 @@
 </div>
 <div id="content" class="content">
 <header>
-<h1 class="title">Citation is not a merge.</h1>
+<h1 class="title">Remember is a speech act.</h1>
 </header><p>
-Open the note for the thing you are about to do. It names the verb, the
-contract, and the failure that looks like success.
+<a href="index.html">Back to the field</a>
 </p>
 
-<dl class="org-dl">
-<dt>cards</dt><dd>What the human froze. Read-only.</dd>
-<dt>packset</dt><dd>Standing knowledge. Written only on <code>Remember:</code> / <code>Prefer:</code>.</dd>
-<dt>deedar</dt><dd>Frozen product. Opened by accession.</dd>
-<dt>vissue</dt><dd>The graph and the agreement. Docs: <a href="https://vissue.rgoswami.me">vissue.rgoswami.me</a>.</dd>
-<dt>claimdag</dt><dd>Work for this sitting. Completing does not close a ticket.</dd>
-<dt>policyd</dt><dd>Argv check. Reloading a pack is not a check.</dd>
-<dt>consensus</dt><dd>DeGroot / Friedkin–Johnsen. A vote count is not that run.</dd>
-</dl>
-<div id="outline-container-orgc2c6a26" class="outline-2">
-<h2 id="orgc2c6a26">Notes</h2>
-<div class="outline-text-2" id="text-orgc2c6a26">
-<ul class="org-ul">
-<li><a href="write.html">Write</a> — Remember is a speech act</li>
-<li><a href="cards.html">Cards</a> — Overflow is an error</li>
-<li><a href="accession.html">Accession</a> — The pin is an accession</li>
-<li><a href="session.html">Session</a> — Completing is not closing</li>
-<li><a href="agreement.html">Agreement</a> — A vote count is not consensus</li>
-<li><a href="argv.html">Argv</a> — Reloading a pack is not a check</li>
-</ul>
-</div>
-</div>
+<p>
+<code>ljos remember</code> POSTs one lesson to <code>/v1/atoms</code>. <code>ljos prefer</code> POSTs one preference. The process must already have <code>PACKSET_URL</code>. <code>packset ensure</code> starts the writer and prints the URL. It does not export the URL into the next process.
+</p>
+
+<p>
+The workspace is the git remote of the current directory (<code>git:github.com/org/repo</code>). Search is GET <code>/v1/search</code> on that workspace. It does not open a deed. A transcript is not a source. If you did not say <code>Remember:</code> or <code>Prefer:</code>, the pack did not change.
+</p>
+
+<p>
+If <code>packset status</code> says up and remember hangs or returns 400, the writer is wedged. <code>packset stop</code>, then <code>packset ensure</code>. Do not dump the sitting into a card.
+</p>
+
+<p>
+<a href="https://leidarljos.github.io/docs/privacy/">Privacy-of-write</a>
+</p>
 </div>
 <div id="postamble" class="status">
 <footer class="antics" role="contentinfo">

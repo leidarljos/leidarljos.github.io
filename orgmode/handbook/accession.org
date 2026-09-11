@@ -1,8 +1,7 @@
 #+title: The pin is an accession.
-#+kicker: Accession
-#+description: A store holds a citation, not a copy.
-#+canon: /handbook/accession/
-#+back: /handbook/
+#+options: toc:nil num:nil
+
+[[file:index.org][Back to the field]]
 
 =DEEDAR_URL= names the directory (=file://= plus a path). Unset, the command has nowhere to write. =deedar create file= needs =--id=, =--path=, and =--agent=. The pin is =deed-…= or =sha256:=.
 
@@ -10,4 +9,4 @@
 
 If the store is empty, that is an error.
 
-[[/deedar/][Frozen product / deedar]]
+[[https://leidarljos.github.io/deedar/][Frozen product / deedar]]
