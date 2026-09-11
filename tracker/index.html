@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>claimdag — leiðarljós</title>
-  <meta name="description" content="CAS claim and complete on a DAG.">
-  <link rel="canonical" href="https://leidarljos.github.io/claimdag/">
+  <title>tracker — leiðarljós</title>
+  <meta name="description" content="The graph and the agreement. The crate is vissue.">
+  <link rel="canonical" href="https://leidarljos.github.io/tracker/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="claimdag — leiðarljós">
-  <meta property="og:description" content="CAS claim and complete on a DAG.">
-  <meta property="og:url" content="https://leidarljos.github.io/claimdag/">
+  <meta property="og:title" content="tracker — leiðarljós">
+  <meta property="og:description" content="The graph and the agreement. The crate is vissue.">
+  <meta property="og:url" content="https://leidarljos.github.io/tracker/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -33,24 +33,24 @@
       <header class="crate-home">
         <img class="pin" src="/icon.svg" alt="">
         <p class="kicker">leiðarljós</p>
-        <h1>claimdag</h1>
-        <p class="sentence">What is this session handing out?</p>
+        <h1>tracker</h1>
+        <p class="sentence">What does this node stand on, and who agrees?</p>
         <div class="install">
           <header><span>install</span></header>
-          <pre>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</pre>
+          <pre>cargo install --git https://github.com/leidarljos/vissue vissue-cli</pre>
         </div>
         <h2>Five commands</h2>
         <ol class="cmd-list">
-          <li><code>claimdag upsert --summary "…"</code><p>Create or update a node.</p></li>
-          <li><code>claimdag list</code><p>Live work, newest first.</p></li>
-          <li><code>claimdag claim ID --assignee ACTOR</code><p>Compare-and-swap claim.</p></li>
-          <li><code>claimdag complete ID</code><p>Mark a node terminal. Does not close a ticket.</p></li>
-          <li><code>claimdag link PARENT CHILD</code><p>Boolean hard dependency.</p></li>
+          <li><code>vissue create --project X "title"</code><p>Mint a node.</p></li>
+          <li><code>vissue claim ID</code><p>Take the lock.</p></li>
+          <li><code>vissue recall ID</code><p>What this node stands on.</p></li>
+          <li><code>vissue deed ID --add ACCESSION</code><p>Cite. Not a merge.</p></li>
+          <li><code>vissue vote ID --for CHOICE</code><p>Cast a ballot.</p></li>
         </ol>
         <p class="links">
           <a href="/">Seat</a>
-          <a href="/claimdag/reference/">Reference</a>
-          <a href="https://github.com/leidarljos/claimdag">Source</a>
+          <a href="/tracker/reference/">Reference</a>
+          <a href="https://github.com/leidarljos/vissue">Source</a>
         </p>
       </header>
     </main>

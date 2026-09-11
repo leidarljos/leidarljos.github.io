@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>claimdag — leiðarljós</title>
-  <meta name="description" content="CAS claim and complete on a DAG.">
-  <link rel="canonical" href="https://leidarljos.github.io/claimdag/">
+  <title>Privacy-of-write — leiðarljós</title>
+  <meta name="description" content="Extract-on-write is refused. Cards stay frozen. The harness memory file is dead.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/privacy/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="claimdag — leiðarljós">
-  <meta property="og:description" content="CAS claim and complete on a DAG.">
-  <meta property="og:url" content="https://leidarljos.github.io/claimdag/">
+  <meta property="og:title" content="Privacy-of-write — leiðarljós">
+  <meta property="og:description" content="Extract-on-write is refused. Cards stay frozen. The harness memory file is dead.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/privacy/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -26,33 +26,35 @@
         leiðarljós
       </a>
       <ul>
-        <li><a href="/docs/">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+        <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
     </nav>
     <main id="main">
-      <header class="crate-home">
-        <img class="pin" src="/icon.svg" alt="">
-        <p class="kicker">leiðarljós</p>
-        <h1>claimdag</h1>
-        <p class="sentence">What is this session handing out?</p>
-        <div class="install">
-          <header><span>install</span></header>
-          <pre>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</pre>
-        </div>
-        <h2>Five commands</h2>
-        <ol class="cmd-list">
-          <li><code>claimdag upsert --summary "…"</code><p>Create or update a node.</p></li>
-          <li><code>claimdag list</code><p>Live work, newest first.</p></li>
-          <li><code>claimdag claim ID --assignee ACTOR</code><p>Compare-and-swap claim.</p></li>
-          <li><code>claimdag complete ID</code><p>Mark a node terminal. Does not close a ticket.</p></li>
-          <li><code>claimdag link PARENT CHILD</code><p>Boolean hard dependency.</p></li>
-        </ol>
-        <p class="links">
-          <a href="/">Seat</a>
-          <a href="/claimdag/reference/">Reference</a>
-          <a href="https://github.com/leidarljos/claimdag">Source</a>
-        </p>
-      </header>
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Privacy-of-write</p>
+          <h1>Extract-on-write is refused</h1>
+          <p class="lead">A seat that harvests a transcript invents a sixth store. leiðarljós does not.</p>
+        </header>
+      <ul class="subnav" aria-label="Docs">
+        <li><a href="/docs/">Overview</a></li>
+        <li><a href="/docs/start/">Start</a></li>
+        <li><a href="/docs/habitats/">Habitats</a></li>
+        <li><a href="/docs/harnesses/">Harnesses</a></li>
+        <li><a href="/docs/privacy/">Privacy-of-write</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+      </ul>
+        <h2>Only explicit claims</h2>
+        <p><code>Remember:</code> and <code>Prefer:</code> are the pack writes. The text is the claim. It is not parsed out of a sitting. Empty text is refused.</p>
+        <h2>Cards stay frozen</h2>
+        <p><code>USER.md</code> and <code>MEMORY.md</code> are a human freeze. <code>ljos cards</code> prints them. It never writes them. Overflow is an error, not a prompt to dump more.</p>
+        <h2>The harness memory file is dead</h2>
+        <p>Do not write a client memory file and call it standing knowledge. The pack is the pack. The cards are the cards.</p>
+        <h2>Citation is not a merge</h2>
+        <p>An accession can be named in more than one habitat. That does not pour the habitats into one store. Opening the bytes is a deed question.</p>
+        <h2>Completing is not closing</h2>
+        <p><code>ljos complete</code> finishes a session node. The cited ticket stays open until the tracker says otherwise.</p>
+      </div>
     </main>
   </div>
   <footer class="antics" role="contentinfo">

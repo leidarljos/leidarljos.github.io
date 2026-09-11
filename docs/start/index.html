@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>claimdag — leiðarljós</title>
-  <meta name="description" content="CAS claim and complete on a DAG.">
-  <link rel="canonical" href="https://leidarljos.github.io/claimdag/">
+  <title>Start — leiðarljós</title>
+  <meta name="description" content="Install the seat, write one claim on purpose, retrieve it.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/start/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="claimdag — leiðarljós">
-  <meta property="og:description" content="CAS claim and complete on a DAG.">
-  <meta property="og:url" content="https://leidarljos.github.io/claimdag/">
+  <meta property="og:title" content="Start — leiðarljós">
+  <meta property="og:description" content="Install the seat, write one claim on purpose, retrieve it.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/start/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -26,33 +26,42 @@
         leiðarljós
       </a>
       <ul>
-        <li><a href="/docs/">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+        <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
     </nav>
     <main id="main">
-      <header class="crate-home">
-        <img class="pin" src="/icon.svg" alt="">
-        <p class="kicker">leiðarljós</p>
-        <h1>claimdag</h1>
-        <p class="sentence">What is this session handing out?</p>
-        <div class="install">
-          <header><span>install</span></header>
-          <pre>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</pre>
-        </div>
-        <h2>Five commands</h2>
-        <ol class="cmd-list">
-          <li><code>claimdag upsert --summary "…"</code><p>Create or update a node.</p></li>
-          <li><code>claimdag list</code><p>Live work, newest first.</p></li>
-          <li><code>claimdag claim ID --assignee ACTOR</code><p>Compare-and-swap claim.</p></li>
-          <li><code>claimdag complete ID</code><p>Mark a node terminal. Does not close a ticket.</p></li>
-          <li><code>claimdag link PARENT CHILD</code><p>Boolean hard dependency.</p></li>
-        </ol>
-        <p class="links">
-          <a href="/">Seat</a>
-          <a href="/claimdag/reference/">Reference</a>
-          <a href="https://github.com/leidarljos/claimdag">Source</a>
-        </p>
-      </header>
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Start</p>
+          <h1>First write</h1>
+          <p class="lead">One explicit write. One retrieve. Cards stay unread-write.</p>
+        </header>
+      <ul class="subnav" aria-label="Docs">
+        <li><a href="/docs/">Overview</a></li>
+        <li><a href="/docs/start/">Start</a></li>
+        <li><a href="/docs/habitats/">Habitats</a></li>
+        <li><a href="/docs/harnesses/">Harnesses</a></li>
+        <li><a href="/docs/privacy/">Privacy-of-write</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+      </ul>
+        <h2>1. Install the seat</h2>
+<pre>cargo install --git https://github.com/leidarljos/ljos ljos-cli ljos-mcp
+cargo install --git https://github.com/leidarljos/consensus
+ljos --help</pre>
+        <h2>2. Write one claim, on purpose</h2>
+        <p>Standing knowledge is written only when you say so. There is no extract-on-write.</p>
+<pre>export PACKSET_URL=http://127.0.0.1:8761
+packset ensure
+ljos remember "the default fuse is CombMNZ"
+ljos search fuse</pre>
+        <h2>3. Read the cards. Do not write them</h2>
+<pre>ljos cards</pre>
+        <p><code>USER.md</code> and <code>MEMORY.md</code> are a human freeze. Overflow is an error. The harness memory file is dead.</p>
+        <h2>4. Wire one harness</h2>
+        <p>Pick the line for your client on <a href="/docs/harnesses/">Harnesses</a>. Restart that client. Ask it to <code>ljos search fuse</code>.</p>
+        <h2>5. Leave the other habitats alone until you need them</h2>
+        <p>A deed, a claim, a policy check, and consensus each have a verb. You do not need them for the first write.</p>
+      </div>
     </main>
   </div>
   <footer class="antics" role="contentinfo">

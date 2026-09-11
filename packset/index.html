@@ -4,119 +4,68 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>packset — leiðarljós</title>
-  <meta name="description" content="packset is the loopback writer for standing knowledge. One process owns the pack. Every client speaks HTTP to it.">
+  <meta name="description" content="Standing knowledge. Remember: and Prefer: only.">
   <link rel="canonical" href="https://leidarljos.github.io/packset/">
-  <link rel="stylesheet" href="../docs.css">
-  <link rel="icon" href="../icon.svg" type="image/svg+xml">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/site.css">
+  <meta property="og:title" content="packset — leiðarljós">
+  <meta property="og:description" content="Standing knowledge. Remember: and Prefer: only.">
+  <meta property="og:url" content="https://leidarljos.github.io/packset/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
-  <script defer src="../docs.js"></script>
+  <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
+
 </head>
 <body>
-  <div class="wrap">
-    <nav class="top">
-      <a class="brand" href="https://leidarljos.github.io/">leiðarljós</a>
-      <a href="../tutorial/">Tutorial</a>
-      <a href="../howto/">How-to</a>
-      <a href="../reference/">Reference</a>
-      <a href="../explain/">Explain</a>
-      <a href="./">packset</a>
-      <a href="../claimdag/">claimdag</a>
-      <a href="../deedar/">deedar</a>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap narrow">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="/">
+        <img src="/icon.svg" alt="">
+        leiðarljós
+      </a>
+      <ul>
+        <li><a href="/docs/">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
     </nav>
-    <h1>packset</h1>
-    <p>The loopback writer for standing knowledge: one process owns the pack, and every client speaks HTTP to it.</p>
-
-    <h2>Install</h2>
-    <p>The CLI starts and inspects the writer. The writer is a second binary, <code>packsetd</code>, which <code>packset</code> finds beside itself or on <code>PATH</code>.</p>
-    <div class="cmd">
-      <header>
-        <span>cli + writer</span>
-        <button type="button" data-copy="cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon">Copy</button>
+    <main id="main">
+      <header class="crate-home">
+        <img class="pin" src="/icon.svg" alt="">
+        <p class="kicker">leiðarljós</p>
+        <h1>packset</h1>
+        <p class="sentence">What does this seat know, standing?</p>
+        <div class="install">
+          <header><span>install</span></header>
+          <pre>cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon</pre>
+        </div>
+        <h2>Five commands</h2>
+        <ol class="cmd-list">
+          <li><code>packset ensure</code><p>Start packsetd and print PACKSET_URL.</p></li>
+          <li><code>packset pin NAME</code><p>Scope retrieve and Remember.</p></li>
+          <li><code>packset status</code><p>Counts by kind, the pinned set, the index.</p></li>
+          <li><code>packset atoms</code><p>List live atoms.</p></li>
+          <li><code>packset accessions WORKSPACE</code><p>Every accession cited by a live atom.</p></li>
+        </ol>
+        <p class="links">
+          <a href="/">Seat</a>
+          <a href="/packset/reference/">Reference</a>
+          <a href="https://github.com/leidarljos/packset">Source</a>
+        </p>
       </header>
-      <pre>cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon</pre>
-    </div>
-    <p><code>PACKSET_URL</code> is the contract. <code>packset ensure</code> starts the writer if it is down and prints that URL.</p>
-
-    <h2>Commands</h2>
-    <p>From <code>packset --help</code>. Lifecycle first, then the <code>/v1</code> reads a shell runs.</p>
-    <table class="cmds">
-      <thead><tr><th>Command</th><th>Does</th><th></th></tr></thead>
-      <tbody>
-        <tr>
-          <td><code>packset ensure</code></td>
-          <td>Start if down, then print the URL.</td>
-          <td><button type="button" data-copy="packset ensure">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset start</code></td>
-          <td>Start the writer.</td>
-          <td><button type="button" data-copy="packset start">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset stop</code></td>
-          <td>Stop the writer this seat started.</td>
-          <td><button type="button" data-copy="packset stop">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset status</code></td>
-          <td>Counts by kind, the pinned set, the index.</td>
-          <td><button type="button" data-copy="packset status">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset which</code></td>
-          <td>The <code>packsetd</code> this seat would start.</td>
-          <td><button type="button" data-copy="packset which">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset url</code></td>
-          <td>Print <code>PACKSET_URL</code>.</td>
-          <td><button type="button" data-copy="packset url">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset pin NAME</code></td>
-          <td>Read, or set, the pinned set. Needs a workspace.</td>
-          <td><button type="button" data-copy="packset pin NAME">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset atoms WORKSPACE</code></td>
-          <td>Live-now atoms, one JSON object a line. <code>--as-of TS</code> for those live at that time.</td>
-          <td><button type="button" data-copy="packset atoms WORKSPACE">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset accessions WORKSPACE</code></td>
-          <td>Deed accessions live atoms cite, one per line.</td>
-          <td><button type="button" data-copy="packset accessions WORKSPACE">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset citers ACCESSION WORKSPACE</code></td>
-          <td>The live atoms citing one accession.</td>
-          <td><button type="button" data-copy="packset citers ACCESSION WORKSPACE">Copy</button></td>
-        </tr>
-        <tr>
-          <td><code>packset export --into DIR WORKSPACE</code></td>
-          <td>Atoms to a satchel; cited accessions to stdout.</td>
-          <td><button type="button" data-copy="packset export --into DIR WORKSPACE">Copy</button></td>
-        </tr>
-      </tbody>
-    </table>
-    <p>Name a workspace on the command, or set <code>PACKSET_WORKSPACE</code>. <code>accessions</code> pipes into <code>deedar evidence -</code> or <code>deedar current -</code>.</p>
-    <div class="cmd">
-      <header>
-        <span>cited accessions, then the bytes</span>
-        <button type="button" data-copy="packset accessions WORKSPACE | deedar evidence -">Copy</button>
-      </header>
-      <pre>packset accessions WORKSPACE | deedar evidence -</pre>
-    </div>
-
-    <h2>Alone, or through ljos</h2>
-    <p>Use <strong>packset</strong> when the job is the writer itself: start it, pin a set, list atoms, export a satchel, or walk the accessions a pack cites. Other projects that only need standing knowledge speak this crate and ignore the seat.</p>
-    <p>Use <strong>ljos</strong> when an agent must write or retrieve through the seat and not invent another store. <code>ljos remember</code> / <code>ljos prefer</code> POST one explicit claim. <code>ljos search</code> retrieves. The seat does not start the writer, pin a set, or export.</p>
-
-    <p class="also">
-      <a href="https://github.com/leidarljos/packset">github.com/leidarljos/packset</a>
-      <a href="https://leidarljos.github.io/">leiðarljós</a>
-    </p>
-    <footer class="antics">Analytics by <a href="https://antics.turtletech.us/">antics</a>, provided by <a href="https://turtletech.us/">TurtleTech ehf</a>.</footer>
+    </main>
   </div>
+  <footer class="antics" role="contentinfo">
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7,20H4V4h3V20z M14,20h-3V12h3V20z M21,20h-3V8h3V20z"/></svg>
+      Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a>
+    </span>
+    <span>
+      provided by
+      <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 64 64" aria-hidden="true"><g fill-rule="evenodd"><ellipse cx="32" cy="11" fill="#80D25B" rx="7" ry="9"/><path fill="#80D25B" d="M20.3,46c0,0-3.2,9.9.3,13.8c3.5,3.9 6.1,3.4 6.1-6C26.8,44.3 20.3,46 20.3,46Z"/><path fill="#80D25B" d="M38.3,46c0,0-3.2,9.9.4,13.8c3.5,3.9 6.1,3.4 6.1-6C44.8,44.3 38.3,46 38.3,46Z" transform="matrix(-1 0 0 1 81.8 0)"/><path fill="#80D25B" d="M20.6,21.2c0,0-6.7-5.8-10.5-5.2C6.2,16.7 6,22.2 6,24c0,1.8 1.8,13.3 3.8,12.5c2-0.8 4-8.5 4-8.5c1.9,2.3 4.8,2.5 4.8,2.5L20.6,21.2Z"/><path fill="#80D25B" d="M57.6,21.2c0,0-6.6-5.8-10.5-5.2C43.2,16.7 43,22.2 43,24c0,1.8 1.8,13.3 3.8,12.5c2-0.8 4-8.5 4-8.5c1.9,2.3 4.8,2.5 4.8,2.5L57.6,21.2Z" transform="matrix(-1 0 0 1 100.623 0)"/><path fill="#BD7575" stroke="#595959" stroke-linecap="round" stroke-width="2" d="M32,53C40.8,53 48,44.5 48,34C48,23.5 46.7,17 32,17C17.3,17 16,23.5 16,34C16,44.5 23.2,53 32,53Z"/><polygon fill="#BD7575" stroke="#595959" stroke-linecap="round" stroke-width="2" points="32 22 38.9 26 38.9 34 32 38 25.1 34 25.1 26"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M30,8C28.9,8 28,8.9 28,10"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M36,8C34.9,8 34,8.9 34,10" transform="matrix(-1 0 0 1 70 0)"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M32.1,38.2L32.1,52.4M32,21.7L32,17M25.2,26L17.7,23.1M25.1,34.2L16.8,38.9"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M46.2,26L38.7,23.1" transform="matrix(-1 0 0 1 84.951 0)"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M47.1,34.2L38.8,38.9" transform="matrix(-1 0 0 1 85.891 0)"/></g></svg>
+      <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a>
+    </span>
+  </footer>
+
 </body>
 </html>

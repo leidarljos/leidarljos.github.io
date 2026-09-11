@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>claimdag — leiðarljós</title>
-  <meta name="description" content="CAS claim and complete on a DAG.">
-  <link rel="canonical" href="https://leidarljos.github.io/claimdag/">
+  <title>claimdag reference — leiðarljós</title>
+  <meta name="description" content="Five-command reference for claimdag.">
+  <link rel="canonical" href="https://leidarljos.github.io/claimdag/reference/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="claimdag — leiðarljós">
-  <meta property="og:description" content="CAS claim and complete on a DAG.">
-  <meta property="og:url" content="https://leidarljos.github.io/claimdag/">
+  <meta property="og:title" content="claimdag reference — leiðarljós">
+  <meta property="og:description" content="Five-command reference for claimdag.">
+  <meta property="og:url" content="https://leidarljos.github.io/claimdag/reference/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -26,20 +26,17 @@
         leiðarljós
       </a>
       <ul>
-        <li><a href="/docs/">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+        <li><a href="/docs/">Docs</a></li><li><a href="/docs/reference/" aria-current="page">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
     </nav>
     <main id="main">
-      <header class="crate-home">
-        <img class="pin" src="/icon.svg" alt="">
-        <p class="kicker">leiðarljós</p>
-        <h1>claimdag</h1>
-        <p class="sentence">What is this session handing out?</p>
-        <div class="install">
-          <header><span>install</span></header>
-          <pre>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</pre>
-        </div>
-        <h2>Five commands</h2>
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">claimdag</p>
+          <h1>Reference</h1>
+          <p class="lead">What is this session handing out?</p>
+        </header>
+        <p>Install: <code>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</code></p>
         <ol class="cmd-list">
           <li><code>claimdag upsert --summary "…"</code><p>Create or update a node.</p></li>
           <li><code>claimdag list</code><p>Live work, newest first.</p></li>
@@ -47,12 +44,14 @@
           <li><code>claimdag complete ID</code><p>Mark a node terminal. Does not close a ticket.</p></li>
           <li><code>claimdag link PARENT CHILD</code><p>Boolean hard dependency.</p></li>
         </ol>
+        <p>The host is the sole mutator. Snapshot is <code>work.bin</code>. The seat verbs are <code>ljos claim</code> and <code>ljos complete</code>.</p>
         <p class="links">
+          <a href="/claimdag/">claimdag</a>
           <a href="/">Seat</a>
-          <a href="/claimdag/reference/">Reference</a>
+          <a href="/docs/reference/">Seat reference</a>
           <a href="https://github.com/leidarljos/claimdag">Source</a>
         </p>
-      </header>
+      </div>
     </main>
   </div>
   <footer class="antics" role="contentinfo">

@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>claimdag — leiðarljós</title>
-  <meta name="description" content="CAS claim and complete on a DAG.">
-  <link rel="canonical" href="https://leidarljos.github.io/claimdag/">
+  <title>Habitats — leiðarljós</title>
+  <meta name="description" content="Five habitats and two things that are not stores.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/habitats/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="claimdag — leiðarljós">
-  <meta property="og:description" content="CAS claim and complete on a DAG.">
-  <meta property="og:url" content="https://leidarljos.github.io/claimdag/">
+  <meta property="og:title" content="Habitats — leiðarljós">
+  <meta property="og:description" content="Five habitats and two things that are not stores.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/habitats/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -26,33 +26,38 @@
         leiðarljós
       </a>
       <ul>
-        <li><a href="/docs/">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+        <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
     </nav>
     <main id="main">
-      <header class="crate-home">
-        <img class="pin" src="/icon.svg" alt="">
-        <p class="kicker">leiðarljós</p>
-        <h1>claimdag</h1>
-        <p class="sentence">What is this session handing out?</p>
-        <div class="install">
-          <header><span>install</span></header>
-          <pre>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</pre>
-        </div>
-        <h2>Five commands</h2>
-        <ol class="cmd-list">
-          <li><code>claimdag upsert --summary "…"</code><p>Create or update a node.</p></li>
-          <li><code>claimdag list</code><p>Live work, newest first.</p></li>
-          <li><code>claimdag claim ID --assignee ACTOR</code><p>Compare-and-swap claim.</p></li>
-          <li><code>claimdag complete ID</code><p>Mark a node terminal. Does not close a ticket.</p></li>
-          <li><code>claimdag link PARENT CHILD</code><p>Boolean hard dependency.</p></li>
-        </ol>
-        <p class="links">
-          <a href="/">Seat</a>
-          <a href="/claimdag/reference/">Reference</a>
-          <a href="https://github.com/leidarljos/claimdag">Source</a>
-        </p>
-      </header>
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Habitats</p>
+          <h1>Five habitats. Two that are not stores.</h1>
+          <p class="lead">ljos is the seat. Each habitat keeps its own writer. policyd is argv law. consensus is a model, not a habitat.</p>
+        </header>
+      <ul class="subnav" aria-label="Docs">
+        <li><a href="/docs/">Overview</a></li>
+        <li><a href="/docs/start/">Start</a></li>
+        <li><a href="/docs/habitats/">Habitats</a></li>
+        <li><a href="/docs/harnesses/">Harnesses</a></li>
+        <li><a href="/docs/privacy/">Privacy-of-write</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+      </ul>
+        <h2>cards</h2>
+        <p>What did the human freeze? <code>USER.md</code> and <code>MEMORY.md</code> are read-only. Never extract-on-write. Never write the harness memory file.</p>
+        <h2>packset</h2>
+        <p>What does this seat know, standing? Write only on <code>Remember:</code> / <code>Prefer:</code>. Search asks the pack. It does not open a deed. <a href="/packset/">packset</a></p>
+        <h2>deedar</h2>
+        <p>What did this unit produce? A deed is the noun. The next unit opens it by accession. <a href="/deedar/">deedar</a></p>
+        <h2>tracker</h2>
+        <p>What does this node stand on, and who agrees? The crate is vissue. A deed citation, not a paste. Completing a session node does not close a ticket. <a href="/tracker/">tracker</a></p>
+        <h2>claimdag</h2>
+        <p>What is this session handing out? CAS claim and complete on a DAG. The host is the sole mutator. <a href="/claimdag/">claimdag</a></p>
+        <h2>Not stores</h2>
+        <p>policyd is argv law. The pack is not a ledger, not a log, and not a stamp book. Reload is not a ritual. <code>ljos policy -- &lt;argv&gt;</code> checks the line.</p>
+        <p>consensus is a model: DeGroot / Friedkin–Johnsen over a trust graph. Seldon is the ODE when it is on PATH. Vote counts are not that model. <a href="/consensus/">consensus</a></p>
+      </div>
     </main>
   </div>
   <footer class="antics" role="contentinfo">

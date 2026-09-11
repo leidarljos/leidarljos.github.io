@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>claimdag — leiðarljós</title>
-  <meta name="description" content="CAS claim and complete on a DAG.">
-  <link rel="canonical" href="https://leidarljos.github.io/claimdag/">
+  <title>consensus — leiðarljós</title>
+  <meta name="description" content="The seat model. Not a habitat.">
+  <link rel="canonical" href="https://leidarljos.github.io/consensus/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="claimdag — leiðarljós">
-  <meta property="og:description" content="CAS claim and complete on a DAG.">
-  <meta property="og:url" content="https://leidarljos.github.io/claimdag/">
+  <meta property="og:title" content="consensus — leiðarljós">
+  <meta property="og:description" content="The seat model. Not a habitat.">
+  <meta property="og:url" content="https://leidarljos.github.io/consensus/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -33,24 +33,24 @@
       <header class="crate-home">
         <img class="pin" src="/icon.svg" alt="">
         <p class="kicker">leiðarljós</p>
-        <h1>claimdag</h1>
-        <p class="sentence">What is this session handing out?</p>
+        <h1>consensus</h1>
+        <p class="sentence">DeGroot / Friedkin–Johnsen over a trust graph.</p>
         <div class="install">
           <header><span>install</span></header>
-          <pre>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</pre>
+          <pre>cargo install --git https://github.com/leidarljos/consensus</pre>
         </div>
         <h2>Five commands</h2>
         <ol class="cmd-list">
-          <li><code>claimdag upsert --summary "…"</code><p>Create or update a node.</p></li>
-          <li><code>claimdag list</code><p>Live work, newest first.</p></li>
-          <li><code>claimdag claim ID --assignee ACTOR</code><p>Compare-and-swap claim.</p></li>
-          <li><code>claimdag complete ID</code><p>Mark a node terminal. Does not close a ticket.</p></li>
-          <li><code>claimdag link PARENT CHILD</code><p>Boolean hard dependency.</p></li>
+          <li><code>ljos-consensus settle --issue ID</code><p>Ballots from the tracker when that works.</p></li>
+          <li><code>ljos-consensus settle --ballots '[…]'</code><p>JSON array of {agent, choice}.</p></li>
+          <li><code>ljos-consensus settle --trust '[…]'</code><p>JSON array of {from, to, weight}.</p></li>
+          <li><code>ljos-consensus settle --seldon --out DIR</code><p>Write Seldon inputs and exec seldon.</p></li>
+          <li><code>ljos consensus ID</code><p>This crate first, then the tracker verb.</p></li>
         </ol>
         <p class="links">
           <a href="/">Seat</a>
-          <a href="/claimdag/reference/">Reference</a>
-          <a href="https://github.com/leidarljos/claimdag">Source</a>
+          <a href="/consensus/reference/">Reference</a>
+          <a href="https://github.com/leidarljos/consensus">Source</a>
         </p>
       </header>
     </main>
