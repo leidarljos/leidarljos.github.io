@@ -9,4 +9,4 @@ Edit the pack only when argv policy itself changes. Do not write comments, dates
 
 Other projects may speak one habitat and ignore =ljos=.
 
-[[https://leidarljos.github.io/docs/habitats/][Habitats]]
+[[https://leidarljos.rgoswami.me/docs/habitats/][Habitats]]

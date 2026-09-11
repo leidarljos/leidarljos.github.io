@@ -9,4 +9,4 @@
 
 Four green ticks are a host rule for landing work. They are not the model. Do not report a count as if it were the crate.
 
-[[https://leidarljos.github.io/consensus/][consensus]] · [[https://github.com/seldon-code/seldon][seldon-code]]
+[[https://leidarljos.rgoswami.me/consensus/][consensus]] · [[https://github.com/seldon-code/seldon][seldon-code]]

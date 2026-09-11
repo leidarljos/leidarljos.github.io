@@ -110,3 +110,5 @@ $RECYCLE.BIN/
 # Sphinx docs
 sphinx/.venv-docs/
 sphinx/build/
+
+public/
