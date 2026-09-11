@@ -33,19 +33,23 @@
       <div class="page">
         <header class="intro">
           <p class="kicker">Handbook</p>
-          <h1>Citation is not a merge.</h1>
-          <p class="lead">One accession can be named in more than one habitat. That does not pour them into one store.</p>
+          <h1>Notes from using the seat</h1>
+          <p class="lead">Written after running the binaries on this machine. Not a manifesto.</p>
         </header>
-        <h2>The habitats stay apart</h2>
-        <p>Cards are a human freeze. The pack is standing knowledge, written only on <code>Remember:</code> / <code>Prefer:</code>. The deed store is frozen product. The tracker is the graph and the agreement. The session DAG is work for this sitting. Completing a node there does not close a ticket.</p>
-        <h2>Two things that are not habitats</h2>
-        <p>policyd is argv law. Reloading a pack is not a stamp and not a check ritual. The consensus crate is a model (DeGroot / an ODE). Vote counts are not that model.</p>
-        <h2>Write policy</h2>
-        <p>Extract-on-write is refused. The harness memory file is dead. Overflow on a card is an error, not a prompt to dump more.</p>
-        <h2>Name, do not paste</h2>
-        <p>A store holds a citation, not a copy of another store. Opening the bytes is a deed question. The pin is an accession: <code>deed-…</code> or <code>sha256:</code>.</p>
-        <h2>Other projects</h2>
-        <p>A crate may speak one habitat and ignore <code>ljos</code>. The seat is for agents that must not invent a sixth store.</p>
+        <h2><code>PACKSET_URL</code> is not in the environment after <code>ensure</code></h2>
+        <p><code>packset ensure</code> printed <code>PACKSET_URL=http://127.0.0.1:8761</code>. The next <code>ljos remember</code> still failed until the URL was exported by hand. The tutorial starts there because that is the first thing that happened.</p>
+        <h2>Remember returns a lesson. Prefer returns a preference</h2>
+        <p>Both POST <code>/v1/atoms</code> with <code>level: explicit</code>. Search printed a score, the kind, the id, and the text. The workspace on the atom was the git remote of the directory the command was run from.</p>
+        <h2>Cards are silent when the files are missing</h2>
+        <p><code>ljos cards</code> in <code>/tmp</code> printed nothing. With <code>USER.md</code> and <code>MEMORY.md</code> present, it printed those two files and stopped. It did not create them.</p>
+        <h2>deedar and claimdag do not invent a store</h2>
+        <p><code>ljos evidence</code> failed: no <code>DEEDAR_URL</code> and no store under <code>~/.local/share/deedar/store</code>. <code>claimdag list</code> in an empty directory said there is no <code>work.bin</code> and that claiming creates it. The seat does not paper over that.</p>
+        <h2>Consensus without a trust graph is 50/50 in one round</h2>
+        <p>Two ballots, no edges, <code>ljos-consensus settle</code> returned shares <code>0.5 / 0.5</code>, <code>rounds: 1</code>, <code>engine: degroot-fj</code>. That is the discrete stepper. The Seldon C API is a separate path (<code>SELDON_SRC</code> / <code>--seldon</code>).</p>
+        <h2>policy prints argv</h2>
+        <p><code>ljos policy -- echo hi</code> printed a warning and then <code>echo hi</code>. It did not run the command and it did not reload a pack.</p>
+        <h2>Citation is not a merge</h2>
+        <p>That sentence is still the law. It is not a substitute for the commands above working on your machine.</p>
       </div>
     </main>
   </div>

@@ -34,7 +34,7 @@
         <header class="intro">
           <p class="kicker">Start</p>
           <h1>First write</h1>
-          <p class="lead">One explicit write. One retrieve. Cards stay unread-write.</p>
+          <p class="lead">This walk was run on the seat. The first command failed. That is part of the tutorial.</p>
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
@@ -44,23 +44,61 @@
         <li><a href="/docs/privacy/">Privacy-of-write</a></li>
         <li><a href="/docs/reference/">Reference</a></li>
       </ul>
-        <h2>1. Install the seat</h2>
-<pre>cargo install --git https://github.com/leidarljos/ljos ljos-cli ljos-mcp
-cargo install --git https://github.com/leidarljos/consensus
-ljos --help</pre>
-        <h2>2. Write one claim, on purpose</h2>
-        <p>Standing knowledge is written only when you say so. There is no extract-on-write.</p>
-<pre>export PACKSET_URL=http://127.0.0.1:8761
-packset ensure
-ljos remember "the default fuse is CombMNZ"
-ljos search fuse</pre>
-        <h2>3. Read the cards. Do not write them</h2>
-<pre>ljos cards</pre>
-        <p><code>USER.md</code> and <code>MEMORY.md</code> are a human freeze. Overflow is an error. The harness memory file is dead.</p>
-        <h2>4. Wire one harness</h2>
-        <p>Pick the line for your client on <a href="/docs/harnesses/">Harnesses</a>. Restart that client. Ask it to <code>ljos search fuse</code>.</p>
-        <h2>5. Leave the other habitats alone until you need them</h2>
-        <p>A deed, a claim, a policy check, and consensus each have a verb. You do not need them for the first write.</p>
+        <h2>1. The binary is on PATH</h2>
+<pre>$ ljos --help
+One seat over cards, packset, deedar, vissue, claimdag, and policyd
+Commands:
+  remember   Standing knowledge. Remember: / Prefer: only. POST /v1/atoms
+  prefer
+  search
+  ...</pre>
+        <h2>2. Remember without a pack fails</h2>
+<pre>$ ljos remember "the default fuse is CombMNZ"
+Error: PACKSET_URL unset; remember/prefer POST /v1/atoms</pre>
+        <p><code>packset ensure</code> prints the URL. It does not export it into your shell.</p>
+<pre>$ packset ensure
+PACKSET_URL=http://127.0.0.1:8761
+$ export PACKSET_URL=http://127.0.0.1:8761</pre>
+        <h2>3. One explicit write, then retrieve</h2>
+<pre>$ ljos remember "the default fuse is CombMNZ"
+{
+  "kind": "lesson",
+  "level": "explicit",
+  "text": "the default fuse is CombMNZ",
+  "id": "156eb2be-9898-46d8-bb2d-ce0dec1706b1",
+  ...
+}
+$ ljos search fuse
+1.0000  lesson  156eb2be-…  the default fuse is CombMNZ</pre>
+        <h2>4. Prefer is the same path, different kind</h2>
+<pre>$ ljos prefer "never extract on write"
+preference  01f2e067-…  never extract on write
+$ ljos search write
+1.0000  preference  01f2e067-…  never extract on write</pre>
+        <h2>5. Cards print files. They do not write them</h2>
+<pre>$ ljos cards --dir /tmp/demo
+--- /tmp/demo/USER.md ---
+# User
+I write Remember: only.
+--- /tmp/demo/MEMORY.md ---
+# Memory
+Overflow is an error.</pre>
+        <p>With no files in the directory, the command prints nothing and exits 0.</p>
+        <h2>6. The other habitats, as they actually answered</h2>
+<pre>$ ljos policy -- echo hi
+ljos: argv law. grok-policyd is the TCB when present. Reloading a pack is not a check.
+echo hi
+
+$ ljos-consensus settle --ballots '[{"agent":"a","choice":"ship"},{"agent":"b","choice":"hold"}]'
+{"options":["hold","ship"],"shares":[0.5,0.5],"rounds":1,"settled":true,"engine":"degroot-fj"}
+
+$ ljos evidence deed-dead
+deedar: set DEEDAR_URL or pass --url; no store at ~/.local/share/deedar/store
+Error: deedar exited exit status: 1
+
+$ claimdag list
+no work graph at $DIR: the directory holds no work.bin. Claim something to create it</pre>
+        <p>Wire a harness only after this walk works on your machine. <a href="/docs/harnesses/">Harnesses</a>.</p>
       </div>
     </main>
   </div>
