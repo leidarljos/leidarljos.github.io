@@ -5,4 +5,5 @@ allow = [
     "Claude",
     "Codex",
     "vissue ",
+    "/ vissue",
 ]
