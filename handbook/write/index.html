@@ -34,9 +34,9 @@
         <a class="hb-back" href="/handbook/">Back to the field</a>
         <p class="kicker">Write</p>
         <h1>Remember is a speech act.</h1>
-        <p>Standing knowledge is written only when someone says <code>Remember:</code> or <code>Prefer:</code>. There is no extract-on-write. A transcript is not a source. If those words were not said, the pack did not change.</p>
-        <p><code>ljos remember</code> and <code>ljos prefer</code> POST one explicit claim to <code>PACKSET_URL</code>. <code>packset ensure</code> starts the writer; it does not export the URL into the next process. Search asks the pack. It does not open a deed.</p>
-        <p>A failed write is an error. Do not invent a sixth store, and do not dump the sitting into a card.</p>
+        <p><code>ljos remember</code> POSTs one lesson to <code>/v1/atoms</code>. <code>ljos prefer</code> POSTs one preference. The process must already have <code>PACKSET_URL</code>. <code>packset ensure</code> starts the writer and prints the URL. It does not export the URL into the next process.</p>
+        <p>The workspace is the git remote of the current directory (<code>git:github.com/org/repo</code>). Search is GET <code>/v1/search</code> on that workspace. It does not open a deed. A transcript is not a source. If you did not say <code>Remember:</code> or <code>Prefer:</code>, the pack did not change.</p>
+        <p>If <code>packset status</code> says up and remember hangs or returns 400, the writer is wedged. <code>packset stop</code>, then <code>packset ensure</code>. Do not invent a sixth store, and do not dump the sitting into a card.</p>
         <p><a href="/docs/privacy/">Privacy-of-write</a></p>
       </div>
     </main>
