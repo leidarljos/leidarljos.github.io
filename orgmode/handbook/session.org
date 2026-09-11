@@ -1,8 +1,7 @@
 #+title: Completing is not closing.
-#+kicker: Session
-#+description: Completing a node does not close a ticket.
-#+canon: /handbook/session/
-#+back: /handbook/
+#+options: toc:nil num:nil
+
+[[file:index.org][Back to the field]]
 
 =ljos claim --assignee HEX NODE=. The assignee is 32 hex, not =user@host=. One live claim per assignee. A second claim returns =assignee busy= and the other node id. Complete the live node first.
 
@@ -10,4 +9,4 @@ Completing a node does not close a ticket. The tracker is the graph. Create and 
 
 File before you speak. An audit with no ids is unfinished work. A leftover that does not fit this sitting is a child ticket, then the original work continues.
 
-[[/claimdag/][Session work / claimdag]]
+[[https://leidarljos.github.io/claimdag/][Session work / claimdag]]

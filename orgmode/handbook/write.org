@@ -1,8 +1,7 @@
 #+title: Remember is a speech act.
-#+kicker: Write
-#+description: Remember is a speech act. Extract-on-write is refused.
-#+canon: /handbook/write/
-#+back: /handbook/
+#+options: toc:nil num:nil
+
+[[file:index.org][Back to the field]]
 
 =ljos remember= POSTs one lesson to =/v1/atoms=. =ljos prefer= POSTs one preference. The process must already have =PACKSET_URL=. =packset ensure= starts the writer and prints the URL. It does not export the URL into the next process.
 
@@ -10,4 +9,4 @@ The workspace is the git remote of the current directory (=git:github.com/org/re
 
 If =packset status= says up and remember hangs or returns 400, the writer is wedged. =packset stop=, then =packset ensure=. Do not dump the sitting into a card.
 
-[[/docs/privacy/][Privacy-of-write]]
+[[https://leidarljos.github.io/docs/privacy/][Privacy-of-write]]

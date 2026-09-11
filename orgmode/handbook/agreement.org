@@ -1,8 +1,7 @@
 #+title: A vote count is not consensus.
-#+kicker: Agreement
-#+description: A vote count is not consensus.
-#+canon: /handbook/agreement/
-#+back: /handbook/
+#+options: toc:nil num:nil
+
+[[file:index.org][Back to the field]]
 
 =ljos vote ID --for accept|reject= records a ballot. One ballot per identity. A recast replaces. A missing identity is no.
 
@@ -10,4 +9,4 @@
 
 Four green ticks are a host rule for landing work. They are not the model. Do not report a count as if it were the crate.
 
-[[/consensus/][consensus]] · [[https://github.com/seldon-code/seldon][seldon-code]]
+[[https://leidarljos.github.io/consensus/][consensus]] · [[https://github.com/seldon-code/seldon][seldon-code]]
