@@ -1,0 +1,7 @@
+# Install docs name the harness CLIs. The identifier-shape pass stays on.
+allow = [
+    "claude ",
+    "codex ",
+    "Claude",
+    "Codex",
+]
