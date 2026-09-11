@@ -1,0 +1,13 @@
+#+title: Overflow is an error.
+#+kicker: Cards
+#+description: USER.md and MEMORY.md are a human freeze.
+#+canon: /handbook/cards/
+#+back: /handbook/
+
+=ljos cards= prints =USER.md= and =MEMORY.md= from =--dir= (default =.=). A missing file prints nothing. The command never creates those files and never writes them.
+
+Cards answer one question: what did the human freeze? Overflow is an error, not a prompt to dump more. A client scrapbook is not a card.
+
+Read the cards at the start of a sitting. If they are empty, leave them empty.
+
+[[/docs/habitats/][Habitats]]

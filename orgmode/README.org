@@ -1,0 +1,10 @@
+#+title: Site source
+
+Edit the =.org= files. HTML under =handbook/= is generated.
+
+#+begin_src console
+$ python3 scripts/export-org
+#+end_src
+
+Pandoc, org to HTML, same chrome as the rest of the site. Crate docs that
+need Sphinx stay on the vissue org → rst → html path.

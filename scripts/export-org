@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+"""orgmode/**/*.org → html via pandoc, wrapped in the site chrome."""
+from __future__ import annotations
+
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+ORG = ROOT / "orgmode"
+TEMPLATE = ROOT / "scripts" / "page.html"
+
+KW = re.compile(r"^#\+(\w+):\s*(.*)$", re.I)
+
+
+def keywords(text: str) -> dict[str, str]:
+    out: dict[str, str] = {}
+    for line in text.splitlines():
+        m = KW.match(line)
+        if not m:
+            if line.strip() and not line.startswith("#"):
+                break
+            continue
+        out[m.group(1).lower()] = m.group(2).strip()
+    return out
+
+
+def body_html(org: Path) -> str:
+    r = subprocess.run(
+        ["pandoc", "-f", "org", "-t", "html5", "--wrap=preserve", str(org)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return r.stdout.strip()
+
+
+def render(org: Path) -> Path:
+    text = org.read_text(encoding="utf-8")
+    meta = keywords(text)
+    title = meta.get("title", org.stem)
+    desc = meta.get("description", title)
+    kicker = meta.get("kicker", "")
+    canon = meta.get("canon", "/")
+    back = meta.get("back", "")
+    page_title = f"{kicker} — leiðarljós" if kicker and kicker.lower() != "handbook" else f"{title.split('.')[0]} — leiðarljós"
+    if kicker and kicker.lower() != "handbook":
+        page_title = f"{kicker} — leiðarljós handbook"
+    else:
+        page_title = "Handbook — leiðarljós"
+
+    html_body = body_html(org).replace('href="file:///', 'href="/')
+    if back:
+        inner = (
+            f'        <a class="hb-back" href="{back}">Back to the field</a>\n'
+            f'        <p class="kicker">{kicker}</p>\n'
+            f"        <h1>{title}</h1>\n"
+            f"        {html_body}"
+        )
+    else:
+        lead = meta.get("lead", "")
+        lead_html = f'          <p class="lead">{lead}</p>\n' if lead else ""
+        inner = (
+            '        <header class="intro">\n'
+            f'          <p class="kicker">{kicker}</p>\n'
+            f"          <h1>{title}</h1>\n"
+            f"{lead_html}"
+            "        </header>\n"
+            f"        {html_body}"
+        )
+
+    from string import Template
+
+    html = Template(TEMPLATE.read_text(encoding="utf-8")).safe_substitute(
+        title=page_title,
+        desc=desc,
+        canon=canon,
+        inner=inner,
+    )
+    rel = org.relative_to(ORG)
+    dest = ROOT / rel.with_suffix("") / "index.html"
+    if rel.stem == "index":
+        dest = ROOT / rel.parent / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(html, encoding="utf-8")
+    return dest
+
+
+def main() -> int:
+    if not TEMPLATE.is_file():
+        print("missing scripts/page.html", file=sys.stderr)
+        return 1
+    files = sorted(
+        p for p in ORG.rglob("*.org") if p.name.lower() != "readme.org"
+    )
+    if not files:
+        print(f"no org in {ORG}", file=sys.stderr)
+        return 1
+    for org in files:
+        print(render(org))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

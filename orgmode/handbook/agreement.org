@@ -1,0 +1,13 @@
+#+title: A vote count is not consensus.
+#+kicker: Agreement
+#+description: A vote count is not consensus.
+#+canon: /handbook/agreement/
+#+back: /handbook/
+
+=ljos vote ID --for accept|reject= records a ballot. One ballot per identity. A recast replaces. A missing identity is no.
+
+=ljos-consensus settle= is the model: DeGroot / Friedkin–Johnsen, or the Seldon ODE when =--seldon= and =seldon= are on PATH. [[https://github.com/seldon-code/seldon][seldon-code]] is that ODE. This crate does not link it. Pass =--ballots= as a JSON array of ={agent, choice}=, or =--issue= when the tracker can emit ballots. =ljos consensus ID= is the seat verb: the crate, then the tracker.
+
+Four green ticks are a host rule for landing work. They are not the model. Do not report a count as if it were the crate.
+
+[[/consensus/][consensus]] · [[https://github.com/seldon-code/seldon][seldon-code]]
