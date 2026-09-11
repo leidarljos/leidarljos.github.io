@@ -1,0 +1,13 @@
+#+title: Reloading a pack is not a check.
+#+kicker: Argv
+#+description: Reloading a pack is not a check.
+#+canon: /handbook/argv/
+#+back: /handbook/
+
+=ljos policy -- argv= prints the line. It does not reload a Janet pack.
+
+Edit the pack only when argv policy itself changes. Do not write comments, dates, ticket ids, or sitting notes into it. If sessiond is down, leave the pack alone.
+
+Other projects may speak one habitat and ignore =ljos=.
+
+[[/docs/habitats/][Habitats]]

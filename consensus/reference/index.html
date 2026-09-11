@@ -41,15 +41,16 @@
           <li><code>ljos-consensus settle --issue ID</code><p>Ballots from the tracker when that works.</p></li>
           <li><code>ljos-consensus settle --ballots '[…]'</code><p>JSON array of {agent, choice}.</p></li>
           <li><code>ljos-consensus settle --trust '[…]'</code><p>JSON array of {from, to, weight}.</p></li>
-          <li><code>ljos-consensus settle --seldon --out DIR</code><p>Write Seldon inputs and exec seldon.</p></li>
+          <li><code>ljos-consensus settle --seldon --out DIR</code><p>Write inputs and exec <a href="https://github.com/seldon-code/seldon">seldon-code</a>.</p></li>
           <li><code>ljos consensus ID</code><p>This crate first, then the tracker verb.</p></li>
         </ol>
-        <p>Seldon is the ODE when it is on PATH. This crate does not link it. Vote counts are not this model.</p>
+        <p><a href="https://github.com/seldon-code/seldon">seldon-code</a> is the ODE when <code>seldon</code> is on PATH. This crate does not link it. Vote counts are not this model.</p>
         <p class="links">
           <a href="/consensus/">consensus</a>
           <a href="/">Seat</a>
           <a href="/docs/reference/">Seat reference</a>
           <a href="https://github.com/leidarljos/consensus">Source</a>
+          <a href="https://github.com/seldon-code/seldon">seldon-code</a>
         </p>
       </div>
     </main>
