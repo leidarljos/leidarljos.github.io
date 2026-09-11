@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>deedar — leiðarljós</title>
+  <meta name="description" content="deedar records a unit of work as a deed: here is the work, this is its identity, take it. The next unit opens that deed by id.">
+  <link rel="canonical" href="https://leidarljos.github.io/deedar/">
+  <link rel="stylesheet" href="../docs.css">
+  <link rel="icon" href="../icon.svg" type="image/svg+xml">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script defer src="../docs.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="top">
+      <a class="brand" href="https://leidarljos.github.io/">leiðarljós</a>
+      <a href="../tutorial/">Tutorial</a>
+      <a href="../howto/">How-to</a>
+      <a href="../reference/">Reference</a>
+      <a href="../explain/">Explain</a>
+      <a href="../packset/">packset</a>
+      <a href="../claimdag/">claimdag</a>
+      <a href="./">deedar</a>
+    </nav>
+    <h1>deedar</h1>
+    <p>A unit of work produces something; deedar records it as a deed — here is the work, this is its identity, take it.</p>
+
+    <h2>Install</h2>
+    <div class="cmd">
+      <header>
+        <span>cli</span>
+        <button type="button" data-copy="cargo install --git https://github.com/indynull/deedar deedar-cli">Copy</button>
+      </header>
+      <pre>cargo install --git https://github.com/indynull/deedar deedar-cli</pre>
+    </div>
+    <p>There is no daemon. Each command opens the store at <code>DEEDAR_URL</code> or <code>--url</code>. <code>quote</code>, <code>patch</code>, and <code>file</code> are kinds. Next work takes deed ids as <code>--input</code>.</p>
+
+    <h2>Commands</h2>
+    <p>From <code>deedar</code> with no verb. <code>evidence</code>, <code>current</code>, and <code>export</code> take one id, several ids, or <code>-</code> to read them from stdin.</p>
+    <div class="cmd">
+      <header>
+        <span>create a file deed</span>
+        <button type="button" data-copy="deedar create file --id deed-file-note --name &quot;the note&quot; --path note.md --media text/plain --agent reader">Copy</button>
+      </header>
+      <pre>deedar create file \
+  --id deed-file-note \
+  --name "the note" \
+  --path note.md \
+  --media text/plain \
+  --agent reader</pre>
+    </div>
+    <table class="cmds">
+      <thead><tr><th>Command</th><th>Does</th><th></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>deedar get ID</code></td>
+          <td>The named frozen deed. Also accepts a unique <code>sha256:</code>.</td>
+          <td><button type="button" data-copy="deedar get ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar list</code></td>
+          <td>Every deed in the store.</td>
+          <td><button type="button" data-copy="deedar list">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar trail ID</code></td>
+          <td>Walk <code>--input</code> from this deed to what it cites.</td>
+          <td><button type="button" data-copy="deedar trail ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar evidence ID</code></td>
+          <td>Check the deed, its write-once bytes, and every source. Several ids, or <code>-</code>.</td>
+          <td><button type="button" data-copy="deedar evidence ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar current ID</code></td>
+          <td>Follow <code>--supersedes</code> to the tip. Exits non-zero when any named deed moved.</td>
+          <td><button type="button" data-copy="deedar current ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar leave ID DEST</code></td>
+          <td>Copy the file bytes to <code>DEST/{id}/</code> with a hash sidecar.</td>
+          <td><button type="button" data-copy="deedar leave ID DEST">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar timestamp ID</code></td>
+          <td>Write an RFC 3161 TimeStampReq over the evidence bytes.</td>
+          <td><button type="button" data-copy="deedar timestamp ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar export --into DIR ID</code></td>
+          <td>Canonical bytes, evidence, and a <code>proof.txt</code> against the log head.</td>
+          <td><button type="button" data-copy="deedar export --into DIR ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar check DIR</code></td>
+          <td>The receiving end. Needs no store. Optional <code>--since BRIDGE</code>.</td>
+          <td><button type="button" data-copy="deedar check DIR">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar log head</code></td>
+          <td>What a reader keeps between visits. Also <code>list</code>, <code>audit</code>, <code>prove ID</code>, <code>bridge SIZE</code>.</td>
+          <td><button type="button" data-copy="deedar log head">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>deedar migrate</code></td>
+          <td>Write <code>{store}/layout</code> when that file is missing.</td>
+          <td><button type="button" data-copy="deedar migrate">Copy</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <p><code>delete</code> writes a tombstone; <code>evidence</code> on that id then fails. <code>vouch sign FILE</code> / <code>vouch check FILE</code> cover the manifest of a bag.</p>
+
+    <h2>Alone, or through ljos</h2>
+    <p>Use <strong>deedar</strong> to create a deed, walk a trail, leave bytes, timestamp, or hand a bag to somebody else. A store that only freezes product speaks this crate and ignores the seat.</p>
+    <p>Use <strong>ljos</strong> when the seat should ask whether cited bytes are intact or still the tip. <code>ljos evidence</code> and <code>ljos current</code> exec the same verbs. Creating, exporting, and checking a bag stay on this crate.</p>
+
+    <p class="also">
+      <a href="https://github.com/indynull/deedar">github.com/indynull/deedar</a>
+      <a href="https://leidarljos.github.io/">leiðarljós</a>
+    </p>
+    <footer class="antics">Analytics by <a href="https://antics.turtletech.us/">antics</a>, provided by <a href="https://turtletech.us/">TurtleTech ehf</a>.</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>claimdag — leiðarljós</title>
+  <meta name="description" content="claimdag is CAS claim and complete on a DAG. The host is the sole mutator. Completing a node does not close a ticket.">
+  <link rel="canonical" href="https://leidarljos.github.io/claimdag/">
+  <link rel="stylesheet" href="../docs.css">
+  <link rel="icon" href="../icon.svg" type="image/svg+xml">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script defer src="../docs.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="top">
+      <a class="brand" href="https://leidarljos.github.io/">leiðarljós</a>
+      <a href="../tutorial/">Tutorial</a>
+      <a href="../howto/">How-to</a>
+      <a href="../reference/">Reference</a>
+      <a href="../explain/">Explain</a>
+      <a href="../packset/">packset</a>
+      <a href="./">claimdag</a>
+      <a href="../deedar/">deedar</a>
+    </nav>
+    <h1>claimdag</h1>
+    <p>CAS claim and complete on a DAG. The host process is the sole mutator; the snapshot is unpacked Cap'n <code>work.bin</code>.</p>
+
+    <h2>Install</h2>
+    <div class="cmd">
+      <header>
+        <span>cli</span>
+        <button type="button" data-copy="cargo install --git https://github.com/leidarljos/claimdag claimdag-cli">Copy</button>
+      </header>
+      <pre>cargo install --git https://github.com/leidarljos/claimdag claimdag-cli</pre>
+    </div>
+    <p>Pass <code>--dir DIR</code>, or set <code>CLAIMDAG_DIR</code>. Otherwise the runtime directory holds <code>work.bin</code>.</p>
+
+    <h2>Commands</h2>
+    <p>From <code>claimdag --help</code>. Default <code>list</code> is live work only.</p>
+    <table class="cmds">
+      <thead><tr><th>Command</th><th>Does</th><th></th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>claimdag upsert --summary TEXT</code></td>
+          <td>Create or update a node. Omit <code>--id</code> to mint.</td>
+          <td><button type="button" data-copy="claimdag upsert --summary TEXT">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag list</code></td>
+          <td>Live work, newest first.</td>
+          <td><button type="button" data-copy="claimdag list">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag list --json --all</code></td>
+          <td>Every node, including archived terminals, as JSON.</td>
+          <td><button type="button" data-copy="claimdag list --json --all">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag get ID</code></td>
+          <td>Print one node by 32-hex id.</td>
+          <td><button type="button" data-copy="claimdag get ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag claim ID --assignee ACTOR</code></td>
+          <td>Compare-and-swap claim. Omit <code>--gen</code> to ignore generation.</td>
+          <td><button type="button" data-copy="claimdag claim ID --assignee ACTOR">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag complete ID</code></td>
+          <td>Mark the node terminal (default status <code>done</code>). Does not close a ticket.</td>
+          <td><button type="button" data-copy="claimdag complete ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag renew ID</code></td>
+          <td>The holder is still working. Moves the lease without changing hands.</td>
+          <td><button type="button" data-copy="claimdag renew ID">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag reclaim --lease 900</code></td>
+          <td>Hand back every claim quiet longer than the lease, in seconds.</td>
+          <td><button type="button" data-copy="claimdag reclaim --lease 900">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag link PARENT CHILD</code></td>
+          <td>Add a boolean hard dependency (parent before child).</td>
+          <td><button type="button" data-copy="claimdag link PARENT CHILD">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag unlink PARENT CHILD</code></td>
+          <td>Drop a boolean hard dependency. A missing edge is ok.</td>
+          <td><button type="button" data-copy="claimdag unlink PARENT CHILD">Copy</button></td>
+        </tr>
+        <tr>
+          <td><code>claimdag archive ID</code></td>
+          <td>Soft-hide a terminal node. Not a delete. <code>unarchive</code> clears the flag.</td>
+          <td><button type="button" data-copy="claimdag archive ID">Copy</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <p><code>complete --status</code> is <code>done</code>, <code>failed</code>, or <code>cancelled</code>. Pass the <code>--gen</code> from <code>claim</code> to be refused if the lease was reclaimed while the work was in flight.</p>
+
+    <h2>Alone, or through ljos</h2>
+    <p>Use <strong>claimdag</strong> when a host is handing out this sitting: mint nodes, link dependencies, renew or reclaim a lease, list the graph. The snapshot is capped and prunes finished work. It is not a record, and it has no field for a deed accession.</p>
+    <p>Use <strong>ljos</strong> when the seat should claim or complete and leave the rest of the graph to this crate. <code>ljos claim</code> and <code>ljos complete</code> exec the same verbs. Completing a node does not close a ticket.</p>
+
+    <p class="also">
+      <a href="https://github.com/leidarljos/claimdag">github.com/leidarljos/claimdag</a>
+      <a href="https://leidarljos.github.io/">leiðarljós</a>
+    </p>
+    <footer class="antics">Analytics by <a href="https://antics.turtletech.us/">antics</a>, provided by <a href="https://turtletech.us/">TurtleTech ehf</a>.</footer>
+  </div>
+</body>
+</html>

@@ -26,3 +26,26 @@ th, td { text-align: left; padding: 0.5rem 0.35rem; border-bottom: 1px solid var
 th { color: var(--gold); font-size: 0.85rem; }
 footer.antics { border-top: 1px solid var(--line); margin-top: 3rem; padding: 1.2rem 0; color: var(--mute); font-size: 0.9rem; }
 footer.antics a { color: inherit; }
+.cmd {
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--panel); overflow: hidden; margin: 0.85rem 0;
+}
+.cmd header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.55rem 0.85rem; border-bottom: 1px solid var(--line);
+  color: var(--mute); font-size: 0.8rem;
+}
+.cmd pre {
+  margin: 0; padding: 0.95rem 1rem;
+  font: 0.86rem/1.5 var(--mono); overflow-x: auto;
+}
+.cmd button, table button {
+  appearance: none; border: 1px solid var(--line);
+  background: transparent; color: var(--cream);
+  border-radius: 6px; padding: 0.2rem 0.55rem;
+  font: 0.75rem/1 var(--sans); cursor: pointer;
+}
+.cmd button:hover, table button:hover { color: var(--gold); border-color: var(--gold); }
+table.cmds th:last-child, table.cmds td:last-child { width: 4.5rem; text-align: right; }
+.also { margin-top: 2rem; }
+.also a { margin-right: 0.85rem; }
