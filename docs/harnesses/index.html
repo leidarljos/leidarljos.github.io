@@ -54,7 +54,7 @@ snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nstartup_time
 
 [[harness]]
 name = "runner-a"
-register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "--", "{server}"]
+register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "-e", "LJOS_SEAT={name}", "--", "{server}"]
 registered = ["runner-a", "mcp", "get", "ljos"]
 skills = "~/.runner-a/skills"
 hooks = "~/.runner-a/settings.json"
@@ -63,7 +63,7 @@ hooks = "~/.runner-a/settings.json"
 name = "runner-b"
 config = "~/.runner-b/config.toml"
 marker = "[mcp_servers.ljos]"
-snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\n"
+snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nenv = { LJOS_SEAT = \"{name}\" }\n"
 skills = "~/.runner-b/skills"
 hooks = "~/.runner-b/hooks.json"</pre>
         <p>Then, for each:</p>
@@ -74,6 +74,7 @@ ok	hook	memory hook: add it on UserPromptSubmit in /home/you/.runner-a/settings.
 ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md
 $ ljos doctor | grep runner</pre>
         <p>Three things land. The server, so the runner has the seat's tools. The skill, which is the protocol <code>ljos protocol</code> prints: which store answers which question, the order of verbs in a sitting, the refusals worth knowing. And the memory hook: before each prompt the runner pipes it to <code>ljos hook</code> and the memories it activates come back as context, preferences first, each once per session; <code>hook_events = ["UserPromptSubmit", "PreToolUse"]</code> in the table adds shell commands, a default a panel of the seat's own personas settled. Memory reaches the agent at the point of action without being asked for. <code>--dry-run</code> reports and writes nothing.</p>
+        <p><code>{server}</code> in a table is the path to <code>ljos-mcp</code>, <code>{name}</code> the runner's name. Passing <code>LJOS_SEAT={name}</code> to the server, as the tables above do, makes each runner claim and vote under its own name: two runners on one host share the one pack and the one tracker, and <code>ljos sitting</code> without <code>--assignee</code> takes that name, so neither is refused as busy for what the other holds. A persona named with <code>as</code> speaks over both.</p>
         <h2>Any other runner</h2>
 <pre>$ ljos onboard --harness json
 {
