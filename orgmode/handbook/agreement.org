@@ -7,6 +7,8 @@
 
 =ljos consensus ID= is the seat verb: the model crate, then the tracker, both under the trust rows the pack holds that apply to the issue's topic and every persona's anchor. The model is DeGroot / Friedkin–Johnsen, or bounded confidence when the issue is tagged =broad=, or the Seldon ODE when =--seldon= and =seldon= are on PATH. Every outcome says how the group split, in polarization and disagreement; a count says only who won.
 
+On a hard question add a forecast beside the ballot, =ljos predict ID --expect OPTION=; with two or more forecasts the settle also names the surprisingly popular answer, the option whose actual share most exceeds its forecast, and shows each voter's standing from the rows.
+
 The rows are memory. =ljos learn ID --outcome OPTION= shrinks the voters the outcome refuted and loosens the anchors of refuted personas; =ljos calibrate -p PROJECT= writes rows from the project's history when nobody names an outcome; =ljos trust FROM TO W --about DOMAIN= sets one by hand, scoped. Under equal rows a settle is a count.
 
 A panel is one subagent per persona, each started from =ljos brief NAME ID=, each casting one ballot as itself, then the settle. =ljos persona NAME --anchor A --view TEXT --about DOMAIN= writes the persona once; it stays in the pack.

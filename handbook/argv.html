@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-12 Sat 18:13 -->
+<!-- 2026-09-12 Sat 20:02 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reloading a pack is not a check.</title>
@@ -171,6 +171,10 @@
 
 <p>
 <code>ljos hook</code> is the same answer for a policy layer or a runner: pipe the action about to happen (the runner's hook JSON, or the plain argv) and the memories it activates come back, standing preferences first, as the runner's <code>additionalContext</code> or as plain lines. Nothing to say is no output; the hook never blocks an action. <code>ljos onboard</code> installs it on a runner's tool-call and prompt events. Memory reaches the agent at the point of action, without being asked for.
+</p>
+
+<p>
+Law can live in the pack: <code>ljos rule 'PATTERN' --verdict deny|ask --why "..."</code> writes a glob over the command line with a verdict, and the hook returns it as the runner's permission decision while <code>ljos policy</code> prints it beside the line. A rule is memory: dated, supersedable, exported in handovers.
 </p>
 
 <p>
