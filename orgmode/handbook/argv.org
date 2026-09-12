@@ -7,6 +7,8 @@
 
 =ljos hook= is the same answer for a policy layer or a runner: pipe the action about to happen (the runner's hook JSON, or the plain argv) and the memories it activates come back, standing preferences first, as the runner's =additionalContext= or as plain lines. Nothing to say is no output; the hook never blocks an action. =ljos onboard= installs it on a runner's tool-call and prompt events. Memory reaches the agent at the point of action, without being asked for.
 
+Law can live in the pack: =ljos rule 'PATTERN' --verdict deny|ask --why "..."= writes a glob over the command line with a verdict, and the hook returns it as the runner's permission decision while =ljos policy= prints it beside the line. A rule is memory: dated, supersedable, exported in handovers.
+
 Edit the policy pack only when argv policy itself changes. Do not write comments, dates, ticket ids, or sitting notes into it. If the policy daemon is down, leave the pack alone.
 
 Other projects may speak one habitat and ignore =ljos=.
