@@ -2,46 +2,49 @@
 #+options: toc:nil num:nil html-style:nil
 
 A reader who has never used the seat can finish this page with one
-lesson in the pack and the same text coming back from search.
+lesson in the pack, the same text coming back from search, and a review
+clock running on it.
 
 * Install every binary this walk uses
 
 #+begin_src console
-$ cargo install --git https://github.com/leidarljos/ljos ljos
-$ cargo install --git https://github.com/leidarljos/packset packset-cli
+$ cargo install --git https://github.com/leidarljos/ljos ljos ljos-mcp
+$ cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon
 $ cargo install --git https://github.com/leidarljos/deedar deedar-cli
 $ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
 $ cargo install --git https://github.com/leidarljos/vissue vissue-cli
 $ cargo install --git https://github.com/leidarljos/consensus
-$ command -v ljos packset deedar claimdag vissue ljos-consensus
+$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus
 #+end_src
 
-You should see six paths. If =packset= is missing, step 3 cannot start
-the writer.
+You should see eight paths. If =packsetd= is missing, step 3 has no writer
+to start.
 
-* Remember without a pack fails
+* Remember without a writer fails
 
 #+begin_src console
 $ ljos remember "the default fuse is CombMNZ"
-Error: PACKSET_URL unset; remember/prefer POST /v1/atoms
+Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...
 #+end_src
 
-That error is the first success. The seat will not invent a store.
+That error is the first success. The seat will not invent a store, and
+it does not report a writer that is down as an empty pack.
 
-* Start the writer and export the URL
-
-=packset ensure= prints =PACKSET_URL=. It does not put it in the next
-process.
+* Start the writer
 
 #+begin_src console
 $ packset ensure
-PACKSET_URL=http://127.0.0.1:8761
-$ export PACKSET_URL=http://127.0.0.1:8761
-$ packset status
-up  http://127.0.0.1:8761
+$ ljos doctor
+ok	pack	http://127.0.0.1:8761 workspace seat
+ok	host key	...
+ok	deed store	size=0 root=...
+ok	tracker	vissue 0.11.0
+ok	claim graph	...
 #+end_src
 
-If =status= is not =up=, stop. Do not continue.
+Nothing to export. The seat finds the writer on =127.0.0.1:8761= from any
+directory, and its memory is the one workspace =seat=. If the =pack= row
+says =no=, stop. Do not continue.
 
 * Write one claim, then retrieve it
 
@@ -51,21 +54,26 @@ $ ljos remember "the default fuse is CombMNZ"
   "kind": "lesson",
   "level": "explicit",
   "text": "the default fuse is CombMNZ",
-  "id": "156eb2be-9898-46d8-bb2d-ce0dec1706b1"
+  "id": "156eb2be9898...",
+  "due_at": "2026-09-13T09:12:00.000Z"
 }
 $ ljos search fuse
-1.0000  lesson  156eb2be-…  the default fuse is CombMNZ
+1.0000  lesson  156eb2be9898...  the default fuse is CombMNZ
+$ ljos due
+0 due; 1 scheduled, next at 2026-09-13T09:12:00.000Z
 #+end_src
 
-You should see =kind= of =lesson= and the same sentence in the search
-hit. That is the retrieve. If search is empty, the write did not land.
+You should see =kind= of =lesson=, the same sentence in the search hit,
+and a review scheduled a day out. That is the retrieve and the clock. If
+search is empty, the write did not land. Tomorrow =ljos due= lists the
+claim; =ljos graded ID= (or =--lapsed=) moves the clock.
 
 * Prefer is the same path
 
 #+begin_src console
 $ ljos prefer "never extract on write"
 $ ljos search extract
-1.0000  preference  …  never extract on write
+1.0000  preference  ...  never extract on write
 #+end_src
 
 * Cards print files. They do not write them
@@ -77,9 +85,26 @@ $ ljos cards --dir /tmp/demo
 With no =USER.md= or =MEMORY.md=, the command prints nothing and exits
 0. That is not a failure.
 
+* Hand it to an agent
+
+#+begin_src console
+$ ljos protocol | head -3
+# The seat protocol
+
+One seat, five stores, five questions. Ask the store that owns the question.
+$ ljos onboard --harness json
+#+end_src
+
+The protocol is the text an agent reads before any work: which store
+answers which question, the order of verbs in a sitting, the refusals.
+=onboard= prints the server entry for any runner, or registers the
+server, installs the protocol as a skill, and installs the memory hook
+for a runner named in =~/.config/ljos/harnesses.toml=.
+[[https://leidarljos.github.io/docs/harnesses/][Harnesses]] shows the file.
+
 * After this works
 
-Wire a harness only after search returned the sentence you wrote.
-[[https://leidarljos.github.io/docs/harnesses/][Harnesses]].
-Field notes: [[https://leidarljos.github.io/handbook/][Handbook]].
-Tracker docs: [[https://vissue.rgoswami.me][vissue.rgoswami.me]].
+The [[https://leidarljos.github.io/ljos/getting-started.html][ljos tutorial]]
+runs the memory, agreement, work and handover loops on a scratch tracker
+in about ten minutes. Field notes:
+[[https://leidarljos.github.io/handbook/][Handbook]].

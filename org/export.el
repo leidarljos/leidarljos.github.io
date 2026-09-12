@@ -10,6 +10,8 @@
                      (expand-file-name "~/.config/emacs"))))
   (dolist (dir (list
                 (expand-file-name "elpa/htmlize-20250724.1703" emacs-dir)
+                (expand-file-name ".local/straight/build-30.2/htmlize" emacs-dir)
+                (expand-file-name ".local/straight/repos/htmlize" emacs-dir)
                 (expand-file-name ".local/straight/build-30.2/engrave-faces" emacs-dir)
                 (expand-file-name ".local/straight/repos/engrave-faces" emacs-dir)))
     (when (file-directory-p dir)

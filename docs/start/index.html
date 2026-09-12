@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-11 Fri 10:40 -->
+<!-- 2026-09-12 Sat 16:55 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>First write</title>
@@ -163,103 +163,109 @@
 <h1 class="title">First write</h1>
 </header><p>
 A reader who has never used the seat can finish this page with one
-lesson in the pack and the same text coming back from search.
+lesson in the pack, the same text coming back from search, and a review
+clock running on it.
 </p>
-<div id="outline-container-orgf76f6df" class="outline-2">
-<h2 id="orgf76f6df">Install every binary this walk uses</h2>
-<div class="outline-text-2" id="text-orgf76f6df">
+<div id="outline-container-org926a686" class="outline-2">
+<h2 id="org926a686">Install every binary this walk uses</h2>
+<div class="outline-text-2" id="text-org926a686">
 <div class="org-src-container">
-<pre class="src src-console">$ cargo install --git https://github.com/leidarljos/ljos ljos
-$ cargo install --git https://github.com/leidarljos/packset packset-cli
+<pre class="src src-console"><code>$ cargo install --git https://github.com/leidarljos/ljos ljos ljos-mcp
+$ cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon
 $ cargo install --git https://github.com/leidarljos/deedar deedar-cli
 $ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
 $ cargo install --git https://github.com/leidarljos/vissue vissue-cli
 $ cargo install --git https://github.com/leidarljos/consensus
-$ command -v ljos packset deedar claimdag vissue ljos-consensus
-</pre>
+$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus
+</code></pre>
 </div>
 
 <p>
-You should see six paths. If <code>packset</code> is missing, step 3 cannot start
-the writer.
+You should see eight paths. If <code>packsetd</code> is missing, step 3 has no writer
+to start.
 </p>
 </div>
 </div>
-<div id="outline-container-org6f96a3a" class="outline-2">
-<h2 id="org6f96a3a">Remember without a pack fails</h2>
-<div class="outline-text-2" id="text-org6f96a3a">
+<div id="outline-container-orgc9d1180" class="outline-2">
+<h2 id="orgc9d1180">Remember without a writer fails</h2>
+<div class="outline-text-2" id="text-orgc9d1180">
 <div class="org-src-container">
-<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
-Error: PACKSET_URL unset; remember/prefer POST /v1/atoms
-</pre>
+<pre class="src src-console"><code>$ ljos remember "the default fuse is CombMNZ"
+Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...
+</code></pre>
 </div>
 
 <p>
-That error is the first success. The seat will not invent a store.
+That error is the first success. The seat will not invent a store, and
+it does not report a writer that is down as an empty pack.
 </p>
 </div>
 </div>
-<div id="outline-container-orga4a531a" class="outline-2">
-<h2 id="orga4a531a">Start the writer and export the URL</h2>
-<div class="outline-text-2" id="text-orga4a531a">
-<p>
-<code>packset ensure</code> prints <code>PACKSET_URL</code>. It does not put it in the next
-process.
-</p>
-
+<div id="outline-container-org9568401" class="outline-2">
+<h2 id="org9568401">Start the writer</h2>
+<div class="outline-text-2" id="text-org9568401">
 <div class="org-src-container">
-<pre class="src src-console">$ packset ensure
-PACKSET_URL=http://127.0.0.1:8761
-$ export PACKSET_URL=http://127.0.0.1:8761
-$ packset status
-up  http://127.0.0.1:8761
-</pre>
+<pre class="src src-console"><code>$ packset ensure
+$ ljos doctor
+ok	pack	http://127.0.0.1:8761 workspace seat
+ok	host key	...
+ok	deed store	size=0 root=...
+ok	tracker	vissue 0.11.0
+ok	claim graph	...
+</code></pre>
 </div>
 
 <p>
-If <code>status</code> is not <code>up</code>, stop. Do not continue.
+Nothing to export. The seat finds the writer on <code>127.0.0.1:8761</code> from any
+directory, and its memory is the one workspace <code>seat</code>. If the <code>pack</code> row
+says <code>no</code>, stop. Do not continue.
 </p>
 </div>
 </div>
-<div id="outline-container-org41cf166" class="outline-2">
-<h2 id="org41cf166">Write one claim, then retrieve it</h2>
-<div class="outline-text-2" id="text-org41cf166">
+<div id="outline-container-orgaf1b49e" class="outline-2">
+<h2 id="orgaf1b49e">Write one claim, then retrieve it</h2>
+<div class="outline-text-2" id="text-orgaf1b49e">
 <div class="org-src-container">
-<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
+<pre class="src src-console"><code>$ ljos remember "the default fuse is CombMNZ"
 {
   "kind": "lesson",
   "level": "explicit",
   "text": "the default fuse is CombMNZ",
-  "id": "156eb2be-9898-46d8-bb2d-ce0dec1706b1"
+  "id": "156eb2be9898...",
+  "due_at": "2026-09-13T09:12:00.000Z"
 }
 $ ljos search fuse
-1.0000  lesson  156eb2be-…  the default fuse is CombMNZ
-</pre>
+1.0000  lesson  156eb2be9898...  the default fuse is CombMNZ
+$ ljos due
+0 due; 1 scheduled, next at 2026-09-13T09:12:00.000Z
+</code></pre>
 </div>
 
 <p>
-You should see <code>kind</code> of <code>lesson</code> and the same sentence in the search
-hit. That is the retrieve. If search is empty, the write did not land.
+You should see <code>kind</code> of <code>lesson</code>, the same sentence in the search hit,
+and a review scheduled a day out. That is the retrieve and the clock. If
+search is empty, the write did not land. Tomorrow <code>ljos due</code> lists the
+claim; <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1baacb" class="outline-2">
-<h2 id="orgc1baacb">Prefer is the same path</h2>
-<div class="outline-text-2" id="text-orgc1baacb">
+<div id="outline-container-orge1d4ddb" class="outline-2">
+<h2 id="orge1d4ddb">Prefer is the same path</h2>
+<div class="outline-text-2" id="text-orge1d4ddb">
 <div class="org-src-container">
-<pre class="src src-console">$ ljos prefer "never extract on write"
+<pre class="src src-console"><code>$ ljos prefer "never extract on write"
 $ ljos search extract
-1.0000  preference  …  never extract on write
-</pre>
+1.0000  preference  ...  never extract on write
+</code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge429b55" class="outline-2">
-<h2 id="orge429b55">Cards print files. They do not write them</h2>
-<div class="outline-text-2" id="text-orge429b55">
+<div id="outline-container-org89e7f51" class="outline-2">
+<h2 id="org89e7f51">Cards print files. They do not write them</h2>
+<div class="outline-text-2" id="text-org89e7f51">
 <div class="org-src-container">
-<pre class="src src-console">$ ljos cards --dir /tmp/demo
-</pre>
+<pre class="src src-console"><code>$ ljos cards --dir /tmp/demo
+</code></pre>
 </div>
 
 <p>
@@ -270,14 +276,36 @@ With no <code>USER.md</code> or <code>MEMORY.md</code>, the command prints nothi
 </ol>
 </div>
 </div>
-<div id="outline-container-org8dbdb35" class="outline-2">
-<h2 id="org8dbdb35">After this works</h2>
-<div class="outline-text-2" id="text-org8dbdb35">
+<div id="outline-container-orgbb1d477" class="outline-2">
+<h2 id="orgbb1d477">Hand it to an agent</h2>
+<div class="outline-text-2" id="text-orgbb1d477">
+<div class="org-src-container">
+<pre class="src src-console"><code>$ ljos protocol | head -3
+# The seat protocol
+
+One seat, five stores, five questions. Ask the store that owns the question.
+$ ljos onboard --harness json
+</code></pre>
+</div>
+
 <p>
-Wire a harness only after search returned the sentence you wrote.
-<a href="https://leidarljos.github.io/docs/harnesses/">Harnesses</a>.
-Field notes: <a href="https://leidarljos.github.io/handbook/">Handbook</a>.
-Tracker docs: <a href="https://vissue.rgoswami.me">vissue.rgoswami.me</a>.
+The protocol is the text an agent reads before any work: which store
+answers which question, the order of verbs in a sitting, the refusals.
+<code>onboard</code> prints the server entry for any runner, or registers the
+server, installs the protocol as a skill, and installs the memory hook
+for a runner named in <code>~/.config/ljos/harnesses.toml</code>.
+<a href="https://leidarljos.github.io/docs/harnesses/">Harnesses</a> shows the file.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd9e593d" class="outline-2">
+<h2 id="orgd9e593d">After this works</h2>
+<div class="outline-text-2" id="text-orgd9e593d">
+<p>
+The <a href="https://leidarljos.github.io/ljos/getting-started.html">ljos tutorial</a>
+runs the memory, agreement, work and handover loops on a scratch tracker
+in about ten minutes. Field notes:
+<a href="https://leidarljos.github.io/handbook/">Handbook</a>.
 </p>
 </div>
 </div>
