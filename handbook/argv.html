@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-11 Fri 10:38 -->
+<!-- 2026-09-12 Sat 16:55 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reloading a pack is not a check.</title>
@@ -166,11 +166,15 @@
 </p>
 
 <p>
-<code>ljos policy -- argv</code> prints the line. It does not reload a Janet pack.
+<code>ljos policy -- argv</code> prints the line, then what the pack knows that bears on it. It does not reload a Janet pack.
 </p>
 
 <p>
-Edit the pack only when argv policy itself changes. Do not write comments, dates, ticket ids, or sitting notes into it. If sessiond is down, leave the pack alone.
+<code>ljos hook</code> is the same answer for a policy layer or a runner: pipe the action about to happen (the runner's hook JSON, or the plain argv) and the memories it activates come back, standing preferences first, as the runner's <code>additionalContext</code> or as plain lines. Nothing to say is no output; the hook never blocks an action. <code>ljos onboard</code> installs it on a runner's tool-call and prompt events. Memory reaches the agent at the point of action, without being asked for.
+</p>
+
+<p>
+Edit the policy pack only when argv policy itself changes. Do not write comments, dates, ticket ids, or sitting notes into it. If the policy daemon is down, leave the pack alone.
 </p>
 
 <p>

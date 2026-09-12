@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-11 Fri 10:38 -->
+<!-- 2026-09-12 Sat 16:55 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Remember is a speech act.</title>
@@ -166,11 +166,15 @@
 </p>
 
 <p>
-<code>ljos remember</code> POSTs one lesson to <code>/v1/atoms</code>. <code>ljos prefer</code> POSTs one preference. The process must already have <code>PACKSET_URL</code>. <code>packset ensure</code> starts the writer and prints the URL. It does not export the URL into the next process.
+<code>ljos remember</code> POSTs one lesson to <code>/v1/atoms</code>. <code>ljos prefer</code> POSTs one preference. The writer is found on <code>127.0.0.1:8761</code> with nothing set; <code>packset ensure</code> starts one. A writer that is down is an error, never an empty pack.
 </p>
 
 <p>
-The workspace is the git remote of the current directory (<code>git:github.com/org/repo</code>). Search is GET <code>/v1/search</code> on that workspace. It does not open a deed. A transcript is not a source. If you did not say <code>Remember:</code> or <code>Prefer:</code>, the pack did not change.
+The seat's memory is one workspace, <code>seat</code>, from any directory. The pack's own command line keys a workspace to the git remote of the directory it stands in; the seat does not, because a seat is one memory across every repository it works in. <code>PACKSET_WORKSPACE</code> names another on purpose. Search is GET <code>/v1/search</code> on the seat's workspace. It does not open a deed. A transcript is not a source. If you did not say <code>Remember:</code> or <code>Prefer:</code>, the pack did not change.
+</p>
+
+<p>
+Every claim enters the review clock on write. <code>ljos due</code> lists what is due and ends with one line on the clock; <code>ljos graded ID</code> moves it. A claim never graded sinks in search as its retrievability falls.
 </p>
 
 <p>

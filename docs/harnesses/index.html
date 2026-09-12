@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Harnesses — leiðarljós</title>
-  <meta name="description" content="Wire ljos-mcp in Grok, Claude, Codex, Cursor, and Pi.">
+  <meta name="description" content="One verb onboards a runner: server, protocol skill, memory hook.">
   <link rel="canonical" href="https://leidarljos.github.io/docs/harnesses/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
   <meta property="og:title" content="Harnesses — leiðarljós">
-  <meta property="og:description" content="Wire ljos-mcp in Grok, Claude, Codex, Cursor, and Pi.">
+  <meta property="og:description" content="One verb onboards a runner: server, protocol skill, memory hook.">
   <meta property="og:url" content="https://leidarljos.github.io/docs/harnesses/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
@@ -34,7 +34,7 @@
         <header class="intro">
           <p class="kicker">Harnesses</p>
           <h1>Wire ljos-mcp</h1>
-          <p class="lead">One server. Not four. <code>ljos-mcp</code> must be on <code>PATH</code>.</p>
+          <p class="lead">One server, one skill, one hook. <code>ljos onboard</code> installs all three; <code>ljos</code> and <code>ljos-mcp</code> must be on <code>PATH</code>.</p>
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
@@ -44,25 +44,49 @@
         <li><a href="/docs/privacy/">Privacy-of-write</a></li>
         <li><a href="/docs/reference/">Reference</a></li>
       </ul>
-        <h2>Grok</h2>
-<pre>[mcp_servers.ljos]
-command = "ljos-mcp"
-args = []
-startup_timeout_sec = 30</pre>
-        <p>Put that in <code>~/.grok/config.toml</code>. Restart Grok.</p>
-        <h2>Claude</h2>
-<pre>claude mcp add ljos -- ljos-mcp</pre>
-        <h2>Codex</h2>
-<pre>codex mcp add ljos -- ljos-mcp</pre>
-        <h2>Cursor</h2>
-<pre>{
+        <h2>One verb per runner</h2>
+        <p>Describe the runners on the machine once, in <code>~/.config/ljos/harnesses.toml</code>. A runner registers MCP servers through a command of its own (the first table) or through a config file it reads (the other two); a table names one of those two, the directory it loads skills from, and the settings file it reads hooks from. <code>ljos onboard --example</code> prints the shape.</p>
+<pre>[[harness]]
+name = "runner-c"
+config = "~/.runner-c/config.toml"
+marker = "[mcp_servers.ljos]"
+snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nstartup_timeout_sec = 30\n"
+
+[[harness]]
+name = "runner-a"
+register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "--", "{server}"]
+registered = ["runner-a", "mcp", "get", "ljos"]
+skills = "~/.runner-a/skills"
+hooks = "~/.runner-a/settings.json"
+
+[[harness]]
+name = "runner-b"
+config = "~/.runner-b/config.toml"
+marker = "[mcp_servers.ljos]"
+snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\n"
+skills = "~/.runner-b/skills"
+hooks = "~/.runner-b/hooks.json"</pre>
+        <p>Then, for each:</p>
+<pre>$ ljos onboard --harness runner-a
+ok	host key	/home/you/.config/deedar/host.key exists
+ok	runner-a mcp	ran runner-a mcp add -s user ljos -- /home/you/.cargo/bin/ljos-mcp
+ok	hook	added the memory hook on PreToolUse, UserPromptSubmit to /home/you/.runner-a/settings.json
+ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md
+$ ljos doctor | grep runner</pre>
+        <p>Three things land. The server, so the runner has the seat's tools. The skill, which is the protocol <code>ljos protocol</code> prints: which store answers which question, the order of verbs in a sitting, the refusals worth knowing. And the memory hook: before each shell command and each prompt the runner pipes the action to <code>ljos hook</code> and the memories it activates come back as context, preferences first, each once per session. Memory reaches the agent at the point of action without being asked for. <code>--dry-run</code> reports and writes nothing.</p>
+        <h2>Any other runner</h2>
+<pre>$ ljos onboard --harness json
+{
   "mcpServers": {
-    "ljos": { "command": "ljos-mcp" }
+    "ljos": { "type": "stdio", "command": "/home/you/.cargo/bin/ljos-mcp", "args": [], "env": {} }
   }
-}</pre>
-        <p>Paste that into Cursor MCP settings.</p>
-        <h2>Pi</h2>
-        <p>Add <code>ljos-mcp</code> to the MCP server list the same way you add any stdio server. Restart the session.</p>
+}
+$ ljos protocol &gt; instructions.md</pre>
+        <p>Paste the entry where the runner keeps its MCP servers (Cursor, Pi, and the rest take this shape) and put the protocol where the agent reads its instructions. If the runner has hooks, a command hook on tool calls and prompts that runs <code>ljos hook</code> completes the set.</p>
+        <h2>The two verbs an agent runs</h2>
+<pre>ljos sitting &lt;issue&gt; --assignee &lt;name&gt;       # doctor, cards, due, island, recall, claim
+ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember, fire, complete, learn</pre>
+        <p>One verb opens a sitting in the protocol's order and stops at the first store that does not answer; one closes it. The loop that makes the seat a memory runs every time, not only when somebody remembers to run it.</p>
         <h2>Cite a deed on a ticket</h2>
 <pre>ljos evidence deed-…
 ljos deed &lt;id&gt; --add deed-…

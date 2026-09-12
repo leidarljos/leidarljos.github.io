@@ -3,9 +3,11 @@
 
 [[file:index.org][Back to the field]]
 
-=ljos policy -- argv= prints the line. It does not reload a Janet pack.
+=ljos policy -- argv= prints the line, then what the pack knows that bears on it. It does not reload a Janet pack.
 
-Edit the pack only when argv policy itself changes. Do not write comments, dates, ticket ids, or sitting notes into it. If sessiond is down, leave the pack alone.
+=ljos hook= is the same answer for a policy layer or a runner: pipe the action about to happen (the runner's hook JSON, or the plain argv) and the memories it activates come back, standing preferences first, as the runner's =additionalContext= or as plain lines. Nothing to say is no output; the hook never blocks an action. =ljos onboard= installs it on a runner's tool-call and prompt events. Memory reaches the agent at the point of action, without being asked for.
+
+Edit the policy pack only when argv policy itself changes. Do not write comments, dates, ticket ids, or sitting notes into it. If the policy daemon is down, leave the pack alone.
 
 Other projects may speak one habitat and ignore =ljos=.
 
