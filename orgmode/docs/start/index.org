@@ -7,7 +7,7 @@ lesson in the pack and the same text coming back from search.
 * Install every binary this walk uses
 
 #+begin_src console
-$ cargo install --git https://github.com/leidarljos/ljos ljos-cli
+$ cargo install --git https://github.com/leidarljos/ljos ljos
 $ cargo install --git https://github.com/leidarljos/packset packset-cli
 $ cargo install --git https://github.com/leidarljos/deedar deedar-cli
 $ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
