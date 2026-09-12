@@ -3,10 +3,14 @@
 
 [[file:index.org][Back to the field]]
 
-=ljos vote ID --for accept|reject= records a ballot. One ballot per identity. A recast replaces. A missing identity is no.
+=ljos vote ID --for OPTION= records a ballot. One ballot per identity; =--as NAME= casts as a persona. A recast replaces. A missing identity is no.
 
-=ljos-consensus settle= is the model: DeGroot / Friedkin–Johnsen, or the Seldon ODE when =--seldon= and =seldon= are on PATH. [[https://github.com/seldon-code/seldon][seldon-code]] is that ODE. This crate does not link it. Pass =--ballots= as a JSON array of ={agent, choice}=, or =--issue= when the tracker can emit ballots. =ljos consensus ID= is the seat verb: the crate, then the tracker.
+=ljos consensus ID= is the seat verb: the model crate, then the tracker, both under the trust rows the pack holds that apply to the issue's topic and every persona's anchor. The model is DeGroot / Friedkin–Johnsen, or bounded confidence when the issue is tagged =broad=, or the Seldon ODE when =--seldon= and =seldon= are on PATH. Every outcome says how the group split, in polarization and disagreement; a count says only who won.
+
+The rows are memory. =ljos learn ID --outcome OPTION= shrinks the voters the outcome refuted and loosens the anchors of refuted personas; =ljos calibrate -p PROJECT= writes rows from the project's history when nobody names an outcome; =ljos trust FROM TO W --about DOMAIN= sets one by hand, scoped. Under equal rows a settle is a count.
+
+A panel is one subagent per persona, each started from =ljos brief NAME ID=, each casting one ballot as itself, then the settle. =ljos persona NAME --anchor A --view TEXT --about DOMAIN= writes the persona once; it stays in the pack.
 
 Four green ticks are a host rule for landing work. They are not the model. Do not report a count as if it were the crate.
 
-[[https://leidarljos.github.io/consensus/][consensus]] · [[https://github.com/seldon-code/seldon][seldon-code]]
+[[https://leidarljos.github.io/consensus/][consensus]] · [[https://leidarljos.github.io/ljos/][ljos]] · [[https://github.com/seldon-code/seldon][seldon-code]]

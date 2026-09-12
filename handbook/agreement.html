@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-12 Sat 16:55 -->
+<!-- 2026-09-12 Sat 17:40 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A vote count is not consensus.</title>
@@ -166,11 +166,19 @@
 </p>
 
 <p>
-<code>ljos vote ID --for accept|reject</code> records a ballot. One ballot per identity. A recast replaces. A missing identity is no.
+<code>ljos vote ID --for OPTION</code> records a ballot. One ballot per identity; <code>--as NAME</code> casts as a persona. A recast replaces. A missing identity is no.
 </p>
 
 <p>
-<code>ljos-consensus settle</code> is the model: DeGroot / Friedkin–Johnsen, or the Seldon ODE when <code>--seldon</code> and <code>seldon</code> are on PATH. <a href="https://github.com/seldon-code/seldon">seldon-code</a> is that ODE. This crate does not link it. Pass <code>--ballots</code> as a JSON array of <code>{agent, choice}</code>, or <code>--issue</code> when the tracker can emit ballots. <code>ljos consensus ID</code> is the seat verb: the crate, then the tracker.
+<code>ljos consensus ID</code> is the seat verb: the model crate, then the tracker, both under the trust rows the pack holds that apply to the issue's topic and every persona's anchor. The model is DeGroot / Friedkin–Johnsen, or bounded confidence when the issue is tagged <code>broad</code>, or the Seldon ODE when <code>--seldon</code> and <code>seldon</code> are on PATH. Every outcome says how the group split, in polarization and disagreement; a count says only who won.
+</p>
+
+<p>
+The rows are memory. <code>ljos learn ID --outcome OPTION</code> shrinks the voters the outcome refuted and loosens the anchors of refuted personas; <code>ljos calibrate -p PROJECT</code> writes rows from the project's history when nobody names an outcome; <code>ljos trust FROM TO W --about DOMAIN</code> sets one by hand, scoped. Under equal rows a settle is a count.
+</p>
+
+<p>
+A panel is one subagent per persona, each started from <code>ljos brief NAME ID</code>, each casting one ballot as itself, then the settle. <code>ljos persona NAME --anchor A --view TEXT --about DOMAIN</code> writes the persona once; it stays in the pack.
 </p>
 
 <p>
@@ -178,7 +186,7 @@ Four green ticks are a host rule for landing work. They are not the model. Do no
 </p>
 
 <p>
-<a href="https://leidarljos.github.io/consensus/">consensus</a> · <a href="https://github.com/seldon-code/seldon">seldon-code</a>
+<a href="https://leidarljos.github.io/consensus/">consensus</a> · <a href="https://leidarljos.github.io/ljos/">ljos</a> · <a href="https://github.com/seldon-code/seldon">seldon-code</a>
 </p>
 </div>
 <div id="postamble" class="status">
