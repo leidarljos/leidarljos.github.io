@@ -9,6 +9,8 @@ The seat's memory is one workspace, =seat=, from any directory. The pack's own c
 
 Every recalled memory carries its age (=[lesson, 3 weeks ago]=), and the hook's lessons run oldest to newest behind the preferences; read them as a timeline, a later one revises an earlier one. =ljos timeline ISSUE= is the tracker's logbook, the cited deeds and the activated memories as one dated list, oldest first, with the gap between lines. =ljos search TOPIC --as-of TIME= is the pack as it stood then.
 
+A lesson that rewrites an earlier one (same opening words, a new object) closes the earlier one's window on arrival, and =remember= says so. =ljos consolidate= runs the same rule over what is already held and reports the pairs; =--apply= closes them. Run it after =ljos receive --import=.
+
 =ljos island CUE= is what a task touches; =ljos hubs= is what the pack turns on by its own links, a weighted PageRank over them: the natural list to pin, to review first, or to carry when the whole pack is too much.
 
 Every claim enters the review clock on write. =ljos due= lists what is due and ends with one line on the clock; =ljos graded ID= moves it. A claim never graded sinks in search as its retrievability falls.
