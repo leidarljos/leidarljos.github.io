@@ -70,10 +70,10 @@ hooks = "~/.runner-b/hooks.json"</pre>
 <pre>$ ljos onboard --harness runner-a
 ok	host key	/home/you/.config/deedar/host.key exists
 ok	runner-a mcp	ran runner-a mcp add -s user ljos -- /home/you/.cargo/bin/ljos-mcp
-ok	hook	added the memory hook on PreToolUse, UserPromptSubmit to /home/you/.runner-a/settings.json
+ok	hook	memory hook: add it on UserPromptSubmit in /home/you/.runner-a/settings.json
 ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md
 $ ljos doctor | grep runner</pre>
-        <p>Three things land. The server, so the runner has the seat's tools. The skill, which is the protocol <code>ljos protocol</code> prints: which store answers which question, the order of verbs in a sitting, the refusals worth knowing. And the memory hook: before each shell command and each prompt the runner pipes the action to <code>ljos hook</code> and the memories it activates come back as context, preferences first, each once per session. Memory reaches the agent at the point of action without being asked for. <code>--dry-run</code> reports and writes nothing.</p>
+        <p>Three things land. The server, so the runner has the seat's tools. The skill, which is the protocol <code>ljos protocol</code> prints: which store answers which question, the order of verbs in a sitting, the refusals worth knowing. And the memory hook: before each prompt the runner pipes it to <code>ljos hook</code> and the memories it activates come back as context, preferences first, each once per session; <code>hook_events = ["UserPromptSubmit", "PreToolUse"]</code> in the table adds shell commands, a default a panel of the seat's own personas settled. Memory reaches the agent at the point of action without being asked for. <code>--dry-run</code> reports and writes nothing.</p>
         <h2>Any other runner</h2>
 <pre>$ ljos onboard --harness json
 {
