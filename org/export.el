@@ -65,9 +65,10 @@
       (insert-file-contents path)
       (buffer-string))))
 
-(setq org-html-head
-      (concat "<style>\n" (engrave-faces-html-gen-stylesheet) "\n</style>\n"
-              (ljos-read-template "head.html"))
+;; Site CSS owns colour. The engrave-faces preset is a light theme and
+;; must not be concatenated here: it paints .ef-* black-on-white over
+;; the dark handbook.
+(setq org-html-head (ljos-read-template "head.html")
       org-html-preamble (ljos-read-template "nav.html")
       org-html-postamble (ljos-read-template "footer.html"))
 

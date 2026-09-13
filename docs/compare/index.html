@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compare — leiðarljós</title>
+  <meta name="description" content="packset measured retrieval versus agentmemory and other memory engines. Extract-on-write is refused.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/compare/">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/site.css">
+  <meta property="og:title" content="Compare — leiðarljós">
+  <meta property="og:description" content="packset measured retrieval versus agentmemory and other memory engines. Extract-on-write is refused.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/compare/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap narrow">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="/">
+        <img src="/icon.svg" alt="">
+        leiðarljós
+      </a>
+      <ul>
+        <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://vissue.rgoswami.me">vissue</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
+    </nav>
+    <main id="main">
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Compare</p>
+          <h1>A memory engine is one habitat.</h1>
+          <p class="lead">leiðarljós is a seat over five habitats and argv law. packset is the standing-knowledge habitat. It writes only on Remember: and Prefer:. The numbers below are packset's own measured rows, from the crate README and explanation page.</p>
+        </header>
+      <ul class="subnav" aria-label="Docs">
+        <li><a href="/docs/">Overview</a></li>
+        <li><a href="/docs/start/">Start</a></li>
+        <li><a href="/docs/habitats/">Habitats</a></li>
+        <li><a href="/docs/compare/">Compare</a></li>
+        <li><a href="/docs/harnesses/">Harnesses</a></li>
+        <li><a href="/docs/privacy/">Privacy-of-write</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+      </ul>
+
+        <h2>What we measured</h2>
+        <p>LongMemEval_S (doi:10.48550/arXiv.2410.10813), 470 answerable questions, session-level retrieval. The pack writes claims, not harvested chat. Reproduction: <a href="https://github.com/leidarljos/bench">leidarljos/bench</a> and <code>scripts/longmemeval_qa.py</code> in packset.</p>
+        <table>
+          <thead><tr><th>Arm</th><th>hit@1</th><th>recall@5</th><th>recall@10</th></tr></thead>
+          <tbody>
+            <tr><td>packset BM25+</td><td>0.855</td><td>0.914</td><td>0.952</td></tr>
+            <tr><td>packset fused panel</td><td>0.889</td><td>0.949</td><td>0.981</td></tr>
+          </tbody>
+        </table>
+        <p>Answer accuracy on the same 470, local reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval's own prompts, top five sessions): fused panel 0.549, lexical alone 0.532, labelled sessions (the ceiling for any retriever) 0.634.</p>
+        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), same 7B reader: conflict-resolution split 0.480 (published retrieval baselines 0.155 to 0.295 with a stronger reader). Accurate-retrieval split 0.675 of 2000 against published 0.605 (BM25) and 0.651 (HippoRAG-v2).</p>
+
+        <h2>Two repos named agentmemory</h2>
+        <p>Do not collapse them. Neither number is ours.</p>
+        <table>
+          <thead><tr><th>System</th><th>What they report</th><th>Write policy</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><a href="https://github.com/rohitg00/agentmemory">rohitg00/agentmemory</a></td>
+              <td>LongMemEval-S R@5 95.2% (all-MiniLM-L6-v2, retrieval only). Their COMPARISON.md.</td>
+              <td>Twelve lifecycle hooks auto-capture. Extract-on-write.</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/JordanMcCann/agentmemory">JordanMcCann/agentmemory</a></td>
+              <td>LongMemEval QA 96.20% (481/500). Hosted generator and hosted judge. Their README.</td>
+              <td>Chat QA over a MemoryStore. Not R@5.</td>
+            </tr>
+            <tr>
+              <td>packset</td>
+              <td>Same benchmark family, session recall@5 0.949 fused, 0.914 lexical. QA 0.549 with a 7B reader against a 0.634 labelled ceiling.</td>
+              <td>Remember: / Prefer: only. A transcript is not a source.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>0.949 recall@5 sits next to their 95.2% R@5 on retrieval. That is a measured neighbour, not a win claim. Their 96.20% is a different sport: a frontier generator and a hosted judge. We do not paste that number into a packset cell.</p>
+
+        <h2>The table they cannot hold</h2>
+        <p>A memory-engine scoreboard has one column. A seat has five habitats and argv law. Citation is not a merge.</p>
+        <table>
+          <thead><tr><th>Question</th><th>Habitat</th><th>What a memory engine does instead</th></tr></thead>
+          <tbody>
+            <tr><td>What did the human freeze?</td><td>cards</td><td>A scrapbook, or the harness card file treated as writable memory.</td></tr>
+            <tr><td>What does this seat know, standing?</td><td>packset</td><td>The whole product. Hooks extract from the transcript.</td></tr>
+            <tr><td>What did this unit produce?</td><td>deedar</td><td>Nothing. Bytes are not an accession.</td></tr>
+            <tr><td>What does this node stand on, and who agrees?</td><td>vissue</td><td>Nothing. A ticket is not a memory.</td></tr>
+            <tr><td>What is this session handing out?</td><td>claimdag</td><td>Nothing. Completing a chat turn is not a CAS claim.</td></tr>
+            <tr><td>May this argv run?</td><td>policyd (law, not a store)</td><td>Nothing. A hook that writes is not a check.</td></tr>
+            <tr><td>Who is right, under trust?</td><td>consensus crate</td><td>A vote count, or a single judge.</td></tr>
+          </tbody>
+        </table>
+        <p>Their auto-capture column is the failure mode already named against extract-on-write (InjecMEM, MINJA). packset refuses that path. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
+
+        <h2>policyd is not in the public org</h2>
+        <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>grok-policyd</code> is the TCB when it is installed: Cap'n <code>checkShell</code> over a Janet pack. Reloading a pack is not a check. The TCB crate is not on github.com/leidarljos. It stays with the seat that owns sessiond. <a href="/handbook/argv/">Argv field note</a>.</p>
+
+        <h2>What this page will not say</h2>
+        <ul>
+          <li>It will not report Jordan McCann's 96.20% or rohitg00's 95.2% as ours.</li>
+          <li>It will not treat LongMemEval QA as the product SOTA. Retrieval and write policy are the cells we publish.</li>
+          <li>It will not flatten cards, deeds, tickets, claims, and argv into one HUD.</li>
+        </ul>
+        <p class="quiet">Numbers: <a href="https://github.com/leidarljos/packset">packset README</a> · <a href="/packset/">packset page</a> · <a href="https://github.com/leidarljos/bench">bench</a></p>
+      </div>
+    </main>
+  </div>
+  <footer class="antics" role="contentinfo">
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7,20H4V4h3V20z M14,20h-3V12h3V20z M21,20h-3V8h3V20z"/></svg>
+      Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a>
+    </span>
+    <span>
+      provided by
+      <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a>
+    </span>
+  </footer>
+</body>
+</html>

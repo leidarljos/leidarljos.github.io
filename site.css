@@ -382,6 +382,8 @@ h1.title {
   letter-spacing: -0.02em;
 }
 #content p { line-height: 1.65; }
+/* Org export may leave engrave-faces classes. Do not inherit a light theme. */
+.ef-D, .ef-vp { color: inherit; background: transparent; }
 #content dl { margin: 1rem 0; }
 #content dt { color: var(--cream); font-family: var(--serif); font-weight: 600; }
 #content dd { color: var(--mute); margin: 0 0 0.6rem 0; }

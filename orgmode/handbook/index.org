@@ -9,7 +9,10 @@ contract, and the failure that looks like success.
 - deedar :: Frozen product. Opened by accession.
 - vissue :: The graph and the agreement. Docs: [[https://vissue.rgoswami.me][vissue.rgoswami.me]].
 - claimdag :: Work for this sitting. Completing does not close a ticket.
-- policyd :: Argv check. Reloading a pack is not a check. =ljos hook= injects memory at the point of action.
+- policyd :: Argv law, not a store. =ljos policy= prints the line.
+  =grok-policyd= is the TCB when installed and is not in the public org.
+  Reloading a pack is not a check. =ljos hook= injects memory at the
+  point of action.
 - consensus :: DeGroot / Friedkin–Johnsen. A vote count is not that run.
 
 * Notes
@@ -20,3 +23,4 @@ contract, and the failure that looks like success.
 - [[file:session.org][Session]] — Completing is not closing
 - [[file:agreement.org][Agreement]] — A vote count is not consensus
 - [[file:argv.org][Argv]] — Reloading a pack is not a check; memory at the point of action
+- [[https://leidarljos.github.io/docs/compare/][Compare]] — A memory engine is one habitat
