@@ -86,7 +86,7 @@ $ ljos doctor | grep runner</pre>
 $ ljos protocol &gt; instructions.md</pre>
         <p>Paste the entry where the runner keeps its MCP servers (Cursor, Pi, and the rest take this shape) and put the protocol where the agent reads its instructions. If the runner has hooks, a command hook on tool calls and prompts that runs <code>ljos hook</code> completes the set.</p>
         <h2>The two verbs an agent runs</h2>
-<pre>ljos sitting &lt;issue&gt; --assignee &lt;name&gt;       # doctor, cards, due, island, recall, claim
+<pre>ljos sitting &lt;issue&gt; --assignee &lt;name&gt;       # doctor, cards, due, island, recall, timeline, claim
 ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember, fire, complete, learn</pre>
         <p>One verb opens a sitting in the protocol's order and stops at the first store that does not answer; one closes it. The loop that makes the seat a memory runs every time, not only when somebody remembers to run it.</p>
         <h2>Cite a deed on a ticket</h2>
