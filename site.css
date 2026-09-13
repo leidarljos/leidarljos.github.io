@@ -209,7 +209,7 @@ pre {
   padding: 4.2rem 0 1.4rem;
   max-width: 40rem;
 }
-.hero-journal h1 { max-width: 12ch; }
+.hero-journal h1 { max-width: 22ch; }
 .hero-journal .lead {
   margin: 0 0 1.6rem;
   font-family: var(--serif);
@@ -293,7 +293,7 @@ pre {
   margin: 0;
   padding: 1.1rem 1.15rem 1.25rem;
   font: 0.84rem/1.6 var(--mono);
-  min-height: 13.5rem;
+  min-height: 0;
   white-space: pre-wrap;
   overflow-x: auto;
   border: 0;
@@ -568,8 +568,8 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
   .loop,
   .measure { grid-template-columns: 1fr; }
   .crate-index a { grid-template-columns: 1fr; gap: 0.2rem; }
-  .term-body { min-height: 12rem; }
-  .pin-field { width: 70vw; height: 70vw; opacity: 0.06; }
+  .term-body { min-height: 0; }
+  body::before { width: 64vw; height: 64vw; opacity: 0.12; }
 }
 @media (max-width: 720px) {
   .docs-grid, .hb-notes { grid-template-columns: 1fr; }

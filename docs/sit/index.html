@@ -61,7 +61,7 @@ $ ljos doctor</pre>
           </section>
           <section>
             <h2>2. Make a ticket and sit it</h2>
-            <p><code>sitting</code> prints seven sections and stops at the first store that does not answer: doctor, cards, due, the island the title activates, recall, timeline, then the claim.</p>
+            <p><code>sitting</code> prints seven sections and stops at the first store that does not answer: doctor, cards, due, the island the title activates, recall, timeline, then the claim. After the sitting, read each due row and run <code>ljos graded ID</code> (or <code>--lapsed</code>). The clock does not move until you grade.</p>
             <pre>$ id=$(vissue create -p demo "Ship the fuse change?" -q)
 $ ljos sitting $id --assignee you
 == doctor
