@@ -33,13 +33,25 @@ html, body {
 body {
   font-family: var(--sans);
   font-size: 1.05rem;
-  line-height: 1.6;
+  line-height: 1.65;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background:
-    linear-gradient(180deg, #14110c 0%, var(--ink) 18rem);
+  background: var(--ink);
+  position: relative;
 }
+
+.pin-field {
+  pointer-events: none;
+  position: fixed;
+  inset: -8rem -10rem auto auto;
+  width: min(52vw, 28rem);
+  height: min(52vw, 28rem);
+  opacity: 0.09;
+  background: url("/icon.svg") no-repeat center / contain;
+  z-index: 0;
+}
+.wrap, footer.antics { position: relative; z-index: 1; }
 
 a { color: var(--cream); text-underline-offset: 0.18em; }
 a:hover { color: var(--gold); }
@@ -101,7 +113,7 @@ h1, h2, h3, h1.title {
   font-weight: 600;
   color: var(--cream);
 }
-h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); margin: 0 0 0.6rem; line-height: 1.04; }
+h1 { font-size: clamp(3rem, 8vw, 5.6rem); margin: 0 0 0.4rem; line-height: 0.96; }
 h2 { font-size: clamp(1.45rem, 2.6vw, 1.9rem); margin: 2.2rem 0 0.55rem; }
 h3 { font-size: 1.2rem; margin: 0 0 0.4rem; }
 p, li { color: var(--mute); }
@@ -189,31 +201,61 @@ pre {
   margin: 0.8rem 0 0;
 }
 
-/* Landing */
-.landing { padding: 0 0 4.5rem; }
-.hero-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: 3.2rem;
-  align-items: center;
-  padding: 3.4rem 0 3rem;
+/* Landing — field journal */
+.landing { padding: 0 0 5rem; }
+.hero-journal {
+  padding: 4.2rem 0 1.4rem;
+  max-width: 40rem;
 }
-.hero-copy h1 { max-width: 14ch; }
-.hero-copy .lead { margin: 0 0 1.5rem; }
-.hero-copy .install { margin: 0 0 1.35rem; }
+.hero-journal h1 { max-width: 12ch; }
+.hero-journal .lead {
+  margin: 0 0 1.6rem;
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  color: var(--cream);
+}
+.hero-journal .rule {
+  width: 5.5rem;
+  height: 2px;
+  background: var(--gold);
+  margin: 0.85rem 0 1.15rem;
+  border: 0;
+}
+.hero-journal .install { margin: 1.6rem 0 0; }
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
 }
 
+.plate {
+  margin: 2.4rem 0 0;
+  padding: 0;
+  border: 0;
+}
+.plate figcaption {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  color: var(--mute);
+  margin: 0 0 0.7rem;
+}
+.plate figcaption span {
+  color: var(--gold);
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.06em;
+  margin-right: 0.55rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .term {
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 2px;
   overflow: hidden;
   text-align: left;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
 }
 .term-bar {
   display: flex;
@@ -223,17 +265,6 @@ pre {
   border-bottom: 1px solid var(--line);
   background: var(--panel-2);
 }
-.dots { display: flex; gap: 0.32rem; }
-.dots i {
-  width: 0.58rem;
-  height: 0.58rem;
-  border-radius: 50%;
-  background: #3a3732;
-  display: block;
-}
-.dots i:nth-child(1) { background: #6b4a1f; }
-.dots i:nth-child(2) { background: #8a6a2c; }
-.dots i:nth-child(3) { background: var(--gold); }
 .term-title {
   color: var(--mute-2);
   font-size: 0.75rem;
@@ -307,11 +338,14 @@ pre {
 .loop p { margin: 0; }
 .loop code { color: var(--gold); }
 
+.measure-plate { margin-top: 2.8rem; }
 .measure {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1.6rem 2.2rem;
   align-items: baseline;
+  padding: 1.4rem 0 0.2rem;
+  border-top: 1px solid var(--line);
 }
 .measure .fig {
   font-family: var(--serif);
@@ -359,8 +393,9 @@ pre {
 .crate-index em {
   font-style: normal;
   color: var(--gold);
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
 }
 .crate-index a:hover strong { color: var(--gold); }
 
@@ -527,12 +562,12 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
 }
 
 @media (max-width: 880px) {
-  .hero-split,
+  .hero-journal { padding: 2.6rem 0 1rem; }
   .loop,
   .measure { grid-template-columns: 1fr; }
   .crate-index a { grid-template-columns: 1fr; gap: 0.2rem; }
-  .hero-split { padding: 2.2rem 0 2rem; gap: 1.8rem; }
   .term-body { min-height: 12rem; }
+  .pin-field { width: 70vw; height: 70vw; opacity: 0.06; }
 }
 @media (max-width: 720px) {
   .docs-grid, .hb-notes { grid-template-columns: 1fr; }
