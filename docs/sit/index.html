@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sit and finish — leiðarljós</title>
+  <meta name="description" content="ljos sitting opens. ljos finish closes. Completing a session node does not close a ticket.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/sit/">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/site.css">
+  <meta property="og:title" content="Sit and finish — leiðarljós">
+  <meta property="og:description" content="ljos sitting opens. ljos finish closes.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/sit/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta name="theme-color" content="#0B0B0A">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap narrow">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="/">
+        <img src="/icon.svg" alt="">
+        leiðarljós
+      </a>
+      <ul>
+        <li><a href="/docs/" aria-current="page">Docs</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+        <li><a href="/handbook/">Handbook</a></li>
+        <li><a href="https://vissue.rgoswami.me">vissue</a></li>
+        <li><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
+    </nav>
+    <main id="main">
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Sit</p>
+          <h1>Open a sitting. Finish it.</h1>
+          <p class="lead">Two verbs run the loop. The habitats stay their own stores. Completing a session node does not close a ticket.</p>
+        </header>
+        <ul class="subnav" aria-label="Docs">
+          <li><a href="/docs/">Overview</a></li>
+          <li><a href="/docs/start/">First write</a></li>
+          <li><a href="/docs/sit/" aria-current="page">Sit</a></li>
+          <li><a href="/docs/policy/">Policy</a></li>
+          <li><a href="/docs/harnesses/">Harnesses</a></li>
+          <li><a href="/docs/habitats/">Crates</a></li>
+          <li><a href="/docs/reference/">Reference</a></li>
+        </ul>
+        <div class="walk">
+          <section>
+            <h2>1. Point at scratch stores</h2>
+            <p>A first sitting should not touch a live tracker. Export the roots, start the pack writer, and ask doctor.</p>
+            <pre>$ mkdir -p /tmp/seat &amp;&amp; cd /tmp/seat &amp;&amp; git init -q
+$ export VISSUE_ROOT=/tmp/seat/tracker DEEDAR_URL=file:///tmp/seat/deeds
+$ export CLAIMDAG_DIR=/tmp/seat/claims
+$ packset ensure
+$ ljos doctor</pre>
+          </section>
+          <section>
+            <h2>2. Make a ticket and sit it</h2>
+            <p><code>sitting</code> stops at the first store that does not answer: doctor, cards, due, the island the title activates, recall, then the claim.</p>
+            <pre>$ id=$(vissue create -p demo "Ship the fuse change?" -q)
+$ ljos sitting $id --assignee you
+== doctor
+...
+== claim
+gen=2</pre>
+          </section>
+          <section>
+            <h2>3. Cite what the work produced</h2>
+            <p>A deed is frozen bytes. The ticket cites the accession. Citation is not a merge.</p>
+            <pre>$ echo 'fn main() {}' &gt; patch.rs
+$ deedar create file --name "the fuse patch" --path patch.rs --agent you
+$ ljos deed $id --add deed-file-the-fuse-patch</pre>
+          </section>
+          <section>
+            <h2>4. Finish</h2>
+            <p>The lesson is remembered. The island fires. The session node completes. An outcome, when named, rewrites trust. The tracker issue is still open until someone closes it there.</p>
+            <pre>$ ljos finish $id --lesson "The fuse patch shipped as one file. Nothing else moved."
+remembered ...
+completed the session node ... as done</pre>
+          </section>
+        </div>
+        <p class="quiet">The seat crate walks the same loop with votes and a handover: <a href="/ljos/getting-started.html">ljos getting started</a>. Field note: <a href="/handbook/session/">completing is not closing</a>.</p>
+      </div>
+    </main>
+  </div>
+  <footer class="antics" role="contentinfo">
+    <span>Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a></span>
+    <span>provided by <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a></span>
+  </footer>
+</body>
+</html>

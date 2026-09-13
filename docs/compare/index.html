@@ -37,11 +37,11 @@
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
-        <li><a href="/docs/start/">Start</a></li>
-        <li><a href="/docs/habitats/">Habitats</a></li>
-        <li><a href="/docs/compare/">Compare</a></li>
+        <li><a href="/docs/start/">First write</a></li>
+        <li><a href="/docs/sit/">Sit</a></li>
+        <li><a href="/docs/policy/">Policy</a></li>
         <li><a href="/docs/harnesses/">Harnesses</a></li>
-        <li><a href="/docs/privacy/">Privacy-of-write</a></li>
+        <li><a href="/docs/habitats/">Crates</a></li>
         <li><a href="/docs/reference/">Reference</a></li>
       </ul>
 
@@ -97,8 +97,8 @@
         </table>
         <p>Their auto-capture column is the failure mode already named against extract-on-write (InjecMEM, MINJA). packset refuses that path. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
 
-        <h2>policyd is not in the public org</h2>
-        <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>grok-policyd</code> is the TCB when it is installed: Cap'n <code>checkShell</code> over a Janet pack. Reloading a pack is not a check. The TCB crate is not on github.com/leidarljos. It stays with the seat that owns sessiond. <a href="/handbook/argv/">Argv field note</a>.</p>
+        <h2>policyd is argv law</h2>
+        <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>ljos-policyd</code> is the TCB when it is on <code>PATH</code> or <code>POLICYD_BIN</code>: it prints allow or deny. Reloading a pack is not a check. <a href="/ljos-policyd/">ljos-policyd docs</a> · <a href="/handbook/argv/">Argv field note</a>.</p>
 
         <h2>What this page will not say</h2>
         <ul>

@@ -10,9 +10,9 @@ contract, and the failure that looks like success.
 - vissue :: The graph and the agreement. Docs: [[https://vissue.rgoswami.me][vissue.rgoswami.me]].
 - claimdag :: Work for this sitting. Completing does not close a ticket.
 - policyd :: Argv law, not a store. =ljos policy= prints the line.
-  =grok-policyd= is the TCB when installed and is not in the public org.
+  =ljos-policyd= is the TCB when it is on =PATH= or =POLICYD_BIN=.
   Reloading a pack is not a check. =ljos hook= injects memory at the
-  point of action.
+  point of action. Docs: [[https://leidarljos.github.io/ljos-policyd/][ljos-policyd]].
 - consensus :: DeGroot / Friedkin–Johnsen. A vote count is not that run.
 
 * Notes

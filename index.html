@@ -3,19 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>leiðarljós — the leading light</title>
-  <meta name="description" content="One seat over standing memory. Five habitats.">
+  <title>leiðarljós — sit with ljos</title>
+  <meta name="description" content="Sit with ljos. Write memory on purpose. Check argv with a binary. Completing a session does not close a ticket.">
   <link rel="canonical" href="https://leidarljos.github.io/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="leiðarljós — the leading light">
-  <meta property="og:description" content="One seat over standing memory. Five habitats.">
+  <meta property="og:title" content="leiðarljós — sit with ljos">
+  <meta property="og:description" content="Sit with ljos. Write memory on purpose. Check argv with a binary.">
   <meta property="og:url" content="https://leidarljos.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta name="theme-color" content="#0B0B0A">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
   <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
-
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -26,51 +28,92 @@
         leiðarljós
       </a>
       <ul>
-        <li><a href="/docs/">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://vissue.rgoswami.me">vissue</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+        <li><a href="/docs/">Docs</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+        <li><a href="/handbook/">Handbook</a></li>
+        <li><a href="https://vissue.rgoswami.me">vissue</a></li>
+        <li><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
     </nav>
-    <main id="main">
-      <header class="hero">
-        <img class="pin" src="/icon.svg" alt="a gold pin">
-        <h1>leiðarljós</h1>
-        <p class="sentence">The leading light.</p>
-        <div class="install" aria-label="Install">
-          <header>
-            <span>three lines</span>
-            <button type="button" data-copy="cargo binstall ljos ljos-mcp packset deedar-cli claimdag-cli ljos-consensus ljos-policyd
+    <main id="main" class="landing">
+      <header class="hero-split">
+        <div class="hero-copy">
+          <p class="kicker">The seat</p>
+          <h1>Sit with ljos.</h1>
+          <p class="lead">One command opens a sitting. Memory is written on purpose. Argv is checked by a binary. Completing a session does not close a ticket.</p>
+          <div class="install" aria-label="Install">
+            <header>
+              <span>install</span>
+              <button type="button" data-copy="cargo binstall ljos ljos-mcp packset deedar-cli claimdag-cli ljos-consensus ljos-policyd
 claude mcp add ljos -- ljos-mcp">Copy</button>
-          </header>
-          <pre>cargo binstall ljos ljos-mcp packset deedar-cli claimdag-cli ljos-consensus ljos-policyd
+            </header>
+            <pre>cargo binstall ljos ljos-mcp packset deedar-cli claimdag-cli ljos-consensus ljos-policyd
 claude mcp add ljos -- ljos-mcp</pre>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="/docs/start/">First write</a>
+            <a class="btn btn-ghost" href="/docs/sit/">Sit and finish</a>
+          </div>
         </div>
-        <p class="quiet">Tracker docs: <a href="https://vissue.rgoswami.me">vissue.rgoswami.me</a>. Why not a memory engine: <a href="/docs/compare/">Compare</a>. Harnesses: <a href="/docs/harnesses/">Grok, Codex, Cursor, Pi</a>.</p>
         <div class="term" aria-label="ljos terminal preview">
           <div class="term-bar">
             <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="term-title">ljos</span>
             <div class="term-tabs" role="tablist" aria-label="Demo commands">
-              <button type="button" role="tab" aria-selected="true" data-i="0">remember</button>
-              <button type="button" role="tab" aria-selected="false" data-i="1">search</button>
+              <button type="button" role="tab" aria-selected="true" data-i="0">sitting</button>
+              <button type="button" role="tab" aria-selected="false" data-i="1">remember</button>
               <button type="button" role="tab" aria-selected="false" data-i="2">policy</button>
             </div>
           </div>
           <pre class="term-body" id="term-out" role="tabpanel"></pre>
         </div>
-        <p class="quiet">Stylized preview. Not a live shell.</p>
-        <ul class="pills">
-          <li><a href="/packset/">standing memory <span class="pair">/ packset</span></a></li>
-          <li><a href="/deedar/">frozen product <span class="pair">/ deedar</span></a></li>
-          <li><a href="/tracker/">tracker <span class="pair">/ vissue</span></a></li>
-          <li><a href="/claimdag/">session work <span class="pair">/ claimdag</span></a></li>
-          <li><a href="/handbook/argv/">argv law <span class="pair">/ policyd</span></a></li>
-          <li><a href="/consensus/">agreement <span class="pair">/ consensus</span></a></li>
-        </ul>
-        <p class="quiet">packset LongMemEval_S session recall@5 is 0.949 fused, 0.914 lexical, over 470 answerable questions. Writes only on Remember: and Prefer:.</p>
-        <div class="hero-actions">
-          <a class="btn btn-gold" href="/docs/">Read the docs</a>
-          <a class="btn btn-ghost" href="/docs/compare/">Compare</a>
-        </div>
       </header>
+
+      <section class="band" aria-labelledby="loop-h">
+        <p class="kicker">The loop</p>
+        <h2 id="loop-h">Write. Sit. Finish.</h2>
+        <div class="loop">
+          <article>
+            <span class="n">01</span>
+            <h3>Remember</h3>
+            <p>One claim, two sentences at most, stored as written. <code>ljos remember</code> and <code>ljos prefer</code> are the only pack writes. Nothing is mined from a transcript.</p>
+          </article>
+          <article>
+            <span class="n">02</span>
+            <h3>Sit</h3>
+            <p><code>ljos sitting</code> opens: doctor, cards, due, island, recall, claim. Cite what the work produced. Completing here does not close the ticket.</p>
+          </article>
+          <article>
+            <span class="n">03</span>
+            <h3>Finish</h3>
+            <p><code>ljos finish</code> remembers the lesson, fires the island, completes the session node, and learns from an outcome when one is named.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="band" aria-labelledby="measure-h">
+        <p class="kicker">Measured</p>
+        <h2 id="measure-h">A memory engine is one habitat.</h2>
+        <div class="measure">
+          <p class="fig">0.949<span>recall@5 fused</span></p>
+          <p>LongMemEval_S, 470 answerable questions, session-level retrieval. Lexical alone is 0.914. Writes only on Remember: and Prefer:. Those numbers live on the packset site, not here. <a href="/docs/compare/">Compare</a> · <a href="/packset/">packset docs</a></p>
+        </div>
+      </section>
+
+      <section class="band" aria-labelledby="crates-h">
+        <p class="kicker">Crate docs</p>
+        <h2 id="crates-h">Each store has its own site.</h2>
+        <p>Org plus Sphinx, the same shape as <a href="https://vissue.rgoswami.me">vissue.rgoswami.me</a>. This page teaches sitting. Those pages teach the crate.</p>
+        <ul class="crate-index">
+          <li><a href="/ljos/"><strong>ljos</strong><span>The seat. Sitting, finish, protocol.</span><em>crate</em></a></li>
+          <li><a href="/packset/"><strong>packset</strong><span>What does this seat know, standing?</span><em>crate</em></a></li>
+          <li><a href="/deedar/"><strong>deedar</strong><span>What did this unit produce?</span><em>crate</em></a></li>
+          <li><a href="https://vissue.rgoswami.me"><strong>vissue</strong><span>What does this node stand on, and who agrees?</span><em>crate</em></a></li>
+          <li><a href="/claimdag/"><strong>claimdag</strong><span>What is this session handing out?</span><em>crate</em></a></li>
+          <li><a href="/consensus/"><strong>consensus</strong><span>Who agrees, weighted by who listens.</span><em>crate</em></a></li>
+          <li><a href="/ljos-policyd/"><strong>ljos-policyd</strong><span>May this command line run?</span><em>crate</em></a></li>
+        </ul>
+      </section>
     </main>
   </div>
   <footer class="antics" role="contentinfo">
@@ -88,12 +131,12 @@ claude mcp add ljos -- ljos-mcp</pre>
   <script>
     (function () {
       var scenes = [
+        { cmd: "ljos sitting demo-k29f --assignee you",
+          out: "== doctor\nok  pack   http://127.0.0.1:8761\n== claim\ngen=2" },
         { cmd: "ljos remember \"the default fuse is CombMNZ\"",
           out: "ljos: write only on explicit Remember:\nRemember: the default fuse is CombMNZ" },
-        { cmd: "ljos search fuse",
-          out: "standing · Remember: the default fuse is CombMNZ\nsearch asks the pack. It does not open a deed." },
         { cmd: "ljos policy -- ls",
-          out: "argv law. Not a store.\nls" }
+          out: "argv law. Not a store.\nallow" }
       ];
       var el = document.getElementById("term-out");
       var tabs = document.querySelectorAll(".term-tabs button");
@@ -163,6 +206,5 @@ claude mcp add ljos -- ljos-mcp</pre>
       });
     })();
   </script>
-
 </body>
 </html>

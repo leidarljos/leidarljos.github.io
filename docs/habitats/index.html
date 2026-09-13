@@ -3,76 +3,68 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Habitats — leiðarljós</title>
-  <meta name="description" content="Cards, packset, deedar, the tracker, claimdag, plus argv check and consensus.">
+  <title>Crate docs — leiðarljós</title>
+  <meta name="description" content="Each habitat is a crate with its own Org plus Sphinx site.">
   <link rel="canonical" href="https://leidarljos.github.io/docs/habitats/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="Habitats — leiðarljós">
-  <meta property="og:description" content="Cards, packset, deedar, the tracker, claimdag, plus argv check and consensus.">
+  <meta property="og:title" content="Crate docs — leiðarljós">
+  <meta property="og:description" content="Each habitat is a crate with its own Org plus Sphinx site.">
   <meta property="og:url" content="https://leidarljos.github.io/docs/habitats/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta name="theme-color" content="#0B0B0A">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
   <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
-
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <div class="wrap narrow">
+  <div class="wrap">
     <nav class="top" aria-label="Site">
       <a class="brand" href="/">
         <img src="/icon.svg" alt="">
         leiðarljós
       </a>
       <ul>
-        <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/reference/">Reference</a></li><li><a href="/handbook/">Handbook</a></li><li><a href="https://vissue.rgoswami.me">vissue</a></li><li><a href="https://github.com/leidarljos">GitHub</a></li>
+        <li><a href="/docs/" aria-current="page">Docs</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+        <li><a href="/handbook/">Handbook</a></li>
+        <li><a href="https://vissue.rgoswami.me">vissue</a></li>
+        <li><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
     </nav>
     <main id="main">
       <div class="page">
         <header class="intro">
-          <p class="kicker">Habitats</p>
-          <h1>Five habitats.</h1>
-          <p class="lead">ljos is the seat. Each habitat keeps its own writer. policyd checks argv. consensus is DeGroot / Friedkin&ndash;Johnsen.</p>
+          <p class="kicker">Crates</p>
+          <h1>Their own sites.</h1>
+          <p class="lead">ljos sits on stores it does not own. Each crate keeps Org under <code>docs/orgmode/</code> and a Sphinx site, the same shape as vissue. This page is a directory.</p>
         </header>
-      <ul class="subnav" aria-label="Docs">
-        <li><a href="/docs/">Overview</a></li>
-        <li><a href="/docs/start/">Start</a></li>
-        <li><a href="/docs/habitats/">Habitats</a></li>
-        <li><a href="/docs/compare/">Compare</a></li>
-        <li><a href="/docs/harnesses/">Harnesses</a></li>
-        <li><a href="/docs/privacy/">Privacy-of-write</a></li>
-        <li><a href="/docs/reference/">Reference</a></li>
-      </ul>
-        <h2>cards</h2>
-        <p>What did the human freeze? <code>USER.md</code> and <code>MEMORY.md</code> are read-only. Never extract-on-write. Never write the harness memory file.</p>
-        <h2>Standing memory <span class="pair">/ packset</span></h2>
-        <p>What does this seat know, standing? Write only on <code>Remember:</code> / <code>Prefer:</code>. Search asks the pack. It does not open a deed. <a href="/packset/">standing memory / packset</a></p>
-        <h2>Frozen product <span class="pair">/ deedar</span></h2>
-        <p>What did this unit produce? A deed is the noun. The next unit opens it by accession. <a href="/deedar/">frozen product / deedar</a></p>
-        <h2>Tracker <span class="pair">/ vissue</span></h2>
-        <p>What does this node stand on, and who agrees? A deed citation, not a paste. Completing a session node does not close a ticket. <a href="/tracker/">tracker / vissue</a> · <a href="https://vissue.rgoswami.me">vissue docs</a></p>
-        <h2>Session work <span class="pair">/ claimdag</span></h2>
-        <p>What is this session handing out? CAS claim and complete on a DAG. The host is the sole mutator. <a href="/claimdag/">session work / claimdag</a></p>
-        <h2>argv law <span class="pair">/ policyd</span></h2>
-        <p>Not a store. <code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>grok-policyd</code> is the TCB when it is installed: Cap'n <code>checkShell</code> over a Janet pack. Reloading a pack is not a check. The TCB crate is not in the public org. <a href="/handbook/argv/">Argv field note</a></p>
-        <h2>consensus</h2>
-        <p>DeGroot / Friedkin–Johnsen over a trust graph. <a href="https://github.com/seldon-code/seldon">seldon-code</a> is the ODE when it is on PATH. Vote counts are not that run. <a href="/consensus/">consensus</a></p>
+        <ul class="subnav" aria-label="Docs">
+          <li><a href="/docs/">Overview</a></li>
+          <li><a href="/docs/start/">First write</a></li>
+          <li><a href="/docs/sit/">Sit</a></li>
+          <li><a href="/docs/policy/">Policy</a></li>
+          <li><a href="/docs/harnesses/">Harnesses</a></li>
+          <li><a href="/docs/habitats/" aria-current="page">Crates</a></li>
+          <li><a href="/docs/reference/">Reference</a></li>
+        </ul>
+        <ul class="crate-index">
+          <li><a href="/ljos/"><strong>ljos</strong><span>The seat. Sitting, finish, protocol, handover.</span><em>crate</em></a></li>
+          <li><a href="/packset/"><strong>packset</strong><span>Standing knowledge. Remember: and Prefer: only.</span><em>crate</em></a></li>
+          <li><a href="/deedar/"><strong>deedar</strong><span>Frozen product. Opened by accession.</span><em>crate</em></a></li>
+          <li><a href="https://vissue.rgoswami.me"><strong>vissue</strong><span>The file is the database. Graph and agreement.</span><em>crate</em></a></li>
+          <li><a href="/claimdag/"><strong>claimdag</strong><span>This-session claims. Completing does not close a ticket.</span><em>crate</em></a></li>
+          <li><a href="/consensus/"><strong>consensus</strong><span>DeGroot / Friedkin-Johnsen. A vote count is not that run.</span><em>crate</em></a></li>
+          <li><a href="/ljos-policyd/"><strong>ljos-policyd</strong><span>Argv law. Prints a verdict. Not a store.</span><em>crate</em></a></li>
+        </ul>
+        <p class="quiet">Cards are files a person writes. They have no crate. <a href="/handbook/cards/">Cards field note</a>.</p>
       </div>
     </main>
   </div>
   <footer class="antics" role="contentinfo">
-    <span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7,20H4V4h3V20z M14,20h-3V12h3V20z M21,20h-3V8h3V20z"/></svg>
-      Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a>
-    </span>
-    <span>
-      provided by
-      <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" height="1.4em" viewBox="0 0 64 64" aria-hidden="true"><g fill-rule="evenodd"><ellipse cx="32" cy="11" fill="#80D25B" rx="7" ry="9"/><path fill="#80D25B" d="M20.3,46c0,0-3.2,9.9.3,13.8c3.5,3.9 6.1,3.4 6.1-6C26.8,44.3 20.3,46 20.3,46Z"/><path fill="#80D25B" d="M38.3,46c0,0-3.2,9.9.4,13.8c3.5,3.9 6.1,3.4 6.1-6C44.8,44.3 38.3,46 38.3,46Z" transform="matrix(-1 0 0 1 81.8 0)"/><path fill="#80D25B" d="M20.6,21.2c0,0-6.7-5.8-10.5-5.2C6.2,16.7 6,22.2 6,24c0,1.8 1.8,13.3 3.8,12.5c2-0.8 4-8.5 4-8.5c1.9,2.3 4.8,2.5 4.8,2.5L20.6,21.2Z"/><path fill="#80D25B" d="M57.6,21.2c0,0-6.6-5.8-10.5-5.2C43.2,16.7 43,22.2 43,24c0,1.8 1.8,13.3 3.8,12.5c2-0.8 4-8.5 4-8.5c1.9,2.3 4.8,2.5 4.8,2.5L57.6,21.2Z" transform="matrix(-1 0 0 1 100.623 0)"/><path fill="#BD7575" stroke="#595959" stroke-linecap="round" stroke-width="2" d="M32,53C40.8,53 48,44.5 48,34C48,23.5 46.7,17 32,17C17.3,17 16,23.5 16,34C16,44.5 23.2,53 32,53Z"/><polygon fill="#BD7575" stroke="#595959" stroke-linecap="round" stroke-width="2" points="32 22 38.9 26 38.9 34 32 38 25.1 34 25.1 26"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M30,8C28.9,8 28,8.9 28,10"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M36,8C34.9,8 34,8.9 34,10" transform="matrix(-1 0 0 1 70 0)"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M32.1,38.2L32.1,52.4M32,21.7L32,17M25.2,26L17.7,23.1M25.1,34.2L16.8,38.9"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M46.2,26L38.7,23.1" transform="matrix(-1 0 0 1 84.951 0)"/><path stroke="#595959" stroke-linecap="round" stroke-width="2" d="M47.1,34.2L38.8,38.9" transform="matrix(-1 0 0 1 85.891 0)"/></g></svg>
-      <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a>
-    </span>
+    <span>Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a></span>
+    <span>provided by <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a></span>
   </footer>
-
 </body>
 </html>
