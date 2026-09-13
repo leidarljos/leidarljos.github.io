@@ -1,185 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-13 Sun 11:52 -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>First write</title>
-<meta name="generator" content="Org Mode" />
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/site.css">
-<meta name="theme-color" content="#0B0B0A">
-<script defer src="https://antics-api.turtletech.us/antics.js"></script>
-<script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>First write — leiðarljós</title>
+  <meta name="description" content="Install the seat, write one claim on purpose, and search it back.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/start/">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/site.css">
+  <meta property="og:title" content="First write — leiðarljós">
+  <meta property="og:description" content="Install the seat, write one claim on purpose, and search it back.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/start/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta name="theme-color" content="#0B0B0A">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
 </head>
 <body>
-<div id="preamble" class="status">
-<nav class="top" aria-label="Site">
-  <a class="brand" href="/">
-    <img src="/icon.svg" alt="">
-    leiðarljós
-  </a>
-  <ul>
-    <li><a href="/docs/">Docs</a></li>
-    <li><a href="/docs/reference/">Reference</a></li>
-    <li><a href="/handbook/" aria-current="page">Handbook</a></li>
-    <li><a href="https://vissue.rgoswami.me">vissue</a></li>
-    <li><a href="https://github.com/leidarljos">GitHub</a></li>
-  </ul>
-</nav>
-</div>
-<div id="content" class="content">
-<header>
-<h1 class="title">First write</h1>
-</header><p>
-A reader who has never used the seat can finish this page with one
-lesson in the pack, the same text coming back from search, and a review
-clock running on it.
-</p>
-<div id="outline-container-orgf76f6df" class="outline-2">
-<h2 id="orgf76f6df">Install every binary this walk uses</h2>
-<div class="outline-text-2" id="text-orgf76f6df">
-<div class="org-src-container">
-<pre class="src src-console">$ cargo binstall ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd
-$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus ljos-policyd
-</pre>
-</div>
-
-<p>
-You should see nine paths. If <code>packsetd</code> is missing, step 3 has no writer
-to start. <code>cargo install &lt;crate&gt;</code> works if you do not have <code>cargo-binstall</code>.
-</p>
-</div>
-</div>
-<div id="outline-container-orgb90e4f2" class="outline-2">
-<h2 id="orgb90e4f2">Remember without a writer fails</h2>
-<div class="outline-text-2" id="text-orgb90e4f2">
-<div class="org-src-container">
-<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
-Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...
-</pre>
-</div>
-
-<p>
-That error is the first success. The seat will not invent a store, and
-it does not report a writer that is down as an empty pack.
-</p>
-</div>
-</div>
-<div id="outline-container-org863b9ed" class="outline-2">
-<h2 id="org863b9ed">Start the writer</h2>
-<div class="outline-text-2" id="text-org863b9ed">
-<div class="org-src-container">
-<pre class="src src-console">$ packset ensure
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap narrow">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="/">
+        <img src="/icon.svg" alt="">
+        leiðarljós
+      </a>
+      <ul>
+        <li><a href="/docs/" aria-current="page">Docs</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+        <li><a href="/handbook/">Handbook</a></li>
+        <li><a href="https://vissue.rgoswami.me">vissue</a></li>
+        <li><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
+    </nav>
+    <main id="main">
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Start</p>
+          <h1>Write one claim. Search it back.</h1>
+          <p class="lead">A reader who has never used the seat finishes this page with one lesson in the pack, the same text coming back from search, and a review clock running on it.</p>
+        </header>
+        <ul class="subnav" aria-label="Docs">
+          <li><a href="/docs/">Overview</a></li>
+          <li><a href="/docs/start/" aria-current="page">First write</a></li>
+          <li><a href="/docs/sit/">Sit</a></li>
+          <li><a href="/docs/policy/">Policy</a></li>
+          <li><a href="/docs/harnesses/">Harnesses</a></li>
+          <li><a href="/docs/habitats/">Crates</a></li>
+          <li><a href="/docs/reference/">Reference</a></li>
+        </ul>
+        <div class="walk">
+          <section>
+            <h2>1. Install the binaries this walk uses</h2>
+            <pre>$ cargo binstall ljos ljos-mcp packset packset-daemon vissue-cli ljos-policyd
+$ command -v ljos ljos-mcp packset packsetd vissue ljos-policyd</pre>
+            <p>You should see six paths. If <code>packsetd</code> is missing, step 3 has no writer. <code>cargo install</code> works if you do not have <code>cargo-binstall</code>. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
+          </section>
+          <section>
+            <h2>2. Remember without a writer fails</h2>
+            <pre>$ ljos remember "the default fuse is CombMNZ"
+Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...</pre>
+            <p>That error is the first success. The seat will not invent a store, and it does not report a writer that is down as an empty pack.</p>
+          </section>
+          <section>
+            <h2>3. Start the writer</h2>
+            <pre>$ packset ensure
 $ ljos doctor
 ok	pack	http://127.0.0.1:8761 workspace seat
-ok	host key	...
-ok	deed store	size=0 root=...
-ok	tracker	vissue 0.11.0
-ok	claim graph	...
-</pre>
-</div>
-
-<p>
-Nothing to export. The seat finds the writer on <code>127.0.0.1:8761</code> from any
-directory, and its memory is the one workspace <code>seat</code>. If the <code>pack</code> row
-says <code>no</code>, stop. Do not continue.
-</p>
-</div>
-</div>
-<div id="outline-container-org41cf166" class="outline-2">
-<h2 id="org41cf166">Write one claim, then retrieve it</h2>
-<div class="outline-text-2" id="text-org41cf166">
-<div class="org-src-container">
-<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
-{
-  "kind": "lesson",
-  "level": "explicit",
-  "text": "the default fuse is CombMNZ",
-  "id": "156eb2be9898...",
-  "due_at": "2026-09-13T09:12:00.000Z"
-}
+ok	tracker	vissue ...</pre>
+            <p>The seat finds the writer on <code>127.0.0.1:8761</code> from any directory. If the pack row says no, stop.</p>
+          </section>
+          <section>
+            <h2>4. Write one claim, then retrieve it</h2>
+            <pre>$ ljos remember "the default fuse is CombMNZ"
 $ ljos search fuse
 1.0000  lesson  156eb2be9898...  the default fuse is CombMNZ
 $ ljos due
-0 due; 1 scheduled, next at 2026-09-13T09:12:00.000Z
-</pre>
-</div>
-
-<p>
-You should see <code>kind</code> of <code>lesson</code>, the same sentence in the search hit,
-and a review scheduled a day out. That is the retrieve and the clock. If
-search is empty, the write did not land. Tomorrow <code>ljos due</code> lists the
-claim; <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.
-</p>
-</div>
-</div>
-<div id="outline-container-orgc1baacb" class="outline-2">
-<h2 id="orgc1baacb">Prefer is the same path</h2>
-<div class="outline-text-2" id="text-orgc1baacb">
-<div class="org-src-container">
-<pre class="src src-console">$ ljos prefer "never extract on write"
+0 due; 1 scheduled, next at ...</pre>
+            <p>You should see kind <code>lesson</code>, the same sentence in the search hit, and a review scheduled a day out. Tomorrow <code>ljos due</code> lists the claim; <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.</p>
+          </section>
+          <section>
+            <h2>5. Prefer is the same path</h2>
+            <pre>$ ljos prefer "never extract on write"
 $ ljos search extract
-1.0000  preference  ...  never extract on write
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orge429b55" class="outline-2">
-<h2 id="orge429b55">Cards print files. They do not write them</h2>
-<div class="outline-text-2" id="text-orge429b55">
-<div class="org-src-container">
-<pre class="src src-console">$ ljos cards --dir /tmp/demo
-</pre>
-</div>
-
-<p>
-With no <code>USER.md</code> or <code>MEMORY.md</code>, the command prints nothing and exits
-</p>
-<ol class="org-ol">
-<li>That is not a failure.</li>
-</ol>
-</div>
-</div>
-<div id="outline-container-org864cd7f" class="outline-2">
-<h2 id="org864cd7f">Hand it to an agent</h2>
-<div class="outline-text-2" id="text-org864cd7f">
-<div class="org-src-container">
-<pre class="src src-console">$ ljos protocol | head -3
-# The seat protocol
-
-One seat, five stores, five questions. Ask the store that owns the question.
-$ ljos onboard --harness json
-</pre>
-</div>
-
-<p>
-The protocol is the text an agent reads before any work: which store
-answers which question, the order of verbs in a sitting, the refusals.
-<code>onboard</code> prints the server entry for any runner, or registers the
-server, installs the protocol as a skill, and installs the memory hook
-for a runner named in <code>~/.config/ljos/harnesses.toml</code>.
-<a href="https://leidarljos.github.io/docs/harnesses/">Harnesses</a> shows the file.
-</p>
-</div>
-</div>
-<div id="outline-container-org8dbdb35" class="outline-2">
-<h2 id="org8dbdb35">After this works</h2>
-<div class="outline-text-2" id="text-org8dbdb35">
-<p>
-The <a href="https://leidarljos.github.io/ljos/getting-started.html">ljos tutorial</a>
-runs the memory, agreement, work and handover loops on a scratch tracker
-in about ten minutes. Field notes:
-<a href="https://leidarljos.github.io/handbook/">Handbook</a>.
-</p>
-</div>
-</div>
-</div>
-<div id="postamble" class="status">
-<footer class="antics" role="contentinfo">
-  <span>Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a></span>
-  <span>provided by <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a></span>
-</footer>
-</div>
+1.0000  preference  ...  never extract on write</pre>
+          </section>
+        </div>
+        <p class="quiet">Next: <a href="/docs/sit/">sit and finish</a>. The crate tutorial runs memory, agreement, and a handover: <a href="/ljos/getting-started.html">ljos getting started</a>.</p>
+      </div>
+    </main>
+  </div>
+  <footer class="antics" role="contentinfo">
+    <span>Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a></span>
+    <span>provided by <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a></span>
+  </footer>
 </body>
 </html>

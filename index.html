@@ -38,17 +38,17 @@
     <main id="main" class="landing">
       <header class="hero-split">
         <div class="hero-copy">
-          <p class="kicker">The seat</p>
+          <p class="kicker">leiðarljós — the leading light</p>
           <h1>Sit with ljos.</h1>
-          <p class="lead">One command opens a sitting. Memory is written on purpose. Argv is checked by a binary. Completing a session does not close a ticket.</p>
+          <p class="lead">The seat over memory you write on purpose. <code>ljos sitting</code> opens the work. A binary checks argv. Completing a session does not close a ticket.</p>
           <div class="install" aria-label="Install">
             <header>
               <span>install</span>
-              <button type="button" data-copy="cargo binstall ljos ljos-mcp packset deedar-cli claimdag-cli ljos-consensus ljos-policyd
-claude mcp add ljos -- ljos-mcp">Copy</button>
+              <button type="button" data-copy="cargo binstall ljos ljos-mcp packset packset-daemon vissue-cli ljos-policyd
+packset ensure">Copy</button>
             </header>
-            <pre>cargo binstall ljos ljos-mcp packset deedar-cli claimdag-cli ljos-consensus ljos-policyd
-claude mcp add ljos -- ljos-mcp</pre>
+            <pre>cargo binstall ljos ljos-mcp packset packset-daemon vissue-cli ljos-policyd
+packset ensure</pre>
           </div>
           <div class="hero-actions">
             <a class="btn btn-gold" href="/docs/start/">First write</a>
@@ -65,7 +65,11 @@ claude mcp add ljos -- ljos-mcp</pre>
               <button type="button" role="tab" aria-selected="false" data-i="2">policy</button>
             </div>
           </div>
-          <pre class="term-body" id="term-out" role="tabpanel"></pre>
+          <pre class="term-body" id="term-out" role="tabpanel">$ ljos sitting demo-k29f --assignee you
+== doctor
+ok  pack   http://127.0.0.1:8761
+== claim
+gen=2</pre>
         </div>
       </header>
 
@@ -96,7 +100,7 @@ claude mcp add ljos -- ljos-mcp</pre>
         <h2 id="measure-h">A memory engine is one habitat.</h2>
         <div class="measure">
           <p class="fig">0.949<span>recall@5 fused</span></p>
-          <p>LongMemEval_S, 470 answerable questions, session-level retrieval. Lexical alone is 0.914. Writes only on Remember: and Prefer:. Those numbers live on the packset site, not here. <a href="/docs/compare/">Compare</a> · <a href="/packset/">packset docs</a></p>
+          <p>LongMemEval_S, 470 answerable questions, session-level retrieval. Fusion is BM25+ plus a dense ballot (0.914 lexical alone). QA on the same 470 with a local 7B reader is 0.549 against a labelled-session ceiling of 0.634. Writes only on Remember: and Prefer:. Table: <a href="/docs/compare/">Compare</a> · <a href="/packset/explanation.html">packset explanation</a>.</p>
         </div>
       </section>
 
