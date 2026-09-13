@@ -3,25 +3,22 @@
 
 [[file:index.org][Back to the field]]
 
-=ljos policy -- argv= prints the line, then what the pack knows that bears on it. It does not reload a Janet pack.
+=ljos-policyd check -- argv= is the TCB when the binary is on =PATH=
+(or =POLICYD_BIN=). It prints =allow= or =deny=. The harness hook and
+=ljos policy= call it. The model is not the gate.
+
+=ljos policy -- argv= prints the line, then the TCB verdict if the
+binary answered, then any pack rule that matches, then what the pack
+knows that bears on it. It does not reload a Janet pack. Absence of
+the binary is not a deny. Doctor names the row.
 
 =ljos hook= is the same answer for a policy layer or a runner: pipe the action about to happen (the runner's hook JSON, or the plain argv) and the memories it activates come back, standing preferences first, as the runner's =additionalContext= or as plain lines. Nothing to say is no output; the hook never blocks an action. =ljos onboard= installs it on a runner's tool-call and prompt events. Memory reaches the agent at the point of action, without being asked for. When the session ends, the memories the hook injected during it fire together, so what served one sitting is wired for the next.
 
 Law can live in the pack: =ljos rule 'PATTERN' --verdict deny|ask --why "..."= writes a glob over the command line with a verdict, and the hook returns it as the runner's permission decision while =ljos policy= prints it beside the line. A rule is memory: dated, supersedable, exported in handovers.
 
-=grok-policyd= is the TCB when it is installed: Cap'n =checkShell= /
-=checkPath= / =checkRisk= over a Janet pack. Reloading
-=/usr/local/share/grok-policyd/policy/shell.janet= is how a new
-allow-list reaches the next child. Reloading is not a check. This
-binary does not call =grokos policy reload=. When =grok-policyd= is
-absent, =ljos policy= still prints the pack rules and nothing
-pretends a TCB ran.
-
-The TCB crate is not in the public org. It lives with the seat that
-owns Cap'n sessiond. Do not copy it onto GitHub to complete a
-sentence. Edit the policy pack only when argv policy itself changes.
-Do not write comments, dates, ticket ids, or sitting notes into it.
-If the policy daemon is down, leave the pack alone.
+Edit a pack rule only when argv law itself changes. Do not write
+comments, dates, ticket ids, or sitting notes into it. If the binary
+is down, leave the pack rules alone.
 
 Other projects may speak one habitat and ignore =ljos=.
 
