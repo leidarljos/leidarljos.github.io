@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Argv law — leiðarljós</title>
+  <meta name="description" content="ljos-policyd prints the verdict. The hook calls it. The model is not the gate.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/policy/">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/site.css">
+  <meta property="og:title" content="Argv law — leiðarljós">
+  <meta property="og:description" content="ljos-policyd prints the verdict. The hook calls it.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/policy/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta name="theme-color" content="#0B0B0A">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap narrow">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="/">
+        <img src="/icon.svg" alt="">
+        leiðarljós
+      </a>
+      <ul>
+        <li><a href="/docs/" aria-current="page">Docs</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+        <li><a href="/handbook/">Handbook</a></li>
+        <li><a href="https://vissue.rgoswami.me">vissue</a></li>
+        <li><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
+    </nav>
+    <main id="main">
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Policy</p>
+          <h1>The model is not the gate.</h1>
+          <p class="lead"><code>ljos-policyd</code> prints allow or deny. The harness hook calls it. Reloading a pack is not a check. Absence is not a deny.</p>
+        </header>
+        <ul class="subnav" aria-label="Docs">
+          <li><a href="/docs/">Overview</a></li>
+          <li><a href="/docs/start/">First write</a></li>
+          <li><a href="/docs/sit/">Sit</a></li>
+          <li><a href="/docs/policy/" aria-current="page">Policy</a></li>
+          <li><a href="/docs/harnesses/">Harnesses</a></li>
+          <li><a href="/docs/habitats/">Crates</a></li>
+          <li><a href="/docs/reference/">Reference</a></li>
+        </ul>
+        <div class="walk">
+          <section>
+            <h2>Check a line</h2>
+            <pre>$ cargo binstall ljos-policyd
+$ ljos-policyd check -- cargo test
+allow
+$ ljos-policyd check -- sudo id
+deny	sudo</pre>
+            <p>First matching deny wins. A deny exits 2. <code>exec</code> runs the line only on allow.</p>
+          </section>
+          <section>
+            <h2>Ask the seat</h2>
+            <pre>$ ljos policy -- ls
+ls
+allow
+$ ljos doctor</pre>
+            <p>Doctor names the <code>policyd</code> row when the binary answers. <code>POLICYD_BIN</code> points at a binary that is not on <code>PATH</code>. <code>POLICYD_REQUIRED=1</code> is fail-closed.</p>
+          </section>
+          <section>
+            <h2>The hook</h2>
+            <p><code>ljos hook</code> reads the action about to happen and prints the memories it activates. It also returns a pack-rule verdict when one matches. <code>ljos onboard</code> installs it on the runner's tool-call and prompt events. Nothing to say is no output. The hook never blocks an action; the TCB binary does.</p>
+          </section>
+          <section>
+            <h2>Pack rules beside the TCB</h2>
+            <pre>$ ljos rule '*--force*' --verdict deny --why "Never force push."
+$ ljos policy -- git push --force</pre>
+            <p>A rule is memory: dated, supersedable, exported in a handover. It cannot allow what <code>ljos-policyd</code> denied. Edit a rule only when argv law itself changes.</p>
+          </section>
+        </div>
+        <p class="quiet">Crate site: <a href="/ljos-policyd/">ljos-policyd</a>. Field note: <a href="/handbook/argv/">reloading a pack is not a check</a>.</p>
+      </div>
+    </main>
+  </div>
+  <footer class="antics" role="contentinfo">
+    <span>Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a></span>
+    <span>provided by <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a></span>
+  </footer>
+</body>
+</html>
