@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-13 Sun 09:37 -->
+<!-- 2026-09-13 Sun 10:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>First write</title>
@@ -40,19 +40,14 @@ clock running on it.
 <h2 id="orgf76f6df">Install every binary this walk uses</h2>
 <div class="outline-text-2" id="text-orgf76f6df">
 <div class="org-src-container">
-<pre class="src src-console">$ cargo install --git https://github.com/leidarljos/ljos ljos ljos-mcp
-$ cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon
-$ cargo install --git https://github.com/leidarljos/deedar deedar-cli
-$ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
-$ cargo install --git https://github.com/leidarljos/vissue vissue-cli
-$ cargo install --git https://github.com/leidarljos/consensus
-$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus
+<pre class="src src-console">$ cargo binstall ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd
+$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus ljos-policyd
 </pre>
 </div>
 
 <p>
-You should see eight paths. If <code>packsetd</code> is missing, step 3 has no writer
-to start.
+You should see nine paths. If <code>packsetd</code> is missing, step 3 has no writer
+to start. <code>cargo install &lt;crate&gt;</code> works if you do not have <code>cargo-binstall</code>.
 </p>
 </div>
 </div>

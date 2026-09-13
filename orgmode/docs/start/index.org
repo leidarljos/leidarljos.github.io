@@ -8,17 +8,12 @@ clock running on it.
 * Install every binary this walk uses
 
 #+begin_src console
-$ cargo install --git https://github.com/leidarljos/ljos ljos ljos-mcp
-$ cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon
-$ cargo install --git https://github.com/leidarljos/deedar deedar-cli
-$ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
-$ cargo install --git https://github.com/leidarljos/vissue vissue-cli
-$ cargo install --git https://github.com/leidarljos/consensus
-$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus
+$ cargo binstall ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd
+$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus ljos-policyd
 #+end_src
 
-You should see eight paths. If =packsetd= is missing, step 3 has no writer
-to start.
+You should see nine paths. If =packsetd= is missing, step 3 has no writer
+to start. =cargo install <crate>= works if you do not have =cargo-binstall=.
 
 * Remember without a writer fails
 
