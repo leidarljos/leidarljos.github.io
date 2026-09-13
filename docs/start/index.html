@@ -1,141 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-12 Sat 20:23 -->
+<!-- 2026-09-13 Sun 09:37 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>First write</title>
 <meta name="generator" content="Org Mode" />
-<style>
-.ef-D {
-  color: #000000; background-color: #ffffff; }
-.ef-vp {
-  color: #000000; }
-.ef-h {
-  color: #7f7f7f; }
-.ef-sc {
-  color: #228b22; font-weight: 700; }
-.ef-w {
-  color: #ff8e00; font-weight: 700; }
-.ef-e {
-  color: #ff0000; font-weight: 700; }
-.ef-l {
-  color: #ff0000; }
-.ef-lv {
-  color: #ff0000; }
-.ef-hi {
-  color: #ff0000; }
-.ef-c {
-  color: #b22222; }
-.ef-cd {
-  color: #b22222; }
-.ef-s {
-  color: #8b2252; }
-.ef-d {
-  color: #8b2252; }
-.ef-m {
-  color: #008b8b; }
-.ef-k {
-  color: #9370db; }
-.ef-b {
-  color: #483d8b; }
-.ef-f {
-  color: #0000ff; }
-.ef-v {
-  color: #a0522d; }
-.ef-t {
-  color: #228b22; }
-.ef-o {
-  color: #008b8b; }
-.ef-wr {
-  color: #ff0000; font-weight: 700; }
-.ef-nc {
-   }
-.ef-pp {
-  color: #483d8b; }
-.ef-rc {
-  font-weight: 700; }
-.ef-rb {
-  font-weight: 700; }
-.ef-ob {
-   }
-.ef-obb {
-   }
-.ef-obe {
-   }
-.ef-Oa {
-  color: #0000ff; }
-.ef-Ob {
-  color: #a0522d; }
-.ef-Oc {
-  color: #a020f0; }
-.ef-Od {
-  color: #b22222; }
-.ef-Oe {
-  color: #228b22; }
-.ef-Of {
-  color: #008b8b; }
-.ef-Og {
-  color: #483d8b; }
-.ef-Oh {
-  color: #8b2252; }
-.ef-hn {
-  color: #008b8b; }
-.ef-hq {
-  color: #9370db; }
-.ef-hs {
-  color: #008b8b; }
-.ef-rda {
-  color: #707183; }
-.ef-rdb {
-  color: #7388d6; }
-.ef-rdc {
-  color: #909183; }
-.ef-rdd {
-  color: #709870; }
-.ef-rde {
-  color: #907373; }
-.ef-rdf {
-  color: #6276ba; }
-.ef-rdg {
-  color: #858580; }
-.ef-rdh {
-  color: #80a880; }
-.ef-rdi {
-  color: #887070; }
-.ef-any {
-  color: #CDCD00; }
-.ef-anr {
-  color: #CD0000; }
-.ef-anb {
-  color: #000000; }
-.ef-ang {
-  color: #00CD00; }
-.ef-anB {
-  color: #0000EE; }
-.ef-anc {
-  color: #00CDCD; }
-.ef-anw {
-  color: #E5E5E5; }
-.ef-anm {
-  color: #CD00CD; }
-.ef-ANy {
-  color: #EEEE00; }
-.ef-ANr {
-  color: #EE0000; }
-.ef-ANb {
-   }
-.ef-ANg {
-  color: #00EE00; }
-.ef-ANB {
-  color: #0000FF; }
-.ef-ANc {
-  color: #00EEEE; }
-.ef-ANw {
-   }
-.ef-ANm {
-   }
-</style>
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/site.css">
 <meta name="theme-color" content="#0B0B0A">
@@ -166,18 +36,18 @@ A reader who has never used the seat can finish this page with one
 lesson in the pack, the same text coming back from search, and a review
 clock running on it.
 </p>
-<div id="outline-container-org926a686" class="outline-2">
-<h2 id="org926a686">Install every binary this walk uses</h2>
-<div class="outline-text-2" id="text-org926a686">
+<div id="outline-container-orgf76f6df" class="outline-2">
+<h2 id="orgf76f6df">Install every binary this walk uses</h2>
+<div class="outline-text-2" id="text-orgf76f6df">
 <div class="org-src-container">
-<pre class="src src-console"><code>$ cargo install --git https://github.com/leidarljos/ljos ljos ljos-mcp
+<pre class="src src-console">$ cargo install --git https://github.com/leidarljos/ljos ljos ljos-mcp
 $ cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon
 $ cargo install --git https://github.com/leidarljos/deedar deedar-cli
 $ cargo install --git https://github.com/leidarljos/claimdag claimdag-cli
 $ cargo install --git https://github.com/leidarljos/vissue vissue-cli
 $ cargo install --git https://github.com/leidarljos/consensus
 $ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -186,13 +56,13 @@ to start.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc9d1180" class="outline-2">
-<h2 id="orgc9d1180">Remember without a writer fails</h2>
-<div class="outline-text-2" id="text-orgc9d1180">
+<div id="outline-container-orgb90e4f2" class="outline-2">
+<h2 id="orgb90e4f2">Remember without a writer fails</h2>
+<div class="outline-text-2" id="text-orgb90e4f2">
 <div class="org-src-container">
-<pre class="src src-console"><code>$ ljos remember "the default fuse is CombMNZ"
+<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
 Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -201,18 +71,18 @@ it does not report a writer that is down as an empty pack.
 </p>
 </div>
 </div>
-<div id="outline-container-org9568401" class="outline-2">
-<h2 id="org9568401">Start the writer</h2>
-<div class="outline-text-2" id="text-org9568401">
+<div id="outline-container-org863b9ed" class="outline-2">
+<h2 id="org863b9ed">Start the writer</h2>
+<div class="outline-text-2" id="text-org863b9ed">
 <div class="org-src-container">
-<pre class="src src-console"><code>$ packset ensure
+<pre class="src src-console">$ packset ensure
 $ ljos doctor
 ok	pack	http://127.0.0.1:8761 workspace seat
 ok	host key	...
 ok	deed store	size=0 root=...
 ok	tracker	vissue 0.11.0
 ok	claim graph	...
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -222,11 +92,11 @@ says <code>no</code>, stop. Do not continue.
 </p>
 </div>
 </div>
-<div id="outline-container-orgaf1b49e" class="outline-2">
-<h2 id="orgaf1b49e">Write one claim, then retrieve it</h2>
-<div class="outline-text-2" id="text-orgaf1b49e">
+<div id="outline-container-org41cf166" class="outline-2">
+<h2 id="org41cf166">Write one claim, then retrieve it</h2>
+<div class="outline-text-2" id="text-org41cf166">
 <div class="org-src-container">
-<pre class="src src-console"><code>$ ljos remember "the default fuse is CombMNZ"
+<pre class="src src-console">$ ljos remember "the default fuse is CombMNZ"
 {
   "kind": "lesson",
   "level": "explicit",
@@ -238,7 +108,7 @@ $ ljos search fuse
 1.0000  lesson  156eb2be9898...  the default fuse is CombMNZ
 $ ljos due
 0 due; 1 scheduled, next at 2026-09-13T09:12:00.000Z
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -249,23 +119,23 @@ claim; <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.
 </p>
 </div>
 </div>
-<div id="outline-container-orge1d4ddb" class="outline-2">
-<h2 id="orge1d4ddb">Prefer is the same path</h2>
-<div class="outline-text-2" id="text-orge1d4ddb">
+<div id="outline-container-orgc1baacb" class="outline-2">
+<h2 id="orgc1baacb">Prefer is the same path</h2>
+<div class="outline-text-2" id="text-orgc1baacb">
 <div class="org-src-container">
-<pre class="src src-console"><code>$ ljos prefer "never extract on write"
+<pre class="src src-console">$ ljos prefer "never extract on write"
 $ ljos search extract
 1.0000  preference  ...  never extract on write
-</code></pre>
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org89e7f51" class="outline-2">
-<h2 id="org89e7f51">Cards print files. They do not write them</h2>
-<div class="outline-text-2" id="text-org89e7f51">
+<div id="outline-container-orge429b55" class="outline-2">
+<h2 id="orge429b55">Cards print files. They do not write them</h2>
+<div class="outline-text-2" id="text-orge429b55">
 <div class="org-src-container">
-<pre class="src src-console"><code>$ ljos cards --dir /tmp/demo
-</code></pre>
+<pre class="src src-console">$ ljos cards --dir /tmp/demo
+</pre>
 </div>
 
 <p>
@@ -276,16 +146,16 @@ With no <code>USER.md</code> or <code>MEMORY.md</code>, the command prints nothi
 </ol>
 </div>
 </div>
-<div id="outline-container-orgbb1d477" class="outline-2">
-<h2 id="orgbb1d477">Hand it to an agent</h2>
-<div class="outline-text-2" id="text-orgbb1d477">
+<div id="outline-container-org864cd7f" class="outline-2">
+<h2 id="org864cd7f">Hand it to an agent</h2>
+<div class="outline-text-2" id="text-org864cd7f">
 <div class="org-src-container">
-<pre class="src src-console"><code>$ ljos protocol | head -3
+<pre class="src src-console">$ ljos protocol | head -3
 # The seat protocol
 
 One seat, five stores, five questions. Ask the store that owns the question.
 $ ljos onboard --harness json
-</code></pre>
+</pre>
 </div>
 
 <p>
@@ -298,9 +168,9 @@ for a runner named in <code>~/.config/ljos/harnesses.toml</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd9e593d" class="outline-2">
-<h2 id="orgd9e593d">After this works</h2>
-<div class="outline-text-2" id="text-orgd9e593d">
+<div id="outline-container-org8dbdb35" class="outline-2">
+<h2 id="org8dbdb35">After this works</h2>
+<div class="outline-text-2" id="text-org8dbdb35">
 <p>
 The <a href="https://leidarljos.github.io/ljos/getting-started.html">ljos tutorial</a>
 runs the memory, agreement, work and handover loops on a scratch tracker

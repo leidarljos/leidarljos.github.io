@@ -39,16 +39,29 @@
           <header><span>install</span></header>
           <pre>cargo install --git https://github.com/leidarljos/packset packset-cli packset-daemon</pre>
         </div>
-        <h2>Five commands</h2>
+        <h2>Write and retrieve</h2>
         <ol class="cmd-list">
+          <li><code>packset remember TEXT</code><p>One lesson, two sentences at most. Never mined from a transcript.</p></li>
+          <li><code>packset prefer TEXT</code><p>One standing choice. Same write path, kind preference.</p></li>
+          <li><code>packset search QUERY</code><p>Fuse a prefix-and-edit scan, BM25+, and a dense ballot when an encoder is present.</p></li>
+          <li><code>packset due</code><p>What the review clock wants back.</p></li>
+          <li><code>packset island CUE</code><p>The cluster a task activates.</p></li>
           <li><code>packset ensure</code><p>Start packsetd and print PACKSET_URL.</p></li>
-          <li><code>packset pin NAME</code><p>Scope retrieve and Remember.</p></li>
-          <li><code>packset status</code><p>Counts by kind, the pinned set, the index.</p></li>
-          <li><code>packset atoms</code><p>List live atoms.</p></li>
-          <li><code>packset accessions WORKSPACE</code><p>Every accession cited by a live atom.</p></li>
         </ol>
+        <h2>Measured</h2>
+        <p>LongMemEval_S, 470 answerable questions, session-level retrieval. The crate README is the source. Reproduction: <a href="https://github.com/leidarljos/bench">leidarljos/bench</a>.</p>
+        <table>
+          <thead><tr><th>Arm</th><th>hit@1</th><th>recall@5</th><th>recall@10</th></tr></thead>
+          <tbody>
+            <tr><td>BM25+</td><td>0.855</td><td>0.914</td><td>0.952</td></tr>
+            <tr><td>fused panel</td><td>0.889</td><td>0.949</td><td>0.981</td></tr>
+          </tbody>
+        </table>
+        <p>QA with a local 7B reader on the same 470: fused 0.549 against a labelled-session ceiling of 0.634. MemoryAgentBench accurate-retrieval 0.675 of 2000 (published BM25 0.605, HippoRAG-v2 0.651). Conflict-resolution 0.480 against published 0.155 to 0.295.</p>
+        <p>A memory engine that auto-captures a transcript is a different product. <a href="/docs/compare/">Compare</a>.</p>
         <p class="links">
           <a href="/">Seat</a>
+          <a href="/docs/compare/">Compare</a>
           <a href="/packset/reference/">Reference</a>
           <a href="https://github.com/leidarljos/packset">Source</a>
         </p>
