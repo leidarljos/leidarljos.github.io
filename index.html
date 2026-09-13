@@ -21,7 +21,6 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <div class="pin-field" aria-hidden="true"></div>
   <div class="wrap">
     <nav class="top" aria-label="Site">
       <a class="brand" href="/">
@@ -38,23 +37,12 @@
     </nav>
     <main id="main" class="landing">
       <header class="hero-journal">
-        <p class="kicker">leiðarljós — the leading light</p>
-        <h1>Sit with ljos.</h1>
+        <p class="kicker">leiðarljós — sit with ljos</p>
+        <h1>The seat over memory you write on purpose.</h1>
         <p class="rule" aria-hidden="true"></p>
-        <p class="lead">The seat over memory you write on purpose.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="/docs/start/">First write</a>
-          <a class="btn btn-ghost" href="/docs/sit/">Sit and finish</a>
-        </div>
-        <div class="install" aria-label="Install">
-          <header>
-            <span>the seat</span>
-            <button type="button" data-copy="cargo binstall ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd || cargo install ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd">Copy</button>
-          </header>
-          <pre>cargo binstall ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli \
-  vissue-cli ljos-consensus ljos-policyd \
-  || cargo install ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli \
-  vissue-cli ljos-consensus ljos-policyd</pre>
+          <a class="btn btn-gold" href="/docs/start/">Write one claim</a>
+          <a class="btn btn-ghost" href="/docs/sit/">How sitting works</a>
         </div>
       </header>
 
@@ -71,11 +59,22 @@
           </div>
           <pre class="term-body" id="term-out" role="tabpanel">$ ljos sitting demo-k29f --assignee you
 == doctor
-ok  pack   http://127.0.0.1:8761
+== cards
+== due
+== island
+== recall
 == timeline
 == claim
 gen=2</pre>
         </div>
+        <div class="install" aria-label="Install">
+          <header>
+            <span>install</span>
+            <button type="button" data-copy="cargo binstall ljos || cargo install ljos">Copy</button>
+          </header>
+          <pre>cargo binstall ljos || cargo install ljos</pre>
+        </div>
+        <p class="quiet">The rest of the seat: <code>ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd</code></p>
       </figure>
 
       <section class="band" aria-labelledby="loop-h">
@@ -101,11 +100,17 @@ gen=2</pre>
       </section>
 
       <figure class="plate measure-plate" aria-labelledby="fig-measure">
-        <figcaption id="fig-measure"><span>Fig. 2</span> LongMemEval_S, 470 answerable questions. Writes only on Remember: and Prefer:.</figcaption>
-        <div class="measure">
-          <p class="fig">0.949<span>recall@5 fused</span></p>
-          <p>BM25+ plus multilingual-e5-large. Lexical alone is 0.914. QA with a local 7B reader is 0.549 against a labelled-session ceiling of 0.634. A memory engine is one habitat. <a href="/docs/compare/">Compare</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a>.</p>
-        </div>
+        <figcaption id="fig-measure"><span>Fig. 2</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large. Writes only on Remember: and Prefer:.</figcaption>
+        <table>
+          <thead>
+            <tr><th>arm</th><th>recall@5</th><th>QA / ceiling</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>BM25+ lexical</td><td>0.914</td><td>—</td></tr>
+            <tr><td>CombMNZ fused</td><td>0.949</td><td>0.549 / 0.634</td></tr>
+          </tbody>
+        </table>
+        <p class="quiet">QA is Qwen2.5-7B-Instruct Q5_K_M as reader and judge, top five sessions, against labelled-session ceiling. <a href="/docs/compare/">Compare</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a>.</p>
       </figure>
 
       <section class="band" aria-labelledby="crates-h">
@@ -133,7 +138,7 @@ gen=2</pre>
     (function () {
       var scenes = [
         { cmd: "ljos sitting demo-k29f --assignee you",
-          out: "== doctor\nok  pack   http://127.0.0.1:8761\n== timeline\n== claim\ngen=2" },
+          out: "== doctor\n== cards\n== due\n== island\n== recall\n== timeline\n== claim\ngen=2" },
         { cmd: "ljos remember \"the default fuse is CombMNZ\"",
           out: "ljos: write only on explicit Remember:\nRemember: the default fuse is CombMNZ" },
         { cmd: "ljos policy -- ls",
