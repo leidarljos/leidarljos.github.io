@@ -55,16 +55,18 @@
             <p>A first sitting should not touch a live tracker. Export the roots, start the pack writer, and ask doctor.</p>
             <pre>$ mkdir -p /tmp/seat &amp;&amp; cd /tmp/seat &amp;&amp; git init -q
 $ export VISSUE_ROOT=/tmp/seat/tracker DEEDAR_URL=file:///tmp/seat/deeds
-$ export CLAIMDAG_DIR=/tmp/seat/claims
-$ packset ensure
+$ export CLAIMDAG_DIR=/tmp/seat/claims PACKSET_URL=http://127.0.0.1:18761
+$ packsetd --listen 127.0.0.1:18761 &amp;
 $ ljos doctor</pre>
           </section>
           <section>
             <h2>2. Make a ticket and sit it</h2>
-            <p><code>sitting</code> stops at the first store that does not answer: doctor, cards, due, the island the title activates, recall, then the claim.</p>
+            <p><code>sitting</code> prints seven sections and stops at the first store that does not answer: doctor, cards, due, the island the title activates, recall, timeline, then the claim.</p>
             <pre>$ id=$(vissue create -p demo "Ship the fuse change?" -q)
 $ ljos sitting $id --assignee you
 == doctor
+...
+== timeline
 ...
 == claim
 gen=2</pre>
