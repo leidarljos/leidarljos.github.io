@@ -84,7 +84,7 @@ $ ljos doctor | grep runner</pre>
   }
 }
 $ ljos protocol &gt; instructions.md</pre>
-        <p>Paste the entry where the runner keeps its MCP servers. Cursor, Pi, and the rest take this shape. Put the protocol where the agent reads its instructions. If the runner has hooks, a command hook on <em>prompts</em> that runs <code>ljos hook</code> completes the set. Grok: install <code>scripts/grok/ljos-inject.sh</code> and <code>scripts/grok/ljos.json</code> under <code>~/.grok/hooks/</code>, then <code>/hooks</code> then <code>r</code>. The inject script searches on a prompt. On <code>PreToolUse</code> it exits. Bash still runs <code>ljos hook</code> for rules only. Crate page: <a href="https://leidarljos.github.io/ljos/grok-build.html">Grok Build</a>.</p>
+        <p>Paste the entry where the runner keeps its MCP servers. Cursor, Pi, and the rest take this shape. Put the protocol where the agent reads its instructions. If the runner has hooks, a command hook on <em>prompts</em> that runs <code>ljos hook</code> completes the set. Grok: from the ljos tree, <code>scripts/grok/sync.sh</code>. The inject script and <code>ljos hook</code> are started each event, so a binary or script update is live without <code>/hooks r</code>. That reload is only when <code>ljos.json</code> matchers change. Stale <code>ljos-mcp</code> (replaced binary, deleted inode) is SIGTERM'd so Grok respawns. Crate page: <a href="https://leidarljos.github.io/ljos/grok-build.html">Grok Build</a>.</p>
         <h2>The two verbs an agent runs</h2>
 <pre>ljos sitting &lt;issue&gt; --assignee &lt;name&gt;       # doctor, cards, due, island, recall, timeline, claim
 ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember, fire, complete, learn</pre>
