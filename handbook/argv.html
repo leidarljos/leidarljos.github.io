@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-13 Sun 11:52 -->
+<!-- 2026-09-14 Mon 02:56 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reloading a pack is not a check.</title>
 <meta name="generator" content="Org Mode" />
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/site.css">
 <meta name="theme-color" content="#0B0B0A">
 <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -35,10 +37,27 @@
 <a href="index.html">Back to the field</a>
 </p>
 
+<div class="org-src-container">
+<pre class="src src-console">$ uvx ljos-policyd check -- uv run pytest
+allow
+</pre>
+</div>
+
+<p>
+A Janet pack can deny more after that verdict:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-janet">(defn check [argv]
+  (when (has-prefix? (get argv 0) "sudo")
+    (deny "sudo")))
+</pre>
+</div>
+
 <p>
 <code>ljos-policyd check -- argv</code> is the TCB when the binary is on <code>PATH</code>
 (or <code>POLICYD_BIN</code>). It prints <code>allow</code> or <code>deny</code>. The harness hook and
-<code>ljos policy</code> call it. The model is not the gate.
+<code>ljos policy</code> call it. The Janet pack cannot allow what the binary denied.
 </p>
 
 <p>
