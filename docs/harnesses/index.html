@@ -46,7 +46,7 @@
         <li><a href="/docs/reference/">Reference</a></li>
       </ul>
         <h2>One verb per runner</h2>
-        <p>Describe the runners on the machine once, in <code>~/.config/ljos/harnesses.toml</code>. A runner registers MCP servers through a command of its own (the first table) or through a config file it reads (the other two); a table names one of those two, the directory it loads skills from, and the settings file it reads hooks from. <code>ljos onboard --example</code> prints the shape.</p>
+        <p>Describe the runners on the machine once, in <code>~/.config/ljos/harnesses.toml</code>. A runner registers MCP servers through a command of its own (the first table) or through a config file it reads (the other two). A table names one of those two, the directory it loads skills from, and the settings file it reads hooks from. <code>ljos onboard --example</code> prints the shape.</p>
 <pre>[[harness]]
 name = "runner-c"
 config = "~/.runner-c/config.toml"
@@ -74,8 +74,8 @@ ok	runner-a mcp	ran runner-a mcp add -s user ljos -- /home/you/.cargo/bin/ljos-m
 ok	hook	memory hook: add it on UserPromptSubmit in /home/you/.runner-a/settings.json
 ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md
 $ ljos doctor | grep runner</pre>
-        <p>Three things land. The server, so the runner has the seat's tools. The skill, which is the protocol <code>ljos protocol</code> prints: which store answers which question, the order of verbs in a sitting, the refusals worth knowing. And the memory hook: before each prompt the runner pipes it to <code>ljos hook</code> and the memories it activates come back as context, preferences first, each once per session; <code>hook_events = ["UserPromptSubmit", "PreToolUse"]</code> in the table adds shell commands, a default a panel of the seat's own personas settled. Memory reaches the agent at the point of action without being asked for. <code>--dry-run</code> reports and writes nothing.</p>
-        <p><code>{server}</code> in a table is the path to <code>ljos-mcp</code>, <code>{name}</code> the runner's name. Passing <code>LJOS_SEAT={name}</code> to the server, as the tables above do, makes each runner claim and vote under its own name: two runners on one host share the one pack and the one tracker, and <code>ljos sitting</code> without <code>--assignee</code> takes that name, so neither is refused as busy for what the other holds. A persona named with <code>as</code> speaks over both.</p>
+        <p>Three things land. The server, so the runner has the seat's tools. The skill is the protocol <code>ljos protocol</code> prints: which store answers which question, the order of verbs in a sitting, the refusals worth knowing. The memory hook runs before each prompt. The runner pipes the prompt to <code>ljos hook</code>. The memories it activates come back as context, preferences first, each once per session. <code>hook_events = ["UserPromptSubmit", "PreToolUse"]</code> in the table adds shell commands. The default is a panel of the seat's own personas, settled. Memory reaches the agent at the point of action without being asked for. <code>--dry-run</code> reports and writes nothing.</p>
+        <p><code>{server}</code> in a table is the path to <code>ljos-mcp</code>, <code>{name}</code> the runner's name. Passing <code>LJOS_SEAT={name}</code> to the server, as the tables above do, makes each runner claim and vote under its own name. Two runners on one host share the one pack and the one tracker. <code>ljos sitting</code> without <code>--assignee</code> takes that name. Neither is refused as busy for what the other holds. A persona named with <code>as</code> speaks over both.</p>
         <h2>Any other runner</h2>
 <pre>$ ljos onboard --harness json
 {
@@ -84,11 +84,11 @@ $ ljos doctor | grep runner</pre>
   }
 }
 $ ljos protocol &gt; instructions.md</pre>
-        <p>Paste the entry where the runner keeps its MCP servers (Cursor, Pi, and the rest take this shape) and put the protocol where the agent reads its instructions. If the runner has hooks, a command hook on tool calls and prompts that runs <code>ljos hook</code> completes the set.</p>
+        <p>Paste the entry where the runner keeps its MCP servers. Cursor, Pi, and the rest take this shape. Put the protocol where the agent reads its instructions. If the runner has hooks, a command hook on tool calls and prompts that runs <code>ljos hook</code> completes the set.</p>
         <h2>The two verbs an agent runs</h2>
 <pre>ljos sitting &lt;issue&gt; --assignee &lt;name&gt;       # doctor, cards, due, island, recall, timeline, claim
 ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember, fire, complete, learn</pre>
-        <p>One verb opens a sitting in the protocol's order and stops at the first store that does not answer; one closes it. The loop that makes the seat a memory runs every time, not only when somebody remembers to run it.</p>
+        <p>One verb opens a sitting in the protocol's order and stops at the first store that does not answer. One closes it. The loop that makes the seat a memory runs every time. It does not wait for someone to remember the steps.</p>
         <h2>Cite a deed on a ticket</h2>
 <pre>ljos evidence deed-…
 ljos deed &lt;id&gt; --add deed-…
