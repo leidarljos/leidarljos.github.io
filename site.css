@@ -376,14 +376,26 @@ pre {
   border-top: 1px solid var(--line);
 }
 .crate-index li { border-bottom: 1px solid var(--line); }
+.island-fig {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: var(--ink);
+}
 .crate-index a {
   display: grid;
-  grid-template-columns: 11rem 1fr auto;
-  gap: 1rem;
-  align-items: baseline;
+  grid-template-columns: 2.4rem 11rem 1fr auto;
+  gap: 0.85rem;
+  align-items: center;
   padding: 0.85rem 0.1rem;
   text-decoration: none;
   color: inherit;
+}
+.crate-index img {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 6px;
 }
 .crate-index strong {
   font-family: var(--serif);
