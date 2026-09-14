@@ -55,7 +55,7 @@ snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nstartup_time
 
 [[harness]]
 name = "runner-a"
-register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "-e", "LJOS_SEAT={name}", "--", "{server}"]
+register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "-e", "LJOS_SEAT={name}", "-e", "GROK_SESSION_ID=${GROK_SESSION_ID}", "--", "{server}"]
 registered = ["runner-a", "mcp", "get", "ljos"]
 skills = "~/.runner-a/skills"
 hooks = "~/.runner-a/settings.json"
@@ -80,7 +80,7 @@ $ ljos doctor | grep runner</pre>
 <pre>$ ljos onboard --harness json
 {
   "mcpServers": {
-    "ljos": { "type": "stdio", "command": "/home/you/.cargo/bin/ljos-mcp", "args": [], "env": {} }
+    "ljos": { "type": "stdio", "command": "/home/you/.cargo/bin/ljos-mcp", "args": [], "env": { "LJOS_SEAT": "runner", "GROK_SESSION_ID": "${GROK_SESSION_ID}" } }
   }
 }
 $ ljos protocol &gt; instructions.md</pre>
