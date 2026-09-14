@@ -85,18 +85,6 @@
          :with-author nil
          :html-head-include-default-style nil
          :html-head-include-scripts nil)
-        ("docs-start-org"
-         :base-directory ,(expand-file-name "orgmode/docs/start" default-directory)
-         :base-extension "org"
-         :publishing-directory ,(expand-file-name "docs/start" default-directory)
-         :publishing-function org-html-publish-to-html
-         :recursive nil
-         :headline-levels 4
-         :with-toc nil
-         :section-numbers nil
-         :with-author nil
-         :html-head-include-default-style nil
-         :html-head-include-scripts nil)
-        ("ljos-site" :components ("handbook-org" "docs-start-org"))))
+        ("ljos-site" :components ("handbook-org"))))
 
 (org-publish "ljos-site" t)
