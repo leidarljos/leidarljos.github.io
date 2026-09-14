@@ -3,9 +3,22 @@
 
 [[file:index.org][Back to the field]]
 
+#+begin_src console
+$ uvx ljos-policyd check -- uv run pytest
+allow
+#+end_src
+
+A Janet pack can deny more after that verdict:
+
+#+begin_src janet
+(defn check [argv]
+  (when (has-prefix? (get argv 0) "sudo")
+    (deny "sudo")))
+#+end_src
+
 =ljos-policyd check -- argv= is the TCB when the binary is on =PATH=
 (or =POLICYD_BIN=). It prints =allow= or =deny=. The harness hook and
-=ljos policy= call it. The model is not the gate.
+=ljos policy= call it. The Janet pack cannot allow what the binary denied.
 
 =ljos policy -- argv= prints the line, then the TCB verdict if the
 binary answered, then any pack rule that matches, then what the pack
