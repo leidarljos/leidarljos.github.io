@@ -65,7 +65,7 @@ Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...</pr
           <section>
             <h2>3. Start a scratch writer</h2>
             <pre>$ export PACKSET_URL=http://127.0.0.1:18761
-$ packsetd --listen 127.0.0.1:18761 &amp;
+$ packsetd --port 18761 --home /tmp/seat-pack &amp;
 $ ljos doctor
 ok	pack	http://127.0.0.1:18761 workspace seat</pre>
             <p>Do not call <code>packset ensure</code> against the default port if a writer is already up. That joins the live pack. If the pack row says no, stop.</p>

@@ -49,10 +49,6 @@
           <li><a href="/docs/habitats/">Crates</a></li>
           <li><a href="/docs/reference/">Reference</a></li>
         </ul>
-        <figure class="plate">
-          <figcaption><span>Fig. 1</span> The island printed when the seat opens. Seeds light one basin.</figcaption>
-          <img class="island-fig" src="/island.svg" width="920" height="460" alt="Landfold of the pack: this task's island versus other work.">
-        </figure>
         <div class="walk">
           <section>
             <h2>1. Point at scratch stores</h2>
@@ -60,7 +56,7 @@
             <pre>$ mkdir -p /tmp/seat &amp;&amp; cd /tmp/seat &amp;&amp; git init -q
 $ export VISSUE_ROOT=/tmp/seat/tracker DEEDAR_URL=file:///tmp/seat/deeds
 $ export CLAIMDAG_DIR=/tmp/seat/claims PACKSET_URL=http://127.0.0.1:18761
-$ packsetd --listen 127.0.0.1:18761 &amp;
+$ packsetd --port 18761 --home /tmp/seat-pack &amp;
 $ ljos doctor</pre>
           </section>
           <section>
