@@ -58,7 +58,8 @@
             <h2>1. Install the binaries this walk uses</h2>
             <pre>$ cargo binstall ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd
 $ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus ljos-policyd</pre>
-            <p>The homepage installs <code>ljos</code> alone. This walk needs the rest of the seat. You should see nine paths. If <code>packsetd</code> is missing, step 3 has no writer. Without <code>cargo-binstall</code>, <code>cargo install</code> of the same nine names works. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
+            <p>The homepage installs <code>ljos</code> alone. This walk needs the rest of the seat. You should see nine paths. If <code>packsetd</code> is missing, step 3 has no writer.</p>
+            <p>Without <code>cargo-binstall</code>, <code>cargo install</code> of the same nine names works. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
           </section>
           <section>
             <h2>2. Remember without a writer fails</h2>
@@ -81,7 +82,7 @@ $ ljos search fuse
 1.0000  lesson  156eb2be9898...  the default fuse is CombMNZ
 $ ljos due
 0 due; 1 scheduled, next at ...</pre>
-            <p>You should see kind <code>lesson</code>, the same sentence in the search hit, and a review scheduled a day out. Tomorrow <code>ljos due</code> lists the claim; <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.</p>
+            <p>You should see kind <code>lesson</code> and the same sentence in the search hit. A review is scheduled a day out. Tomorrow <code>ljos due</code> lists the claim. <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.</p>
           </section>
           <section>
             <h2>5. Prefer is the same path</h2>
