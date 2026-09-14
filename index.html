@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>leiðarljós — the leading light</title>
+  <title>leiðarljós — sit with ljos</title>
   <meta name="description" content="The seat over memory you write on purpose.">
   <link rel="canonical" href="https://leidarljos.github.io/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/site.css">
-  <meta property="og:title" content="leiðarljós — the leading light">
+  <meta property="og:title" content="leiðarljós — sit with ljos">
   <meta property="og:description" content="The seat over memory you write on purpose.">
   <meta property="og:url" content="https://leidarljos.github.io/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://leidarljos.github.io/og.png">
+  <meta property="og:image" content="https://leidarljos.github.io/og.svg">
   <meta name="theme-color" content="#0B0B0A">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
   <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
@@ -37,23 +37,17 @@
     </nav>
     <main id="main" class="landing">
       <header class="hero-journal">
-        <p class="kicker">leiðarljós — the leading light</p>
+        <p class="kicker">leiðarljós — sit with ljos</p>
         <h1>The seat over memory you write on purpose.</h1>
         <p class="rule" aria-hidden="true"></p>
-        <p class="lead">An island is the cluster of linked claims this task activates. Not everything the seat knows.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="/docs/island/">The island</a>
-          <a class="btn btn-ghost" href="/docs/start/">Install</a>
+          <a class="btn btn-gold" href="/docs/start/">Write one claim</a>
+          <a class="btn btn-ghost" href="/docs/sit/">How sitting works</a>
         </div>
       </header>
 
-      <figure class="plate" aria-labelledby="fig-island">
-        <figcaption id="fig-island"><span>Fig. 1</span> Landfold of the pack. Each point is a claim. Edges are links. Activation spreads from the seed along the heavier edges. The other basin is other work.</figcaption>
-        <img class="island-fig" src="/island.svg" width="920" height="460" alt="Two basins of claims. One is lit: the island this task activates.">
-      </figure>
-
       <figure class="plate" aria-labelledby="fig-sit">
-        <figcaption id="fig-sit"><span>Fig. 2</span> Opening the seat on a ticket prints the island among six other sections. Completing the session does not close the ticket.</figcaption>
+        <figcaption id="fig-sit"><span>Fig. 1</span> A sitting. Seven sections. Completing does not close the ticket.</figcaption>
         <div class="term" aria-label="ljos sitting specimen">
           <div class="term-bar">
             <span class="term-title">specimen</span>
@@ -85,28 +79,28 @@ gen=2</pre>
 
       <section class="band" aria-labelledby="loop-h">
         <p class="kicker">The loop</p>
-        <h2 id="loop-h">Remember. Island. Finish.</h2>
+        <h2 id="loop-h">Write. Sit. Finish.</h2>
         <div class="loop">
           <article>
             <span class="n">01</span>
             <h3>Remember</h3>
-            <p>One claim, two sentences at most, stored as written. Nothing is mined from a transcript.</p>
+            <p>One claim, two sentences at most, stored as written. <code>ljos remember</code> and <code>ljos prefer</code> are the only pack writes. Nothing is mined from a transcript.</p>
           </article>
           <article>
             <span class="n">02</span>
-            <h3>Island</h3>
-            <p>The cluster of linked claims this task activates. Search hits are seeds. Activation spreads two hops along the pack's links. Not a persona, not a ranking.</p>
+            <h3>Sit</h3>
+            <p><code>ljos sitting</code> opens: doctor, cards, due, island, recall, timeline, claim. Cite what the work produced. Completing here does not close the ticket.</p>
           </article>
           <article>
             <span class="n">03</span>
             <h3>Finish</h3>
-            <p>The lesson is remembered. The island fires (Hebb). The session node completes. The tracker ticket stays open.</p>
+            <p><code>ljos finish</code> remembers the lesson, fires the island, completes the session node, and learns from an outcome when one is named.</p>
           </article>
         </div>
       </section>
 
       <figure class="plate measure-plate" aria-labelledby="fig-measure">
-        <figcaption id="fig-measure"><span>Fig. 3</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large. Writes only on Remember: and Prefer:.</figcaption>
+        <figcaption id="fig-measure"><span>Fig. 2</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large. Writes only on Remember: and Prefer:.</figcaption>
         <table>
           <thead>
             <tr><th>arm</th><th>recall@5</th><th>QA / ceiling</th></tr>
