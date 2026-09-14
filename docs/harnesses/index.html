@@ -51,7 +51,7 @@
 name = "runner-c"
 config = "~/.runner-c/config.toml"
 marker = "[mcp_servers.ljos]"
-snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nstartup_timeout_sec = 30\n"
+snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nstartup_timeout_sec = 30\nenv = { LJOS_SEAT = \"{name}\", GROK_SESSION_ID = \"${GROK_SESSION_ID}\" }\n"
 
 [[harness]]
 name = "runner-a"
@@ -64,7 +64,7 @@ hooks = "~/.runner-a/settings.json"
 name = "runner-b"
 config = "~/.runner-b/config.toml"
 marker = "[mcp_servers.ljos]"
-snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nenv = { LJOS_SEAT = \"{name}\" }\n"
+snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nenv = { LJOS_SEAT = \"{name}\", GROK_SESSION_ID = \"${GROK_SESSION_ID}\" }\n"
 skills = "~/.runner-b/skills"
 hooks = "~/.runner-b/hooks.json"</pre>
         <p>Then, for each:</p>
