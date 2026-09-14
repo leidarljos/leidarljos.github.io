@@ -7,7 +7,7 @@ contract, and the failure that looks like success.
 - cards :: What the human froze. Read-only.
 - packset :: Standing knowledge. Written only on =Remember:= / =Prefer:=.
 - deedar :: Frozen product. Opened by accession.
-- vissue :: The graph and the agreement. Docs: [[https://vissue.rgoswami.me][vissue.rgoswami.me]].
+- vissue :: The graph and the agreement. Docs: [[https://leidarljos.github.io/vissue][vissue.rgoswami.me]].
 - claimdag :: Work for this sitting. Completing does not close a ticket.
 - policyd :: Argv law, not a store. =ljos policy= prints the line.
   =ljos-policyd= is the TCB when it is on =PATH= or =POLICYD_BIN=.

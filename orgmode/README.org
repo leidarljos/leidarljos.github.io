@@ -8,4 +8,4 @@ $ ./org/build.sh
 
 That is =org-publish= + =ox-html=. Batch faces come from engrave-faces
 (the vault exporter), because htmlize needs a display. Tracker crate
-docs: https://vissue.rgoswami.me
+docs: https://leidarljos.github.io/vissue
