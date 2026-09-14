@@ -17,10 +17,10 @@ contract, and the failure that looks like success.
 
 * Notes
 
-- [[file:write.org][Write]] — Remember is a speech act
-- [[file:cards.org][Cards]] — Overflow is an error
-- [[file:accession.org][Accession]] — The pin is an accession
-- [[file:session.org][Session]] — Completing is not closing
-- [[file:agreement.org][Agreement]] — A vote count is not consensus
-- [[file:argv.org][Argv]] — Reloading a pack is not a check; memory at the point of action
-- [[https://leidarljos.github.io/docs/compare/][Compare]] — A memory engine is one habitat
+- [[file:write.org][Write]] -- Remember is a speech act
+- [[file:cards.org][Cards]] -- Overflow is an error
+- [[file:accession.org][Accession]] -- The pin is an accession
+- [[file:session.org][Session]] -- Completing is not closing
+- [[file:agreement.org][Agreement]] -- A vote count is not consensus
+- [[file:argv.org][Argv]] -- Reloading a pack is not a check; memory at the point of action
+- [[https://leidarljos.github.io/docs/compare/][Compare]] -- A memory engine is one habitat
