@@ -29,7 +29,7 @@ it does not report a writer that is down as an empty pack.
 
 #+begin_src console
 $ export PACKSET_URL=http://127.0.0.1:18761
-$ packsetd --listen 127.0.0.1:18761 &
+$ packsetd --port 18761 --home /tmp/seat-pack &
 $ ljos doctor
 ok	pack	http://127.0.0.1:18761 workspace seat
 #+end_src
