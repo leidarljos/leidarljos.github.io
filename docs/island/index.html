@@ -44,12 +44,16 @@
         </ul>
         <figure class="plate">
           <figcaption><span>Fig. 1</span> landfold of the live <code>seat</code> pack: 148 atoms (74 lesson, 12 preference, 60 persona, 2 trust). 384-D bge-small, <code>landfold embed --dot --fun-hd asinh,0.56 --center</code>, stress 0.021. Cream is the pack. Gold is the <code>docs</code> activation island; rings are seeds.</figcaption>
-          <img class="island-fig" src="/island.svg" width="920" height="520" alt="landfold embed of 148 live claims. Gold is the docs island.">
+          <img class="island-fig" src="/island.svg" width="920" height="520" alt="landfold of 148 live seat atoms from sentence vectors. Gold is the docs island.">
+        </figure>
+        <figure class="plate">
+          <figcaption><span>Fig. 2</span> the same 148 atoms, folded from the link graph: pairwise distance is <code>1 − weight</code> on an edge and 2 off-edge. <code>landfold embed --similarity --fun-hd asinh,0.5 --center</code>, stress 0.075. Hop-PHATE stacked 148 points onto 44 positions; this fold keeps 148 unique. Gold is the <code>docs</code> activation island.</figcaption>
+          <img class="island-fig" src="/island-graph.svg" width="920" height="520" alt="landfold of the seat link graph. Gold is the docs island.">
         </figure>
         <div class="walk">
           <section>
             <h2>How it is built</h2>
-            <p>The pack links each claim to the claims it shares names with. Those links form clusters. <code>ljos island TASK</code> takes the top search hits as seeds and spreads activation two hops: half lost per hop, divided by fan-out. The cluster comes back strongest first. That is spreading activation over a semantic network (Collins and Loftus, doi:10.1037/0033-295X.82.6.407). Fig. 1 is a landfold of the same atoms' sentence vectors (bge-small, cosine as <code>--dot</code>, Ceriotti asinh at the median pairwise scale). Gold is the <code>docs</code> activation cluster, not a 3-gram hash.</p>
+            <p>The pack links each claim to the claims it shares names with. Those links form clusters. <code>ljos island TASK</code> takes the top search hits as seeds and spreads activation two hops: half lost per hop, divided by fan-out. The cluster comes back strongest first. That is spreading activation over a semantic network (Collins and Loftus, doi:10.1037/0033-295X.82.6.407). Fig. 1 folds sentence vectors (bge-small, cosine as <code>--dot</code>, Ceriotti asinh at the median pairwise scale). Fig. 2 folds the weighted link graph. Gold is the <code>docs</code> activation cluster, not a 3-gram hash.</p>
           </section>
           <section>
             <h2>How use shapes it</h2>
