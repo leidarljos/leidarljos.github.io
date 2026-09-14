@@ -28,18 +28,14 @@ it does not report a writer that is down as an empty pack.
 * Start the writer
 
 #+begin_src console
-$ packset ensure
+$ export PACKSET_URL=http://127.0.0.1:18761
+$ packsetd --listen 127.0.0.1:18761 &
 $ ljos doctor
-ok	pack	http://127.0.0.1:8761 workspace seat
-ok	host key	...
-ok	deed store	size=0 root=...
-ok	tracker	vissue 0.11.0
-ok	claim graph	...
+ok	pack	http://127.0.0.1:18761 workspace seat
 #+end_src
 
-Nothing to export. The seat finds the writer on =127.0.0.1:8761= from any
-directory, and its memory is the one workspace =seat=. If the =pack= row
-says =no=, stop. Do not continue.
+Do not call =packset ensure= against the default port if a writer is
+already up. That joins the live pack. If the =pack= row says =no=, stop.
 
 * Write one claim, then retrieve it
 
