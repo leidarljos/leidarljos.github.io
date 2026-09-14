@@ -43,13 +43,13 @@
           <li><a href="/docs/habitats/">Crates</a></li>
         </ul>
         <figure class="plate">
-          <figcaption><span>Fig. 1</span> landfold embed of the live <code>seat</code> pack (148 claims). 64-D hashed character 3-grams, <code>landfold embed -D 64 -d 2 --center</code>, stress 0.100. Cream is the pack. Gold is the <code>docs</code> island; rings are seeds.</figcaption>
+          <figcaption><span>Fig. 1</span> landfold of the live <code>seat</code> pack: 148 atoms (74 lesson, 12 preference, 60 persona, 2 trust). 384-D bge-small, <code>landfold embed --dot --fun-hd asinh,0.56 --center</code>, stress 0.021. Cream is the pack. Gold is the <code>docs</code> activation island; rings are seeds.</figcaption>
           <img class="island-fig" src="/island.svg" width="920" height="520" alt="landfold embed of 148 live claims. Gold is the docs island.">
         </figure>
         <div class="walk">
           <section>
             <h2>How it is built</h2>
-            <p>The pack links each claim to the claims it shares names with. Those links form clusters. <code>ljos island TASK</code> takes the top search hits as seeds and spreads activation two hops: half lost per hop, divided by fan-out. The cluster comes back strongest first. That is spreading activation over a semantic network (Collins and Loftus, doi:10.1037/0033-295X.82.6.407).</p>
+            <p>The pack links each claim to the claims it shares names with. Those links form clusters. <code>ljos island TASK</code> takes the top search hits as seeds and spreads activation two hops: half lost per hop, divided by fan-out. The cluster comes back strongest first. That is spreading activation over a semantic network (Collins and Loftus, doi:10.1037/0033-295X.82.6.407). Fig. 1 is a landfold of the same atoms' sentence vectors (bge-small, cosine as <code>--dot</code>, Ceriotti asinh at the median pairwise scale). Gold is the <code>docs</code> activation cluster, not a 3-gram hash.</p>
           </section>
           <section>
             <h2>How use shapes it</h2>
