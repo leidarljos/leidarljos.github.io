@@ -8,7 +8,7 @@ clock running on it.
 * Install every binary this walk uses
 
 #+begin_src console
-$ cargo binstall ljos ljos-mcp packset packset-daemon deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd
+$ cargo binstall ljos ljos-mcp packset packset-daemon packset-embed deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd
 $ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus ljos-policyd
 #+end_src
 
