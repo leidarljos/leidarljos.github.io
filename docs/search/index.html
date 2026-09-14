@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search — leiðarljós</title>
+  <meta name="description" content="Search the leiðarljós site.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/search/">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/site.css">
+  <meta name="theme-color" content="#0B0B0A">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap narrow">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="/"><img src="/icon.svg" alt="">leiðarljós</a>
+      <ul>
+        <li><a href="/docs/">Docs</a></li>
+        <li><a href="/docs/search/" aria-current="page">Search</a></li>
+        <li><a href="/docs/reference/">Reference</a></li>
+        <li><a href="/handbook/">Handbook</a></li>
+        <li><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
+      <form class="nav-search" role="search" action="/docs/search/" method="get">
+        <label class="skip" for="nav-q">Search</label>
+        <input id="nav-q" name="q" type="search" placeholder="Search" />
+      </form>
+    </nav>
+    <main id="main">
+      <div class="page">
+        <header class="intro">
+          <p class="kicker">Search</p>
+          <h1>Find a page.</h1>
+          <p class="lead">Titles and body text on this site. Crate Sphinx sites have their own search.</p>
+        </header>
+        <form id="site-search" class="site-search" role="search" action="/docs/search/" method="get">
+          <label class="skip" for="site-search-q">Query</label>
+          <input id="site-search-q" name="q" type="search" placeholder="island, sitting, uv…" autocomplete="off" autofocus>
+        </form>
+        <div id="site-search-results" class="search-hits"></div>
+      </div>
+    </main>
+  </div>
+  <script src="/search.js" defer></script>
+</body>
+</html>
