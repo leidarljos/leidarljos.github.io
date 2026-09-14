@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Compare — leiðarljós</title>
-  <meta name="description" content="packset measured retrieval versus agentmemory and other memory engines. Extract-on-write is refused.">
+  <meta name="description" content="packset LongMemEval_S retrieval and write policy, with neighbouring published numbers named by protocol.">
   <link rel="canonical" href="https://leidarljos.github.io/docs/compare/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
   <meta property="og:title" content="Compare — leiðarljós">
-  <meta property="og:description" content="packset measured retrieval versus agentmemory and other memory engines. Extract-on-write is refused.">
+  <meta property="og:description" content="packset LongMemEval_S retrieval and write policy, with neighbouring published numbers named by protocol.">
   <meta property="og:url" content="https://leidarljos.github.io/docs/compare/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
@@ -32,8 +32,8 @@
       <div class="page">
         <header class="intro">
           <p class="kicker">Compare</p>
-          <h1>A memory engine is one habitat.</h1>
-          <p class="lead">leiðarljós is a seat over five habitats and argv law. packset is the standing-knowledge habitat. It writes only on Remember: and Prefer:. The numbers below are packset's own measured rows, from the crate README and explanation page.</p>
+          <h1>What packset measured</h1>
+          <p class="lead">packset is the standing-knowledge store in the seat. It writes only on Remember: and Prefer:. The crate explanation holds the rows. Neighbouring systems are named by protocol.</p>
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
@@ -54,59 +54,55 @@
             <tr><td>packset fused panel</td><td>0.889</td><td>0.949</td><td>0.981</td></tr>
           </tbody>
         </table>
-        <p>Answer accuracy on the same 470, local reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval's own prompts, top five sessions): fused panel 0.549, lexical alone 0.532, labelled sessions (the ceiling for any retriever) 0.634.</p>
-        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), same 7B reader: conflict-resolution split 0.480 (published retrieval baselines 0.155 to 0.295 with a stronger reader). Accurate-retrieval split 0.675 of 2000 against published 0.605 (BM25) and 0.651 (HippoRAG-v2).</p>
+        <p>Answer accuracy on the same 470 uses a local 7&nbsp;B reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval prompts, top five sessions). CombMNZ fusion is 0.549. Lexical alone is 0.532. Labelled sessions, the ceiling for any retriever, are 0.634.</p>
+        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), same 7&nbsp;B reader. Conflict-resolution split 0.480. Published retrieval baselines on that split range from 0.155 to 0.295 with a stronger reader. Accurate-retrieval split 0.675 of 2000, against published 0.605 (BM25) and 0.651 (HippoRAG-v2).</p>
 
-        <h2>Two repos named agentmemory</h2>
-        <p>Do not collapse them. Neither number is ours.</p>
+        <h2>Neighbouring published numbers</h2>
+        <p>Two public repositories share the name agentmemory. They report different protocols. The first is session retrieval (R@5). The second is question answering with a hosted generator and a hosted judge. packset publishes both a retrieval row and a local-reader QA row so those protocols stay distinct.</p>
         <table>
-          <thead><tr><th>System</th><th>What they report</th><th>Write policy</th></tr></thead>
+          <thead><tr><th>System</th><th>Protocol</th><th>Published figure</th><th>Write policy</th></tr></thead>
           <tbody>
             <tr>
               <td><a href="https://github.com/rohitg00/agentmemory">rohitg00/agentmemory</a></td>
-              <td>LongMemEval-S R@5 95.2% (all-MiniLM-L6-v2, retrieval only). Their COMPARISON.md.</td>
-              <td>Twelve lifecycle hooks auto-capture. Extract-on-write.</td>
+              <td>LongMemEval-S retrieval, R@5, all-MiniLM-L6-v2</td>
+              <td>95.2% (their COMPARISON.md)</td>
+              <td>Lifecycle hooks capture transcript text</td>
             </tr>
             <tr>
               <td><a href="https://github.com/JordanMcCann/agentmemory">JordanMcCann/agentmemory</a></td>
-              <td>LongMemEval QA 96.20% (481/500). Hosted generator and hosted judge. Their README.</td>
-              <td>Chat QA over a MemoryStore. Not R@5.</td>
+              <td>LongMemEval QA, hosted generator and judge</td>
+              <td>96.20% on 481/500 (their README)</td>
+              <td>Chat over a MemoryStore</td>
             </tr>
             <tr>
               <td>packset</td>
-              <td>Same benchmark family, session recall@5 0.949 fused, 0.914 lexical. QA 0.549 with a 7B reader against a 0.634 labelled ceiling.</td>
-              <td>Remember: / Prefer: only. A transcript is not a source.</td>
+              <td>LongMemEval_S session retrieval; QA with a local 7&nbsp;B reader</td>
+              <td>recall@5 0.949 fused, 0.914 lexical; QA 0.549 against a 0.634 labelled ceiling</td>
+              <td>Remember: and Prefer: only</td>
             </tr>
           </tbody>
         </table>
-        <p>0.949 recall@5 sits next to their 95.2% R@5 on retrieval. That is a measured neighbour, not a win claim. Their 96.20% is a different sport: a frontier generator and a hosted judge. We do not paste that number into a packset cell.</p>
+        <p>The 0.949 fused recall@5 is the neighbour of the 95.2% R@5 retrieval figure. The 96.20% QA figure uses a different generator and a different judge. InjecMEM and MINJA describe the risk of writing from a transcript. packset writes only on Remember: and Prefer:. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
 
-        <h2>The table they cannot hold</h2>
-        <p>A memory-engine scoreboard has one column. A seat has five habitats and argv law. Citation is not a merge.</p>
+        <h2>What the other habitats answer</h2>
+        <p>Retrieval is one store. The seat also cites frozen product, the tracker, this-session claims, argv law, and weighted agreement. Those questions are not retrieval scores.</p>
         <table>
-          <thead><tr><th>Question</th><th>Habitat</th><th>What a memory engine does instead</th></tr></thead>
+          <thead><tr><th>Question</th><th>Store</th></tr></thead>
           <tbody>
-            <tr><td>What did the human freeze?</td><td>cards</td><td>A scrapbook, or the harness card file treated as writable memory.</td></tr>
-            <tr><td>What does this seat know, standing?</td><td>packset</td><td>The whole product. Hooks extract from the transcript.</td></tr>
-            <tr><td>What did this unit produce?</td><td>deedar</td><td>Nothing. Bytes are not an accession.</td></tr>
-            <tr><td>What does this node stand on, and who agrees?</td><td>vissue</td><td>Nothing. A ticket is not a memory.</td></tr>
-            <tr><td>What is this session handing out?</td><td>claimdag</td><td>Nothing. Completing a chat turn is not a CAS claim.</td></tr>
-            <tr><td>May this argv run?</td><td>policyd (law, not a store)</td><td>Nothing. A hook that writes is not a check.</td></tr>
-            <tr><td>Who is right, under trust?</td><td>consensus crate</td><td>A vote count, or a single judge.</td></tr>
+            <tr><td>What did the human freeze?</td><td>cards</td></tr>
+            <tr><td>What does this seat know, standing?</td><td>packset</td></tr>
+            <tr><td>What did this unit produce?</td><td>deedar</td></tr>
+            <tr><td>What does this node stand on, and who agrees?</td><td>vissue</td></tr>
+            <tr><td>What is this session handing out?</td><td>claimdag</td></tr>
+            <tr><td>May this argv run?</td><td>ljos-policyd</td></tr>
+            <tr><td>Who is right, under trust?</td><td>ljos-consensus</td></tr>
           </tbody>
         </table>
-        <p>Their auto-capture column is the failure mode already named against extract-on-write (InjecMEM, MINJA). packset refuses that path. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
 
         <h2>policyd is argv law</h2>
         <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>ljos-policyd</code> is the TCB when it is on <code>PATH</code> or <code>POLICYD_BIN</code>: it prints allow or deny. Reloading a pack is not a check. <a href="/ljos-policyd/">ljos-policyd docs</a> · <a href="/handbook/argv/">Argv field note</a>.</p>
 
-        <h2>What this page will not say</h2>
-        <ul>
-          <li>It will not report Jordan McCann's 96.20% or rohitg00's 95.2% as ours.</li>
-          <li>It will not treat LongMemEval QA as the product SOTA. Retrieval and write policy are the cells we publish.</li>
-          <li>It will not flatten cards, deeds, tickets, claims, and argv into one HUD.</li>
-        </ul>
-        <p class="quiet">Numbers: <a href="https://github.com/leidarljos/packset">packset README</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a></p>
+        <p class="quiet">Source: <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a> · <a href="https://github.com/leidarljos/packset">packset</a></p>
       </div>
     </main>
   </div>
