@@ -38,7 +38,7 @@
         <header class="intro">
           <p class="kicker">Reference</p>
           <h1>CLI and MCP</h1>
-          <p class="lead"><code>ljos</code> is the seat. Habitats keep their own CLIs. Completing a session node does not close a ticket.</p>
+          <p class="lead"><code>ljos</code> is the seat. Habitats keep their own CLIs. The ticket stays open until <code>vissue</code> closes it.</p>
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
@@ -54,20 +54,20 @@
           <thead><tr><th>Verb</th><th>Habitat</th><th>Does</th></tr></thead>
           <tbody>
             <tr><td><code>ljos sitting ID</code></td><td>seat</td><td>Open: doctor, cards, due, island, recall, timeline, claim.</td></tr>
-            <tr><td><code>ljos finish ID</code></td><td>seat</td><td>Close: remember, fire, complete, learn. Does not close the ticket.</td></tr>
+            <tr><td><code>ljos finish ID</code></td><td>seat</td><td>Close: remember, fire, complete, learn. The ticket stays open.</td></tr>
             <tr><td><code>ljos remember TEXT</code></td><td>packset</td><td>POST one explicit claim. Needs <code>PACKSET_URL</code>.</td></tr>
             <tr><td><code>ljos prefer TEXT</code></td><td>packset</td><td>Same write path, kind preference.</td></tr>
             <tr><td><code>ljos search QUERY</code></td><td>packset</td><td>Retrieve standing knowledge.</td></tr>
             <tr><td><code>ljos evidence ACCESSION</code></td><td>deedar</td><td>Frozen product bytes.</td></tr>
             <tr><td><code>ljos current ACCESSION</code></td><td>deedar</td><td>Current pointer.</td></tr>
-            <tr><td><code>ljos deed ID [--add ACCESSION]</code></td><td>tracker</td><td>Cite. Not a merge. Crate: vissue.</td></tr>
+            <tr><td><code>ljos deed ID [--add ACCESSION]</code></td><td>tracker</td><td>Cite. The bytes stay in deedar. Crate: vissue.</td></tr>
             <tr><td><code>ljos recall ID</code></td><td>tracker</td><td>Working set.</td></tr>
             <tr><td><code>ljos vote ID [--for CHOICE]</code></td><td>tracker</td><td>Ballots.</td></tr>
             <tr><td><code>ljos claim NODE</code></td><td>claimdag</td><td>This-session CAS.</td></tr>
-            <tr><td><code>ljos complete NODE</code></td><td>claimdag</td><td>Does not close a ticket.</td></tr>
+            <tr><td><code>ljos complete NODE</code></td><td>claimdag</td><td>The ticket stays open.</td></tr>
             <tr><td><code>ljos hook</code></td><td>policyd, pack</td><td>On PreToolUse: TCB then pack rules; a deny blocks. On a prompt: pack text.</td></tr>
             <tr><td><code>ljos cards</code></td><td>cards</td><td>Read <code>USER.md</code> / <code>MEMORY.md</code>. Never writes.</td></tr>
-            <tr><td><code>ljos policy -- ARGV</code></td><td>policyd</td><td>TCB then pack rules. A deny blocks. Does not reload a pack.</td></tr>
+            <tr><td><code>ljos policy -- ARGV</code></td><td>policyd</td><td>TCB then pack rules. A deny blocks. A check is the argv verdict.</td></tr>
             <tr><td><code>ljos consensus ID</code></td><td>consensus crate</td><td>DeGroot / ODE, then the tracker verb.</td></tr>
           </tbody>
         </table>
@@ -84,10 +84,10 @@
             <tr><td><code>ljos_deed</code></td><td><code>issue</code>, optional <code>add</code></td><td>Cite an accession on a tracker node.</td></tr>
             <tr><td><code>ljos_recall</code></td><td><code>issue</code></td><td>Working set.</td></tr>
             <tr><td><code>ljos_claim</code></td><td><code>node</code></td><td>Claim a claimdag node.</td></tr>
-            <tr><td><code>ljos_complete</code></td><td><code>node</code></td><td>Complete a claimdag node. Does not close a ticket.</td></tr>
+            <tr><td><code>ljos_complete</code></td><td><code>node</code></td><td>Complete a claimdag node. The ticket stays open.</td></tr>
             <tr><td><code>ljos_cards</code></td><td>—</td><td>Read-only cards.</td></tr>
-            <tr><td><code>ljos_policy</code></td><td><code>argv</code></td><td>TCB then pack rules. A deny blocks. Reload is not a check.</td></tr>
-            <tr><td><code>ljos_consensus</code></td><td><code>id</code></td><td><code>ljos-consensus</code> then the tracker verb. Not a vote count.</td></tr>
+            <tr><td><code>ljos_policy</code></td><td><code>argv</code></td><td>TCB then pack rules. A deny blocks. A check is the argv verdict.</td></tr>
+            <tr><td><code>ljos_consensus</code></td><td><code>id</code></td><td><code>ljos-consensus</code> then the tracker verb. The settle is the consensus.</td></tr>
           </tbody>
         </table>
         <h2>Install the seat</h2>

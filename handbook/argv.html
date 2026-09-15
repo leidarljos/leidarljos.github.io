@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-15 Tue 04:43 -->
+<!-- 2026-09-15 Tue 05:55 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Reloading a pack is not a check.</title>
+<title>A check is the argv verdict.</title>
 <meta name="generator" content="Org Mode" />
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
 </div>
 <div id="content" class="content">
 <header>
-<h1 class="title">Reloading a pack is not a check.</h1>
+<h1 class="title">A check is the argv verdict.</h1>
 </header><p>
 <a href="index.html">Back to the field</a>
 </p>
@@ -67,14 +67,15 @@ indynull, HaoZeke). A Janet pack can deny more after that verdict:
 <code>ljos-policyd check -- argv</code> is the TCB when the binary is on <code>PATH</code>
 (or <code>POLICYD_BIN</code>). It prints <code>allow</code> or <code>deny</code>. <code>capnp</code> writes the
 packed message. The harness hook and <code>ljos policy</code> call it. The Janet
-pack cannot allow what the binary denied.
+pack may only deny more.
 </p>
 
 <p>
 <code>ljos policy -- argv</code> prints the line, then the TCB verdict if the
 binary answered, then any pack rule that matches, then what the pack
-knows that bears on it. It does not reload a Janet pack. Absence of
-the binary is not a deny. Doctor names the row.
+knows that bears on it. The binary prints a verdict. Pack rules stay
+in packset. A missing binary leaves the line open unless
+<code>POLICYD_REQUIRED=1</code>. Doctor names the row.
 </p>
 
 <p>

@@ -42,7 +42,7 @@
         <header class="intro">
           <p class="kicker">Policy</p>
           <h1>May this command line run?</h1>
-          <p class="lead">Ask with <code>uv</code>. The typed verdict is Cap'n <code>PolicyDecision</code>. A Janet pack can deny more after the binary. It cannot allow what the binary denied.</p>
+          <p class="lead">Ask with <code>uv</code>. The typed verdict is Cap'n <code>PolicyDecision</code>. A Janet pack can deny more after the binary. A pack may only deny more.</p>
         </header>
         <ul class="subnav" aria-label="Docs">
           <li><a href="/docs/">Overview</a></li>
@@ -69,7 +69,7 @@ $ ljos-policyd capnp -- true | wc -c
             <pre>(defn check [argv]
   (when (has-prefix? (get argv 0) "sudo")
     (deny "sudo")))</pre>
-            <p>A Janet pack denies more after this binary. It cannot allow what the binary denied. The seat composes it: <code>ljos policy -- uv run pytest</code>.</p>
+            <p>A Janet pack denies more after this binary. A pack may only deny more. The seat composes it: <code>ljos policy -- uv run pytest</code>.</p>
           </section>
           <section>
             <h2>The hook</h2>
@@ -79,7 +79,7 @@ $ ljos-policyd capnp -- true | wc -c
             <p>On a prompt it searches and holds pack text. Nothing to say on a prompt is no output. A TCB deny still blocks. The pack rule is memory beside the binary.</p>
           </section>
         </div>
-        <p class="quiet">Crate site: <a href="/ljos-policyd/">ljos-policyd</a>. Field note: <a href="/handbook/argv/">reloading a pack is not a check</a>.</p>
+        <p class="quiet">Crate site: <a href="/ljos-policyd/">ljos-policyd</a>. Field note: <a href="/handbook/argv/">a check is the argv verdict</a>.</p>
       </div>
     </main>
   </div>

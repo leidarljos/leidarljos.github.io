@@ -1,4 +1,4 @@
-#+title: Reloading a pack is not a check.
+#+title: A check is the argv verdict.
 #+options: toc:nil num:nil
 
 [[file:index.org][Back to the field]]
@@ -22,12 +22,13 @@ indynull, HaoZeke). A Janet pack can deny more after that verdict:
 =ljos-policyd check -- argv= is the TCB when the binary is on =PATH=
 (or =POLICYD_BIN=). It prints =allow= or =deny=. =capnp= writes the
 packed message. The harness hook and =ljos policy= call it. The Janet
-pack cannot allow what the binary denied.
+pack may only deny more.
 
 =ljos policy -- argv= prints the line, then the TCB verdict if the
 binary answered, then any pack rule that matches, then what the pack
-knows that bears on it. It does not reload a Janet pack. Absence of
-the binary is not a deny. Doctor names the row.
+knows that bears on it. The binary prints a verdict. Pack rules stay
+in packset. A missing binary leaves the line open unless
+=POLICYD_REQUIRED=1=. Doctor names the row.
 
 =ljos hook= on =PreToolUse= is the same gate. A deny is a blocked tool
 call:
