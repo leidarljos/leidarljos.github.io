@@ -5,7 +5,7 @@
 
 =DEEDAR_URL= names the directory (=file://= plus a path). Unset, the command has nowhere to write. =deedar create file= needs =--id=, =--path=, and =--agent=. The pin is =deed-…= or =sha256:=.
 
-=ljos evidence= asks deedar for the bytes. =ljos deed ID --add ACCESSION= names the accession on a ticket. It does not paste the product into the ticket. The pack may name the same accession. That is not a merge.
+=ljos evidence= asks deedar for the bytes. =ljos deed ID --add ACCESSION= names the accession on a ticket. The product stays in deedar. The pack may name the same accession. Each habitat keeps the name.
 
 If the store is empty, that is an error.
 
