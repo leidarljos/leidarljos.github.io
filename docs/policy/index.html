@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Argv law — leiðarljós</title>
-  <meta name="description" content="Ask with uv. A Janet pack can deny more after the binary.">
+  <meta name="description" content="Ask with uv. Cap'n PolicyDecision is the typed verdict. The hook blocks a deny.">
   <link rel="canonical" href="https://leidarljos.github.io/docs/policy/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
   <meta property="og:title" content="Argv law — leiðarljós">
-  <meta property="og:description" content="ljos-policyd prints the verdict. The hook calls it.">
+  <meta property="og:description" content="ljos-policyd prints the verdict. PreToolUse blocks a deny.">
   <meta property="og:url" content="https://leidarljos.github.io/docs/policy/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
@@ -42,7 +42,7 @@
         <header class="intro">
           <p class="kicker">Policy</p>
           <h1>May this command line run?</h1>
-          <p class="lead">Ask with <code>uv</code>. A Janet pack can deny more after the binary. It cannot allow what the binary denied.</p>
+          <p class="lead">Ask with <code>uv</code>. The typed verdict is Cap'n <code>PolicyDecision</code>. A Janet pack can deny more after the binary. It cannot allow what the binary denied.</p>
         </header>
         <ul class="subnav" aria-label="Docs">
           <li><a href="/docs/">Overview</a></li>
@@ -59,8 +59,10 @@
             <pre>$ uvx ljos-policyd check -- uv run pytest
 allow
 $ uvx ljos-policyd check -- sudo id
-deny	sudo</pre>
-            <p>First matching deny wins. Exit 2. <code>exec</code> runs the line only on allow.</p>
+deny	sudo
+$ ljos-policyd capnp -- true | wc -c
+40</pre>
+            <p>First matching deny wins. Exit 2. <code>exec</code> runs the line only on allow. <code>capnp</code> writes the packed <code>PolicyDecision</code> (phronesis; Ali Akber Saifee / indynull, HaoZeke).</p>
           </section>
           <section>
             <h2>Janet</h2>
@@ -71,7 +73,10 @@ deny	sudo</pre>
           </section>
           <section>
             <h2>The hook</h2>
-            <p><code>ljos hook</code> reads the action about to happen. The binary is the gate. The pack rule is memory beside it.</p>
+            <p><code>ljos hook</code> on <code>PreToolUse</code> is the same gate. A deny is a blocked tool call.</p>
+            <pre>$ echo '{"hook_event_name":"PreToolUse","tool_input":{"command":"git push --force"}}' | ljos hook
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git-force-push (seat rule `ljos-policyd`)"}}</pre>
+            <p>On a prompt it searches and holds pack text. Nothing to say on a prompt is no output. A TCB deny still blocks. The pack rule is memory beside the binary.</p>
           </section>
         </div>
         <p class="quiet">Crate site: <a href="/ljos-policyd/">ljos-policyd</a>. Field note: <a href="/handbook/argv/">reloading a pack is not a check</a>.</p>

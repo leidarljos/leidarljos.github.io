@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-14 Mon 02:56 -->
+<!-- 2026-09-15 Tue 04:43 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reloading a pack is not a check.</title>
@@ -22,7 +22,9 @@
     leiðarljós
   </a>
   <ul>
-    <li><a href="/docs/">Docs</a></li><li><a href="/docs/search/">Search</a></li><li><a href="/docs/about/">About</a></li>
+    <li><a href="/docs/">Docs</a></li>
+    <li><a href="/docs/search/">Search</a></li>
+    <li><a href="/docs/about/">About</a></li>
     <li><a href="/docs/reference/">Reference</a></li>
     <li><a href="/handbook/" aria-current="page">Handbook</a></li>
     <li><a href="https://leidarljos.github.io/vissue">vissue</a></li>
@@ -44,11 +46,14 @@
 <div class="org-src-container">
 <pre class="src src-console">$ uvx ljos-policyd check -- uv run pytest
 allow
+$ ljos-policyd capnp -- true | wc -c
+40
 </pre>
 </div>
 
 <p>
-A Janet pack can deny more after that verdict:
+The typed verdict is Cap'n PolicyDecision (phronesis; Ali Akber Saifee /
+indynull, HaoZeke). A Janet pack can deny more after that verdict:
 </p>
 
 <div class="org-src-container">
@@ -60,8 +65,9 @@ A Janet pack can deny more after that verdict:
 
 <p>
 <code>ljos-policyd check -- argv</code> is the TCB when the binary is on <code>PATH</code>
-(or <code>POLICYD_BIN</code>). It prints <code>allow</code> or <code>deny</code>. The harness hook and
-<code>ljos policy</code> call it. The Janet pack cannot allow what the binary denied.
+(or <code>POLICYD_BIN</code>). It prints <code>allow</code> or <code>deny</code>. <code>capnp</code> writes the
+packed message. The harness hook and <code>ljos policy</code> call it. The Janet
+pack cannot allow what the binary denied.
 </p>
 
 <p>
@@ -72,7 +78,22 @@ the binary is not a deny. Doctor names the row.
 </p>
 
 <p>
-<code>ljos hook</code> is the same answer for a policy layer or a runner: pipe the action about to happen (the runner's hook JSON, or the plain argv) and the memories it activates come back, standing preferences first, as the runner's <code>additionalContext</code> or as plain lines. Nothing to say is no output; the hook never blocks an action. <code>ljos onboard</code> installs it on a runner's tool-call and prompt events. Memory reaches the agent at the point of action, without being asked for. When the session ends, the memories the hook injected during it fire together, so what served one sitting is wired for the next.
+<code>ljos hook</code> on <code>PreToolUse</code> is the same gate. A deny is a blocked tool
+call:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-console">$ echo '{"hook_event_name":"PreToolUse","tool_input":{"command":"git push --force"}}' | ljos hook
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git-force-push (seat rule `ljos-policyd`)"}}
+</pre>
+</div>
+
+<p>
+On a prompt it searches and holds pack text; <code>PostToolUse</code> emits it.
+Nothing to say on a prompt is no output. A TCB deny still blocks.
+<code>ljos onboard</code> installs it on a runner's tool-call and prompt events.
+When the session ends, the memories the hook injected during it fire
+together, so what served one sitting is wired for the next.
 </p>
 
 <p>

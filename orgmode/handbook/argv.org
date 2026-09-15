@@ -6,9 +6,12 @@
 #+begin_src console
 $ uvx ljos-policyd check -- uv run pytest
 allow
+$ ljos-policyd capnp -- true | wc -c
+40
 #+end_src
 
-A Janet pack can deny more after that verdict:
+The typed verdict is Cap'n PolicyDecision (phronesis; Ali Akber Saifee /
+indynull, HaoZeke). A Janet pack can deny more after that verdict:
 
 #+begin_src janet
 (defn check [argv]
@@ -17,15 +20,28 @@ A Janet pack can deny more after that verdict:
 #+end_src
 
 =ljos-policyd check -- argv= is the TCB when the binary is on =PATH=
-(or =POLICYD_BIN=). It prints =allow= or =deny=. The harness hook and
-=ljos policy= call it. The Janet pack cannot allow what the binary denied.
+(or =POLICYD_BIN=). It prints =allow= or =deny=. =capnp= writes the
+packed message. The harness hook and =ljos policy= call it. The Janet
+pack cannot allow what the binary denied.
 
 =ljos policy -- argv= prints the line, then the TCB verdict if the
 binary answered, then any pack rule that matches, then what the pack
 knows that bears on it. It does not reload a Janet pack. Absence of
 the binary is not a deny. Doctor names the row.
 
-=ljos hook= is the same answer for a policy layer or a runner: pipe the action about to happen (the runner's hook JSON, or the plain argv) and the memories it activates come back, standing preferences first, as the runner's =additionalContext= or as plain lines. Nothing to say is no output; the hook never blocks an action. =ljos onboard= installs it on a runner's tool-call and prompt events. Memory reaches the agent at the point of action, without being asked for. When the session ends, the memories the hook injected during it fire together, so what served one sitting is wired for the next.
+=ljos hook= on =PreToolUse= is the same gate. A deny is a blocked tool
+call:
+
+#+begin_src console
+$ echo '{"hook_event_name":"PreToolUse","tool_input":{"command":"git push --force"}}' | ljos hook
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git-force-push (seat rule `ljos-policyd`)"}}
+#+end_src
+
+On a prompt it searches and holds pack text; =PostToolUse= emits it.
+Nothing to say on a prompt is no output. A TCB deny still blocks.
+=ljos onboard= installs it on a runner's tool-call and prompt events.
+When the session ends, the memories the hook injected during it fire
+together, so what served one sitting is wired for the next.
 
 Law can live in the pack: =ljos rule 'PATTERN' --verdict deny|ask --why "..."= writes a glob over the command line with a verdict, and the hook returns it as the runner's permission decision while =ljos policy= prints it beside the line. A rule is memory: dated, supersedable, exported in handovers.
 
