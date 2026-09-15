@@ -346,6 +346,7 @@ pre {
 .term-body .p { color: var(--gold); }
 .term-body .ok { color: var(--gold); }
 .term-body .dim { color: var(--mute); }
+.term-body .bad { color: #c45c4a; }
 .term-body .caret {
   display: inline-block;
   width: 0.55ch;
