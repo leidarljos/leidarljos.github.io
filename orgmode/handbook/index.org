@@ -11,7 +11,7 @@ contract, and the failure that looks like success.
 - claimdag :: Work for this sitting. Completing does not close a ticket.
 - policyd :: Argv law, not a store. =ljos policy= prints the line.
   =ljos-policyd= is the TCB when it is on =PATH= or =POLICYD_BIN=.
-  Reloading a pack is not a check. =ljos hook= injects memory at the
+  A check is the argv verdict. =ljos hook= injects memory at the
   point of action. Docs: [[https://leidarljos.github.io/ljos-policyd/][ljos-policyd]].
 - consensus :: DeGroot / Friedkin–Johnsen. A vote count is not that run.
 
@@ -22,5 +22,5 @@ contract, and the failure that looks like success.
 - [[file:accession.org][Accession]] -- The pin is an accession
 - [[file:session.org][Session]] -- Completing is not closing
 - [[file:agreement.org][Agreement]] -- A vote count is not consensus
-- [[file:argv.org][Argv]] -- Reloading a pack is not a check; memory at the point of action
+- [[file:argv.org][Argv]] -- A check is the argv verdict; memory at the point of action
 - [[https://leidarljos.github.io/docs/compare/][Compare]] -- A memory engine is one habitat
