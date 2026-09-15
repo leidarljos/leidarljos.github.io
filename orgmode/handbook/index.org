@@ -13,7 +13,7 @@ contract, and the failure that looks like success.
   =ljos-policyd= is the TCB when it is on =PATH= or =POLICYD_BIN=.
   A check is the argv verdict. =ljos hook= injects memory at the
   point of action. Docs: [[https://leidarljos.github.io/ljos-policyd/][ljos-policyd]].
-- consensus :: DeGroot / Friedkin–Johnsen. A vote count is not that run.
+- consensus :: DeGroot / Friedkin–Johnsen. The settle is the consensus.
 
 * Notes
 
@@ -21,6 +21,6 @@ contract, and the failure that looks like success.
 - [[file:cards.org][Cards]] -- Overflow is an error
 - [[file:accession.org][Accession]] -- The pin is an accession
 - [[file:session.org][Session]] -- The ticket stays open
-- [[file:agreement.org][Agreement]] -- A vote count is not consensus
+- [[file:agreement.org][Agreement]] -- The settle is the consensus
 - [[file:argv.org][Argv]] -- A check is the argv verdict; memory at the point of action
 - [[https://leidarljos.github.io/docs/compare/][Compare]] -- A memory engine is one habitat
