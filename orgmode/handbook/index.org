@@ -8,7 +8,7 @@ contract, and the failure that looks like success.
 - packset :: Standing knowledge. Written only on =Remember:= / =Prefer:=.
 - deedar :: Frozen product. Opened by accession.
 - vissue :: The graph and the agreement. Docs: [[https://leidarljos.github.io/vissue][vissue.rgoswami.me]].
-- claimdag :: Work for this sitting. Completing does not close a ticket.
+- claimdag :: Work for this sitting. The ticket stays open until vissue closes it.
 - policyd :: Argv law, not a store. =ljos policy= prints the line.
   =ljos-policyd= is the TCB when it is on =PATH= or =POLICYD_BIN=.
   A check is the argv verdict. =ljos hook= injects memory at the
@@ -20,7 +20,7 @@ contract, and the failure that looks like success.
 - [[file:write.org][Write]] -- Remember is a speech act
 - [[file:cards.org][Cards]] -- Overflow is an error
 - [[file:accession.org][Accession]] -- The pin is an accession
-- [[file:session.org][Session]] -- Completing is not closing
+- [[file:session.org][Session]] -- The ticket stays open
 - [[file:agreement.org][Agreement]] -- A vote count is not consensus
 - [[file:argv.org][Argv]] -- A check is the argv verdict; memory at the point of action
 - [[https://leidarljos.github.io/docs/compare/][Compare]] -- A memory engine is one habitat
