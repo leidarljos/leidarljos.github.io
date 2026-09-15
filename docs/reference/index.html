@@ -65,8 +65,9 @@
             <tr><td><code>ljos vote ID [--for CHOICE]</code></td><td>tracker</td><td>Ballots.</td></tr>
             <tr><td><code>ljos claim NODE</code></td><td>claimdag</td><td>This-session CAS.</td></tr>
             <tr><td><code>ljos complete NODE</code></td><td>claimdag</td><td>Does not close a ticket.</td></tr>
+            <tr><td><code>ljos hook</code></td><td>policyd, pack</td><td>On PreToolUse: TCB then pack rules; a deny blocks. On a prompt: pack text.</td></tr>
             <tr><td><code>ljos cards</code></td><td>cards</td><td>Read <code>USER.md</code> / <code>MEMORY.md</code>. Never writes.</td></tr>
-            <tr><td><code>ljos policy -- ARGV</code></td><td>policyd</td><td>Argv law. Does not reload a pack.</td></tr>
+            <tr><td><code>ljos policy -- ARGV</code></td><td>policyd</td><td>TCB then pack rules. A deny blocks. Does not reload a pack.</td></tr>
             <tr><td><code>ljos consensus ID</code></td><td>consensus crate</td><td>DeGroot / ODE, then the tracker verb.</td></tr>
           </tbody>
         </table>
@@ -85,7 +86,7 @@
             <tr><td><code>ljos_claim</code></td><td><code>node</code></td><td>Claim a claimdag node.</td></tr>
             <tr><td><code>ljos_complete</code></td><td><code>node</code></td><td>Complete a claimdag node. Does not close a ticket.</td></tr>
             <tr><td><code>ljos_cards</code></td><td>—</td><td>Read-only cards.</td></tr>
-            <tr><td><code>ljos_policy</code></td><td><code>argv</code></td><td>Print argv. Reload is not a check.</td></tr>
+            <tr><td><code>ljos_policy</code></td><td><code>argv</code></td><td>TCB then pack rules. A deny blocks. Reload is not a check.</td></tr>
             <tr><td><code>ljos_consensus</code></td><td><code>id</code></td><td><code>ljos-consensus</code> then the tracker verb. Not a vote count.</td></tr>
           </tbody>
         </table>

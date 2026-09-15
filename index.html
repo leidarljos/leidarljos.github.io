@@ -147,8 +147,8 @@ gen=2</pre>
           out: "== doctor\n== cards\n== due\n== island\n== recall\n== timeline\n== claim\ngen=2" },
         { cmd: "ljos remember \"the default fuse is CombMNZ\"",
           out: "ljos: write only on explicit Remember:\nRemember: the default fuse is CombMNZ" },
-        { cmd: "ljos policy -- ls",
-          out: "argv law. Not a store.\nallow" }
+        { cmd: "ljos policy -- git push --force",
+          out: "git push --force\ndeny\tgit-force-push" }
       ];
       var el = document.getElementById("term-out");
       var tabs = document.querySelectorAll(".term-tabs button");
@@ -161,7 +161,7 @@ gen=2</pre>
         el.innerHTML = body
           .replace(/^\$ /m, "<span class=\"p\">$ </span>")
           .replace(/^ljos:/m, "<span class=\"ok\">ljos:</span>")
-          .replace(/^(argv law\. Not a store\.)$/m, "<span class=\"dim\">$1</span>");
+          .replace(/^(deny\tgit-force-push)$/m, "<span class=\"bad\">$1</span>");
         if (!typed) el.innerHTML += "<span class=\"caret\" aria-hidden=\"true\"></span>";
         tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === n ? "true" : "false"); });
       }
