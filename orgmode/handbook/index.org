@@ -1,4 +1,4 @@
-#+title: Citation is not a merge.
+#+title: Citing a deed names it; the bytes stay in deedar.
 #+options: toc:nil num:nil html-style:nil
 
 Open the note for the thing you are about to do. It names the verb, the
