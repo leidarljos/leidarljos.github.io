@@ -1,4 +1,4 @@
-#+title: A vote count is not consensus.
+#+title: The settle is the consensus.
 #+options: toc:nil num:nil
 
 [[file:index.org][Back to the field]]
