@@ -9,7 +9,7 @@ contract, and the failure that looks like success.
 - deedar :: Frozen product. Opened by accession.
 - vissue :: The graph and the agreement. Docs: [[https://leidarljos.github.io/vissue][vissue.rgoswami.me]].
 - claimdag :: Work for this sitting. The ticket stays open until vissue closes it.
-- policyd :: Argv law, not a store. =ljos policy= prints the line.
+- policyd :: Argv law is the command-line verdict. =ljos policy= prints the line.
   =ljos-policyd= is the TCB when it is on =PATH= or =POLICYD_BIN=.
   A check is the argv verdict. =ljos hook= injects memory at the
   point of action. Docs: [[https://leidarljos.github.io/ljos-policyd/][ljos-policyd]].
