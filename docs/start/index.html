@@ -56,10 +56,11 @@
         <div class="walk">
           <section>
             <h2>1. Install the binaries this walk uses</h2>
-            <pre>$ cargo binstall ljos ljos-mcp packset packset-daemon packset-embed deedar-cli claimdag-cli vissue-cli ljos-consensus ljos-policyd
-$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus ljos-policyd</pre>
-            <p>The homepage installs <code>ljos</code> alone. This walk needs the rest of the seat. You should see nine paths. If <code>packsetd</code> is missing, step 3 has no writer.</p>
-            <p>Without <code>cargo-binstall</code>, <code>cargo install</code> of the same nine names works. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
+            <pre>$ cargo binstall ljos
+$ command -v ljos</pre>
+            <p>The seat is one crate. Habitat writers (<code>packsetd</code>, <code>deedar</code>) are still separate binaries until those crates ship them from one package. This walk also needs a writer:</p>
+            <pre>$ cargo binstall packset packset-daemon deedar</pre>
+            <p>Without <code>cargo-binstall</code>, <code>cargo install ljos</code> is the same. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
           </section>
           <section>
             <h2>2. Remember without a writer fails</h2>
