@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-15 Tue 05:55 -->
+<!-- 2026-09-19 Sat 15:13 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A check is the argv verdict.</title>
@@ -44,11 +44,11 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-console">$ uvx ljos-policyd check -- uv run pytest
+<pre class="src src-console"><code>$ uvx ljos-policyd check -- uv run pytest
 allow
 $ ljos-policyd capnp -- true | wc -c
 40
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -57,10 +57,10 @@ indynull, HaoZeke). A Janet pack can deny more after that verdict:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-janet">(defn check [argv]
+<pre class="src src-janet"><code>(defn check [argv]
   (when (has-prefix? (get argv 0) "sudo")
     (deny "sudo")))
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -84,9 +84,9 @@ call:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-console">$ echo '{"hook_event_name":"PreToolUse","tool_input":{"command":"git push --force"}}' | ljos hook
+<pre class="src src-console"><code>$ echo '{"hook_event_name":"PreToolUse","tool_input":{"command":"git push --force"}}' | ljos hook
 {"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git-force-push (seat rule `ljos-policyd`)"}}
-</pre>
+</code></pre>
 </div>
 
 <p>
