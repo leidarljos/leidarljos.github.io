@@ -66,7 +66,7 @@ $ ljos doctor</pre>
           <section>
             <h2>2. Make a ticket and sit it</h2>
             <p><code>sitting</code> prints seven sections and stops at the first store that does not answer: doctor, cards, due, the island the title activates, recall, timeline, then the claim. After the sitting, read each due row and run <code>ljos graded ID</code> (or <code>--lapsed</code>). The clock does not move until you grade.</p>
-            <p>Shared names <code>you</code>, <code>grok</code>, <code>seat</code>, and <code>agent</code> become the session prefix. Two conversations then do not share one slot.</p>
+            <p><code>--assignee</code> is for a named worker. Left off, or given as a pronoun (<code>you</code>, <code>seat</code>, <code>agent</code>), the holder is this conversation's: the seat tagged with its process, the same in the runner's tools and its shells (<code>ljos seat</code> prints it). Occupancy is <code>holder:issue</code>, so two conversations do not share one slot and a second sitting does not release the first.</p>
             <pre>$ id=$(vissue create -p demo "Ship the fuse change?" -q)
 $ ljos sitting $id --assignee alice
 == doctor

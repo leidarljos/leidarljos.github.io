@@ -3,7 +3,7 @@
 
 [[file:index.org][Back to the field]]
 
-=ljos sitting ISSUE --assignee NAME= opens the sitting: doctor, cards, due, island, recall, timeline, claim, in that order, stopping at the first store that does not answer. The assignee is a name; it maps to one actor. One live claim per name. A second claim is refused with the issue the name still holds and the two verbs that free it: =ljos complete= finishes it, =ljos release= hands it back unfinished. =ljos finish ISSUE --lesson "..." [--outcome OPTION]= closes the sitting: remember, fire the island, complete, learn. A later sitting on the same issue reopens its node and takes it; the ledger keeps the earlier completion.
+=ljos sitting ISSUE [--assignee NAME]= opens the sitting: doctor, cards, due, island, recall, timeline, claim, in that order, stopping at the first store that does not answer. The name defaults to this conversation's holder, the seat tagged with its process (=ljos seat= prints it); a named worker passes its own. Occupancy is holder and issue: one live claim per holder per issue. A second claim is refused with the issue the name still holds and the two verbs that free it: =ljos complete= finishes it, =ljos release= hands it back unfinished. =ljos finish ISSUE --lesson "..." [--outcome OPTION]= closes the sitting: remember, fire the island, complete, learn. A later sitting on the same issue reopens its node and takes it; the ledger keeps the earlier completion.
 
 The ticket stays open until vissue closes it. The tracker is the graph. Create and claim tickets through =vissue=. Never hand-edit =issues.org=. Crate docs: [[https://leidarljos.github.io/vissue][vissue.rgoswami.me]].
 
