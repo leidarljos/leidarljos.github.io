@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Harnesses — leiðarljós</title>
-  <meta name="description" content="One verb onboards a runner: server, protocol skill, memory hook.">
+  <meta name="description" content="One MCP entry for any runner; the seat names itself after the client that connects.">
   <link rel="canonical" href="https://leidarljos.github.io/docs/harnesses/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/site.css">
   <meta property="og:title" content="Harnesses — leiðarljós">
-  <meta property="og:description" content="One verb onboards a runner: server, protocol skill, memory hook.">
+  <meta property="og:description" content="One MCP entry for any runner; the seat names itself after the client that connects.">
   <meta property="og:url" content="https://leidarljos.github.io/docs/harnesses/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
@@ -38,7 +38,7 @@
         <header class="intro">
           <p class="kicker">Harnesses</p>
           <h1>Wire ljos-mcp</h1>
-          <p class="lead">One server, one skill, one hook. <code>ljos onboard</code> installs all three; <code>ljos</code> and <code>ljos-mcp</code> must be on <code>PATH</code>.</p>
+          <p class="lead">One entry for any runner. The seat names itself after the client that connects, and the shell finds the same name; nothing is set per runner. <code>ljos</code> and <code>ljos-mcp</code> on <code>PATH</code> is the whole install.</p>
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
@@ -49,17 +49,29 @@
         <li><a href="/docs/habitats/">Crates</a></li>
         <li><a href="/docs/reference/">Reference</a></li>
       </ul>
-        <h2>One verb per runner</h2>
-        <p>Describe the runners on the machine once, in <code>~/.config/ljos/harnesses.toml</code>. A runner registers MCP servers through a command of its own (the first table) or through a config file it reads (the other two). A table names one of those two, the directory it loads skills from, and the settings file it reads hooks from. <code>ljos onboard --example</code> prints the shape.</p>
+        <h2>One entry, any runner</h2>
+<pre>$ ljos onboard
+{
+  "mcpServers": {
+    "ljos": { "type": "stdio", "command": "/home/you/.cargo/bin/ljos-mcp", "args": [], "env": {} }
+  }
+}
+$ ljos protocol &gt; instructions.md</pre>
+        <p>Paste the entry where the runner keeps its MCP servers. Every runner that speaks MCP over stdio takes this shape, and there is nothing to fill in: the <code>env</code> is empty on purpose. Put the protocol where the agent reads its instructions; the server serves the same text at <code>ljos://protocol</code> and names it in its instructions, so a runner that loads neither skills nor resources still reads it first.</p>
+        <h2>Who is sitting</h2>
+        <p>The seat does not know the runners. It knows one thing every runner does: it connects, and says its name. <code>ljos-mcp</code> takes that name at initialize as the seat and leaves a record under the runtime directory keyed by the runner's process. <code>ljos</code> in a shell the runner opens walks its own process tree to that record, or, when the runner has no MCP, to the first ancestor that is not a shell, and names the same seat. A runner's tools and its verbs are one seat with nothing set; a new runner needs no table anywhere.</p>
+<pre>$ ljos seat
+seat	acme-cli
+holder	acme-cli-39u
+source	the server the runner opened, process 4242</pre>
+        <p>Two names come from that. The <em>seat</em> is the program: memory, ballots and trust rows accrue to it across every conversation of that runner, which is what calibration needs. The <em>holder</em> is the seat tagged with the conversation's process, and it is what a claim is held under; occupancy is <code>holder:issue</code>, so two conversations of one runner hold two tickets and a second sitting does not release the first. With several agents open in one terminal workspace, every pane is one process, so every conversation is one holder and the same program stays one seat. A server and its shells share the runner's process and not its environment, which is why the name is read from the process and not from a session variable: a line editor's session id in the shell had made one conversation two holders, and every sitting met <em>held by another seat</em>. <code>ljos doctor</code> carries the same row; <code>LJOS_SEAT</code> overrides the seat when a person wants a name.</p>
+        <h2>A hook, when the runner has one</h2>
+        <p>If the runner has a command hook on prompts, pipe the prompt to <code>ljos hook</code>. The memories it activates come back as context, preferences first, each once per session, with once a session how many claims and habits are due. Do not add it on every tool call to search the pack: a turn issues many tool calls and one prompt. On a tool call the hook applies the TCB (<code>ljos-policyd</code>) and then the pack's rules, and a deny blocks.</p>
+        <h2>A runner with a register command</h2>
+        <p>A runner that registers servers by a command of its own, or reads them from a config file, can be described once in <code>~/.config/ljos/harnesses.toml</code> and onboarded in one verb. <code>ljos onboard --example</code> prints the shape; <code>--dry-run</code> reports and writes nothing.</p>
 <pre>[[harness]]
-name = "runner-c"
-config = "~/.runner-c/config.toml"
-marker = "[mcp_servers.ljos]"
-snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nstartup_timeout_sec = 30\nenv = { LJOS_SEAT = \"{name}\", GROK_SESSION_ID = \"${GROK_SESSION_ID}\" }\n"
-
-[[harness]]
 name = "runner-a"
-register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "-e", "LJOS_SEAT={name}", "-e", "GROK_SESSION_ID=${GROK_SESSION_ID}", "--", "{server}"]
+register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "--", "{server}"]
 registered = ["runner-a", "mcp", "get", "ljos"]
 skills = "~/.runner-a/skills"
 hooks = "~/.runner-a/settings.json"
@@ -68,29 +80,16 @@ hooks = "~/.runner-a/settings.json"
 name = "runner-b"
 config = "~/.runner-b/config.toml"
 marker = "[mcp_servers.ljos]"
-snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nenv = { LJOS_SEAT = \"{name}\", GROK_SESSION_ID = \"${GROK_SESSION_ID}\" }\n"
-skills = "~/.runner-b/skills"
-hooks = "~/.runner-b/hooks.json"</pre>
-        <p>Then, for each:</p>
+snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\n"
+skills = "~/.runner-b/skills"</pre>
 <pre>$ ljos onboard --harness runner-a
 ok	host key	/home/you/.config/deedar/host.key exists
 ok	runner-a mcp	ran runner-a mcp add -s user ljos -- /home/you/.cargo/bin/ljos-mcp
 ok	hook	memory hook: add it on UserPromptSubmit in /home/you/.runner-a/settings.json
-ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md
-$ ljos doctor | grep runner</pre>
-        <p>Three things land. The server, so the runner has the seat's tools. The skill is the protocol <code>ljos protocol</code> prints: which store answers which question, the order of verbs in a sitting, the refusals worth knowing. The memory hook runs before each <em>prompt</em>. The runner pipes the prompt to <code>ljos hook</code>. The memories it activates come back as context, preferences first, each once per session. Do not add <code>PreToolUse</code> to search the pack. A turn issues many tool calls and one prompt. On a tool call, <code>ljos hook</code> applies the TCB (<code>ljos-policyd</code>) and then pack rules. A deny blocks. Searching on every tool is what made Grok wait 20s and print <code>Ljos Ljos Due</code>. <code>--dry-run</code> reports and writes nothing.</p>
-        <p><code>{server}</code> in a table is the path to <code>ljos-mcp</code>, <code>{name}</code> the runner's name. Passing <code>LJOS_SEAT={name}</code> to the server, as the tables above do, makes each runner claim and vote under its own name. Two runners on one host share the one pack and the one tracker. <code>ljos sitting</code> without <code>--assignee</code> takes that name. Neither is refused as busy for what the other holds. A persona named with <code>as</code> speaks over both.</p>
-        <h2>Any other runner</h2>
-<pre>$ ljos onboard --harness json
-{
-  "mcpServers": {
-    "ljos": { "type": "stdio", "command": "/home/you/.cargo/bin/ljos-mcp", "args": [], "env": { "LJOS_SEAT": "runner", "GROK_SESSION_ID": "${GROK_SESSION_ID}" } }
-  }
-}
-$ ljos protocol &gt; instructions.md</pre>
-        <p>Paste the entry where the runner keeps its MCP servers. Cursor, Pi, and the rest take this shape. Put the protocol where the agent reads its instructions. If the runner has hooks, a command hook on <em>prompts</em> that runs <code>ljos hook</code> completes the set. Grok: <code>ljos onboard --harness grok</code> writes the frozen hook file. The prompt's pack is held and emitted on <code>PostToolUse</code>. Later <code>cargo binstall ljos</code> is the new hook. Name <code>ljos-mcp</code> on PATH; bump <code>LJOS_MCP_GENERATION</code> to respawn. Crate page: <a href="https://leidarljos.github.io/ljos/grok-build.html">Grok Build</a>.</p>
+ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md</pre>
+        <p><code>{server}</code> is the path to <code>ljos-mcp</code>. Nothing about the seat's name goes in the table.</p>
         <h2>The two verbs an agent runs</h2>
-<pre>ljos sitting &lt;issue&gt; --assignee &lt;name&gt;       # doctor, cards, due, island, recall, timeline, claim
+<pre>ljos sitting &lt;issue&gt;                      # doctor, cards, due, island, recall, timeline, claim
 ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember, fire, complete, learn</pre>
         <p>One verb opens a sitting in the protocol's order and stops at the first store that does not answer. One closes it. The loop that makes the seat a memory runs every time. It does not wait for someone to remember the steps.</p>
         <h2>Cite a deed on a ticket</h2>
