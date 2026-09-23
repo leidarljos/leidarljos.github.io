@@ -55,38 +55,24 @@
         </ul>
         <div class="walk">
           <section>
-            <h2>1. Install the binaries this walk uses</h2>
-            <pre>$ cargo binstall ljos
-$ command -v ljos</pre>
-            <p>The seat is one crate. Habitat writers (<code>packsetd</code>, <code>deedar</code>) are still separate binaries until those crates ship them from one package. This walk also needs a writer:</p>
-            <pre>$ cargo binstall packset packset-daemon deedar-cli</pre>
-            <p>Without <code>cargo-binstall</code>, <code>cargo install ljos</code> is the same. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
+            <h2>1. Install</h2>
+            <pre>$ cargo binstall ljos packset</pre>
+            <p>Without <code>cargo-binstall</code>, <code>cargo install ljos packset</code> is the same. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
           </section>
           <section>
-            <h2>2. Remember without a writer fails</h2>
+            <h2>2. Write one claim, then retrieve it</h2>
             <pre>$ ljos remember "the default fuse is CombMNZ"
-Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...</pre>
-            <p>That error is the first success. The seat will not invent a store, and it does not report a writer that is down as an empty pack.</p>
+$ ljos search fuse</pre>
+            <p><code>ljos remember</code> starts the writer when none is answering. <code>PACKSET_URL=off</code> is the one way to have no pack. A URL pointed somewhere else is not replaced.</p>
           </section>
           <section>
-            <h2>3. Start a scratch writer</h2>
-            <pre>$ export PACKSET_URL=http://127.0.0.1:18761
-$ packsetd --port 18761 --home /tmp/seat-pack &amp;
-$ ljos doctor
-ok	pack	http://127.0.0.1:18761 workspace seat</pre>
-            <p>Do not call <code>packset ensure</code> against the default port if a writer is already up. That joins the live pack. If the pack row says no, stop.</p>
-          </section>
-          <section>
-            <h2>4. Write one claim, then retrieve it</h2>
-            <pre>$ ljos remember "the default fuse is CombMNZ"
-$ ljos search fuse
-1.0000  lesson  156eb2be9898...  the default fuse is CombMNZ
-$ ljos due
+            <h2>3. The clock</h2>
+            <pre>$ ljos due
 0 due; 1 scheduled, next at ...</pre>
-            <p>You should see kind <code>lesson</code> and the same sentence in the search hit. A review is scheduled a day out. Tomorrow <code>ljos due</code> lists the claim. <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.</p>
+            <p>Search shows kind <code>lesson</code> and the same sentence. A review is scheduled a day out. Tomorrow <code>ljos due</code> lists the claim. <code>ljos graded ID</code> (or <code>--lapsed</code>) moves the clock.</p>
           </section>
           <section>
-            <h2>5. Prefer is the same path</h2>
+            <h2>4. Prefer is the same path</h2>
             <pre>$ ljos prefer "never extract on write"
 $ ljos search extract
 1.0000  preference  ...  never extract on write</pre>
