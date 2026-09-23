@@ -5,39 +5,21 @@ A reader who has never used the seat can finish this page with one
 lesson in the pack, the same text coming back from search, and a review
 clock running on it.
 
-* Install every binary this walk uses
+* Install
 
 #+begin_src console
-$ cargo binstall ljos
-$ command -v ljos ljos-mcp packset packsetd deedar claimdag vissue ljos-consensus ljos-policyd
+$ cargo binstall ljos packset
 #+end_src
 
-You should see nine paths. If =packsetd= is missing, step 3 has no writer
-to start. =cargo install <crate>= works if you do not have =cargo-binstall=.
-
-* Remember without a writer fails
-
-#+begin_src console
-$ ljos remember "the default fuse is CombMNZ"
-Error: remember: the pack writer did not answer at http://127.0.0.1:8761 ...
-#+end_src
-
-That error is the first success. The seat will not invent a store, and
-it does not report a writer that is down as an empty pack.
-
-* Start the writer
-
-#+begin_src console
-$ export PACKSET_URL=http://127.0.0.1:18761
-$ packsetd --port 18761 --home /tmp/seat-pack &
-$ ljos doctor
-ok	pack	http://127.0.0.1:18761 workspace seat
-#+end_src
-
-Do not call =packset ensure= against the default port if a writer is
-already up. That joins the live pack. If the =pack= row says =no=, stop.
+=cargo install ljos packset= is the same without =cargo-binstall=.
 
 * Write one claim, then retrieve it
+
+=ljos remember= starts the writer when none is answering.
+=PACKSET_URL=off= is the one way to have no pack. A URL pointed
+somewhere else is not replaced.
+
+* The clock
 
 #+begin_src console
 $ ljos remember "the default fuse is CombMNZ"
