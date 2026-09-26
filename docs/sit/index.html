@@ -65,7 +65,7 @@ $ ljos doctor</pre>
           </section>
           <section>
             <h2>2. Make a ticket and sit it</h2>
-            <p><code>sitting</code> prints seven sections and stops at the first store that does not answer: doctor, cards, due, the island the title activates, recall, timeline, then the claim. After the sitting, read each due row and run <code>ljos graded ID</code> (or <code>--lapsed</code>). The clock does not move until you grade.</p>
+            <p><code>sitting</code> prints nine sections and stops at the first store that does not answer: doctor, cards, due, the island the title activates, open blockers, the playbook it binds, recall, timeline, then the claim. When the tracker is a git checkout, the claim is committed and pushed, so another host sees who holds the ticket. After the sitting, read each due row and run <code>ljos graded ID</code> (or <code>--lapsed</code>). The clock does not move until you grade.</p>
             <p><code>--assignee</code> is for a named worker. Left off, or given as a pronoun (<code>you</code>, <code>seat</code>, <code>agent</code>), the holder is this conversation's: the seat tagged with its process, the same in the runner's tools and its shells (<code>ljos seat</code> prints it). Occupancy is <code>holder:issue</code>, so two conversations do not share one slot and a second sitting does not release the first.</p>
             <pre>$ id=$(vissue create -p demo "Ship the fuse change?" -q)
 $ ljos sitting $id --assignee alice
@@ -85,10 +85,11 @@ $ ljos deed $id --add deed-file-the-fuse-patch</pre>
           </section>
           <section>
             <h2>4. Finish</h2>
-            <p>The lesson is remembered. The island fires. The session node completes. An outcome, when named, rewrites trust. The tracker issue is still open until someone closes it there.</p>
+            <p>The lesson is remembered. The island fires. The session node completes. An outcome, when named, rewrites trust. The tracker issue is still open until someone closes it there. When the tracker is a git checkout, finish commits the ticket's file and pushes it; the last line says so. A closure that stays in one working tree does not exist for any other host.</p>
             <pre>$ ljos finish $id --lesson "The fuse patch shipped as one file. Nothing else moved."
 remembered ...
-completed the session node ... as done</pre>
+completed the session node ... as done
+tracker git: committed and pushed chore(issues): ... finished</pre>
           </section>
         </div>
         <p class="quiet">Agreement is <code>ljos consensus</code> over <a href="/consensus/">ljos-consensus</a> on crates.io. The seat crate walks the same loop: <a href="/ljos/getting-started.html">ljos getting started</a>. Field note: <a href="/handbook/session/">completing is not closing</a>.</p>
