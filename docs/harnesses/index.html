@@ -97,6 +97,17 @@ ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember
 ljos deed &lt;id&gt; --add deed-…
 ljos recall &lt;id&gt;</pre>
         <p>Citing a deed names it; the bytes stay in deedar. The ticket stays open until vissue closes it.</p>
+        <h2>Share the seat across machines</h2>
+<pre>ljos sync --key                     # this machine's age public key
+cat .ljos/sync.toml                 # in the tracker repository
+name = "work"
+recipients = ["age1…", "age1…"]     # the machines allowed to read it
+ljos sync                           # take the others' logs, write this one's</pre>
+        <p>Memory travels with the tracker repository. Each machine writes one sealed log under <code>.ljos/atoms/</code>, and only the named recipients can open it. The sitting takes the other machines' logs before it walks the island, and finish writes this machine's. A lesson takes the scope of the repository its issue lives in; a <code>[projects]</code> table in <code>sync.toml</code> sends one project's lessons to another scope.</p>
+        <h2>Merge the tracker by heading</h2>
+<pre>vissue merge-driver --install       # in each clone of the tracker
+git add .gitattributes &amp;&amp; git commit -m "chore: merge issues.org by heading"</pre>
+        <p>Two hosts that edit one <code>issues.org</code> merge by issue, not by line: notes and ballots from both sides are kept, and a state both sides moved takes the later logged move. A field both sides changed some other way keeps yours and is written on the issue as a merge-conflict note. <code>ljos doctor</code> fails the tracker row in a clone that lacks the driver.</p>
       </div>
     </main>
   </div>
