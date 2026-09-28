@@ -58,6 +58,7 @@
             <h2>1. Install</h2>
             <pre>$ cargo binstall ljos packset</pre>
             <p>Without <code>cargo-binstall</code>, <code>cargo install ljos packset</code> is the same. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
+            <p>Work starts as a ticket. <code>vissue q -p PROJECT "TITLE"</code> mints it in the tracker <code>VISSUE_ROOT</code> names, and <code>ljos sitting</code> claims it. That tracker is yours. A ticket filed on one machine is invisible to every other install until <code>VISSUE_ROOT</code> is a git checkout those machines share. The <a href="/docs/sit/">sit</a> page uses a scratch tracker under <code>/tmp</code> so a first run does not touch a live one.</p>
           </section>
           <section>
             <h2>2. Write one claim, then retrieve it</h2>
