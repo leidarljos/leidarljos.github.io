@@ -13,6 +13,8 @@ The rows are memory. =ljos learn ID --outcome OPTION= shrinks the voters the out
 
 A panel is one subagent per persona, each started from =ljos brief NAME ID=, each casting one ballot as itself, then the settle. =ljos persona NAME --anchor A --view TEXT --about DOMAIN= writes the persona once; it stays in the pack.
 
+Where the machine turned Jev on, =ljos panel ID --jev= asks Jev for each persona's ballot first. Jev returns what the ballot always carried and a subagent had to guess: the chosen option's probability is the confidence, and its forecast of the panel is the prediction, so the settle and the surprisingly popular reading need nothing new. Personas answered by one model are one correlated voter, so the panel casts only when every seat is sure (confidence 0.8 or above) and all agree. Otherwise it casts nothing and writes the briefs, and the subagents take the contested question. =learn= scores a Jev ballot like any other.
+
 Four green ticks are a host rule for landing work. They are not the model. Do not report a count as if it were the crate.
 
 [[https://leidarljos.github.io/consensus/][consensus]] · [[https://leidarljos.github.io/ljos/][ljos]] · [[https://github.com/seldon-code/seldon][seldon-code]]
