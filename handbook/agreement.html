@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-19 Sat 15:13 -->
+<!-- 2026-09-29 Tue 22:44 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The settle is the consensus.</title>
@@ -61,6 +61,10 @@ The rows are memory. <code>ljos learn ID --outcome OPTION</code> shrinks the vot
 
 <p>
 A panel is one subagent per persona, each started from <code>ljos brief NAME ID</code>, each casting one ballot as itself, then the settle. <code>ljos persona NAME --anchor A --view TEXT --about DOMAIN</code> writes the persona once; it stays in the pack.
+</p>
+
+<p>
+Where the machine turned Jev on, <code>ljos panel ID --jev</code> asks Jev for each persona's ballot first. Jev returns what the ballot always carried and a subagent had to guess: the chosen option's probability is the confidence, and its forecast of the panel is the prediction, so the settle and the surprisingly popular reading need nothing new. Personas answered by one model are one correlated voter, so the panel casts only when every seat is sure (confidence 0.8 or above) and all agree. Otherwise it casts nothing and writes the briefs, and the subagents take the contested question. <code>learn</code> scores a Jev ballot like any other.
 </p>
 
 <p>
