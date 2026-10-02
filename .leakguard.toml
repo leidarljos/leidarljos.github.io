@@ -1,8 +1,13 @@
-# The site documents a seat for AI coding agents, so it names the runners
-# and models it drives and where those runners keep their config.
-# Instruction files stay banned.
+# Install docs name the harness CLIs. The identifier-shape pass stays on.
+# The site documents a seat for AI coding agents, so it also names the
+# runners and models it drives and where those runners keep their config.
 allow = [
+    "claude ",
+    "codex ",
+    "Claude",
+    "Codex",
     "vissue ",
+    "/ vissue",
     "vissue:",
     "claude",
     "codex",
