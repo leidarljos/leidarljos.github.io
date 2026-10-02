@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-09-29 Tue 22:44 -->
+<!-- 2026-10-02 Fri 06:50 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>A check is the argv verdict.</title>
@@ -99,6 +99,16 @@ together, so what served one sitting is wired for the next.
 
 <p>
 Law can live in the pack: <code>ljos rule 'PATTERN' --verdict deny|ask --why "..."</code> writes a glob over the command line with a verdict, and the hook returns it as the runner's permission decision while <code>ljos policy</code> prints it beside the line. A rule is memory: dated, supersedable, exported in handovers.
+</p>
+
+<p>
+A pack rule is tried on the whole line and on each command the line
+runs. The line splits on <code>&amp;&amp;</code>, <code>||</code>, <code>;</code>, <code>|</code> and <code>&amp;</code> outside quotes,
+and leading <code>NAME=value</code> assignments and <code>sudo</code>, <code>env</code>, <code>time</code>, <code>nohup</code>
+come off, so <code>cd repo &amp;&amp; git push</code> meets <code>git push*</code> and a commit message
+that names a command does not. A pattern that says <code>re:</code>, or carries
+<code>\b</code>, <code>\s</code>, <code>\d</code>, <code>\w</code> or an alternation group, is a regular expression
+anchored at the command's start.
 </p>
 
 <p>

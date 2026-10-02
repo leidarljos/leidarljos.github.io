@@ -46,6 +46,14 @@ together, so what served one sitting is wired for the next.
 
 Law can live in the pack: =ljos rule 'PATTERN' --verdict deny|ask --why "..."= writes a glob over the command line with a verdict, and the hook returns it as the runner's permission decision while =ljos policy= prints it beside the line. A rule is memory: dated, supersedable, exported in handovers.
 
+A pack rule is tried on the whole line and on each command the line
+runs. The line splits on =&&=, =||=, =;=, =|= and =&= outside quotes,
+and leading =NAME=value= assignments and =sudo=, =env=, =time=, =nohup=
+come off, so =cd repo && git push= meets =git push*= and a commit message
+that names a command does not. A pattern that says =re:=, or carries
+=\b=, =\s=, =\d=, =\w= or an alternation group, is a regular expression
+anchored at the command's start.
+
 Edit a pack rule only when argv law itself changes. Do not write
 comments, dates, ticket ids, or sitting notes into it. If the binary
 is down, leave the pack rules alone.

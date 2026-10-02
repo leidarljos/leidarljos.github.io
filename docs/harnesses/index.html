@@ -88,6 +88,15 @@ ok	runner-a mcp	ran runner-a mcp add -s user ljos -- /home/you/.cargo/bin/ljos-m
 ok	hook	memory hook: add it on UserPromptSubmit in /home/you/.runner-a/settings.json
 ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md</pre>
         <p><code>{server}</code> is the path to <code>ljos-mcp</code>. Nothing about the seat's name goes in the table.</p>
+        <p>A runner whose hooks file maps a hook name to its events, and whose payload does not name the event, takes <code>hooks_named</code>: the seat writes its hooks under that name, each command told its event with <code>ljos hook --event</code>. Antigravity's <code>agy</code> is one: <code>ljos onboard --harness antigravity</code> registers the server in <code>~/.gemini/config/mcp_config.json</code>, writes the skill under <code>~/.gemini/config/skills</code>, and puts the gate on <code>run_command</code>, the notes on each model call and the stop audit in <code>~/.gemini/config/hooks.json</code>. That runner asks the person on an <code>ask</code> itself.</p>
+<pre>[[harness]]
+name = "antigravity"
+config_json = "~/.gemini/config/mcp_config.json"
+json_pointer = "/mcpServers/ljos"
+json_entry = '{"command": "{server}", "args": [], "env": {"LJOS_SEAT": "{name}"}}'
+skills = "~/.gemini/config/skills"
+hooks = "~/.gemini/config/hooks.json"
+hooks_named = "ljos"</pre>
         <h2>The two verbs an agent runs</h2>
 <pre>ljos sitting &lt;issue&gt;                      # doctor, cards, due, island, recall, timeline, claim
 ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember, fire, complete, learn</pre>
@@ -113,6 +122,33 @@ git add .gitattributes &amp;&amp; git commit -m "chore: merge issues.org by head
 enabled = true
 key_cmd = ["pass", "show", "api/typesafe/jev"]</pre>
         <p>Jev is TypeSafe's decision model: it answers yes-or-no, choice and score questions with probabilities, and writes no text. With the file above, three judgments go to it. The prompt hook asks which of up to ten claims bear on the prompt and whether the prompt corrects the agent or puts a choice; the local cross-encoder is then never loaded. <code>ljos vote --as NAME --jev</code> and <code>ljos panel --jev</code> ask for persona ballots, cast one when Jev is sure (confidence 0.8 or above) and write a brief for a subagent when it is not; a panel casts only when every seat is sure and all agree, because personas answered by one model are correlated voters. On <code>Stop</code> and <code>SubagentStop</code> it reads the turn once and holds an agent that claims done beside a red test run, or that puts asked work off. A prompt costs about $0.00004 and a stop $0.00003; <code>monthly_usd</code> caps the month, identical requests are answered from a local cache, and <code>ljos doctor</code> prints the month's calls and spend. With no file, no key or no answer inside two seconds, the local path answers.</p>
+        <h2>Layer the judges: fast first, thinkers when it is close</h2>
+        <p>Jev answers in milliseconds with a calibrated probability and no reasoning. A runner in its one-shot mode reasons and takes a minute. <code>jev.toml</code> names both kinds as <code>[judges.NAME]</code> and layers them. <code>[route]</code> names the fast judges each decision goes to first: <code>prompt</code>, <code>ballot</code>, <code>audit</code>, <code>review</code>. <code>[escalate]</code> names the thinkers a decision goes on to when the fast pool leaves it open, a probability between 0.2 and 0.8 or a choice under 0.8 confidence. Judges on one decision are pooled: probabilities by the weighted mean of their log-odds, choices by the geometric mean of their distributions. The log keeps every judge's answer and every thinker's two-sentence why.</p>
+<pre>[judges.local]
+backend = "chat"
+endpoint = "https://llm.example.org/v1"
+model = "local-120b"
+key_env = "LLM_API_KEY"
+
+[judges.grok]
+backend = "command"
+command_mode = "prompt"
+command = ["grok", "-p"]
+budget_ms = 90000
+
+[route]
+review = ["local"]
+ballot = ["default", "local"]
+
+[escalate]
+review = ["grok"]
+ballot = ["grok"]</pre>
+        <p>A thinker never runs unseen. It opens in a herdr pane, or a window of the tmux session <code>ljos-judges</code>, names itself, and keeps a shell open after it answers, so the person can read the reasoning, attach, or stop it; a stopped pane gives no answer and that judge abstains. A hook never escalates, since runners cut hooks off within seconds, and a thinker runs with <code>LJOS_JUDGE=1</code>, under which the seat's hook injects nothing into its turn. <code>ljos due --judge</code> puts the due page to the review judges with the pack's newer claims on each: a claim that stands at 0.9 is graded recalled, a contradicted one is named for the agent to supersede, and none is lapsed by a judge.</p>
+        <h2>Push where it is safe, cite where it is not</h2>
+        <p>An asked <code>git push</code> is gated by where it goes. <code>~/.config/ljos/push.toml</code> names the person's <code>owners</code> and the <code>shared</code> repositories among them. A branch push to an owner's repository with no tags runs. One with tags, or shared, runs when the line cites the decision behind it, and the pass is noted on that issue:</p>
+<pre>LJOS_CITE=surf-ab12 git push origin main     # surf-ab12 settles, or closed as a decision
+LJOS_CITE=d-7f3a9c git push origin main      # or a current deed</pre>
+        <p>Another owner's remote, tags, a mirror or a force stay the person's to run. With no file no push is free.</p>
       </div>
     </main>
   </div>
