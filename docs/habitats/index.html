@@ -29,11 +29,18 @@
       </a>
       <ul>
         <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/search/">Search</a></li><li><a href="/docs/about/">About</a></li>
-        <li><a href="/docs/reference/">Reference</a></li>
         <li><a href="/handbook/">Handbook</a></li>
-        <li><a href="https://leidarljos.github.io/vissue">vissue</a></li>
-        <li><a href="https://github.com/leidarljos">GitHub</a></li>
+        <li class="nav-later"><a href="/docs/reference/">Reference</a></li>
+        <li class="nav-later"><a href="https://leidarljos.github.io/vissue">vissue</a></li>
+        <li class="nav-later"><a href="https://github.com/leidarljos">GitHub</a></li>
       </ul>
+      <details class="nav-more">
+        <summary>More</summary>
+        <a href="/docs/about/">About</a>
+        <a href="/docs/reference/">Reference</a>
+        <a href="https://leidarljos.github.io/vissue">vissue</a>
+        <a href="https://github.com/leidarljos">GitHub</a>
+      </details>
       <form class="nav-search" role="search" action="/docs/search/" method="get">
         <label class="skip" for="nav-q">Search</label>
         <input id="nav-q" name="q" type="search" placeholder="Search" />
@@ -42,7 +49,6 @@
     <main id="main">
       <div class="page">
         <header class="intro">
-          <p class="kicker">Crates</p>
           <h1>Their own sites.</h1>
           <p class="lead">Each habitat keeps its own crate. Each crate keeps Org under <code>docs/orgmode/</code> and a Sphinx site, the same shape as vissue. This page is a directory.</p>
         </header>
