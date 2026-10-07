@@ -203,6 +203,7 @@ a.btn-gold:hover,
   color: var(--cream);
   font: 1.05rem/1.4 var(--sans);
   padding: 0.7rem 0.85rem;
+  min-height: 44px;
 }
 .site-search input[type="search"]:focus {
   outline: 2px solid var(--gold);
@@ -651,6 +652,21 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
   body::before { width: 64vw; height: 64vw; opacity: 0.12; }
 }
 @media (max-width: 720px) {
+  nav.top { padding: 0.45rem 0 0.35rem; gap: 0.25rem 0.8rem; }
+  nav.top ul {
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    gap: 0 0.15rem;
+  }
+  nav.top ul a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.55rem;
+    white-space: nowrap;
+  }
+  nav.top .nav-search { margin-left: 0; }
+  nav.top .nav-search input[type="search"] { min-height: 44px; }
   .docs-grid, .hb-notes { grid-template-columns: 1fr; }
   .field-map li { grid-template-columns: 1fr; gap: 0.2rem; }
   td:first-child { white-space: normal; }

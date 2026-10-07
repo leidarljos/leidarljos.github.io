@@ -50,7 +50,7 @@
         .sort(function (a, b) { return b.s - a.s; })
         .slice(0, 20);
       if (!hits.length) {
-        out.innerHTML = "<p class=\"quiet\">No pages matched.</p>";
+        out.innerHTML = "<p class=\"quiet\">No pages matched. Try a word from a claim, or open <a href=\"/docs/\">Docs</a>.</p>";
         return;
       }
       out.innerHTML = hits.map(function (h) {
