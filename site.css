@@ -34,8 +34,8 @@ html, body {
 }
 body {
   font-family: var(--sans);
-  font-size: 1.05rem;
-  line-height: 1.65;
+  font-size: 1.0625rem;
+  line-height: 1.7;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -131,14 +131,22 @@ h1, h2, h3, h1.title {
   font-weight: 600;
   color: var(--cream);
 }
+h1, h2, h3 { text-wrap: balance; }
 h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); margin: 0 0 0.4rem; line-height: 1.08; }
-h2 { font-size: clamp(1.45rem, 2.6vw, 1.9rem); margin: 2.2rem 0 0.55rem; }
-h3 { font-size: 1.2rem; margin: 0 0 0.4rem; }
-p, li { color: var(--mute); overflow-wrap: break-word; }
+h2 { font-size: clamp(1.45rem, 2.6vw, 1.9rem); margin: 2.2rem 0 0.55rem; line-height: 1.2; }
+h3 { font-size: 1.2rem; margin: 0 0 0.4rem; line-height: 1.25; }
+p, li {
+  color: var(--mute);
+  overflow-wrap: break-word;
+  line-height: 1.7;
+  letter-spacing: 0.008em;
+}
+.page p, .page li, #content p, #content li, .band p, .measure p, p.lead {
+  max-width: 66ch;
+}
 p.lead {
   font-size: 1.2rem;
   line-height: 1.5;
-  max-width: 36rem;
   color: var(--cream-2);
 }
 code, pre { font-family: var(--mono); }
@@ -405,6 +413,7 @@ a.btn-gold:hover,
   font-size: clamp(3.2rem, 7vw, 5rem);
   font-weight: 600;
   letter-spacing: -0.04em;
+  font-variant-numeric: lining-nums tabular-nums;
   color: var(--gold);
   line-height: 0.9;
 }
@@ -467,7 +476,7 @@ a.btn-gold:hover,
 /* Docs */
 .page { padding: 2.6rem 0 4rem; }
 .page header.intro { margin-bottom: 1.6rem; max-width: 40rem; }
-.page header.intro h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); }
+.page header.intro h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
 .subnav {
   display: flex;
   flex-wrap: wrap;
@@ -500,10 +509,15 @@ a.btn-gold:hover,
   min-height: 10rem;
 }
 .docs-card:hover { border-color: var(--gold-dim); color: inherit; }
-.docs-card h2 { margin: 0 0 0.4rem; font-size: 1.45rem; }
+.docs-card h2 { margin: 0 0 0.4rem; font-size: 1.2rem; line-height: 1.25; }
 .docs-card p { margin: 0; flex: 1; }
 
-table { width: 100%; border-collapse: collapse; margin: 1.1rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.1rem 0;
+  font-variant-numeric: lining-nums tabular-nums;
+}
 th, td {
   text-align: left;
   padding: 0.6rem 0.4rem;
@@ -527,7 +541,7 @@ td:first-child { white-space: nowrap; }
   margin: 1.6rem 0 0;
 }
 .walk section h2 {
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   margin: 0 0 0.45rem;
 }
 .walk pre { margin: 0.7rem 0 0; }
@@ -656,7 +670,7 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
 h1.title {
   font-size: clamp(1.9rem, 4vw, 2.6rem);
 }
-#content p { line-height: 1.65; }
+#content p { line-height: 1.7; }
 .ef-D, .ef-vp { color: inherit; background: transparent; }
 #content dl { margin: 1rem 0; }
 #content dt { color: var(--cream); font-family: var(--serif); font-weight: 600; }
