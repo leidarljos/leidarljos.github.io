@@ -1,0 +1,62 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "em-dash-overuse",
+        "value": "*",
+        "files": [
+          "docs/harnesses/index.html"
+        ],
+        "createdAt": "2026-10-07T20:21:30.584Z",
+        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+      },
+      {
+        "rule": "em-dash-overuse",
+        "value": "*",
+        "files": [
+          "docs/island/index.html"
+        ],
+        "createdAt": "2026-10-07T20:21:32.305Z",
+        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+      },
+      {
+        "rule": "em-dash-overuse",
+        "value": "*",
+        "files": [
+          "docs/sit/index.html"
+        ],
+        "createdAt": "2026-10-07T20:21:33.974Z",
+        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+      },
+      {
+        "rule": "em-dash-overuse",
+        "value": "*",
+        "files": [
+          "handbook/agreement.html"
+        ],
+        "createdAt": "2026-10-07T20:21:35.606Z",
+        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+      },
+      {
+        "rule": "overused-font",
+        "value": "source serif 4",
+        "createdAt": "2026-10-07T20:22:01.313Z",
+        "reason": "Recorded display face in site.css."
+      },
+      {
+        "rule": "overused-font",
+        "value": "source sans 3",
+        "createdAt": "2026-10-07T20:22:02.986Z",
+        "reason": "Recorded reading face in site.css."
+      },
+      {
+        "rule": "overused-font",
+        "value": "ibm plex mono",
+        "createdAt": "2026-10-07T20:22:04.644Z",
+        "reason": "Recorded specimen face in site.css."
+      }
+    ]
+  }
+}

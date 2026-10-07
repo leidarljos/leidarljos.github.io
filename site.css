@@ -56,7 +56,7 @@ body::before {
 .wrap, footer.antics { position: relative; z-index: 1; }
 
 a { color: var(--cream); text-underline-offset: 0.18em; }
-a:hover { color: var(--gold); }
+a:hover { text-decoration-thickness: 2px; }
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
@@ -132,7 +132,7 @@ h1, h2, h3, h1.title {
 h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); margin: 0 0 0.4rem; line-height: 1.08; }
 h2 { font-size: clamp(1.45rem, 2.6vw, 1.9rem); margin: 2.2rem 0 0.55rem; }
 h3 { font-size: 1.2rem; margin: 0 0 0.4rem; }
-p, li { color: var(--mute); }
+p, li { color: var(--mute); overflow-wrap: break-word; }
 p.lead {
   font-size: 1.2rem;
   line-height: 1.5;
@@ -147,6 +147,9 @@ pre {
   border-radius: 8px;
   padding: 0.95rem 1.05rem;
   overflow-x: auto;
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   color: var(--cream);
   font-size: 0.86rem;
   line-height: 1.55;
@@ -154,11 +157,12 @@ pre {
 
 .kicker {
   color: var(--gold);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 0 0.7rem;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  margin: 0 0 0.55rem;
 }
 
 .btn {
@@ -172,7 +176,8 @@ pre {
   font-size: 0.98rem;
 }
 .btn-gold { background: var(--gold); color: var(--ink); }
-.btn-gold:hover { color: var(--ink); filter: brightness(1.06); }
+a.btn-gold:hover,
+.btn-gold:hover { color: var(--ink); background: var(--gold); filter: brightness(1.06); }
 .btn-ghost {
   border: 1px solid var(--line-2);
   color: var(--cream);
@@ -330,7 +335,7 @@ pre {
 .term-tabs button[aria-selected="true"],
 .term-tabs button:hover {
   color: var(--gold);
-  background: rgba(230, 162, 60, 0.1);
+  background: var(--ink);
 }
 .term-body {
   margin: 0;
@@ -416,7 +421,7 @@ pre {
 .crate-index {
   list-style: none;
   margin: 1.2rem 0 0;
-  padding: 0;
+  padding: 0.65rem 0 0;
   border-top: 1px solid var(--line);
 }
 .crate-index li { border-bottom: 1px solid var(--line); }
@@ -551,7 +556,9 @@ footer.antics {
   color: var(--mute);
   font-size: 0.88rem;
 }
-footer.antics a { color: inherit; }
+footer.antics,
+footer.antics span,
+footer.antics a { color: var(--mute); }
 footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
 
 .field-map {
@@ -631,6 +638,7 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
   .docs-grid, .hb-notes { grid-template-columns: 1fr; }
   .field-map li { grid-template-columns: 1fr; gap: 0.2rem; }
   td:first-child { white-space: normal; }
+  nav.top .nav-search input[type="search"] { width: 100%; max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
