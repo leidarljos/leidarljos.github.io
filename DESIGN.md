@@ -30,9 +30,9 @@ typography:
     letterSpacing: "-0.03em"
   body:
     fontFamily: "Source Sans 3, system-ui, Segoe UI, Roboto, sans-serif"
-    fontSize: "1.05rem"
+    fontSize: "1.0625rem"
     fontWeight: 400
-    lineHeight: 1.65
+    lineHeight: 1.7
   label:
     fontFamily: "Source Serif 4, Iowan Old Style, Palatino, Palatino Linotype, Charter, Georgia, serif"
     fontSize: "0.95rem"
@@ -197,7 +197,7 @@ The palette is the custom properties in `site.css`. Gold is the only accent.
 
 - **Display** (600, `clamp(2.1rem, 5vw, 3.4rem)`, 1.08): the claim heading.
 - **Headline** (600, `clamp(1.45rem, 2.6vw, 1.9rem)`): section headings.
-- **Body** (400, 1.05rem, 1.65): reading text, max measure about 38rem on narrow pages.
+- **Body** (400, 1.0625rem, 1.7, tracking 0.008em): reading text, measure 66ch.
 - **Label** (600, 0.95rem, serif, no tracking): the line above a heading. It is a sentence, not a chip.
 - **Mono** (400, 0.86rem, 1.55): install lines and the sitting specimen.
 
