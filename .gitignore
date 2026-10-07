@@ -112,3 +112,6 @@ sphinx/.venv-docs/
 sphinx/build/
 
 public/
+
+# Local design-skill install. Not part of the published site.
+.grok/
