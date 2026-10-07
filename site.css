@@ -109,6 +109,19 @@ nav.top ul {
 nav.top a { color: inherit; text-decoration: none; }
 nav.top a:hover,
 nav.top a[aria-current="page"] { color: var(--gold); }
+.nav-more {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.nav-more summary { cursor: pointer; list-style: none; }
+.nav-more summary::-webkit-details-marker { display: none; }
 nav.top .nav-search input[type="search"] {
   width: 11rem;
   max-width: 36vw;
@@ -657,6 +670,24 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
     flex: 1 1 auto;
     flex-wrap: wrap;
     gap: 0 0.15rem;
+  }
+  nav.top li.nav-later { display: none; }
+  nav.top .nav-more {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  nav.top .nav-more:not([open]) > a { display: none; }
+  nav.top .nav-more summary,
+  nav.top .nav-more[open] a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 0.55rem;
   }
   nav.top ul a {
     display: inline-flex;
