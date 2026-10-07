@@ -56,6 +56,15 @@
         "value": "ibm plex mono",
         "createdAt": "2026-10-07T20:22:04.644Z",
         "reason": "Recorded specimen face in site.css."
+      },
+      {
+        "rule": "em-dash-overuse",
+        "value": "*",
+        "files": [
+          "docs/policy/index.html"
+        ],
+        "createdAt": "2026-10-07T20:29:15.097Z",
+        "reason": "Doubled hyphens on this page are command flags in the specimens."
       }
     ]
   }
