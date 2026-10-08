@@ -139,9 +139,28 @@ key_cmd = ["pass", "show", "api/typesafe/jev"]</pre>
 <pre>$ ljos persona buildengineer --anchor 0.25 --view "Runs production pipelines." --runner grok
 $ ljos vote surf-ab12 --as buildengineer --jev
 buildengineer: Jev leaned A at confidence 0.61, under the 0.80 cut; not cast.
-  buildengineer reasons in its own session in herdr agent persona-buildengineer
+  buildengineer reasons in its own session in herdr pane w1:p2
 $ ljos ask buildengineer "why A over B?"</pre>
-        <p>The runner works in the persona's home as the seat named after the persona, in a herdr pane or a window of the tmux session <code>ljos-personas</code> the person can watch and talk in, so its memories, ballots and trust rows are the persona's. It writes its reasoning with <code>vissue note</code> and casts <code>ljos vote --as NAME</code>; consensus weighs the ballot by the persona's trust row, and <code>learn</code> moves it. The runner's <code>[[harness]]</code> table says how it resumes the latest session of a directory (<code>resume = ["grok", "--continue"]</code>), so the next hand-off continues the same conversation, and an open pane takes the next task in place.</p>
+        <p>The runner works in the persona's home as the seat named after the persona, in a pane the person can watch and talk in, so its memories, ballots and trust rows are the persona's. The pane opens in the first tool that answers: a herdr workspace when herdr's server is up, else a window of the tmux session <code>ljos-personas</code>, else a <code>[[tool]]</code> table in <code>harnesses.toml</code>; <code>ljos doctor</code> names which. A runner that exits non-zero is resumed in its pane, at most three times a minute. It writes its reasoning with <code>vissue note</code> and casts <code>ljos vote --as NAME</code>; consensus weighs the ballot by the persona's trust row, and <code>learn</code> moves it. The runner's <code>[[harness]]</code> table says how it resumes the latest session of a directory (<code>resume = ["grok", "--continue"]</code>), so the next hand-off continues the same conversation, and an open pane takes the next task in place.</p>
+        <h2>Persona panes in any tool</h2>
+<pre>[[tool]]
+name = "mytool"
+detect = ["mytool", "--version"]
+open = [["mytool", "new-pane", "--cwd", "{home}", "--name", "{label}", "--", "sh", "{script}"]]
+prompt = [["mytool", "send", "--pane", "{label}", "{line}"], ["mytool", "send-key", "--pane", "{label}", "Enter"]]
+alive = ["mytool", "has-pane", "{label}"]</pre>
+        <p>Each verb of a tool is an argv, so a tool the seat has not met is one table, and a table named like a shipped shape (<code>herdr</code>, <code>tmux</code>) replaces it. A tool that refuses is named in the line <code>ljos ask</code> prints, with its own words, and the next one is tried. <code>LJOS_PANE_TOOL</code> picks one.</p>
+        <h2>Personas as subagents</h2>
+<pre>$ ljos agents --harness grok
+ok	agents grok	wrote 5 and removed 0 agent definitions in /home/you/.grok/agents</pre>
+        <p>Each persona becomes an agent definition, <code>ljos-NAME.md</code>, that Grok Build spawns by name (<code>spawn_subagent</code> with <code>subagent_type</code> <code>ljos-reviewer</code>) and Claude Code reads from <code>~/.claude/agents</code>. It runs <code>ljos brief</code>, casts one ballot before reading the others, notes why and stops, in a mode that runs commands and edits nothing. <code>onboard</code> writes them, and a persona written later refreshes them. A panel the seat opens itself runs its members on the seat's own runner.</p>
+        <h2>When a command fails</h2>
+        <p>A runner that reports a failed tool (Grok Build's <code>PostToolUseFailure</code>) gets back, with the failure, up to three standing claims that share two words with the command and its error: a lesson is worth most while the mistake it records is being made. Before a compaction the memories used so far fire together and may come back on a later prompt, and the next delivery names the issue the conversation still holds.</p>
+        <h2>The status bar</h2>
+<pre>[ui.status_line]                    # ~/.grok/config.toml
+type = "command"
+command = "ljos statusline"         # ljos grok · surf-ab12 · 3 due</pre>
+        <p>Claude Code takes the same command as its <code>statusLine</code>. The line is cached fifteen seconds a session.</p>
         <h2>Push where it is safe, cite where it is not</h2>
         <p>An asked <code>git push</code> is gated by where it goes, and the forge says whose a remote is: for GitHub, <code>gh api</code> gives the person's push permission, whether the owner is their own account, the collaborators and the releases. The answer is remembered in the pack as a standing claim on <code>repo:OWNER/REPO</code>, so later pushes read the pack, the hook raises it when a command names the repository, and the review clock brings it back. A branch push to the person's own repository with no other collaborator and no release runs. One with releases, other collaborators or an organisation's name runs when the line cites the decision behind it, and the pass is noted on that issue:</p>
 <pre>LJOS_CITE=surf-ab12 git push origin main     # surf-ab12 settles, or closed as a decision
