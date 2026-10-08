@@ -9,7 +9,7 @@
 
 On a hard question add a forecast beside the ballot, =ljos predict ID --expect OPTION=; with two or more forecasts the settle also names the surprisingly popular answer, the option whose actual share most exceeds its forecast, and shows each voter's standing from the rows.
 
-The rows are memory. =ljos learn ID --outcome OPTION= shrinks the voters the outcome refuted and loosens the anchors of refuted personas; =ljos calibrate -p PROJECT= writes rows from the project's history when nobody names an outcome; =ljos trust FROM TO W --about DOMAIN= sets one by hand, scoped. Under equal rows a settle is a count.
+The rows are memory. =ljos learn ID --outcome OPTION= adds the outcome to each voter's record, shrunk toward the panel's so one outcome moves no one and a run of them does, keeps the outcome, and loosens the anchors of refuted personas; once five issues have one, =ljos consensus= counts voters who err together once; =ljos calibrate -p PROJECT= writes rows from the project's history when nobody names an outcome; =ljos trust FROM TO W --about DOMAIN= sets one by hand, scoped. Under equal rows a settle is a count.
 
 A panel is one subagent per persona, each started from =ljos brief NAME ID=, each casting one ballot as itself, then the settle. =ljos persona NAME --anchor A --view TEXT --about DOMAIN= writes the persona once; it stays in the pack.
 
