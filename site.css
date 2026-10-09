@@ -765,3 +765,9 @@ h1.title {
   padding: 0.8rem 1rem;
   overflow: auto;
 }
+
+/* Placeholder text: Chrome falls back to #757575, 4.0:1 on the panel. --mute-2 is 5.2:1. */
+::placeholder {
+  color: var(--mute-2);
+  opacity: 1;
+}
