@@ -17,4 +17,6 @@ Where the machine turned Jev on, =ljos panel ID --jev= asks Jev for each persona
 
 Four green ticks are a host rule for landing work. They are not the model. Do not report a count as if it were the crate.
 
+The [[https://leidarljos.github.io/consensus/explanation.html][explanation]] is where a settle's claim comes from: the closed form the iteration solves for, the round count guaranteed for an anchored settle, the SymPy check and the interval enclosure under Derivations, proofs and certificates, and when to use each model.
+
 [[https://leidarljos.github.io/consensus/][consensus]] · [[https://leidarljos.github.io/ljos/][ljos]] · [[https://github.com/seldon-code/seldon][seldon-code]]
