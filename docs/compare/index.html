@@ -67,7 +67,7 @@
           </tbody>
         </table>
         <p>Answer accuracy on the same 470 uses a local 7&nbsp;B reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval prompts, top five sessions). CombMNZ fusion is 0.549. Lexical alone is 0.532. Labelled sessions, the ceiling for any retriever, are 0.634.</p>
-        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), same 7&nbsp;B reader. Conflict-resolution split 0.480. Published retrieval baselines on that split range from 0.155 to 0.295 with a stronger reader. Accurate-retrieval split 0.675 of 2000, against published 0.605 (BM25) and 0.651 (HippoRAG-v2).</p>
+        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), reader Qwen2.5-7B. Accurate retrieval scores each source on its own metric, then takes the mean of the four. Lexical job 11759 is 0.568 (95% CI 0.530-0.605, clustered by question). The per-source scores are SH 0.730, MH 0.530, LongMemEval (S*) 0.370 and EventQA 0.640. Published rows are BM25 0.605 and HippoRAG-v2 0.651 with a GPT-4o-mini reader. Conflict resolution at 262K is 0.395 for fused live (job 11750, CI 0.350-0.440) and 0.240 for lexical. The published FactConsolidation rows are BM25 0.255 and HippoRAG-v2 0.295. Hop2 (job 11793) is about 0.555 from the job log, with its verdicts held out.</p>
 
         <h2>Neighbouring published numbers</h2>
         <p>Two public repositories share the name agentmemory. They report different protocols. The first is session retrieval (R@5). The second is question answering with a hosted generator and a hosted judge. packset publishes both a retrieval row and a local-reader QA row so those protocols stay distinct.</p>
