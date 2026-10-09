@@ -71,7 +71,10 @@
           <section>
             <h2>2. Write one claim, then retrieve it</h2>
             <pre>$ ljos remember "the default fuse is CombMNZ"
-$ ljos search fuse</pre>
+8e3e7827...  lesson  due 2026-10-10T21:56:09.549Z  the default fuse is CombMNZ
+$ ljos search fuse
+Score is how the scorers ranked this query. ...
+1.0000  3/3  lesson  8e3e7827...  today  the default fuse is CombMNZ</pre>
             <p><code>ljos remember</code> starts the writer when none is answering. <code>PACKSET_URL=off</code> is the one way to have no pack. A URL pointed somewhere else is not replaced.</p>
           </section>
           <section>
@@ -84,7 +87,10 @@ $ ljos search fuse</pre>
             <h2>4. Prefer is the same path</h2>
             <pre>$ ljos prefer "never extract on write"
 $ ljos search extract
-1.0000  preference  ...  never extract on write</pre>
+Score is how the scorers ranked this query. ...
+2.0000  3/3  preference  fe9d4d04...  today  never extract on write
+1.0000  1/3  lesson      8e3e7827...  today  the default fuse is CombMNZ</pre>
+            <p>The fraction is how many of the scorers named the hit. Neither number says whether the claim is true.</p>
           </section>
         </div>
         <p class="quiet">Next: <a href="/docs/sit/">sit and finish</a>. The crate tutorial runs memory, agreement, and a handover: <a href="/ljos/getting-started.html">ljos getting started</a>.</p>

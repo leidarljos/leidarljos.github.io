@@ -23,20 +23,15 @@ somewhere else is not replaced.
 
 #+begin_src console
 $ ljos remember "the default fuse is CombMNZ"
-{
-  "kind": "lesson",
-  "level": "explicit",
-  "text": "the default fuse is CombMNZ",
-  "id": "156eb2be9898...",
-  "due_at": "2026-09-13T09:12:00.000Z"
-}
+8e3e7827...  lesson  due 2026-10-10T21:56:09.549Z  the default fuse is CombMNZ
 $ ljos search fuse
-1.0000  lesson  156eb2be9898...  the default fuse is CombMNZ
+Score is how the scorers ranked this query. ...
+1.0000  3/3  lesson  8e3e7827...  today  the default fuse is CombMNZ
 $ ljos due
-0 due; 1 scheduled, next at 2026-09-13T09:12:00.000Z
+0 due; 1 scheduled, next at 2026-10-10T21:56:09.549Z
 #+end_src
 
-You should see =kind= of =lesson=, the same sentence in the search hit,
+You should see the kind =lesson=, the same sentence in the search hit,
 and a review scheduled a day out. That is the retrieve and the clock. If
 search is empty, the write did not land. Tomorrow =ljos due= lists the
 claim; =ljos graded ID= (or =--lapsed=) moves the clock.
@@ -46,7 +41,9 @@ claim; =ljos graded ID= (or =--lapsed=) moves the clock.
 #+begin_src console
 $ ljos prefer "never extract on write"
 $ ljos search extract
-1.0000  preference  ...  never extract on write
+Score is how the scorers ranked this query. ...
+2.0000  3/3  preference  fe9d4d04...  today  never extract on write
+1.0000  1/3  lesson      8e3e7827...  today  the default fuse is CombMNZ
 #+end_src
 
 * Cards print files. They do not write them
@@ -73,7 +70,7 @@ answers which question, the order of verbs in a sitting, the refusals.
 =onboard= prints the server entry for any runner, or registers the
 server, installs the protocol as a skill, and installs the memory hook
 for a runner named in =~/.config/ljos/harnesses.toml=.
-[[https://leidarljos.github.io/docs/harnesses/][Harnesses]] shows the file.
+The [[https://leidarljos.github.io/docs/harnesses/][runner page]] shows the file.
 
 * After this works
 

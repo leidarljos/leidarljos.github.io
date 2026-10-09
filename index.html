@@ -56,7 +56,7 @@
       <header class="hero-journal">
         <h1>Write one claim. Search it back.</h1>
         <p class="rule" aria-hidden="true"></p>
-        <p class="lead">ljos writes one claim, then searches that claim back. Nothing is mined from chat.</p>
+        <p class="lead">ljos gives coding agents such as Claude Code, Codex, and Cursor a memory, a work tracker, and a check on every shell command. It writes one claim when you say Remember: or Prefer:, then searches that claim back. Nothing is mined from chat, and memory stays on your machine unless you turn on a remote judge.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="/docs/start/">Write one claim</a>
           <a class="btn btn-ghost" href="/docs/sit/">How sitting works</a>
@@ -65,7 +65,7 @@
       </header>
 
       <figure class="plate" aria-labelledby="fig-sit">
-        <figcaption id="fig-sit"><span>Fig. 1</span> A sitting. Seven sections. The ticket stays open until vissue closes it.</figcaption>
+        <figcaption id="fig-sit"><span>Fig. 1</span> A sitting, in the order ljos prints it. The ticket stays open until vissue closes it.</figcaption>
         <div class="term" aria-label="ljos sitting specimen">
           <div class="term-bar">
             <span class="term-title">specimen</span>
@@ -75,11 +75,14 @@
               <button type="button" role="tab" aria-selected="false" data-i="2">policy</button>
             </div>
           </div>
-          <pre class="term-body" id="term-out" role="tabpanel">$ ljos sitting demo-k29f --assignee alice
+          <pre class="term-body" id="term-out" role="tabpanel">$ ljos sitting demo-k29f
 == doctor
+== sync
 == cards
 == due
 == island
+== blockers
+== playbook
 == recall
 == timeline
 == claim
@@ -109,7 +112,7 @@ ljos search fuse</pre>
           <article>
             <span class="n">02</span>
             <h3>Sit</h3>
-            <p><code>ljos sitting</code> opens: doctor, cards, due, island, recall, timeline, claim. Cite what the work produced. The ticket stays open until vissue closes it.</p>
+            <p><code>ljos sitting</code> opens: doctor, sync, cards, due, island, blockers, playbook, recall, timeline, claim. Cite what the work produced. The ticket stays open until vissue closes it.</p>
           </article>
           <article>
             <span class="n">03</span>
@@ -117,10 +120,11 @@ ljos search fuse</pre>
             <p><code>ljos finish</code> remembers the lesson, fires the island, completes the session node, and learns from an outcome when one is named.</p>
           </article>
         </div>
+        <p class="quiet">Words: a <em>seat</em> is one agent runner on one machine, with its memory and claims. A <em>sitting</em> is one piece of work on one ticket. A <em>deed</em> is a hashed record of what that work produced. <em>packset</em> is the memory store, and <em>vissue</em> is the tracker, plain Org files in git. <a href="/docs/about/">leiðarljós</a> is Icelandic for a guiding light.</p>
       </section>
 
       <figure class="plate measure-plate" aria-labelledby="fig-measure">
-        <figcaption id="fig-measure"><span>Fig. 2</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large. Writes only on Remember: and Prefer:.</figcaption>
+        <figcaption id="fig-measure"><span>Fig. 2</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical. Writes only on Remember: and Prefer:.</figcaption>
         <table>
           <thead>
             <tr><th>arm</th><th>recall@5</th><th>QA / ceiling</th></tr>
@@ -157,10 +161,10 @@ ljos search fuse</pre>
   <script>
     (function () {
       var scenes = [
-        { cmd: "ljos sitting demo-k29f --assignee alice",
-          out: "== doctor\n== cards\n== due\n== island\n== recall\n== timeline\n== claim\ngen=2" },
+        { cmd: "ljos sitting demo-k29f",
+          out: "== doctor\n== sync\n== cards\n== due\n== island\n== blockers\n== playbook\n== recall\n== timeline\n== claim\ngen=2" },
         { cmd: "ljos remember \"the default fuse is CombMNZ\"",
-          out: "ljos: write only on explicit Remember:\nRemember: the default fuse is CombMNZ" },
+          out: "8e3e78270cd4…\tlesson\tdue 2026-10-10T21:56:09Z\tthe default fuse is CombMNZ" },
         { cmd: "ljos policy -- git push --force",
           out: "git push --force\ndeny\tgit-force-push" }
       ];
