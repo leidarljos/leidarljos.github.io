@@ -64,8 +64,8 @@
         <div class="walk">
           <section>
             <h2>1. Point at scratch stores</h2>
-            <p>A first sitting should not touch a live tracker. Export the roots, start the pack writer, and ask doctor.</p>
-            <pre>$ mkdir -p /tmp/seat &amp;&amp; cd /tmp/seat &amp;&amp; git init -q
+            <p>A first sitting should not touch a live tracker. Make an empty tracker directory, export the roots, start the pack writer, and ask doctor. A tracker is a directory holding <code>Software/</code> or a <code>vissue.toml</code>.</p>
+            <pre>$ mkdir -p /tmp/seat/tracker/Software &amp;&amp; cd /tmp/seat &amp;&amp; git init -q
 $ export VISSUE_ROOT=/tmp/seat/tracker DEEDAR_URL=file:///tmp/seat/deeds
 $ export CLAIMDAG_DIR=/tmp/seat/claims PACKSET_URL=http://127.0.0.1:18761
 $ packsetd --port 18761 --home /tmp/seat-pack &amp;
@@ -76,7 +76,7 @@ $ ljos doctor</pre>
             <p><code>sitting</code> prints its sections in order and stops at the first store that does not answer: doctor, sync, cards, due, the island the title activates, open blockers, the playbook it binds, the panel when the issue is a decision, recall, timeline, then the claim. Sync pulls the tracker and takes the other machines' sealed memory logs before the island is walked. On a decision issue the panel section writes one brief per persona the title names; each brief starts a subagent that casts one ballot as that persona, and <code>finish --close</code> refuses a decision with fewer than two ballots. When the tracker is a git checkout, the claim is committed and pushed, so another host sees who holds the ticket. After the sitting, read each due row and run <code>ljos graded ID</code> (or <code>--lapsed</code>). The clock does not move until you grade.</p>
             <p><code>--assignee</code> is for a named worker. Left off, or given as a pronoun (<code>you</code>, <code>seat</code>, <code>agent</code>), the holder is this conversation's: the seat tagged with its process, the same in the runner's tools and its shells (<code>ljos seat</code> prints it). Occupancy is <code>holder:issue</code>, so two conversations do not share one slot and a second sitting does not release the first.</p>
             <pre>$ id=$(vissue create -p demo "Ship the fuse change?" -q)
-$ ljos sitting $id --assignee alice
+$ ljos sitting $id
 == doctor
 ...
 == timeline
