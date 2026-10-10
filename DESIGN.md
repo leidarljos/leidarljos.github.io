@@ -15,6 +15,17 @@ colors:
   mute-2: "#8d877b"
   panel: "#141310"
   panel-2: "#1a1814"
+  paper: "#f6f2e8"
+  paper-ink: "#15130f"
+  paper-ink-2: "#2a2620"
+  paper-gold: "#7f520b"
+  paper-gold-soft: "#b07a22"
+  paper-line: "#ddd5c3"
+  paper-line-2: "#c8bda5"
+  paper-mute: "#47423a"
+  paper-mute-2: "#5c564b"
+  paper-panel: "#efe9dc"
+  paper-panel-2: "#e7e0d0"
 typography:
   display:
     fontFamily: "Source Serif 4, Iowan Old Style, Palatino, Palatino Linotype, Charter, Georgia, serif"
@@ -153,7 +164,7 @@ components:
 
 **Creative North Star: "A field journal on a dark desk"**
 
-The page is a night desk: near-black ink, warm cream type, one gold rule. Serif headlines carry the claim. Sans carries the reading. Mono carries the specimen and the install lines. Density is a journal, not a dashboard. The pin mark sits behind the page at low opacity and does not compete with the claim.
+The page is a night desk: near-black ink, warm cream type, one gold rule. Serif headlines carry the claim. Sans carries the reading. Mono carries the specimen and the install lines. Density is a journal, not a dashboard. The pin mark sits behind the page at low opacity, below the nav so it never covers the search box, and does not compete with the claim.
 
 **Key Characteristics:**
 
@@ -184,6 +195,18 @@ The palette is the custom properties in `site.css`. Gold is the only accent.
 - **Line** (`#2a2824`) and **Line 2** (`#3a3428`): hairline borders.
 
 **The One Accent Rule.** Gold marks the action and the figure. It does not recolor body paragraphs.
+
+### Paper scheme (prefers-color-scheme: light)
+
+The same page on paper: cream ground, ink type. Pages use role tokens (`--bg`, `--fg`, `--accent`, `--accent-fill`, `--line`, `--mute`, `--panel`), and the light media query swaps their values. Terminal surfaces (specimen, install block, `pre`) stay ink in both schemes.
+
+- **Paper** (`#f6f2e8`): page ground. **Paper panel** (`#efe9dc`) and **Paper panel 2** (`#e7e0d0`): cards and inputs.
+- **Paper ink** (`#15130f`): headings and strong text. **Paper ink 2** (`#2a2620`): the lead line.
+- **Paper gold** (`#7f520b`): gold as text on paper (kicker, nav item, timeline line, figure labels); 6.0:1 on paper. Desk gold (`#e6a23c`) stays the fill for the primary button and the rule under the claim.
+- **Paper gold soft** (`#b07a22`): hover borders. Not text.
+- **Paper mute** (`#47423a`): body copy, 8.9:1. **Paper mute 2** (`#5c564b`): small labels, 6.5:1.
+- **Paper line** (`#ddd5c3`) and **Paper line 2** (`#c8bda5`): hairline borders.
+- The crate marks keep their ink tiles on paper; the timeline line runs behind them and shows only between icons.
 
 ## Typography
 
