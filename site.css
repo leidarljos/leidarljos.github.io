@@ -50,9 +50,10 @@
   --space-5: 4.2rem;
 }
 
-/* Paper scheme: cream page, ink type, gold kept for fills; accent text darkens to stay AA. */
+/* Paper scheme: cream page, ink type, gold kept for fills; accent text darkens to stay AA.
+   The system setting picks it unless the scheme switch set data-theme on the root. */
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not([data-theme="dark"]) {
     --bg: #f6f2e8;
     --fg: #15130f;
     --fg-2: #2a2620;
@@ -68,6 +69,23 @@
     --pin-opacity: 0.2;
   }
 }
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f2e8;
+  --fg: #15130f;
+  --fg-2: #2a2620;
+  --accent: #7f520b;
+  --accent-fill: var(--gold);
+  --accent-soft: #b07a22;
+  --line: #ddd5c3;
+  --line-2: #c8bda5;
+  --mute: #47423a;
+  --mute-2: #5c564b;
+  --panel: #efe9dc;
+  --panel-2: #e7e0d0;
+  --pin-opacity: 0.2;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scrollbar-color: var(--line-2) var(--bg); }
@@ -185,6 +203,34 @@ nav.top .nav-search input[type="search"]:focus {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+nav.top .theme-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--mute);
+  cursor: pointer;
+}
+nav.top .theme-switch[hidden] { display: none; }
+nav.top .theme-switch:hover { color: var(--accent); border-color: var(--accent-soft); }
+.theme-switch svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.theme-switch .theme-icon-light,
+.theme-switch .theme-icon-dark,
+:root[data-theme="light"] .theme-switch .theme-icon-auto,
+:root[data-theme="dark"] .theme-switch .theme-icon-auto { display: none; }
+:root[data-theme="light"] .theme-switch .theme-icon-light,
+:root[data-theme="dark"] .theme-switch .theme-icon-dark { display: block; }
 
 h1, h2, h3, h1.title {
   font-family: var(--serif);
@@ -1001,7 +1047,8 @@ table caption {
     padding: 0 0.55rem;
     white-space: nowrap;
   }
-  nav.top .nav-search { margin-left: 0; flex: 1 1 100%; }
+  nav.top .nav-search { margin-left: 0; flex: 1 1 0; }
+  nav.top .theme-switch { width: 44px; height: 44px; }
   nav.top .nav-search input[type="search"] { min-height: 44px; }
   .docs-grid, .hb-notes { grid-template-columns: 1fr; }
   .field-map li { grid-template-columns: 1fr; gap: 0.2rem; }
