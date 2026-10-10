@@ -69,11 +69,12 @@
         <div class="walk">
           <section>
             <h2>1. Point at scratch stores</h2>
-            <p>A first sitting should not touch a live tracker. Make an empty tracker directory, export the roots, start the pack writer, and ask doctor. A tracker is a directory holding <code>Software/</code> or a <code>vissue.toml</code>.</p>
-            <pre>$ mkdir -p /tmp/seat/tracker/Software &amp;&amp; cd /tmp/seat &amp;&amp; git init -q
-$ export VISSUE_ROOT=/tmp/seat/tracker DEEDAR_URL=file:///tmp/seat/deeds
-$ export CLAIMDAG_DIR=/tmp/seat/claims PACKSET_URL=http://127.0.0.1:18761
-$ packsetd --port 18761 --home /tmp/seat-pack &amp;
+            <p>A first sitting should not touch a live tracker. Make an empty tracker directory in a fresh scratch directory, export the roots, start the pack writer, and ask doctor. A tracker is a directory holding <code>Software/</code> or a <code>vissue.toml</code>. <code>mktemp -d</code> gives a directory only you own; a fixed <code>/tmp</code> path can be another user's or left over from an earlier run, and <code>git init</code> then fails on its config lock. The tracker commits every change, so git needs an identity (<code>git config --global user.email</code>), or the commit is refused with <code>Author identity unknown</code>.</p>
+            <pre>$ seat=$(mktemp -d) &amp;&amp; mkdir -p "$seat/tracker/Software" "$seat/deeds"
+$ git -C "$seat/tracker" init -q &amp;&amp; cd "$seat"
+$ export VISSUE_ROOT="$seat/tracker" DEEDAR_URL="file://$seat/deeds"
+$ export CLAIMDAG_DIR="$seat/claims" PACKSET_URL=http://127.0.0.1:18761
+$ packsetd --port 18761 --home "$seat/pack" &amp;
 $ ljos doctor</pre>
           </section>
           <section>
@@ -98,11 +99,19 @@ $ ljos deed $id --add deed-file-the-fuse-patch</pre>
           </section>
           <section>
             <h2>4. Finish</h2>
-            <p>The lesson is remembered. The island fires. The session node completes. An outcome, when named, rewrites trust. The tracker issue is still open until someone closes it there. When the tracker is a git checkout, finish commits the ticket's file and pushes it; the last line says so. A closure that stays in one working tree does not exist for any other host.</p>
+            <p>A lesson an agent writes is a proposal until it is accepted: finish prints its id, and <code>ljos accept ID</code> makes it live. The island fires when its seeds agree. The session node completes. An outcome, when named, rewrites trust. The ticket keeps its state until <code>ljos finish $id --close</code> or the tracker closes it. When the tracker is a git checkout, finish commits the ticket's file and pushes it, and the last line says which; this scratch tracker has no remote, so the push is refused and the commit stays local. A closure that stays in one working tree does not exist for any other host.</p>
             <pre>$ ljos finish $id --lesson "The fuse patch shipped as one file. Nothing else moved."
-remembered ...
-completed the session node ... as done
-tracker git: committed and pushed chore(issues): ... finished</pre>
+proposed 1735... as agent-derived; `ljos accept 1735...` writes it
+...
+completed the session node for demo-... as done
+the ticket demo-... keeps its state; `ljos finish demo-... --close` or `vissue update demo-... -s DONE` closes it when the work is accepted
+tracker git: committed chore(issues): demo-... finished; push refused: fatal: No configured push destination.
+$ ljos accept 1735...</pre>
+          </section>
+          <section>
+            <h2>5. Clean up</h2>
+            <p>The scratch seat is one directory and the pack writer started in step 1. Stop the writer and remove the directory, and the next run starts clean on the same port.</p>
+            <pre>$ kill %1 &amp;&amp; rm -rf "$seat"</pre>
           </section>
         </div>
         <p class="quiet">Agreement is <code>ljos consensus</code> over <a href="/consensus/">ljos-consensus</a> on crates.io. The seat crate walks the same loop: <a href="/ljos/getting-started.html">ljos getting started</a>. Field note: <a href="/handbook/session/">completing is not closing</a>.</p>
