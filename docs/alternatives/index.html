@@ -92,9 +92,9 @@
           <section>
             <h2>Where ljos is behind</h2>
             <ul>
-              <li><strong>Retrieval accuracy.</strong> On LongMemEval_S session retrieval the fused arm reaches recall@5 0.949. A public neighbour reports 95.2% R@5 on the same protocol, so the two are level. The lexical arm scores 0.568 on MemoryAgentBench accurate retrieval, below the published BM25 row of 0.605 (that row used GPT-4o-mini as the reader; ours used a local 7&nbsp;B model). <a href="/docs/compare/">The measured rows and their scripts.</a></li>
-              <li><strong>Changing facts.</strong> Graphiti keeps a validity window on every fact. ljos closes an earlier lesson only when a new one opens with the same words, and scores 0.395 on MemoryAgentBench conflict resolution at 262K tokens.</li>
-              <li><strong>Question answering.</strong> Those scores come from a local 7&nbsp;B reader. Its answer accuracy on LongMemEval_S is 0.549 against a 0.634 ceiling for perfect sessions. Projects that use a hosted reader and judge report higher answer accuracy (one on the compare page reports 96.20%); the protocols differ, and we have not run a hosted model.</li>
+              <li><strong>Retrieval accuracy.</strong> On LongMemEval_S session retrieval the fused arm reaches recall@5 0.949. A public neighbour reports 95.2% R@5 on the same protocol, so the two are level. <a href="/docs/compare/">The measured rows and their scripts.</a></li>
+              <li><strong>Changing facts.</strong> Graphiti keeps a validity window on every fact. ljos closes an earlier lesson only when a new one opens with the same words.</li>
+              <li><strong>Question answering.</strong> Answers come from a local 7&nbsp;B reader. Its answer accuracy on LongMemEval_S is 0.549 against a 0.634 ceiling for perfect sessions. Projects that use a hosted reader and judge report higher answer accuracy (one on the compare page reports 96.20%); the protocols differ, and we have not run a hosted model.</li>
               <li><strong>It forgets what nobody said.</strong> Answers can only use what was written, and nothing is extracted from the conversation. If you never say Remember:, the next session starts without it. That is the point, and it is also a cost.</li>
             </ul>
           </section>
