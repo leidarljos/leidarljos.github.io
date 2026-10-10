@@ -45,7 +45,7 @@
       <div class="page">
         <header class="intro">
           <h1>What packset measured</h1>
-          <p class="lead">packset is the standing-knowledge store in the seat. It writes only on Remember: and Prefer:. The crate explanation holds the rows. Neighbouring systems are named by protocol.</p>
+          <p class="lead">packset is the standing-knowledge store in the seat. It writes only on Remember: and Prefer:. The crate explanation has the rows. Neighbouring systems are named by protocol.</p>
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
@@ -54,6 +54,7 @@
         <li><a href="/docs/policy/">Policy</a></li>
         <li><a href="/docs/harnesses/">Harnesses</a></li>
         <li><a href="/docs/habitats/">Crates</a></li>
+        <li><a href="/docs/alternatives/">Alternatives</a></li>
         <li><a href="/docs/reference/">Reference</a></li>
       </ul>
 
@@ -94,7 +95,7 @@
             </tr>
           </tbody>
         </table>
-        <p>The 0.949 fused recall@5 is the neighbour of the 95.2% R@5 retrieval figure. The 96.20% QA figure uses a different generator and a different judge. InjecMEM and MINJA describe the risk of writing from a transcript. packset writes only on Remember: and Prefer:. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
+        <p>The 0.949 fused recall@5 is the neighbour of the 95.2% R@5 retrieval figure. The 96.20% QA figure uses a different generator and a different judge. InjecMEM and the Memory INJection Attack (MINJA) describe the risk of writing from a transcript. packset writes only on Remember: and Prefer:. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
 
         <h2>What the other habitats answer</h2>
         <p>Retrieval is one store. The seat also cites frozen product, the tracker, this-session claims, argv law, and weighted agreement. Those questions are not retrieval scores.</p>
@@ -111,8 +112,24 @@
           </tbody>
         </table>
 
+        <h2 id="install-cost">What a default install costs</h2>
+        <p>Measured on 10 October 2026 on one shared box: an 8-thread Intel Xeon, 15 GB of RAM, rustc 1.99.0. Each crate was built from crates.io in a fresh <code>CARGO_HOME</code> and target directory with <code>cargo install --locked -j 2</code>, packset after ljos. The encoder is not part of this install, so search is lexical. Script: <a href="https://github.com/leidarljos/leidarljos.github.io/blob/main/scripts/measure-install.sh"><code>scripts/measure-install.sh</code></a>; raw logs: <a href="https://github.com/leidarljos/leidarljos.github.io/tree/main/measurements/2026-10-10-install"><code>measurements/2026-10-10-install</code></a>.</p>
+        <table>
+          <thead>
+            <tr><th>Measure</th><th>Value</th><th>Note</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Build ljos 0.27.0</td><td>170 s</td><td>includes the crates.io index and source downloads</td></tr>
+            <tr><td>Build packset 0.12.1</td><td>90 s</td><td>reuses the downloads from the ljos build</td></tr>
+            <tr><td>Binaries on disk</td><td>45.4 MB</td><td>ljos 12.2, ljos-mcp 16.0, packset 3.9, packset-mcp 7.5, packsetd 5.8</td></tr>
+            <tr><td>packsetd resident memory</td><td>4.3 MB idle, 14.7 MB</td><td>the second after 281 claims and 330 searches</td></tr>
+            <tr><td>Search, p50 / p95</td><td>3.3 ms / 4.1 ms</td><td>one <code>packset search</code> process per query, lexical, 281 claims, n = 300</td></tr>
+          </tbody>
+        </table>
+        <p>Two jobs, not eight: the box was short of memory at the time, so a build on an idle machine with every core should be faster. The claims are sentences taken from this site's own pages.</p>
+
         <h2>policyd is argv law</h2>
-        <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>ljos-policyd</code> is the TCB when it is on <code>PATH</code> or <code>POLICYD_BIN</code>: it prints allow or deny. Reloading a pack is not a check. <a href="/ljos-policyd/">ljos-policyd docs</a> · <a href="/handbook/argv/">Argv field note</a>.</p>
+        <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>ljos-policyd</code> is the trusted computing base when it is on <code>PATH</code> or <code>POLICYD_BIN</code>: it prints allow or deny. Reloading a pack is not a check. <a href="/ljos-policyd/">ljos-policyd docs</a> · <a href="/handbook/argv/">Argv field note</a>.</p>
 
         <p class="quiet">Source: <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a> · <a href="https://github.com/leidarljos/packset">packset</a></p>
       </div>
