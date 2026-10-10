@@ -1,0 +1,23 @@
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 19.3 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 15.14 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 37 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 36 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 38 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 40 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 32 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 15.18 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 14.4 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 31 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 14.26 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 39 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 15.89 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 15.27 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 38 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 34 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 31 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 17.47 exceeds 14; use shorter sentences and shorter words
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 31 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 34 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 32 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: atom sentence 1 is very hard to read: 43 words, the limit is 29; split it at a conjunction or drop a clause
+packset: bad response: http://127.0.0.1:8799/v1/atoms: 400: readability grade 17.07 exceeds 14; use shorter sentences and shorter words

@@ -1,0 +1,13 @@
+install ljos: 170 s wall, largest single build process 689 MB RSS
+install packset: 90 s wall, largest single build process 674 MB RSS
+binary ljos: 12.2 MB
+binary ljos-mcp: 16.0 MB
+binary packset: 3.9 MB
+binary packset-mcp: 7.5 MB
+binary packsetd: 5.8 MB
+packsetd rss_idle: 4.3 MB
+packsetd rss_seeded: 14.2 MB
+packsetd rss_after_search: 14.7 MB
+search (lexical, one process per query, n=300): p50 3.3 ms, p95 4.1 ms
+seeded 297 claims in 1.4 s
+pack size during the search runs: 281 live claims

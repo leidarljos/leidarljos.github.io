@@ -1,0 +1,43 @@
+seeded 297 claims in 1.4 s
+packset: up on http://127.0.0.1:8799 (packsetd ok)
+{
+  "home": "/tmp/ljos-measure.HJFECp/pack",
+  "version": "0.12.1",
+  "commit": "unknown",
+  "workspace": "measure",
+  "set": "",
+  "live": 281,
+  "live_cap": 20000,
+  "tombstone": 0,
+  "expired": 16,
+  "live_by_kind": {
+    "lesson": 281
+  },
+  "tombstone_by_kind": {},
+  "forgotten_by_reason": {},
+  "expired_by_kind": {
+    "lesson": 16
+  },
+  "last_write_ts": "2026-10-10T09:02:13.548Z",
+  "milli": {
+    "binary": null,
+    "index_dir": "/tmp/ljos-measure.HJFECp/pack/memory.milli",
+    "index_ready": false
+  },
+  "embedder": {
+    "enabled": true,
+    "binary": null,
+    "available": false,
+    "answering": null
+  },
+  "rerank": {
+    "enabled": false,
+    "available": false,
+    "depth": 20
+  },
+  "panel": {
+    "fuse": "combmnz",
+    "diversify": "mmr",
+    "decay": "fsrs"
+  }
+}
