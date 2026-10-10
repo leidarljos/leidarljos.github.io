@@ -803,6 +803,8 @@ footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
 }
 .table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .table-scroll table { margin: 0; }
+/* A plain table that only needs to scroll on a phone: no rule above it. */
+.table-scroll.bare { border-top: none; padding-top: 0; }
 table caption {
   caption-side: bottom;
   text-align: left;
@@ -815,7 +817,7 @@ table caption {
 .alt-table td:first-child { white-space: normal; }
 .alt-table thead th {
   font-family: var(--serif);
-  font-size: 1.02rem;
+  font-size: 1.0625rem;
   color: var(--fg);
   border-bottom: 1px solid var(--line-2);
 }
@@ -866,7 +868,7 @@ table caption {
 .figs dd {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   font-variant-numeric: lining-nums tabular-nums;
@@ -875,7 +877,7 @@ table caption {
 }
 @media (max-width: 720px) {
   .figs { grid-template-columns: 1fr 1fr; }
-  .figs > div:nth-child(3) { padding-left: 0; border-left: 0; }
+  .figs > div:nth-child(3) { padding-left: 0.2rem; border-left: 0; }
   .figs > div:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
 
@@ -1091,7 +1093,8 @@ h1.title {
 /* Fig. 3: terminal recording. The player keeps the code ink in both schemes. */
 .demo-player { border: 1px solid var(--code-line); border-radius: 6px; overflow: hidden; background: var(--code-bg); min-height: 8rem; }
 .demo-player > .quiet { padding: 1rem 1.25rem; color: var(--code-mute); margin: 0; }
-.demo-player > .quiet a { color: var(--code-fg); }
+.demo-player > .quiet a,
+.demo-player > .quiet code { color: var(--code-fg); }
 .ap-player.asciinema-player-theme-ljos {
   --term-color-foreground: #ebe5d6;
   --term-color-background: #141310;

@@ -207,6 +207,7 @@ The same page on paper: cream ground, ink type. Pages use role tokens (`--bg`, `
 - **Paper mute** (`#47423a`): body copy, 8.9:1. **Paper mute 2** (`#5c564b`): small labels, 6.5:1.
 - **Paper line** (`#ddd5c3`) and **Paper line 2** (`#c8bda5`): hairline borders.
 - The crate marks keep their ink tiles on paper; the timeline line runs behind them and shows only between icons.
+- `.impeccable/config.json` waives the detector's `cream-palette` rule, because this paper ground is the recorded light scheme.
 
 ## Typography
 
@@ -223,6 +224,7 @@ The same page on paper: cream ground, ink type. Pages use role tokens (`--bg`, `
 - **Body** (400, 1.0625rem, 1.7, tracking 0.008em): reading text, measure 66ch.
 - **Label** (600, 0.95rem, serif, no tracking): the line above a heading. It is a sentence, not a chip.
 - **Mono** (400, 0.86rem, 1.55): install lines and the sitting specimen.
+- **Terminal recording:** the asciinema player sets the same mono face, and waits for it before it sizes its grid.
 
 **The Recorded Faces Rule.** Do not swap these faces for another display family. The serif, the sans, and the mono in `site.css` are the system.
 
