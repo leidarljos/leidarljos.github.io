@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ljos next to Mem0, Zep, Letta and CLAUDE.md — leiðarljós</title>
+  <meta name="description" content="ljos next to Mem0, Zep and Graphiti, Letta, plain RAG and CLAUDE.md files: who writes the memory, where it lives, and where ljos is behind.">
+  <link rel="canonical" href="https://leidarljos.github.io/docs/alternatives/">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/site.css">
+  <meta property="og:title" content="ljos next to Mem0, Zep, Letta and CLAUDE.md — leiðarljós">
+  <meta property="og:description" content="Who writes the memory, where it lives, and where ljos is behind.">
+  <meta property="og:url" content="https://leidarljos.github.io/docs/alternatives/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta name="theme-color" content="#0B0B0A" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F6F2E8" media="(prefers-color-scheme: light)">
+  <script defer src="https://antics-api.turtletech.us/antics.js"></script>
+  <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <nav class="top" aria-label="Site">
+      <a class="brand" href="/">
+        <img src="/icon.svg" alt="">
+        leiðarljós
+      </a>
+      <ul>
+        <li><a href="/docs/" aria-current="page">Docs</a></li><li><a href="/docs/search/">Search</a></li><li><a href="/docs/about/">About</a></li>
+        <li><a href="/handbook/">Handbook</a></li>
+        <li class="nav-later"><a href="/docs/reference/">Reference</a></li>
+        <li class="nav-later"><a href="https://leidarljos.github.io/vissue">vissue</a></li>
+        <li class="nav-later"><a href="https://github.com/leidarljos">GitHub</a></li>
+      </ul>
+      <details class="nav-more">
+        <summary>More</summary>
+        <a href="/docs/about/">About</a>
+        <a href="/docs/reference/">Reference</a>
+        <a href="https://leidarljos.github.io/vissue">vissue</a>
+        <a href="https://github.com/leidarljos">GitHub</a>
+      </details>
+      <form class="nav-search" role="search" action="/docs/search/" method="get">
+        <label class="skip" for="nav-q">Search</label>
+        <input id="nav-q" name="q" type="search" placeholder="Search" />
+      </form>
+    </nav>
+    <main id="main">
+      <div class="page">
+        <header class="intro">
+          <h1>Where ljos fits among agent memory tools</h1>
+          <p class="lead">Mem0, Zep, Letta, and most agent memory let a model decide what to keep. A CLAUDE.md file is the exception, and you write it by hand. ljos keeps only what you tell it to keep. That one choice explains most of the table below, including where ljos is behind.</p>
+        </header>
+        <ul class="subnav" aria-label="Docs">
+          <li><a href="/docs/">Overview</a></li>
+          <li><a href="/docs/start/">First write</a></li>
+          <li><a href="/docs/sit/">Sit</a></li>
+          <li><a href="/docs/policy/">Policy</a></li>
+          <li><a href="/docs/harnesses/">Harnesses</a></li>
+          <li><a href="/docs/habitats/">Crates</a></li>
+          <li><a href="/docs/alternatives/" aria-current="page">Alternatives</a></li>
+          <li><a href="/docs/reference/">Reference</a></li>
+        </ul>
+        <div class="walk">
+          <section>
+            <h2>Which to pick</h2>
+            <p>Mem0, Graphiti and Letta suit memory that builds itself from conversations, with a model doing the extraction. A <code>CLAUDE.md</code> or <code>AGENTS.md</code> file is enough when one page of standing notes covers it. A plain retrieval index over your documents answers questions about those documents. ljos fits when each memory should be a sentence someone chose to write, kept in local files and searched back per prompt, next to a rule check on shell commands and a ticket tracker.</p>
+          </section>
+          <section>
+            <h2>Side by side</h2>
+            <div class="table-scroll" role="region" aria-labelledby="alt-table-cap" tabindex="0">
+            <table class="alt-table">
+              <caption id="alt-table-cap">How each tool writes, stores and returns memory, from each project's own documentation in October 2026.</caption>
+              <thead>
+                <tr><th scope="col"></th><th scope="col">ljos</th><th scope="col">Mem0</th><th scope="col">Graphiti (Zep)</th><th scope="col">Letta</th><th scope="col">Plain retrieval index</th><th scope="col">CLAUDE.md file</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Who writes a memory</th><td>You, by saying Remember: or Prefer:. A lesson an agent drafts waits until you accept it.</td><td>A model extracts facts from each conversation you pass to <code>add()</code>.</td><td>A model extracts entities, relations and their validity dates from each episode.</td><td>The agent edits its own memory files with tools; background subagents can consolidate from conversations.</td><td>Whatever you index.</td><td>You, or the agent when asked.</td></tr>
+                <tr><th scope="row">The unit</th><td>One claim, two sentences at most, with its kind, age and review date.</td><td>An extracted fact, with vectors and linked entities.</td><td>A temporal graph of entities and facts, traced to source episodes.</td><td>Markdown files in a git repository.</td><td>Chunks and their embeddings.</td><td>One Markdown file.</td></tr>
+                <tr><th scope="row">How it comes back</th><td>Searched per prompt: BM25+, plus a local encoder when installed, fused.</td><td>Semantic, keyword and entity search, fused.</td><td>Semantic, keyword and graph search.</td><td>Some files sit in every prompt; the agent reads the rest on demand.</td><td>Top-k by similarity.</td><td>The whole file, every session.</td></tr>
+                <tr><th scope="row">Model needed to write</th><td>No.</td><td>Yes; gpt-5-mini by default.</td><td>Yes; OpenAI by default.</td><td>The agent's own model.</td><td>An embedding model.</td><td>No.</td></tr>
+                <tr><th scope="row">Where it lives</th><td>Local files and a loopback daemon.</td><td>Your vector store, or the hosted platform.</td><td>A graph database (Neo4j, FalkorDB, Neptune), or Zep's cloud.</td><td>A Letta server, Letta Cloud, or your git remote.</td><td>Your index.</td><td>Your repository.</td></tr>
+                <tr><th scope="row">Shell command check</th><td>Yes: fixed rules plus yours, before each command.</td><td colspan="5">Not part of a memory layer. Use the runner's own permissions.</td></tr>
+                <tr><th scope="row">Work tracker</th><td>Yes: vissue, plain Org files in git.</td><td colspan="5">Not included.</td></tr>
+                <tr><th scope="row">Licence</th><td><code>MIT</code> (claimdag: <code>Apache-2.0 OR MIT</code>)</td><td><code>Apache-2.0</code></td><td><code>Apache-2.0</code></td><td><code>Apache-2.0</code></td><td>Depends</td><td>None needed</td></tr>
+              </tbody>
+            </table>
+            </div>
+          </section>
+          <section>
+            <h2>Where ljos is behind</h2>
+            <ul>
+              <li><strong>Retrieval accuracy.</strong> On LongMemEval_S session retrieval the fused arm reaches recall@5 0.949. A public neighbour reports 95.2% R@5 on the same protocol, so the two are level. The lexical arm scores 0.568 on MemoryAgentBench accurate retrieval, below the published BM25 row of 0.605 (that row used GPT-4o-mini as the reader; ours used a local 7&nbsp;B model). <a href="/docs/compare/">The measured rows and their scripts.</a></li>
+              <li><strong>Changing facts.</strong> Graphiti keeps a validity window on every fact. ljos closes an earlier lesson only when a new one opens with the same words, and scores 0.395 on MemoryAgentBench conflict resolution at 262K tokens.</li>
+              <li><strong>Question answering.</strong> Those scores come from a local 7&nbsp;B reader. Its answer accuracy on LongMemEval_S is 0.549 against a 0.634 ceiling for perfect sessions. Projects that use a hosted reader and judge report higher answer accuracy (one on the compare page reports 96.20%); the protocols differ, and we have not run a hosted model.</li>
+              <li><strong>It forgets what nobody said.</strong> Answers can only use what was written, and nothing is extracted from the conversation. If you never say Remember:, the next session starts without it. That is the point, and it is also a cost.</li>
+            </ul>
+          </section>
+          <section>
+            <h2>What we think is new</h2>
+            <p>The parts all have neighbours: hybrid retrieval, review schedules, ticket trackers, command filters. What we have not found elsewhere is the combination with provenance kept on every write: memory written only by declaration, no model in the write path, lessons an agent drafts held until you accept them, and artefacts recorded as hashed deeds the tracker cites.</p>
+            <p>Tools that build memory from transcripts can be poisoned by text that reaches the transcript, such as a web page or a tool result. Writing only on declaration should resist that. We have not yet measured it; that test is the next piece of work, and the results will go on the <a href="/docs/compare/">compare page</a> when they exist.</p>
+          </section>
+        </div>
+        <p class="quiet">Sources: each project's README and documentation (<a href="https://github.com/mem0ai/mem0">Mem0</a>, <a href="https://github.com/getzep/graphiti">Graphiti</a>, <a href="https://docs.letta.com/agent-sdk/memory/">Letta</a>), read on 10 October 2026. Corrections are welcome as <a href="https://github.com/leidarljos/leidarljos.github.io/issues">issues</a>.</p>
+      </div>
+    </main>
+  </div>
+  <footer class="antics" role="contentinfo">
+    <span>Analytics by <a href="https://antics.turtletech.us/" target="_blank" rel="noopener noreferrer">antics</a></span>
+    <span>provided by <a href="https://turtletech.us/" target="_blank" rel="noopener noreferrer">TurtleTech ehf</a></span>
+  </footer>
+</body>
+</html>

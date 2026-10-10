@@ -51,7 +51,7 @@
       <div class="page">
         <header class="intro">
           <h1>May this command run?</h1>
-          <p class="lead">Before a coding agent's shell command runs, the runner's hook asks ljos. Four layers judge it in order; the first refusal stands, and no later layer can allow what an earlier one refused. None of them is a model.</p>
+          <p class="lead">Before a coding agent's shell command runs, the runner's hook asks ljos. Four layers judge it in order. The first refusal wins, and no later layer can allow what an earlier one refused. None of them is a model.</p>
         </header>
         <ul class="subnav" aria-label="Docs">
           <li><a href="/docs/">Overview</a></li>
@@ -60,6 +60,7 @@
           <li><a href="/docs/policy/" aria-current="page">Policy</a></li>
           <li><a href="/docs/harnesses/">Harnesses</a></li>
           <li><a href="/docs/habitats/">Crates</a></li>
+          <li><a href="/docs/alternatives/">Alternatives</a></li>
           <li><a href="/docs/reference/">Reference</a></li>
         </ul>
         <div class="walk">
@@ -67,10 +68,34 @@
             <h2>The four layers</h2>
             <ol>
               <li><strong>The seat guard.</strong> A command that writes the seat's own files, its binaries, its hook entries, <code>~/.config/ljos</code>, the approvals store, is refused. An agent cannot rewrite the law it runs under.</li>
-              <li><strong>ljos-policyd.</strong> A binary with fixed rules. Each pipeline of the line reaches it as one call, so a download piped into a shell is judged as one thing. It refuses privilege runners (<code>sudo</code>, <code>doas</code>), a download handed to a shell, a recursive delete outside <code>/tmp</code>, a setuid <code>chmod</code>, raw-disk writes and a force push.</li>
-              <li><strong>Seat rules.</strong> Rules you write with <code>ljos rule</code>, kept in the seat's memory and tried against each command of the line. A quoted sentence or a heredoc body is data, not a command.</li>
-              <li><strong>The push gate.</strong> A <code>git push</code> is free to a repository your account owns alone and has never released. Anywhere else it needs <code>LJOS_CITE=ISSUE</code>, the tracker issue that records the decision behind it.</li>
+              <li><strong>ljos-policyd.</strong> A binary with fixed rules. Each pipeline of the command line reaches it as one call, so a download piped into a shell is judged as one thing. It refuses privilege runners (<code>sudo</code>, <code>doas</code>), a download handed to a shell, a recursive delete outside <code>/tmp</code>, a setuid <code>chmod</code>, raw-disk writes and a force push.</li>
+              <li><strong>Seat rules.</strong> Rules you write with <code>ljos rule</code>, kept in the seat's memory and tried against each command of the line. A quoted sentence or a heredoc body counts as data.</li>
+              <li><strong>The push check.</strong> After the seat rules, the last check on the line applies to <code>git push</code>: a push is free to a repository your account owns alone and has never released. Anywhere else it needs <code>LJOS_CITE=ISSUE</code>, the tracker issue that records the decision behind it.</li>
             </ol>
+          </section>
+          <section id="not-a-sandbox" class="callout" aria-labelledby="sandbox-h">
+            <h2 id="sandbox-h">This is not a sandbox</h2>
+            <p>Each of the four layers reads the words of a command line before it runs. It does not watch what the command does once it is running, and it cannot see a command it was never shown.</p>
+            <div class="two-col">
+              <div>
+                <h3>What it stops</h3>
+                <ul>
+                  <li>The command lines its rules name: privilege runners, a download piped into a shell, a recursive delete outside <code>/tmp</code>, a setuid <code>chmod</code>, raw-disk writes, a force push, and the rules you add.</li>
+                  <li>An agent rewriting the seat's own files, binaries or hook entries.</li>
+                  <li>A push to a shared or released repository without a ticket behind it.</li>
+                </ul>
+              </div>
+              <div>
+                <h3>What it does not stop</h3>
+                <ul>
+                  <li>A script the agent wrote earlier and then runs: <code>bash build.sh</code> is allowed, whatever the file contains.</li>
+                  <li>An interpreter one-liner, or a command built from an encoded string at run time.</li>
+                  <li>Tool calls that are not shell commands, such as a web fetch. A file edit is checked only for whether it targets the seat's own files, not for what it writes.</li>
+                  <li>Anything on a runner where the hook is not installed.</li>
+                </ul>
+              </div>
+            </div>
+            <p>The layers catch common mistakes, and they isolate nothing. Run the agent in a container or a VM to isolate it. Give that machine only the files and credentials the agent needs, and keep the runner's own permission prompts on.</p>
           </section>
           <section>
             <h2>Try it</h2>
