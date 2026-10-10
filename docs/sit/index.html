@@ -108,6 +108,11 @@ the ticket demo-... keeps its state; `ljos finish demo-... --close` or `vissue u
 tracker git: committed chore(issues): demo-... finished; push refused: fatal: No configured push destination.
 $ ljos accept 1735...</pre>
           </section>
+          <section>
+            <h2>5. Clean up</h2>
+            <p>The scratch seat is one directory and the pack writer started in step 1. Stop the writer and remove the directory, and the next run starts clean on the same port.</p>
+            <pre>$ kill %1 &amp;&amp; rm -rf "$seat"</pre>
+          </section>
         </div>
         <p class="quiet">Agreement is <code>ljos consensus</code> over <a href="/consensus/">ljos-consensus</a> on crates.io. The seat crate walks the same loop: <a href="/ljos/getting-started.html">ljos getting started</a>. Field note: <a href="/handbook/session/">completing is not closing</a>.</p>
       </div>
