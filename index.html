@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/vendor/asciinema-player-3.17.0/asciinema-player.css">
   <meta property="og:title" content="Write one claim. Search it back.">
   <meta property="og:description" content="ljos writes one claim, then searches that claim back. Nothing is mined from chat.">
   <meta name="twitter:card" content="summary_large_image">
@@ -101,31 +102,91 @@ ljos search fuse</pre>
         <p class="quiet"><code>ljos remember</code> starts the writer when none is answering. The walk: <a href="/docs/start/">First write</a>. The name: <a href="/docs/about/">leiðarljós</a>.</p>
       </figure>
 
-      <section class="band" aria-labelledby="loop-h">
-        <p class="kicker">The loop</p>
-        <h2 id="loop-h">Write. Sit. Finish.</h2>
-        <div class="loop">
-          <article>
-            <span class="n">01</span>
-            <h3>Remember</h3>
-            <p>One claim, two sentences at most, stored as written. <code>ljos remember</code> and <code>ljos prefer</code> are the only pack writes. Nothing is mined from a transcript.</p>
-          </article>
-          <article>
-            <span class="n">02</span>
-            <h3>Sit</h3>
-            <p><code>ljos sitting</code> opens: doctor, sync, cards, due, island, blockers, playbook, recall, timeline, claim. Cite what the work produced. The ticket stays open until vissue closes it.</p>
-          </article>
-          <article>
-            <span class="n">03</span>
-            <h3>Finish</h3>
-            <p><code>ljos finish</code> remembers the lesson, fires the island, completes the session node, and learns from an outcome when one is named.</p>
-          </article>
+      <section class="band why" aria-labelledby="why-h">
+        <p class="kicker">Why this exists</p>
+        <h2 id="why-h">Agents forget, remember the wrong things, and run any command.</h2>
+        <div class="why-grid">
+          <div>
+            <h3>They forget</h3>
+            <p>Each session starts cold. The fix you agreed on yesterday, the rule about force pushes, the reason a test is skipped: gone unless someone pastes it back in.</p>
+          </div>
+          <div>
+            <h3>Auto-memory fills with things nobody said</h3>
+            <p>Tools that mine the transcript keep whatever a model guessed was worth keeping, including text that came from a web page or a tool result. That is how memory gets poisoned.</p>
+          </div>
+          <div>
+            <h3>Shell commands run unchecked</h3>
+            <p>A coding agent with a shell can push, delete, or pipe a download into <code>sh</code> on its own judgement.</p>
+          </div>
         </div>
-        <p class="quiet">Words: a <em>seat</em> is one agent runner on one machine, with its memory and claims. A <em>sitting</em> is one piece of work on one ticket. A <em>deed</em> is a hashed record of what that work produced. <em>packset</em> is the memory store, and <em>vissue</em> is the tracker, plain Org files in git. <a href="/docs/about/">leiðarljós</a> is Icelandic for a guiding light.</p>
+        <p class="why-answer">ljos writes a memory only when you say <code>Remember:</code> or <code>Prefer:</code>, keeps it in plain local files you can read, and checks each shell command against fixed rules before it runs. No model sits in the write path or the check, and it all runs on a CPU.</p>
       </section>
 
+      <section class="band" aria-labelledby="loop-h">
+        <p class="kicker">The loop</p>
+        <h2 id="loop-h">Sit, work, finish.</h2>
+        <figure class="plate stores-fig" aria-labelledby="fig-stores">
+          <figcaption id="fig-stores"><span>Fig. 2</span> The sitting loop and the five stores it reads and writes. Every store is a local file or a loopback service.</figcaption>
+          <ol class="loop">
+            <li>
+              <span class="n">01</span>
+              <h3>Sit</h3>
+              <p><code>ljos sitting ID</code> opens the ticket: doctor, sync, cards, due, island, blockers, playbook, recall, timeline, then the claim. It refuses a ticket with open blockers.</p>
+            </li>
+            <li>
+              <span class="n">02</span>
+              <h3>Work</h3>
+              <p><code>ljos note</code> logs progress on the ticket. <code>deedar create</code> records what the work produced, and <code>ljos deed</code> cites it. <code>ljos remember</code> and <code>ljos prefer</code> are the only memory writes.</p>
+            </li>
+            <li>
+              <span class="n">03</span>
+              <h3>Finish</h3>
+              <p><code>ljos finish ID</code> remembers the lesson, fires the island, completes the session node, and learns from an outcome when one is named. The ticket stays open until vissue closes it.</p>
+            </li>
+          </ol>
+          <ul class="stores" aria-label="The five stores">
+            <li>
+              <strong>cards</strong>
+              <span class="crate"><code>USER.md</code>, <code>MEMORY.md</code></span>
+              <p>What the human froze. ljos prints these two files and never writes them.</p>
+              <span class="touch">sit reads</span>
+            </li>
+            <li>
+              <strong>pack</strong>
+              <span class="crate">packset</span>
+              <p>Lessons and preferences, one claim each, searched back per prompt.</p>
+              <span class="touch">sit reads · work and finish write</span>
+            </li>
+            <li>
+              <strong>tracker</strong>
+              <span class="crate">vissue</span>
+              <p>Tickets as plain Org files in a git repository.</p>
+              <span class="touch">sit reads · work notes · finish completes</span>
+            </li>
+            <li>
+              <strong>deeds</strong>
+              <span class="crate">deedar</span>
+              <p>A hashed record of each artefact the work produced.</p>
+              <span class="touch">work writes · the ticket cites</span>
+            </li>
+            <li>
+              <strong>claims</strong>
+              <span class="crate">claimdag</span>
+              <p>One live claim per holder per ticket. A second claim on a held ticket is refused.</p>
+              <span class="touch">sit claims · finish completes</span>
+            </li>
+          </ul>
+        </figure>
+        <p class="quiet">ljos words: a <em>seat</em> is one agent runner on one machine, with its memory and claims. A <em>sitting</em> is one piece of work on one ticket. A <em>deed</em> is a hashed record of what that work produced. <em>packset</em> is the memory store that search reads, and <em>vissue</em> is the tracker, plain Org files in git. <a href="/docs/about/">leiðarljós</a> is Icelandic for a guiding light.</p>
+      </section>
+
+      <figure class="plate demo-plate" aria-labelledby="fig-demo">
+        <figcaption id="fig-demo"><span>Fig. 3</span> One sitting on a fresh seat, about a minute long. A script types the commands; every line of output is real. The script is <a href="/demo/demo.sh">demo.sh</a>.</figcaption>
+        <div id="demo-player" class="demo-player"><p class="quiet">The recording needs JavaScript. The raw cast is <a href="/demo/ljos-demo.cast">ljos-demo.cast</a>, playable with <code>asciinema play</code>.</p></div>
+      </figure>
+
       <figure class="plate measure-plate" aria-labelledby="fig-measure">
-        <figcaption id="fig-measure"><span>Fig. 2</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical. Writes only on Remember: and Prefer:.</figcaption>
+        <figcaption id="fig-measure"><span>Fig. 4</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical. Writes only on Remember: and Prefer:.</figcaption>
         <table>
           <thead>
             <tr><th>arm</th><th>recall@5</th><th>QA / ceiling</th></tr>
@@ -135,7 +196,18 @@ ljos search fuse</pre>
             <tr><td>CombMNZ fused</td><td>0.949</td><td>0.549 / 0.634</td></tr>
           </tbody>
         </table>
-        <p class="quiet">QA uses a local 7&nbsp;B reader and judge, top five sessions, against the labelled-session ceiling. <a href="/docs/compare/">Compare</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a>.</p>
+        <p class="quiet">QA for CombMNZ fused uses a local 7&nbsp;B reader and judge, top five sessions, against the labelled-session ceiling. <a href="/docs/compare/">Compare</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a>.</p>
+      </figure>
+
+      <figure class="plate measure-plate" aria-labelledby="fig-install">
+        <figcaption id="fig-install"><span>Fig. 5</span> Install cost of the same local stack, packset and ljos, built with <code>cargo install</code> from crates.io on one 8-thread Xeon with two build jobs. Lexical search, no encoder.</figcaption>
+        <dl class="figs">
+          <div><dt>build, both crates</dt><dd>4 min 20 s</dd></div>
+          <div><dt>binaries on disk</dt><dd>45 MB</dd></div>
+          <div><dt>packsetd resident</dt><dd>15 MB</dd></div>
+          <div><dt>search p50 / p95</dt><dd>3.3 / 4.1 ms</dd></div>
+        </dl>
+        <p class="quiet">281 claims in the pack, one process per query. <a href="/docs/compare/#install-cost">Method, script and raw logs</a>.</p>
       </figure>
 
       <section class="band" aria-labelledby="crates-h">
@@ -234,6 +306,20 @@ ljos search fuse</pre>
             navigator.clipboard.writeText(t).then(done).catch(done);
           } else { done(); }
         });
+      });
+    })();
+  </script>
+  <script src="/vendor/asciinema-player-3.17.0/asciinema-player.min.js"></script>
+  <script>
+    (function () {
+      var el = document.getElementById("demo-player");
+      if (!el || !window.AsciinemaPlayer) return;
+      el.textContent = "";
+      // Phones get the same script recorded at 52 columns, so the text stays readable.
+      var narrow = window.matchMedia("(max-width: 640px)").matches;
+      AsciinemaPlayer.create(narrow ? "/demo/ljos-demo-narrow.cast" : "/demo/ljos-demo.cast", el, {
+        cols: narrow ? 52 : 120, rows: narrow ? 40 : 30, idleTimeLimit: 1.5, fit: "width",
+        theme: "ljos", poster: "npt:0:28", preload: true
       });
     })();
   </script>
