@@ -73,31 +73,33 @@
         <p>Answer accuracy on the same 470 uses a local 7&nbsp;B reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval prompts, top five sessions). CombMNZ fusion is 0.549. Lexical alone is 0.532. Labelled sessions, the ceiling for any retriever, are 0.634.</p>
         <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), reader Qwen2.5-7B. Accurate retrieval scores each source on its own metric, then takes the mean of the four. Lexical job 11759 is 0.568 (95% CI 0.530-0.605, clustered by question). The per-source scores are SH 0.730, MH 0.530, LongMemEval (S*) 0.370 and EventQA 0.640. Published rows are BM25 0.605 and HippoRAG-v2 0.651 with a GPT-4o-mini reader. Conflict resolution at 262K is 0.395 for fused live (job 11750, CI 0.350-0.440) and 0.240 for lexical. The published FactConsolidation rows are BM25 0.255 and HippoRAG-v2 0.295. Hop2 (job 11793) is about 0.555 from the job log, with its verdicts held out. The scorer and verdict files are private; I share them on request.</p>
 
-        <h2>Neighbouring published numbers</h2>
+        <h2 id="neighbours">Neighbouring published numbers</h2>
         <p>Two public repositories share the name agentmemory. They report different protocols. The first is session retrieval (R@5). The second is question answering with a hosted generator and a hosted judge. packset publishes both a retrieval row and a local-reader QA row so those protocols stay distinct.</p>
-        <table>
-          <thead><tr><th>System</th><th>Protocol</th><th>Published figure</th><th>Write policy</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><a href="https://github.com/rohitg00/agentmemory">rohitg00/agentmemory</a></td>
-              <td>LongMemEval-S retrieval, R@5, all-MiniLM-L6-v2</td>
-              <td>95.2% (their COMPARISON.md)</td>
-              <td>Lifecycle hooks capture transcript text</td>
-            </tr>
-            <tr>
-              <td><a href="https://github.com/JordanMcCann/agentmemory">JordanMcCann/agentmemory</a></td>
-              <td>LongMemEval QA, hosted generator and judge</td>
-              <td>96.20% on 481/500 (their README)</td>
-              <td>Chat over a MemoryStore</td>
-            </tr>
-            <tr>
-              <td>packset</td>
-              <td>LongMemEval_S session retrieval; QA with a local 7&nbsp;B reader</td>
-              <td>recall@5 0.949 fused, 0.914 lexical; QA 0.549 against a 0.634 labelled ceiling</td>
-              <td>Remember: and Prefer: only</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-scroll bare" role="region" aria-labelledby="neighbours" tabindex="0">
+          <table>
+            <thead><tr><th>System</th><th>Protocol</th><th>Published figure</th><th>Write policy</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><a href="https://github.com/rohitg00/agentmemory">rohitg00/agentmemory</a></td>
+                <td>LongMemEval-S retrieval, R@5, all-MiniLM-L6-v2</td>
+                <td>95.2% (their COMPARISON.md)</td>
+                <td>Lifecycle hooks capture transcript text</td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/JordanMcCann/agentmemory">JordanMcCann/agentmemory</a></td>
+                <td>LongMemEval QA, hosted generator and judge</td>
+                <td>96.20% on 481/500 (their README)</td>
+                <td>Chat over a MemoryStore</td>
+              </tr>
+              <tr>
+                <td>packset</td>
+                <td>LongMemEval_S session retrieval; QA with a local 7&nbsp;B reader</td>
+                <td>recall@5 0.949 fused, 0.914 lexical; QA 0.549 against a 0.634 labelled ceiling</td>
+                <td>Remember: and Prefer: only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p>The 0.949 fused recall@5 is the neighbour of the 95.2% R@5 retrieval figure. The 96.20% QA figure uses a different generator and a different judge. InjecMEM and the Memory INJection Attack (MINJA) describe the risk of writing from a transcript. packset writes only on Remember: and Prefer:. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
 
         <h2>What the other habitats answer</h2>

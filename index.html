@@ -317,13 +317,19 @@ ljos search fuse</pre>
     (function () {
       var el = document.getElementById("demo-player");
       if (!el || !window.AsciinemaPlayer) return;
-      el.textContent = "";
       // Phones get the same script recorded at 52 columns, so the text stays readable.
       var narrow = window.matchMedia("(max-width: 640px)").matches;
-      AsciinemaPlayer.create(narrow ? "/demo/ljos-demo-narrow.cast" : "/demo/ljos-demo.cast", el, {
-        cols: narrow ? 52 : 120, rows: narrow ? 40 : 30, idleTimeLimit: 1.5, fit: "width",
-        theme: "ljos", poster: "npt:0:28", preload: true
-      });
+      // The player sizes its grid from the font, so wait for the specimen face first.
+      var mono = '"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+      function make() {
+        el.textContent = "";
+        AsciinemaPlayer.create(narrow ? "/demo/ljos-demo-narrow.cast" : "/demo/ljos-demo.cast", el, {
+          cols: narrow ? 52 : 120, rows: narrow ? 40 : 30, idleTimeLimit: 1.5, fit: "width",
+          theme: "ljos", poster: "npt:0:28", preload: true, terminalFontFamily: mono
+        });
+      }
+      if (document.fonts && document.fonts.load) document.fonts.load('400 1em "IBM Plex Mono"').then(make, make);
+      else make();
     })();
   </script>
 </body>

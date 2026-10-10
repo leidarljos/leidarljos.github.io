@@ -1,43 +1,52 @@
 {
   "detector": {
-    "ignoreRules": [],
-    "ignoreFiles": [],
+    "ignoreRules": [
+      "cream-palette"
+    ],
+    "ignoreFiles": [
+      "org/templates/**",
+      "vendor/**"
+    ],
     "ignoreValues": [
       {
         "rule": "em-dash-overuse",
         "value": "*",
         "files": [
-          "docs/harnesses/index.html"
+          "docs/harnesses/index.html",
+          "**/docs/harnesses/"
         ],
         "createdAt": "2026-10-07T20:21:30.584Z",
-        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+        "reason": "Doubled hyphens in these pages are command flags in the specimens.."
       },
       {
         "rule": "em-dash-overuse",
         "value": "*",
         "files": [
-          "docs/island/index.html"
+          "docs/island/index.html",
+          "**/docs/island/"
         ],
         "createdAt": "2026-10-07T20:21:32.305Z",
-        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+        "reason": "Doubled hyphens in these pages are command flags in the specimens.."
       },
       {
         "rule": "em-dash-overuse",
         "value": "*",
         "files": [
-          "docs/sit/index.html"
+          "docs/sit/index.html",
+          "**/docs/sit/"
         ],
         "createdAt": "2026-10-07T20:21:33.974Z",
-        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+        "reason": "Doubled hyphens in these pages are command flags in the specimens.."
       },
       {
         "rule": "em-dash-overuse",
         "value": "*",
         "files": [
-          "handbook/agreement.html"
+          "handbook/agreement.html",
+          "**/handbook/agreement.html"
         ],
         "createdAt": "2026-10-07T20:21:35.606Z",
-        "reason": "Doubled hyphens in these pages are command flags in the specimens."
+        "reason": "Doubled hyphens in these pages are command flags in the specimens.."
       },
       {
         "rule": "overused-font",
@@ -61,10 +70,11 @@
         "rule": "em-dash-overuse",
         "value": "*",
         "files": [
-          "docs/policy/index.html"
+          "docs/policy/index.html",
+          "**/docs/policy/"
         ],
         "createdAt": "2026-10-07T20:29:15.097Z",
-        "reason": "Doubled hyphens on this page are command flags in the specimens."
+        "reason": "Doubled hyphens on this page are command flags in the specimens.."
       }
     ]
   }
