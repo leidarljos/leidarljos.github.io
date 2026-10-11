@@ -16,7 +16,7 @@
     btn.setAttribute("aria-label", label);
     btn.setAttribute("title", label);
   }
-  var bar = { light: "#F6F2E8", dark: "#0B0B0A" };
+  var bar = { light: "#F6F2E8", dark: "#33302A" };
   function tint(mode) {
     document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
       if (!m.dataset.media) m.dataset.media = m.getAttribute("media") || "";
