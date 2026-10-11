@@ -4,6 +4,7 @@
   /* Brand constants. Pages use the role tokens below, never these directly. */
   --ink: #0b0b0a;
   --ink-2: #12110f;
+  --desk: #33302a;
   --cream: #f4f0e6;
   --cream-2: #e8e2d4;
   --gold: #e6a23c;
@@ -12,28 +13,28 @@
 
   /* Role tokens, dark scheme (the default). */
   color-scheme: dark light;
-  --bg: var(--ink);
+  --bg: var(--desk);
   --fg: var(--cream);
   --fg-2: var(--cream-2);
   --accent: var(--gold);
   --accent-fill: var(--gold);
   --accent-soft: var(--gold-dim);
   --on-accent: var(--ink);
-  --line: #2a2824;
-  --line-2: #3a3428;
+  --line: #514e47;
+  --line-2: #645b48;
   --mute: #b9b3a6;
-  --mute-2: #8d877b;
-  --panel: #141310;
-  --panel-2: #1a1814;
+  --mute-2: #aea89b;
+  --panel: #3a3630;
+  --panel-2: #3f3c36;
   --pin-opacity: 0.16;
 
-  /* Terminal surfaces stay ink in both schemes. */
-  --code-bg: #141310;
-  --code-bg-2: #1a1814;
+  /* Terminal surfaces keep the desk panel in both schemes. */
+  --code-bg: #3a3630;
+  --code-bg-2: #3f3c36;
   --code-fg: var(--cream);
   --code-mute: #b9b3a6;
-  --code-mute-2: #8d877b;
-  --code-line: #2a2824;
+  --code-mute-2: #aea89b;
+  --code-line: #514e47;
   --code-accent: var(--gold);
 
   --serif: "Source Serif 4", "Iowan Old Style", Palatino, "Palatino Linotype",
@@ -710,22 +711,43 @@ td:first-child { white-space: nowrap; }
   font-size: 0.92rem;
 }
 
+/* The shared footer, the same on every page and in the project docs:
+   the seven crates, then the analytics line. */
 footer.antics {
   border-top: 1px solid var(--line);
   margin-top: auto;
-  padding: 1.25rem 1rem 1.75rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  justify-content: center;
-  align-items: center;
+  padding: 1.6rem 1rem 1.75rem;
   color: var(--mute);
   font-size: 0.88rem;
+  line-height: 1.4;
 }
-footer.antics,
-footer.antics span,
 footer.antics a { color: var(--mute); }
-footer.antics span { display: inline-flex; align-items: center; gap: 0.35em; }
+footer.antics a:hover { color: var(--accent); }
+.foot-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.1rem;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+.foot-tools a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  text-decoration: none;
+}
+.foot-tools img { width: 1.1rem; height: 1.1rem; }
+.foot-line span { display: inline-flex; align-items: center; gap: 0.35em; }
+.foot-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.25rem;
+  margin: 0;
+}
 
 .field-map {
   list-style: none;
