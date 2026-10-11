@@ -4,17 +4,18 @@ description: Write one claim. Search it back.
 colors:
   ink: "#0b0b0a"
   ink-2: "#12110f"
+  desk: "#33302a"
   cream: "#f4f0e6"
   cream-2: "#e8e2d4"
   gold: "#e6a23c"
   gold-dim: "#9a6410"
   fault: "#c45c4a"
-  line: "#2a2824"
-  line-2: "#3a3428"
+  line: "#514e47"
+  line-2: "#645b48"
   mute: "#b9b3a6"
-  mute-2: "#8d877b"
-  panel: "#141310"
-  panel-2: "#1a1814"
+  mute-2: "#aea89b"
+  panel: "#3a3630"
+  panel-2: "#3f3c36"
   paper: "#f6f2e8"
   paper-ink: "#15130f"
   paper-ink-2: "#2a2620"
@@ -164,11 +165,11 @@ components:
 
 **Creative North Star: "A field journal on a dark desk"**
 
-The page is a night desk: near-black ink, warm cream type, one gold rule. Serif headlines carry the claim. Sans carries the reading. Mono carries the specimen and the install lines. Density is a journal, not a dashboard. The pin mark sits behind the page at low opacity, below the nav so it never covers the search box, and does not compete with the claim.
+The page is a night desk: warm dark ground, cream type, one gold rule. Serif headlines carry the claim. Sans carries the reading. Mono carries the specimen and the install lines. Density is a journal, not a dashboard. The pin mark sits behind the page at low opacity, below the nav so it never covers the search box, and does not compete with the claim.
 
 **Key Characteristics:**
 
-- Ink ground, cream text, gold used as a rule, a kicker, and the primary action.
+- Desk ground, cream text, gold used as a rule, a kicker, and the primary action.
 - Source Serif 4 for headings, Source Sans 3 for reading, IBM Plex Mono for commands.
 - One nav and one stylesheet across the landing page, the docs, and the handbook.
 - Flat panels. Depth is a 1px line, not a shadow.
@@ -185,20 +186,21 @@ The palette is the custom properties in `site.css`. Gold is the only accent.
 
 ### Neutral
 
-- **Ink** (`#0b0b0a`): page ground and primary-button text.
+- **Desk** (`#33302a`): page ground.
+- **Ink** (`#0b0b0a`): primary-button text and the crate-mark tiles.
 - **Ink 2** (`#12110f`): a slightly lifted ink, reserved.
 - **Cream** (`#f4f0e6`): headings, buttons' ghost text, and code.
 - **Cream 2** (`#e8e2d4`): the lead line when it is not the serif hero.
 - **Mute** (`#b9b3a6`): body copy, captions, footer.
-- **Mute 2** (`#8d877b`): small labels on the install bar and the specimen title.
-- **Panel** (`#141310`) and **Panel 2** (`#1a1814`): specimen, install block, and cards.
-- **Line** (`#2a2824`) and **Line 2** (`#3a3428`): hairline borders.
+- **Mute 2** (`#aea89b`): small labels on the install bar and the specimen title.
+- **Panel** (`#3a3630`) and **Panel 2** (`#3f3c36`): specimen, install block, and cards.
+- **Line** (`#514e47`) and **Line 2** (`#645b48`): hairline borders.
 
 **The One Accent Rule.** Gold marks the action and the figure. It does not recolor body paragraphs.
 
 ### Paper scheme (prefers-color-scheme: light)
 
-The same page on paper: cream ground, ink type. Pages use role tokens (`--bg`, `--fg`, `--accent`, `--accent-fill`, `--line`, `--mute`, `--panel`), and the light media query swaps their values. Terminal surfaces (specimen, install block, `pre`) stay ink in both schemes.
+The same page on paper: cream ground, ink type. Pages use role tokens (`--bg`, `--fg`, `--accent`, `--accent-fill`, `--line`, `--mute`, `--panel`), and the light media query swaps their values. Terminal surfaces (specimen, install block, `pre`) keep the desk panel in both schemes.
 
 - **Paper** (`#f6f2e8`): page ground. **Paper panel** (`#efe9dc`) and **Paper panel 2** (`#e7e0d0`): cards and inputs.
 - **Paper ink** (`#15130f`): headings and strong text. **Paper ink 2** (`#2a2620`): the lead line.
@@ -234,7 +236,7 @@ The page is a centered column: `min(72rem, calc(100% - 2.5rem))` on the landing,
 
 ## Elevation & Depth
 
-The system is flat. Panels are a darker ink with a 1px line. The pin is a fixed watermark, not a layer the reader clicks.
+The system is flat. Panels sit one step above the desk with a 1px line. The pin is a fixed watermark, not a layer the reader clicks.
 
 ### Named Rules
 
