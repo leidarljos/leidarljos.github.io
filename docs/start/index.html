@@ -71,8 +71,8 @@
         <div class="walk">
           <section>
             <h2>1. Install</h2>
-            <pre>$ cargo binstall ljos packset</pre>
-            <p>Without <code>cargo-binstall</code>, <code>cargo install ljos packset</code> is the same. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
+            <pre>$ curl -fsSLO https://github.com/leidarljos/ljos/releases/latest/download/install.sh &amp;&amp; sh install.sh</pre>
+            <p>The script fetches ljos, packset, vissue, deedar, claimdag, ljos-policyd and ljos-consensus from their GitHub releases into <code>~/.local/bin</code> and checks each checksum. Read it first: it is <a href="https://github.com/leidarljos/ljos/blob/main/scripts/install.sh"><code>scripts/install.sh</code></a>. To build from source instead, <code>cargo install --locked ljos packset vissue-cli deedar-cli claimdag-cli ljos-policyd ljos-consensus</code>. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
             <p>Work starts as a ticket. <code>vissue q -p PROJECT "TITLE"</code> mints it in the tracker <code>VISSUE_ROOT</code> names, and <code>ljos sitting</code> claims it. That tracker is yours. A ticket filed on one machine is invisible to every other install until <code>VISSUE_ROOT</code> is a git checkout those machines share. The <a href="/docs/sit/">sit</a> page uses a scratch tracker under <code>/tmp</code> so a first run does not touch a live one.</p>
           </section>
           <section>
