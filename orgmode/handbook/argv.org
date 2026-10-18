@@ -1,4 +1,5 @@
 #+title: A check is the argv verdict.
+#+description: A check is the argv verdict. ljos policy prints the line and ljos-policyd is the trusted computing base.
 #+options: toc:nil num:nil
 
 [[file:index.org][Back to the field]]

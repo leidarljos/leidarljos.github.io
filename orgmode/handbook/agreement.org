@@ -1,4 +1,5 @@
 #+title: The settle is the consensus.
+#+description: ljos consensus is the seat's settle under the trust rows the pack holds.
 #+options: toc:nil num:nil
 
 [[file:index.org][Back to the field]]

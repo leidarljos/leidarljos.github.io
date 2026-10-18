@@ -1,4 +1,5 @@
 #+title: The pin is an accession.
+#+description: The pin is a deed accession. ljos evidence asks deedar for the bytes. The product stays in deedar.
 #+options: toc:nil num:nil
 
 [[file:index.org][Back to the field]]

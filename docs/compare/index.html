@@ -16,7 +16,9 @@
   <meta property="og:description" content="packset LongMemEval_S retrieval and write policy, with neighbouring published numbers named by protocol.">
   <meta property="og:url" content="https://leidarljos.github.io/docs/compare/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta property="og:image" content="https://leidarljos.github.io/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://leidarljos.github.io/og.png">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
   <script>window.antics=window.antics||{event:function(){}};document.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&a.hostname&&a.hostname!==location.hostname)antics.event("Outbound Link",{url:a.href});});</script>
 </head>
@@ -68,7 +70,7 @@
       </ul>
 
         <h2>What we measured</h2>
-        <p>LongMemEval_S (doi:10.48550/arXiv.2410.10813), 470 answerable questions, session-level retrieval. The pack writes claims, not harvested chat. Reproduction: <code>scripts/longmemeval_qa.py</code> and <code>docs/orgmode/results/longmemeval-s-qa.org</code> in packset.</p>
+        <p>LongMemEval_S (doi:10.48550/arXiv.2410.10813), 470 answerable questions, session-level retrieval. The pack writes claims, not harvested chat. Source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/longmemeval.rs"><code>crates/packset-daemon/examples/longmemeval.rs</code></a> in packset. Data held privately.</p>
         <table>
           <thead><tr><th>Arm</th><th>hit@1</th><th>recall@5</th><th>recall@10</th></tr></thead>
           <tbody>
@@ -76,8 +78,8 @@
             <tr><td>packset fused panel</td><td>0.889</td><td>0.949</td><td>0.981</td></tr>
           </tbody>
         </table>
-        <p>Answer accuracy on the same 470 uses a local 7&nbsp;B reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval prompts, top five sessions). CombMNZ fusion is 0.549. Lexical alone is 0.532. Labelled sessions, the ceiling for any retriever, are 0.634.</p>
-        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), reader Qwen2.5-7B. Accurate retrieval scores each source on its own metric, then takes the mean of the four. Lexical job 11759 is 0.568 (95% CI 0.530-0.605, clustered by question). The per-source scores are SH 0.730, MH 0.530, LongMemEval (S*) 0.370 and EventQA 0.640. Published rows are BM25 0.605 and HippoRAG-v2 0.651 with a GPT-4o-mini reader. Conflict resolution at 262K is 0.395 for fused live (job 11750, CI 0.350-0.440) and 0.240 for lexical. The published FactConsolidation rows are BM25 0.255 and HippoRAG-v2 0.295. Hop2 (job 11793) is about 0.555 from the job log, with its verdicts held out. The scorer and verdict files are private; I share them on request.</p>
+        <p>Answer accuracy on the same 470 uses a local 7&nbsp;B reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval prompts, top five sessions). CombMNZ fusion is 0.549. Lexical alone is 0.532. Labelled sessions, the ceiling for any retriever, are 0.634. Reproduction: <a href="https://github.com/leidarljos/packset/blob/main/scripts/longmemeval_qa.py"><code>scripts/longmemeval_qa.py</code></a> and <a href="https://github.com/leidarljos/packset/blob/main/docs/orgmode/results/longmemeval-s-qa.org"><code>docs/orgmode/results/longmemeval-s-qa.org</code></a> in packset.</p>
+        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), reader Qwen2.5-7B. Accurate retrieval scores each source on its own metric, then takes the mean of the four. Lexical job 11759 is 0.568 (95% CI 0.530-0.605, clustered by question). The per-source scores are SH 0.730, MH 0.530, LongMemEval (S*) 0.370 and EventQA 0.640. Published rows are BM25 0.605 and HippoRAG-v2 0.651 with a GPT-4o-mini reader. Conflict resolution at 262K is 0.395 for fused live (job 11750, CI 0.350-0.440) and 0.240 for lexical. The published FactConsolidation rows are BM25 0.255 and HippoRAG-v2 0.295. Hop2 (job 11793) is about 0.555 from the job log, with its verdicts held out. Source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/memoryagentbench.rs"><code>crates/packset-daemon/examples/memoryagentbench.rs</code></a> in packset. Data held privately.</p>
 
         <h2 id="neighbours">Neighbouring published numbers</h2>
         <p>Two public repositories share the name agentmemory. They report different protocols. The first is session retrieval (R@5). The second is question answering with a hosted generator and a hosted judge. packset publishes both a retrieval row and a local-reader QA row so those protocols stay distinct.</p>

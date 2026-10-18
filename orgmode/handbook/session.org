@@ -1,4 +1,5 @@
 #+title: The ticket stays open.
+#+description: ljos sitting opens a sitting and ljos finish closes it. The ticket stays open until vissue closes it.
 #+options: toc:nil num:nil
 
 [[file:index.org][Back to the field]]

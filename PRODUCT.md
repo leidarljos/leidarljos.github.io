@@ -24,7 +24,7 @@ The landing page persuades the visitor to write one claim. The docs and the hand
 
 ## Capabilities and Constraints
 
-Static pages. One stylesheet, `site.css`. The handbook HTML is generated from `orgmode/handbook` through `org/templates`. Root paths such as `/start/` redirect into `/docs/` and stay redirects.
+Static pages. One stylesheet, `site.css`. The handbook HTML is generated from `orgmode/handbook` through `.github/site-templates`. Root paths such as `/start/` redirect into `/docs/` and stay redirects.
 
 The public pages keep the brand leiðarljós, the heading “Write one claim. Search it back.”, the sitting specimen, the install lines, and the LongMemEval figures `0.949` and `0.549 / 0.634`.
 
