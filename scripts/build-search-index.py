@@ -8,7 +8,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SKIP = {".git", ".github", "scripts", "org", "orgmode", "marks"}
+SKIP = {".git", "scripts", "org", "orgmode", "marks"}
 
 
 class Text(HTMLParser):
