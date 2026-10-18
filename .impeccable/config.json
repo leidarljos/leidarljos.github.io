@@ -4,7 +4,7 @@
       "cream-palette"
     ],
     "ignoreFiles": [
-      ".github/site-templates/**",
+      "org/templates/**",
       "vendor/**"
     ],
     "ignoreValues": [

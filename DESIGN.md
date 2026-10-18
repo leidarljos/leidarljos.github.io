@@ -269,7 +269,7 @@ Buttons and the search field use a 4px corner. Cards, the install block, and doc
 
 ### Navigation
 
-One bar: the serif brand leiðarljós, the same link list, a search field that submits to `/docs/search/`. The current page is gold. The bar wraps instead of overflowing. The handbook copies this bar from `.github/site-templates/nav.html`.
+One bar: the serif brand leiðarljós, the same link list, a search field that submits to `/docs/search/`. The current page is gold. The bar wraps instead of overflowing. The handbook copies this bar from `org/templates/nav.html`.
 
 ## Do's and Don'ts
 
