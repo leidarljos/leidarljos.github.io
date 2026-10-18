@@ -1,4 +1,5 @@
 #+title: Overflow is an error.
+#+description: ljos cards prints USER.md and MEMORY.md. The command never writes them. Overflow is an error.
 #+options: toc:nil num:nil
 
 [[file:index.org][Back to the field]]

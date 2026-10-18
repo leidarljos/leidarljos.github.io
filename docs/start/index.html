@@ -16,7 +16,9 @@
   <meta property="og:description" content="Install the seat, write one claim on purpose, and search it back.">
   <meta property="og:url" content="https://leidarljos.github.io/docs/start/">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://leidarljos.github.io/icon.svg">
+  <meta property="og:image" content="https://leidarljos.github.io/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://leidarljos.github.io/og.png">
   <meta name="theme-color" content="#33302A" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#F6F2E8" media="(prefers-color-scheme: light)">
   <script defer src="https://antics-api.turtletech.us/antics.js"></script>
@@ -72,7 +74,7 @@
           <section>
             <h2>1. Install</h2>
             <pre>$ curl -fsSLO https://github.com/leidarljos/ljos/releases/latest/download/install.sh &amp;&amp; sh install.sh</pre>
-            <p>The script fetches ljos, packset, vissue, deedar, claimdag, ljos-policyd and ljos-consensus from their GitHub releases into <code>~/.local/bin</code> and checks each checksum. Read it first: it is <a href="https://github.com/leidarljos/ljos/blob/main/scripts/install.sh"><code>scripts/install.sh</code></a>. To build from source instead, <code>cargo install --locked ljos packset vissue-cli deedar-cli claimdag-cli ljos-policyd ljos-consensus</code>. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
+            <p>The script fetches ljos, packset, vissue, deedar, claimdag, ljos-policyd and ljos-consensus from their GitHub releases into <code>~/.local/bin</code> and checks each checksum. Read it first: it is <a href="https://github.com/leidarljos/ljos/blob/main/scripts/install.sh"><code>scripts/install.sh</code></a>. To build from source instead, <code>cargo install --locked ljos packset vissue-cli vissue-mcp deedar-cli claimdag-cli ljos-policyd ljos-consensus</code>. Other runners: <a href="/docs/harnesses/">Harnesses</a>.</p>
             <p>Work starts as a ticket. <code>vissue q -p PROJECT "TITLE"</code> mints it in the tracker <code>VISSUE_ROOT</code> names, and <code>ljos sitting</code> claims it. That tracker is yours. A ticket filed on one machine is invisible to every other install until <code>VISSUE_ROOT</code> is a git checkout those machines share. The <a href="/docs/sit/">sit</a> page uses a scratch tracker under <code>/tmp</code> so a first run does not touch a live one.</p>
           </section>
           <section>

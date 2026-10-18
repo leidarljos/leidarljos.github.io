@@ -57,9 +57,10 @@
 
 (advice-add 'org-html-fontify-code :override #'ljos-html-fontify-code-engrave)
 
+;; Under .github so GitHub Pages does not publish the fragments.
 (defun ljos-read-template (name)
   (let ((path (expand-file-name name
-                                (expand-file-name "org/templates"
+                                (expand-file-name ".github/site-templates"
                                                   default-directory))))
     (with-temp-buffer
       (insert-file-contents path)
