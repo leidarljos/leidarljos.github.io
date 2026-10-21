@@ -8,10 +8,16 @@ clock running on it.
 * Install
 
 #+begin_src console
-$ cargo binstall ljos packset
+$ curl -fsSLO https://github.com/leidarljos/ljos/releases/latest/download/install.sh && sh install.sh
 #+end_src
 
-=cargo install ljos packset= is the same without =cargo-binstall=.
+The script fetches ljos, packset, vissue, deedar, claimdag, ljos-policyd
+and ljos-consensus from their GitHub releases into =~/.local/bin= and
+checks each checksum. To build from source:
+
+#+begin_src console
+$ cargo install --locked ljos packset vissue-cli vissue-mcp deedar-cli claimdag-cli ljos-policyd ljos-consensus
+#+end_src
 
 * Write one claim, then retrieve it
 
@@ -24,8 +30,8 @@ somewhere else is not replaced.
 #+begin_src console
 $ ljos remember "the default fuse is CombMNZ"
 8e3e7827...  lesson  due 2026-10-10T21:56:09.549Z  the default fuse is CombMNZ
+standing: the hook shows it from the next prompt it bears on
 $ ljos search fuse
-Score is how the scorers ranked this query. ...
 1.0000  3/3  lesson  8e3e7827...  today  the default fuse is CombMNZ
 $ ljos due
 0 due; 1 scheduled, next at 2026-10-10T21:56:09.549Z
@@ -41,7 +47,6 @@ claim; =ljos graded ID= (or =--lapsed=) moves the clock.
 #+begin_src console
 $ ljos prefer "never extract on write"
 $ ljos search extract
-Score is how the scorers ranked this query. ...
 2.0000  3/3  preference  fe9d4d04...  today  never extract on write
 1.0000  1/3  lesson      8e3e7827...  today  the default fuse is CombMNZ
 #+end_src

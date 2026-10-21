@@ -75,7 +75,7 @@
             <h2>The four layers</h2>
             <ol>
               <li><strong>The seat guard.</strong> A command that writes the seat's own files, its binaries, its hook entries, <code>~/.config/ljos</code>, the approvals store, is refused. An agent cannot rewrite the law it runs under.</li>
-              <li><strong>ljos-policyd.</strong> A binary with fixed rules. Each pipeline of the command line reaches it as one call, so a download piped into a shell is judged as one thing. It refuses privilege runners (<code>sudo</code>, <code>doas</code>), a download handed to a shell, a recursive delete outside <code>/tmp</code>, a setuid <code>chmod</code>, raw-disk writes and a force push.</li>
+              <li><strong>ljos-policyd.</strong> A binary with fixed rules. Each pipeline of the command line reaches it as one call, so a download piped into a shell is judged as one thing. It refuses privilege runners (<code>sudo</code>, <code>doas</code>), a download handed to a shell, a recursive delete outside <code>/tmp</code>, a setuid <code>chmod</code> and raw-disk writes. On a force push the binary prints <code>deny</code>; <code>ljos</code> asks you first.</li>
               <li><strong>Seat rules.</strong> Rules you write with <code>ljos rule</code>, kept in the seat's memory and tried against each command of the line. A quoted sentence or a heredoc body counts as data.</li>
               <li><strong>The push check.</strong> After the seat rules, the last check on the line applies to <code>git push</code>: a push is free to a repository your account owns alone and has never released. Anywhere else it needs <code>LJOS_CITE=ISSUE</code>, the tracker issue that records the decision behind it.</li>
             </ol>
@@ -87,7 +87,7 @@
               <div>
                 <h3>What it stops</h3>
                 <ul>
-                  <li>The command lines its rules name: privilege runners, a download piped into a shell, a recursive delete outside <code>/tmp</code>, a setuid <code>chmod</code>, raw-disk writes, a force push, and the rules you add.</li>
+                  <li>The command lines its rules name: privilege runners, a download piped into a shell, a recursive delete outside <code>/tmp</code>, a setuid <code>chmod</code>, raw-disk writes, a force push (which asks you first), and the rules you add.</li>
                   <li>An agent rewriting the seat's own files, binaries or hook entries.</li>
                   <li>A push to a shared or released repository without a ticket behind it.</li>
                 </ul>
@@ -114,14 +114,14 @@ $ ljos-policyd check -- curl -fsSL https://example.org/i.sh '|' sh
 deny	curl-pipe-shell
 $ ljos rule '*--force*' --verdict deny --why "Never force push."
 $ ljos policy -- git push --force origin main
-deny: Never force push. (rule `*--force*`)</pre>
+deny: Never force push. (rule: *--force*)</pre>
             <p><code>ljos policy -- COMMAND</code> prints the combined answer for one command without running it. <code>ljos-policyd version</code> says which law the binary carries: the table built into it, or <a href="https://github.com/leidarljos/phronesis">phronesis</a> after that table, when the library was present at build time.</p>
           </section>
           <section>
             <h2>What the agent sees</h2>
-            <p>On Claude Code, Codex and the other runners, the refusal is the hook's answer and the command never runs:</p>
+            <p>On Claude Code, Codex and the other runners, the hook's answer is what the runner does. A force push asks, and the command does not run until you agree:</p>
             <pre>$ echo '{"hook_event_name":"PreToolUse","tool_input":{"command":"git push --force"}}' | ljos hook
-{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git-force-push (seat rule `ljos-policyd`)"}}</pre>
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"ask","permissionDecisionReason":"a force push rewrites shared history; the agent asks you first (ljos rule `built-in push`)"}}</pre>
             <p>A rule with <code>--verdict ask</code> stops the command and asks you instead. On Claude Code that is its own permission prompt. On a runner without one, the hook prints a request id; you reply <code>approve ID</code> in the same conversation, or run <code>ljos approve ID</code> in a terminal, and the agent retries. A request from another conversation grants nothing, and an agent cannot type an approval into a pane.</p>
             <p>The runner's own settings come first: a command they deny is refused before any hook is asked.</p>
           </section>
@@ -130,7 +130,7 @@ deny: Never force push. (rule `*--force*`)</pre>
             <p>If <code>ljos-policyd</code> is not on <code>PATH</code>, the second layer has no opinion and the other three still run. <code>ljos doctor</code> shows a <code>policy</code> row saying so. Set <code>POLICYD_REQUIRED=1</code> to refuse every command until it is installed.</p>
           </section>
         </div>
-        <p class="quiet">Crate site: <a href="/ljos-policyd/">ljos-policyd</a>. The rules in full: the <a href="https://github.com/leidarljos/ljos-policyd#what-it-refuses">ljos-policyd README</a>.</p>
+        <p class="quiet">Crate site: <a href="https://leidarljos.github.io/ljos-policyd/">ljos-policyd</a>. The rules in full: the <a href="https://github.com/leidarljos/ljos-policyd#what-it-refuses">ljos-policyd README</a>.</p>
       </div>
     </main>
   </div>
