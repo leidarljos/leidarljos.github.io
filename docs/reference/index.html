@@ -73,9 +73,9 @@
         <table>
           <thead><tr><th>Verb</th><th>Habitat</th><th>Does</th></tr></thead>
           <tbody>
-            <tr><td><code>ljos sitting ID</code></td><td>seat</td><td>Open: doctor, cards, due, island, recall, timeline, claim.</td></tr>
+            <tr><td><code>ljos sitting ID</code></td><td>seat</td><td>Open: doctor, cards, due, island, blockers, playbook, recall, timeline, reclaim, claim. Panel after playbook on a decision. Sync after doctor only when <code>.ljos/sync.toml</code> names a scope.</td></tr>
             <tr><td><code>ljos finish ID</code></td><td>seat</td><td>Close: remember, fire, complete, learn. The ticket stays open.</td></tr>
-            <tr><td><code>ljos remember TEXT</code></td><td>packset</td><td>POST one explicit claim. Needs <code>PACKSET_URL</code>.</td></tr>
+            <tr><td><code>ljos remember TEXT</code></td><td>packset</td><td>POST one explicit claim. Starts the writer when none is answering. <code>PACKSET_URL=off</code> is no pack.</td></tr>
             <tr><td><code>ljos prefer TEXT</code></td><td>packset</td><td>Same write path, kind preference.</td></tr>
             <tr><td><code>ljos search QUERY</code></td><td>packset</td><td>Retrieve standing knowledge.</td></tr>
             <tr><td><code>ljos evidence ACCESSION</code></td><td>deedar</td><td>Frozen product bytes.</td></tr>
@@ -85,10 +85,10 @@
             <tr><td><code>ljos vote ID [--for CHOICE]</code></td><td>tracker</td><td>Ballots.</td></tr>
             <tr><td><code>ljos claim NODE</code></td><td>claimdag</td><td>This-session CAS.</td></tr>
             <tr><td><code>ljos complete NODE</code></td><td>claimdag</td><td>The ticket stays open.</td></tr>
-            <tr><td><code>ljos hook</code></td><td>policyd, pack</td><td>On PreToolUse: TCB then pack rules; a deny blocks. On a prompt: pack text.</td></tr>
+            <tr><td><code>ljos hook</code></td><td>policyd, pack</td><td>On PreToolUse: TCB then pack rules; a deny blocks and a force push asks. On a prompt: pack text.</td></tr>
             <tr><td><code>ljos cards</code></td><td>cards</td><td>Read <code>USER.md</code> / <code>MEMORY.md</code>. Never writes.</td></tr>
-            <tr><td><code>ljos policy -- ARGV</code></td><td>policyd</td><td>TCB then pack rules. A deny blocks. A check is the argv verdict.</td></tr>
-            <tr><td><code>ljos consensus ID</code></td><td>consensus crate</td><td>DeGroot / ODE, then the tracker verb.</td></tr>
+            <tr><td><code>ljos policy -- ARGV</code></td><td>policyd</td><td>Prints the argv verdict. Runs nothing. A force push asks.</td></tr>
+            <tr><td><code>ljos consensus ID</code></td><td>consensus crate</td><td>DeGroot / ODE over the ballots. <code>--compare</code> also runs <code>vissue consensus</code>.</td></tr>
           </tbody>
         </table>
         <h2>MCP</h2>
@@ -106,13 +106,13 @@
             <tr><td><code>ljos_claim</code></td><td><code>node</code></td><td>Claim a claimdag node.</td></tr>
             <tr><td><code>ljos_complete</code></td><td><code>node</code></td><td>Complete a claimdag node. The ticket stays open.</td></tr>
             <tr><td><code>ljos_cards</code></td><td>—</td><td>Read-only cards.</td></tr>
-            <tr><td><code>ljos_policy</code></td><td><code>argv</code></td><td>TCB then pack rules. A deny blocks. A check is the argv verdict.</td></tr>
-            <tr><td><code>ljos_consensus</code></td><td><code>id</code></td><td><code>ljos-consensus</code> then the tracker verb. The settle is the consensus.</td></tr>
+            <tr><td><code>ljos_policy</code></td><td><code>argv</code></td><td>Prints the argv verdict. Runs nothing.</td></tr>
+            <tr><td><code>ljos_consensus</code></td><td><code>id</code></td><td><code>ljos-consensus</code> over the ballots. <code>--compare</code> also runs the tracker verb.</td></tr>
           </tbody>
         </table>
         <h2>Install the seat</h2>
 <pre>curl -fsSLO https://github.com/leidarljos/ljos/releases/latest/download/install.sh &amp;&amp; sh install.sh</pre>
-        <p>Crate sites: <a href="/ljos/">ljos</a> · <a href="/packset/">packset</a> · <a href="/deedar/">deedar</a> · <a href="https://leidarljos.github.io/vissue">vissue</a> · <a href="/claimdag/">claimdag</a> · <a href="/consensus/">consensus</a> · <a href="/ljos-policyd/">ljos-policyd</a></p>
+        <p>Crate sites: <a href="https://leidarljos.github.io/ljos/">ljos</a> · <a href="https://leidarljos.github.io/packset/">packset</a> · <a href="https://leidarljos.github.io/deedar/">deedar</a> · <a href="https://leidarljos.github.io/vissue">vissue</a> · <a href="https://leidarljos.github.io/claimdag/">claimdag</a> · <a href="https://leidarljos.github.io/consensus/">consensus</a> · <a href="https://leidarljos.github.io/ljos-policyd/">ljos-policyd</a></p>
       </div>
     </main>
   </div>

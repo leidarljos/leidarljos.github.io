@@ -93,12 +93,12 @@ in packset. A missing binary leaves the line open unless
 
 <p>
 <code>ljos hook</code> on <code>PreToolUse</code> is the same gate. A deny is a blocked tool
-call:
+call. A force push asks, and the command does not run until you agree:
 </p>
 
 <div class="org-src-container">
 <pre class="src src-console"><code>$ echo '{"hook_event_name":"PreToolUse","tool_input":{"command":"git push --force"}}' | ljos hook
-{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"git-force-push (seat rule `ljos-policyd`)"}}
+{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"ask","permissionDecisionReason":"a force push rewrites shared history; the agent asks you first (ljos rule `built-in push`)"}}
 </code></pre>
 </div>
 

@@ -80,9 +80,8 @@
               <button type="button" role="tab" aria-selected="false" data-i="2">policy</button>
             </div>
           </div>
-          <pre class="term-body" id="term-out" role="tabpanel">$ ljos sitting demo-k29f
+          <pre class="term-body" id="term-out" role="tabpanel">$ ljos sitting demo-k29f --verbose
 == doctor
-== sync
 == cards
 == due
 == island
@@ -90,6 +89,7 @@
 == playbook
 == recall
 == timeline
+== reclaim
 == claim
 gen=2</pre>
         </div>
@@ -248,12 +248,12 @@ ljos search fuse</pre>
   <script>
     (function () {
       var scenes = [
-        { cmd: "ljos sitting demo-k29f",
-          out: "== doctor\n== sync\n== cards\n== due\n== island\n== blockers\n== playbook\n== recall\n== timeline\n== claim\ngen=2" },
+        { cmd: "ljos sitting demo-k29f --verbose",
+          out: "== doctor\n== cards\n== due\n== island\n== blockers\n== playbook\n== recall\n== timeline\n== reclaim\n== claim\ngen=2" },
         { cmd: "ljos remember \"the default fuse is CombMNZ\"",
-          out: "8e3e78270cd4…\tlesson\tdue 2026-10-10T21:56:09Z\tthe default fuse is CombMNZ" },
+          out: "8e3e78270cd4…\tlesson\tdue 2026-10-10T21:56:09Z\tthe default fuse is CombMNZ\nstanding: the hook shows it from the next prompt it bears on" },
         { cmd: "ljos policy -- git push --force",
-          out: "git push --force\ndeny\tgit-force-push" }
+          out: "git push --force\nask: a force push rewrites shared history; the agent asks you first (rule: built-in push)" }
       ];
       var el = document.getElementById("term-out");
       var tabs = document.querySelectorAll(".term-tabs button");
@@ -266,7 +266,7 @@ ljos search fuse</pre>
         el.innerHTML = body
           .replace(/^\$ /m, "<span class=\"p\">$ </span>")
           .replace(/^ljos:/m, "<span class=\"ok\">ljos:</span>")
-          .replace(/^(deny\tgit-force-push)$/m, "<span class=\"bad\">$1</span>");
+          .replace(/^(ask: a force push.*)$/m, "<span class=\"bad\">$1</span>");
         if (!typed) el.innerHTML += "<span class=\"caret\" aria-hidden=\"true\"></span>";
         tabs.forEach(function (b, k) { b.setAttribute("aria-selected", k === n ? "true" : "false"); });
       }

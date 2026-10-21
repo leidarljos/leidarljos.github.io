@@ -83,7 +83,7 @@ $ ljos doctor</pre>
           </section>
           <section>
             <h2>2. Make a ticket and sit it</h2>
-            <p><code>sitting</code> prints its sections in order and stops at the first store that does not answer: doctor, sync, cards, due, the island the title activates, open blockers, the playbook it binds, the panel when the issue is a decision, recall, timeline, then the claim. Sync pulls the tracker and takes the other machines' sealed memory logs before the island is walked. On a decision issue the panel section writes one brief per persona the title names; each brief starts a subagent that casts one ballot as that persona, and <code>finish --close</code> refuses a decision with fewer than two ballots. When the tracker is a git checkout, the claim is committed and pushed, so another host sees who holds the ticket. After the sitting, read each due row and run <code>ljos graded ID</code> (or <code>--lapsed</code>). The clock does not move until you grade.</p>
+            <p><code>sitting</code> prints its sections in order and stops at the first store that does not answer: doctor, cards, due, the island the title activates, open blockers, the playbook it binds, the panel when the issue is a decision, recall, timeline, reclaim, then the claim. When <code>.ljos/sync.toml</code> names a scope, sync is printed after doctor and the other machines' sealed logs are taken before the island is walked. A repository with no such file says nothing about sync. On a decision issue the panel section writes one brief per persona the title names; each brief starts a subagent that casts one ballot as that persona, and <code>finish --close</code> refuses a decision with fewer than two ballots. When the tracker is a git checkout, the claim is committed and pushed, so another host sees who holds the ticket. After the sitting, read each due row and run <code>ljos graded ID</code> (or <code>--lapsed</code>). The clock does not move until you grade.</p>
             <p><code>--assignee</code> is for a named worker. Left off, or given as a pronoun (<code>you</code>, <code>seat</code>, <code>agent</code>), the holder is this conversation's: the seat tagged with its process, the same in the runner's tools and its shells (<code>ljos seat</code> prints it). Occupancy is <code>holder:issue</code>, so two conversations do not share one slot and a second sitting does not release the first.</p>
             <pre>$ id=$(vissue create -p demo "Ship the fuse change?" -q)
 $ ljos sitting $id
@@ -118,7 +118,7 @@ $ ljos accept 1735...</pre>
             <pre>$ kill %1 &amp;&amp; rm -rf "$seat"</pre>
           </section>
         </div>
-        <p class="quiet">Agreement is <code>ljos consensus</code> over <a href="/consensus/">ljos-consensus</a> on crates.io. The seat crate walks the same loop: <a href="/ljos/getting-started.html">ljos getting started</a>. Field note: <a href="/handbook/session/">completing is not closing</a>.</p>
+        <p class="quiet">Agreement is <code>ljos consensus</code> over <a href="https://leidarljos.github.io/consensus/">ljos-consensus</a> on crates.io. The seat crate walks the same loop: <a href="https://leidarljos.github.io/ljos/getting-started.html">ljos getting started</a>. Field note: <a href="/handbook/session/">completing is not closing</a>.</p>
       </div>
     </main>
   </div>
