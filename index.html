@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Write one claim. Search it back.</title>
-  <meta name="description" content="ljos writes one claim, then searches that claim back. Nothing is mined from chat.">
+  <meta name="description" content="ljos writes one claim, then searches that claim back.">
   <link rel="canonical" href="https://leidarljos.github.io/">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,10 +14,10 @@
   <script defer src="/theme.js"></script>
   <link rel="stylesheet" href="/vendor/asciinema-player-3.17.0/asciinema-player.css">
   <meta property="og:title" content="Write one claim. Search it back.">
-  <meta property="og:description" content="ljos writes one claim, then searches that claim back. Nothing is mined from chat.">
+  <meta property="og:description" content="ljos writes one claim, then searches that claim back.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Write one claim. Search it back.">
-  <meta name="twitter:description" content="ljos writes one claim, then searches that claim back. Nothing is mined from chat.">
+  <meta name="twitter:description" content="ljos writes one claim, then searches that claim back.">
   <meta name="twitter:image" content="https://leidarljos.github.io/og.png">
   <meta property="og:url" content="https://leidarljos.github.io/">
   <meta property="og:type" content="website">
@@ -61,7 +61,7 @@
       <header class="hero-journal">
         <h1>Write one claim. Search it back.</h1>
         <p class="rule" aria-hidden="true"></p>
-        <p class="lead">ljos gives coding agents a memory, a work tracker, and a check on every shell command. Claude Code and Codex are such agents, as are opencode and agy. Cursor is one too. It writes one claim when you say Remember: or Prefer:, then searches that claim back. Nothing is mined from chat, and memory stays on your machine unless you turn on a remote judge.</p>
+        <p class="lead">ljos gives coding agents a memory, a work tracker, and a check on every shell command. Claude Code and Codex are such agents, as are opencode and agy. Cursor is one too. It writes one claim when you say Remember: or Prefer:, or when a sentence in your prompt says "from now on", then searches that claim back. Memory stays on your machine unless you turn on a remote judge.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="/docs/start/">Write one claim</a>
           <a class="btn btn-ghost" href="/docs/sit/">How sitting works</a>
@@ -122,7 +122,7 @@ ljos search fuse</pre>
             <p>A coding agent with a shell can push, delete, or pipe a download into <code>sh</code> on its own judgement.</p>
           </div>
         </div>
-        <p class="why-answer">ljos writes a memory only when you say <code>Remember:</code> or <code>Prefer:</code>, keeps it in plain local files you can read, and checks each shell command against fixed rules before it runs. No model sits in the write path or the check, and it all runs on a CPU.</p>
+        <p class="why-answer">ljos writes a memory when you say <code>Remember:</code> or <code>Prefer:</code>, keeps it in plain local files you can read, and checks each shell command against fixed rules before it runs. A "from now on" sentence in a prompt, such as "from now on use bun, never yarn", is stored too, as a standing preference; <code>LJOS_CAPTURE=off</code> turns that off. No model sits in the write path or the check, and it all runs on a CPU.</p>
       </section>
 
       <section class="band" aria-labelledby="loop-h">
@@ -139,7 +139,7 @@ ljos search fuse</pre>
             <li>
               <span class="n">02</span>
               <h3>Work</h3>
-              <p><code>ljos note</code> logs progress on the ticket. <code>deedar create</code> records what the work produced, and <code>ljos deed</code> cites it. <code>ljos remember</code> and <code>ljos prefer</code> are the only memory writes.</p>
+              <p><code>ljos note</code> logs progress on the ticket. <code>deedar create</code> records what the work produced, and <code>ljos deed</code> cites it. <code>ljos remember</code> and <code>ljos prefer</code> write memory.</p>
             </li>
             <li>
               <span class="n">03</span>
@@ -189,7 +189,7 @@ ljos search fuse</pre>
       </figure>
 
       <figure class="plate measure-plate" aria-labelledby="fig-measure">
-        <figcaption id="fig-measure"><span>Fig. 4</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical. Writes only on Remember: and Prefer:.</figcaption>
+        <figcaption id="fig-measure"><span>Fig. 4</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical.</figcaption>
         <table>
           <thead>
             <tr><th>arm</th><th>recall@5</th><th>QA / ceiling</th></tr>

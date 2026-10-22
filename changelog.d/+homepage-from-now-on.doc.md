@@ -1,0 +1,1 @@
+The homepage says a "from now on" sentence in a prompt is stored as a standing preference, and that `LJOS_CAPTURE=off` turns that off. It said nothing was mined from chat and that memory was written only on Remember: and Prefer:, while the prompt hook saves such a sentence by default.
