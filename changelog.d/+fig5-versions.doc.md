@@ -1,0 +1,1 @@
+Fig. 5 on the homepage names what it measured: ljos 0.27.0 and packset 0.12.1, built on 10 October 2026 with `cargo install --locked -j 2`, lexical search and no encoder, as recorded in `measurements/2026-10-10-install`. The figures are unchanged.
