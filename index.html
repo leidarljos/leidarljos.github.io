@@ -189,7 +189,7 @@ ljos search fuse</pre>
       </figure>
 
       <figure class="plate measure-plate" aria-labelledby="fig-measure">
-        <figcaption id="fig-measure"><span>Fig. 4</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical.</figcaption>
+        <figcaption id="fig-measure"><span>Fig. 4</span> LongMemEval_S, n = 470 answerable questions, session retrieval. The fused 0.949 was measured with CombMNZ over BM25+ and the multilingual-e5-large encoder. The default install encodes with bge-small-en-v1.5 instead, and without an encoder search stays lexical. The run data is held privately.</figcaption>
         <table>
           <thead>
             <tr><th>arm</th><th>recall@5</th><th>QA / ceiling</th></tr>
@@ -199,7 +199,7 @@ ljos search fuse</pre>
             <tr><td>CombMNZ fused</td><td>0.949</td><td>0.549 / 0.634</td></tr>
           </tbody>
         </table>
-        <p class="quiet">QA for CombMNZ fused uses a local 7&nbsp;B reader and judge, top five sessions, against the labelled-session ceiling. Retrieval source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/longmemeval.rs"><code>crates/packset-daemon/examples/longmemeval.rs</code></a> in packset. Data held privately. <a href="/docs/compare/">Compare</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a>.</p>
+        <p class="quiet">QA for CombMNZ fused uses a local 7&nbsp;B reader and judge, top five sessions, against the labelled-session ceiling. Retrieval source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/longmemeval.rs"><code>crates/packset-daemon/examples/longmemeval.rs</code></a> in packset. <a href="/docs/compare/">Compare</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a>.</p>
       </figure>
 
       <figure class="plate measure-plate" aria-labelledby="fig-install">

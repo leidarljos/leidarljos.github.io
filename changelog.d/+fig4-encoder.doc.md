@@ -1,0 +1,1 @@
+Fig. 4 on the homepage and the LongMemEval_S rows on the compare page say the fused recall@5 0.949 was measured with the multilingual-e5-large encoder, that the default install encodes with bge-small-en-v1.5 instead, and that the run data is held privately. The figures are unchanged.
