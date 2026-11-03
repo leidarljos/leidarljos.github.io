@@ -79,25 +79,25 @@
           </tbody>
         </table>
         <p>Answer accuracy on the same 470 uses a local 7&nbsp;B reader and judge (Qwen2.5-7B-Instruct Q5_K_M, LongMemEval prompts, top five sessions). CombMNZ fusion is 0.549. Lexical alone is 0.532. Labelled sessions, the ceiling for any retriever, are 0.634. Reproduction: <a href="https://github.com/leidarljos/packset/blob/main/scripts/longmemeval_qa.py"><code>scripts/longmemeval_qa.py</code></a> and <a href="https://github.com/leidarljos/packset/blob/main/docs/orgmode/results/longmemeval-s-qa.org"><code>docs/orgmode/results/longmemeval-s-qa.org</code></a> in packset.</p>
-        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), reader Qwen2.5-7B. Accurate retrieval scores each source on its own metric, then takes the mean of the four. Lexical job 11759 is 0.568 (95% CI 0.530-0.605, clustered by question). The per-source scores are SH 0.730, MH 0.530, LongMemEval (S*) 0.370 and EventQA 0.640. Published rows are BM25 0.605 and HippoRAG-v2 0.651 with a GPT-4o-mini reader. Conflict resolution at 262K is 0.395 for fused live (job 11750, CI 0.350-0.440) and 0.240 for lexical. The published FactConsolidation rows are BM25 0.255 and HippoRAG-v2 0.295. Hop2 (job 11793) is about 0.555 from the job log, with its verdicts held out. Source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/memoryagentbench.rs"><code>crates/packset-daemon/examples/memoryagentbench.rs</code></a> in packset. Data held privately.</p>
+        <p>MemoryAgentBench (doi:10.48550/arXiv.2507.05257), reader Qwen2.5-7B. Accurate retrieval scores each source on its own metric, then takes the mean of the four. Lexical job 11759 is 0.568 (95% CI 0.530-0.605, clustered by question). The per-source scores are SH 0.730, MH 0.530, LongMemEval (S*) 0.370 and EventQA 0.640. Published rows are BM25 0.605 and HippoRAG-v2 0.651 with a GPT-4o-mini reader (<a href="https://arxiv.org/html/2507.05257v4#S4.T3">table 3 of the paper, v4</a>, checked on 3 November 2026). Conflict resolution at 262K is 0.395 for fused live (job 11750, CI 0.350-0.440) and 0.240 for lexical. The published FactConsolidation rows are BM25 0.255 and HippoRAG-v2 0.295 (<a href="https://arxiv.org/html/2507.05257v4#S4.T3">same table</a>). Hop2 (job 11793) is about 0.555 from the job log, with its verdicts held out. Source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/memoryagentbench.rs"><code>crates/packset-daemon/examples/memoryagentbench.rs</code></a> in packset. Data held privately.</p>
 
         <h2 id="neighbours">Neighbouring published numbers</h2>
-        <p>Two public repositories share the name agentmemory. They report different protocols. The first is session retrieval (R@5). The second is question answering with a hosted generator and a hosted judge. packset publishes both a retrieval row and a local-reader QA row so those protocols stay distinct.</p>
+        <p>Two public repositories share the name agentmemory and report different protocols: <a href="https://github.com/rohitg00/agentmemory/blob/main/docs/benchmarks/2026-10-28-retrieval-evaluation.md">rohitg00/agentmemory</a> reports session retrieval, and <a href="https://github.com/JordanMcCann/agentmemory#the-result">JordanMcCann/agentmemory</a> reports question answering with a hosted generator and a hosted judge. packset publishes both a retrieval row and a local-reader QA row so those protocols stay distinct. Each figure below is quoted from its project's own page, checked on 3 November 2026.</p>
         <div class="table-scroll bare" role="region" aria-labelledby="neighbours" tabindex="0">
           <table>
             <thead><tr><th>System</th><th>Protocol</th><th>Published figure</th><th>Write policy</th></tr></thead>
             <tbody>
               <tr>
                 <td><a href="https://github.com/rohitg00/agentmemory">rohitg00/agentmemory</a></td>
-                <td>LongMemEval-S retrieval, R@5, all-MiniLM-L6-v2</td>
-                <td>95.2% (their COMPARISON.md)</td>
-                <td>Lifecycle hooks capture transcript text</td>
+                <td><a href="https://github.com/rohitg00/agentmemory/blob/main/docs/benchmarks/2026-10-28-retrieval-evaluation.md">LongMemEval-S session retrieval</a>, top five sessions, BM25 component, no embedding model</td>
+                <td>fractional recall@5 91.7%, any-hit@5 96.2%, recall-all@5 84.7% (<a href="https://github.com/rohitg00/agentmemory/blob/main/docs/benchmarks/2026-10-28-retrieval-evaluation.md#results">their 28 October 2026 report</a>)</td>
+                <td><a href="https://github.com/rohitg00/agentmemory#readme">Lifecycle hooks record each session's events</a></td>
               </tr>
               <tr>
                 <td><a href="https://github.com/JordanMcCann/agentmemory">JordanMcCann/agentmemory</a></td>
-                <td>LongMemEval QA, hosted generator and judge</td>
-                <td>96.20% on 481/500 (their README)</td>
-                <td>Chat over a MemoryStore</td>
+                <td><a href="https://github.com/JordanMcCann/agentmemory/blob/main/LEGITIMACY.md">LongMemEval QA on the oracle file</a>, hosted generator and judge</td>
+                <td>96.20% on 481/500 (<a href="https://github.com/JordanMcCann/agentmemory#the-result">their README</a>)</td>
+                <td><a href="https://github.com/JordanMcCann/agentmemory#quick-start">Ingests whole conversations and extracts facts, preferences and entities</a></td>
               </tr>
               <tr>
                 <td>packset</td>
@@ -108,7 +108,7 @@
             </tbody>
           </table>
         </div>
-        <p>The 0.949 fused recall@5 is the neighbour of the 95.2% R@5 retrieval figure. The 96.20% QA figure uses a different generator and a different judge. InjecMEM and the Memory INJection Attack (MINJA) describe the risk of writing from a transcript. packset writes only on Remember: and Prefer:. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
+        <p>packset's recall@5 is what the rohitg00/agentmemory <a href="https://github.com/rohitg00/agentmemory/blob/main/docs/benchmarks/2026-10-28-retrieval-evaluation.md#results">report</a> calls fractional recall@5: 0.914 lexical next to their 91.7% for BM25. Their <a href="https://github.com/rohitg00/agentmemory/blob/main/benchmark/LONGMEMEVAL.md">older 95.2% hybrid figure</a> scored any-hit on a different pipeline, and the same report says it cannot be compared. The JordanMcCann/agentmemory run reads the LongMemEval <a href="https://github.com/JordanMcCann/agentmemory/blob/main/LEGITIMACY.md">oracle file</a>, whose history holds <a href="https://github.com/xiaowu0162/LongMemEval#-dataset-format">only the evidence sessions</a>, so its neighbour is the 0.634 labelled-session ceiling, with a different generator and a different judge. <a href="https://arxiv.org/abs/2608.23471">InjecMEM</a> and the <a href="https://arxiv.org/abs/2503.03704">Memory INJection Attack (MINJA)</a> describe the risk of writing from a transcript. packset writes only on Remember: and Prefer:. <a href="/docs/privacy/">Privacy-of-write</a>.</p>
 
         <h2>What the other habitats answer</h2>
         <p>Retrieval is one store. The seat also cites frozen product, the tracker, this-session claims, argv law, and weighted agreement. Those questions are not retrieval scores.</p>
