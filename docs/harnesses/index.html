@@ -57,7 +57,7 @@
       <div class="page">
         <header class="intro">
           <h1>Wire ljos-mcp</h1>
-          <p class="lead">One entry for any runner. The seat names itself after the client that connects, and the shell finds the same name; nothing is set per runner. <code>ljos</code> and <code>ljos-mcp</code> on <code>PATH</code> is the whole install. Shipped shapes cover Claude Code and Codex, plus opencode and agy.</p>
+          <p class="lead">One entry for any runner. The seat names itself after the client that connects, and the shell finds the same name; nothing is set per runner. <code>ljos</code> and <code>ljos-mcp</code> on <code>PATH</code> is the whole install. A terminal <code>ljos onboard</code> installs every shipped runner it finds. The names are under Shipped runners.</p>
         </header>
       <ul class="subnav" aria-label="Docs">
         <li><a href="/docs/">Overview</a></li>
@@ -70,14 +70,14 @@
         <li><a href="/docs/reference/">Reference</a></li>
       </ul>
         <h2>One entry, any runner</h2>
-<pre>$ ljos onboard
+<pre>$ ljos onboard --harness json
 {
   "mcpServers": {
-    "ljos": { "type": "stdio", "command": "/home/you/.cargo/bin/ljos-mcp", "args": [], "env": {} }
+    "ljos": { "type": "stdio", "command": "ljos-mcp", "args": [], "env": {} }
   }
 }
 $ ljos protocol &gt; instructions.md</pre>
-        <p>Paste the entry where the runner keeps its MCP servers. Every runner that speaks MCP over stdio takes this shape, and there is nothing to fill in: the <code>env</code> is empty on purpose. Put the protocol where the agent reads its instructions; the server serves the same text at <code>ljos://protocol</code> and names it in its instructions, so a runner that loads neither skills nor resources still reads it first.</p>
+        <p>Paste the entry where the runner keeps its MCP servers. <code>--harness json</code> prints that entry and nothing else. A bare <code>ljos onboard</code> does the same into a pipe. At a terminal it installs every shipped runner it finds, and <code>--harness all</code> does that from a script. <code>command</code> is <code>ljos-mcp</code> when that name on <code>PATH</code> is this install, and the absolute path of this install when it is not. The reason for a path goes to stderr, and stdout stays the JSON. Every runner that speaks MCP over stdio takes this shape, and there is nothing to fill in: the <code>env</code> is empty on purpose. Put the protocol where the agent reads its instructions; the server serves the same text at <code>ljos://protocol</code> and names it in its instructions, so a runner that loads neither skills nor resources still reads it first.</p>
         <h2>Who is sitting</h2>
         <p>The seat does not know the runners. It knows one thing every runner does: it connects, and says its name. <code>ljos-mcp</code> takes that name at initialize as the seat and leaves a record under the runtime directory keyed by the runner's process. <code>ljos</code> in a shell the runner opens walks its own process tree to that record, or, when the runner has no MCP, to the first ancestor that is not a shell, and names the same seat. A runner's tools and its verbs are one seat with nothing set; a new runner needs no table anywhere.</p>
 <pre>$ ljos seat
@@ -88,30 +88,41 @@ source	the server the runner opened, process 4242</pre>
         <h2>A hook, when the runner has one</h2>
         <p>If the runner has a command hook on prompts, pipe the prompt to <code>ljos hook</code>. The memories it activates come back as context, preferences first, each once per session, with once a session how many claims and habits are due. Do not add it on every tool call to search the pack: a turn issues many tool calls and one prompt. On a tool call the hook applies the TCB (<code>ljos-policyd</code>) and then the pack's rules, and a deny blocks.</p>
         <h2>The seat guards its own law</h2>
-        <p>Before any rule, the hook refuses a command or a file edit that writes the seat's binaries (<code>ljos</code>, <code>ljos-mcp</code>, <code>ljos-policyd</code>), its config, the approval store, or a runner's hook registration (<code>~/.codex/hooks.json</code>, <code>~/.gemini/config/hooks.json</code>, <code>~/.claude/settings.json</code>, <code>~/.grok/hooks/ljos.json</code>); reading them is fine. An agent the gate refused had replaced <code>~/.local/bin/ljos</code> with a script that allowed everything, which also broke every other runner's prompt hook. <code>ljos doctor</code> fails its <code>seat binary</code> row when the <code>ljos</code> the hooks run is not the binary running the doctor.</p>
+        <p>Before any rule, the hook refuses a command or a file edit that writes the seat's binaries (<code>ljos</code>, <code>ljos-mcp</code>, <code>ljos-policyd</code>), its config, the approval store, or a runner's hook registration (the hook file that runner's shape names, listed under Shipped runners); reading them is fine. An agent the gate refused had replaced <code>~/.local/bin/ljos</code> with a script that allowed everything, which also broke every other runner's prompt hook. <code>ljos doctor</code> fails its <code>seat binary</code> row when the <code>ljos</code> the hooks run is not the binary running the doctor.</p>
         <p>An <code>ask</code> on a runner that cannot ask prints a request id. The person grants that one command, once, in that directory and conversation, with <code>ljos approve ID</code> in a terminal of their own; <code>approve</code> refuses under an agent runner or without a terminal, so an agent cannot grant itself consent.</p>
         <h2>A runner with a register command</h2>
-        <p>A runner that registers servers by a command of its own, or reads them from a config file, can be described once in <code>~/.config/ljos/harnesses.toml</code> and onboarded in one verb. <code>ljos onboard --example</code> prints the shape; <code>--dry-run</code> reports and writes nothing.</p>
+        <p>A runner that registers servers by a command of its own, or reads them from a config file, can be described once in <code>~/.config/ljos/harnesses.toml</code> and onboarded in one verb. A runner ljos already ships needs no table of your own: the first onboard of that name writes the shape and installs it. <code>ljos onboard --example</code> prints the whole file. <code>--dry-run</code> reports and writes nothing. The first tables are shapes, and a bare onboard never picks them.</p>
 <pre>[[harness]]
-name = "runner-a"
-register = ["runner-a", "mcp", "add", "-s", "user", "ljos", "--", "{server}"]
-registered = ["runner-a", "mcp", "get", "ljos"]
-skills = "~/.runner-a/skills"
-hooks = "~/.runner-a/settings.json"
+name = "runner-with-a-command"
+register = ["runner", "mcp", "add", "-s", "user", "ljos", "--", "{server}"]
+registered = ["runner", "mcp", "get", "ljos"]
+skills = "~/.runner/skills"
+hooks = "~/.runner/settings.json"
 
 [[harness]]
-name = "runner-b"
-config = "~/.runner-b/config.toml"
+name = "runner-with-a-config-file"
+config = "~/.other/config.toml"
 marker = "[mcp_servers.ljos]"
-snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\n"
-skills = "~/.runner-b/skills"</pre>
-<pre>$ ljos onboard --harness runner-a
-ok	host key	/home/you/.config/deedar/host.key exists
-ok	runner-a mcp	ran runner-a mcp add -s user ljos -- /home/you/.cargo/bin/ljos-mcp
-ok	hook	memory hook: add it on UserPromptSubmit in /home/you/.runner-a/settings.json
-ok	skill	wrote /home/you/.runner-a/skills/ljos/SKILL.md</pre>
-        <p><code>{server}</code> is the path to <code>ljos-mcp</code>. Nothing about the seat's name goes in the table.</p>
-        <p>A runner whose hooks file maps a hook name to its events, and whose payload does not name the event, takes <code>hooks_named</code>: the seat writes its hooks under that name, each command told its event with <code>ljos hook --event</code>. Antigravity's <code>agy</code> is one: <code>ljos onboard --harness antigravity</code> registers the server in <code>~/.gemini/config/mcp_config.json</code>, writes the skill under <code>~/.gemini/config/skills</code>, and puts the gate on <code>run_command</code>, the notes on each model call and the stop audit in <code>~/.gemini/config/hooks.json</code>. That runner asks the person on an <code>ask</code> itself.</p>
+# A runner that rebuilds its servers' environment from a short list must be
+# told to pass XDG_RUNTIME_DIR, where the seat records live.
+snippet = "\n[mcp_servers.ljos]\ncommand = \"{server}\"\nargs = []\nenv_vars = [\"XDG_RUNTIME_DIR\"]\n"
+skills = "~/.other/skills"
+hooks = "~/.other/hooks.json"
+# A runner with no SessionEnd event takes the prompt and the tool call.
+hook_events = ["UserPromptSubmit", "PreToolUse"]
+
+[[harness]]
+name = "runner-with-a-json-config"
+config_json = "~/.config/runner/runner.json"
+json_pointer = "/mcp/ljos"
+json_entry = '{"type": "local", "command": ["{server}"], "enabled": true, "environment": {"LJOS_SEAT": "{name}"}}'
+skills = "~/.config/runner/skills"</pre>
+<pre>$ ljos onboard --harness runner-with-a-command
+ok	runner-with-a-command mcp	ran runner mcp add -s user ljos -- ljos-mcp
+ok	hook	memory hook: added on UserPromptSubmit, SessionEnd in /home/you/.runner/settings.json
+ok	skill	wrote /home/you/.runner/skills/ljos/SKILL.md</pre>
+        <p><code>{server}</code> is <code>ljos-mcp</code> when that name on <code>PATH</code> is this install, and the absolute path when it is not. With no <code>hook_events</code>, the hook is written on UserPromptSubmit and SessionEnd. A table that names <code>hook_events</code> uses that list. The command shape and the TOML shape pass no seat name. A JSON entry may set <code>LJOS_SEAT</code> to the runner's name, as the third table does. The deed store, the tracker, the pack and the host key are the lines after the three above.</p>
+        <p>A runner whose hooks file maps a hook name to its events, and whose payload does not name the event, takes <code>hooks_named</code>: the seat writes its hooks under that name, each command told its event with <code>ljos hook --event</code>. Antigravity's <code>agy</code> is one: <code>ljos onboard --harness antigravity</code> registers the server in <code>~/.gemini/config/mcp_config.json</code>, writes the skill under <code>~/.gemini/config/skills</code>, and writes PreToolUse, PostToolUse, PreInvocation and Stop under the name <code>ljos</code> in <code>~/.gemini/config/hooks.json</code>. PreToolUse is the gate, and agy's shell tool is <code>run_command</code>. That runner asks the person on an <code>ask</code> itself.</p>
 <pre>[[harness]]
 name = "antigravity"
 config_json = "~/.gemini/config/mcp_config.json"
@@ -120,6 +131,103 @@ json_entry = '{"command": "{server}", "args": [], "env": {"LJOS_SEAT": "{name}"}
 skills = "~/.gemini/config/skills"
 hooks = "~/.gemini/config/hooks.json"
 hooks_named = "ljos"</pre>
+        <h2>Shipped runners</h2>
+        <p>Each line below is one runner ljos ships. A terminal <code>ljos onboard</code> installs every runner it finds by a command on <code>PATH</code> or by the directory its config sits in. <code>--harness all</code> is that search from a script. The shell shapes, <code>example-host</code> and <code>shell</code>, are onboarded by name, and so is <code>opencode-v2</code>, which writes the same plugin file as <code>opencode</code>. The <code>runner-with-</code> tables above are examples, and that search skips them.</p>
+        <p>Copilot, the Gemini CLI, Windsurf, Factory, Kiro, Cline, Qwen, Crush, Auggie, goose, Amp and OpenHands run <code>ljos hook --runner</code> with their own name, and the answer comes back in that runner's own fields.</p>
+        <p>The paths are the ones in the tables <code>ljos onboard --example</code> prints, from ljos <code>crates/ljos-cli/src/lib.rs</code>. The hook files for those runners are written by <code>crates/ljos-cli/src/runner_hooks.rs</code>. Grok's hook file is <code>crates/ljos-cli/assets/grok/ljos.json</code>. aider is onboarded beside the tables, in the same <code>lib.rs</code>. <code>opencode-v2</code> is an opt-in shape in that file. <code>docs/orgmode/integration.org</code> lists the other names, including aider.</p>
+<pre>$ ljos onboard --harness opencode
+opencode. The server is /mcp/servers/ljos in ~/.config/opencode/opencode.json, with codemode false, which puts the tools on the model's list. opencode names a tool server_tool, so recall is listed as ljos_ljos_recall. The skill is under ~/.config/opencode/skills. The plugin is ~/.config/opencode/plugins/ljos.ts.
+
+$ ljos onboard --harness opencode-v2
+opencode V2. The MCP entry matches opencode. The plugin at the same path default-exports Plugin.define, which is what a V2 opencode runs. Onboard this name on a V2 opencode.
+
+$ ljos onboard --harness hermes
+hermes. hermes mcp add asks which tools to enable, and the register command answers yes to all of them. The config is ~/.hermes/config.yaml. The skill is under ~/.hermes/skills. The probe is hermes mcp test ljos. Resume is hermes --continue. The shape names no hook file, so the guard is advisory.
+
+$ ljos onboard --harness omp
+omp. The server is /mcpServers/ljos in ~/.omp/agent/mcp.json. The skill is under ~/.omp/agent/skills. The plugin is ~/.omp/agent/extensions/ljos.ts. Resume is omp --continue.
+
+$ ljos onboard --harness claude
+Claude Code. claude mcp add -s user ljos registers the server. The hooks go in ~/.claude/settings.json on UserPromptSubmit, SessionEnd, Stop, PostToolUse, PreToolUse, SubagentStop, PreCompact and SessionStart. The skill is under ~/.claude/skills. Agents go under ~/.claude/agents. Resume is claude --continue.
+
+$ ljos onboard --harness codex
+Codex. The server is appended at [mcp_servers.ljos] in ~/.codex/config.toml, and env_vars passes XDG_RUNTIME_DIR, CODEX_SESSION_ID and CODEX_THREAD_ID. The hooks go in ~/.codex/hooks.json on SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop and SessionEnd. The skill is under ~/.codex/skills. Resume is codex resume --last. Codex runs a hook only after you trust it. Open /hooks and trust each ljos hook, and trust it again after an upgrade rewrites one. Until then the hook does not run. ljos doctor reports an untrusted hook when the trust file has no trusted_hash, or is older than the hooks file.
+
+$ ljos onboard --harness antigravity
+Antigravity's agy. The server is /mcpServers/ljos in ~/.gemini/config/mcp_config.json. The skill is under ~/.gemini/config/skills. The hooks are the named block ljos in ~/.gemini/config/hooks.json. Start is agy. Resume is agy --continue. The Gemini CLI keeps its own files under ~/.gemini.
+
+$ ljos onboard --harness cursor
+Cursor, the IDE and the agent CLI. The server is /mcpServers/ljos in ~/.cursor/mcp.json. The hooks go in ~/.cursor/hooks.json: sessionStart, beforeShellExecution, preToolUse, beforeMCPExecution, beforeReadFile, beforeSubmitPrompt, postToolUse, postToolUseFailure, preCompact, stop and sessionEnd. The skill is under ~/.cursor/skills. Agents go under ~/.cursor/agents. Resume is agent --continue. When the ljos plugin is already under ~/.cursor/plugins, onboard leaves the server, the hooks and the skill to that plugin, and still writes the agents. Cursor also runs ~/.claude/settings.json. Events that file already runs stay there, and beforeShellExecution, preToolUse, beforeMCPExecution, beforeReadFile and postToolUseFailure are still written in ~/.cursor/hooks.json.
+
+$ ljos onboard --harness grok
+Grok Build. Onboard writes ~/.grok/hooks/ljos.json from the frozen hook file, with the absolute path of ljos filled in: UserPromptSubmit, PostToolUse, PostToolUseFailure, PreToolUse, PreCompact, Stop, SessionEnd and SubagentStop. The server is appended at [mcp_servers.ljos] in ~/.grok/config.toml. The skill is under ~/.grok/skills. Agents go under ~/.grok/agents. Resume is grok --continue.
+
+$ ljos onboard --harness example-host
+Example Host, a shell on a Linux box. Onboard writes the skill under ~/.example-host/skills and an env file named example-host.env beside harnesses.toml. Source that file. Before a prompt, ljos hook --prompt. Before a command, ljos policy --fail-on-deny -- COMMAND. The shape names no MCP server and no hook file.
+
+$ ljos onboard --harness shell
+The same shell shape under the name shell. The skill goes under ~/.agents/skills. --skills DIR writes the skill there instead. The env file is shell.env beside harnesses.toml.
+
+$ ljos onboard --harness windsurf
+Windsurf, now Devin Desktop. The server is /mcpServers/ljos in ~/.codeium/windsurf/mcp_config.json. The skill is under ~/.codeium/windsurf/skills. The hooks go in ~/.codeium/windsurf/hooks.json. pre_run_command blocks on exit 2.
+
+$ ljos onboard --harness zed
+Zed. The server is /context_servers/ljos in ~/.config/zed/settings.json. The skill is under ~/.config/zed/skills. The shape names no hook file.
+
+$ ljos onboard --harness vscode
+VS Code and Copilot Chat. The server is /servers/ljos in ~/.config/Code/User/mcp.json. The skill is under ~/.config/Code/User/skills. The shape names no hook file. The command on PATH is code.
+
+$ ljos onboard --harness claude-desktop
+Claude Desktop. The server is /mcpServers/ljos in ~/.config/Claude/claude_desktop_config.json, and on macOS in ~/Library/Application Support/Claude/claude_desktop_config.json. The shape sets launchd. The skill is under ~/.config/Claude/skills. The shape names no hook file.
+
+$ ljos onboard --harness gemini
+The Gemini CLI. The server and the hooks share ~/.gemini/settings.json, and the pointer is /mcpServers/ljos. The skill is under ~/.gemini/skills. BeforeTool gates shell commands and BeforeAgent takes the prompt note. agy keeps ~/.gemini/config.
+
+$ ljos onboard --harness amazonq
+Amazon Q. The server is /mcpServers/ljos in ~/.aws/amazonq/mcp.json. The skill is under ~/.aws/amazonq/skills. The shape names no hook file. The command on PATH is q.
+
+$ ljos onboard --harness kiro
+Kiro, the CLI V3 and IDE 1.0. The server is /mcpServers/ljos in ~/.kiro/settings/mcp.json. The skill is under ~/.kiro/skills. The hooks go in ~/.kiro/hooks/ljos.json. A PreToolUse command that exits non-zero blocks the tool.
+
+$ ljos onboard --harness copilot
+GitHub Copilot CLI. The server is /mcpServers/ljos in ~/.copilot/mcp-config.json. The skill is under ~/.copilot/skills. The hooks go in ~/.copilot/hooks/ljos.json. A preToolUse command hook denies when it exits non-zero, and lets the call run when it times out. The same file under a repository's .github/hooks reaches Copilot's cloud runner.
+
+$ ljos onboard --harness factory
+Factory's droid. The server is /mcpServers/ljos in ~/.factory/mcp.json. The skill is under ~/.factory/skills. The hooks go in ~/.factory/hooks.json, keyed by event at the top level. Execute is the shell tool. The command on PATH is droid.
+
+$ ljos onboard --harness qwen
+Qwen Code. The server and the hooks share ~/.qwen/settings.json, and the pointer is /mcpServers/ljos. The skill is under ~/.qwen/skills. It takes Claude Code's hook answer. run_shell_command is the shell.
+
+$ ljos onboard --harness crush
+Charm's Crush. The server is /mcp/ljos in ~/.config/crush/crush.json, and the hooks live in that same file. The skill is under ~/.config/crush/skills. Only PreToolUse fires so far, on the top-level agent.
+
+$ ljos onboard --harness cline
+Cline. The server is /mcpServers/ljos in ~/.config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json. The skill is under ~/.cline/skills. The hooks are executables named after the event, in ~/Documents/Cline/Hooks, on macOS and Linux.
+
+$ ljos onboard --harness auggie
+Augment's Auggie CLI, and its editor extensions. The server and the hooks share ~/.augment/settings.json. The skill is under ~/.augment/skills. A hook command has to be a shell script, so onboard writes ~/.augment/ljos-guard-auggie.sh. PreToolUse on launch-process denies with permissionDecision.
+
+$ ljos onboard --harness amp
+Sourcegraph's Amp. The server is /amp.mcpServers/ljos in ~/.config/amp/settings.json, and the hooks live in that same file. The skill is under ~/.config/amp/skills. Onboard writes ~/.config/amp/ljos-guard-amp.sh and puts the delegate rule first in amp.permissions, because Amp applies the first rule that matches. The Bash tool rejects with exit 2 and asks with exit 1.
+
+$ ljos onboard --harness goose
+Block's goose. The server is an extension in ~/.config/goose/config.yaml. The skill is under ~/.agents/plugins/ljos/skills. The PreToolUse hook is ~/.agents/plugins/ljos/hooks/hooks.json.
+
+$ ljos onboard --harness openhands
+The OpenHands CLI. The server is /mcpServers/ljos in ~/.openhands/mcp.json. The skill is under ~/.openhands/skills. The hooks go in ~/.openhands/hooks.json, and a repository's hooks file is read too. terminal is the shell. Exit 2 or a deny decision blocks. The command on PATH is openhands.
+
+$ ljos onboard --harness continue
+Continue, the IDE extension and the cn CLI. The server file is ~/.continue/mcpServers/ljos.json, pointer /mcpServers/ljos. The rules go under ~/.continue/rules. The hooks go in ~/.continue/settings.json on SessionStart, UserPromptSubmit and PreToolUse. cn 1.5.47 ships without firing them, so the guard is advisory until a release does. The command on PATH is cn.
+
+$ ljos onboard --harness roo
+Roo Code, the VS Code extension. The server is /mcpServers/ljos in ~/.config/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/mcp_settings.json. The skill is under ~/.roo/skills. The shape names no tool hook, so the guard is advisory.
+
+$ ljos onboard --harness kilo
+Kilo Code, the VS Code extension. The server is /mcpServers/ljos in ~/.config/Code/User/globalStorage/kilocode.kilo-code/settings/mcp_settings.json. The skill is under ~/.kilocode/skills. The shape names no tool hook, so the guard is advisory.
+
+$ ljos onboard --harness aider
+aider. Onboard writes the skill as ~/.aider/ljos-conventions.md and names that file in the read: list of ~/.aider.conf.yml. aider has no MCP client and no tool hook, so the conventions ask it to run ljos policy --fail-on-deny -- CMD before a command.
+</pre>
         <h2>The two verbs an agent runs</h2>
 <pre>ljos sitting &lt;issue&gt;                      # doctor, cards, due, island, recall, timeline, claim
 ljos finish &lt;issue&gt; --lesson "..." [--outcome &lt;option&gt;]   # remember, fire, complete, learn</pre>
@@ -147,7 +255,7 @@ key_cmd = ["pass", "show", "api/typesafe/jev"]</pre>
         <p>Jev is TypeSafe's decision model: it answers yes-or-no, choice and score questions with probabilities, and writes no text. With the file above, three judgments go to it. The prompt hook asks which of up to ten claims bear on the prompt and whether the prompt corrects the agent or puts a choice; the local cross-encoder is then never loaded. <code>ljos vote --as NAME --jev</code> and <code>ljos panel --jev</code> ask for persona ballots, cast one when Jev is sure (confidence 0.8 or above) and write a brief for a subagent when it is not; a panel casts only when every seat is sure and all agree, because personas answered by one model are correlated voters. On <code>Stop</code> and <code>SubagentStop</code> it reads the turn once and holds an agent that claims done beside a red test run, or that puts asked work off. A prompt costs about $0.00004 and a stop $0.00003; <code>monthly_usd</code> caps the month, identical requests are answered from a local cache, and <code>ljos doctor</code> prints the month's calls and spend. With no file, no key or no answer inside two seconds, the local path answers.</p>
         <h2>Fast judges first, personas when it is close</h2>
         <p>Jev answers in milliseconds with a calibrated probability and no reasoning, and so does a chat model such as <code>openai/gpt-oss-120b</code> on an OpenAI-compatible endpoint. <code>jev.toml</code> names them as <code>[judges.NAME]</code>, <code>[route]</code> says which judges answer each decision, and judges on one decision are pooled: probabilities by the weighted mean of their log-odds, choices by the geometric mean of their distributions.</p>
-        <p>A ballot they leave open goes to the persona whose ballot it is, when the persona has a runner: Claude Code, Codex, Grok Build, omp, hermes or Antigravity's <code>agy</code>, on whatever model it runs.</p>
+        <p>A ballot they leave open goes to the persona whose ballot it is, when the persona has a runner: Claude Code, Codex, Grok Build, Cursor, omp, hermes or Antigravity's <code>agy</code>, on whatever model it runs.</p>
 <pre>$ ljos persona buildengineer --anchor 0.25 --view "Runs production pipelines." --runner grok
 $ ljos vote surf-ab12 --as buildengineer --jev
 buildengineer: Jev leaned A at confidence 0.61, under the 0.80 cut; not cast.
@@ -167,7 +275,7 @@ alive = ["mytool", "has-pane", "{label}"]</pre>
 ok	agents grok	wrote 5 and removed 0 agent definitions in /home/you/.grok/agents</pre>
         <p>Every persona becomes an agent definition, <code>ljos-NAME.md</code>, that Grok Build spawns by name (<code>spawn_subagent</code> with <code>subagent_type</code> <code>ljos-reviewer</code>) and Claude Code reads from <code>~/.claude/agents</code>. Cursor's copies go to <code>~/.cursor/agents</code>. The persona runs <code>ljos brief</code>, casts one ballot before reading the others, notes why and stops. It has no edit tool under Grok; elsewhere its body tells it not to edit. <code>onboard</code> writes them, and a persona written later refreshes each agents directory harnesses.toml names, if it exists. A panel the seat opens itself runs its members on the seat's own runner when that runner's shape gives a headless argv.</p>
         <h2>When a command fails</h2>
-        <p>A failed tool brings back up to three standing claims, on a runner that reports one (Grok Build's <code>PostToolUseFailure</code>). A claim needs two or more content words in common with the command and its error. A compaction takes every memory handed over so far off the session's record, so a later prompt can bring it back. Up to eight of them fire together, if two or more were handed over. The next delivery names the issue the conversation still holds: Claude Code hears it as the session resumes, Grok Build and Cursor with the next tool result.</p>
+        <p>A failed tool brings back up to three standing claims, on a runner that reports one (Grok Build's <code>PostToolUseFailure</code>, Cursor's <code>postToolUseFailure</code>). A claim needs two or more content words in common with the command and its error. A compaction takes every memory handed over so far off the session's record, so a later prompt can bring it back. Up to eight of them fire together, if two or more were handed over. The next delivery names the issue the conversation still holds: Claude Code hears it as the session resumes, Grok Build and Cursor with the next tool result.</p>
         <h2>The status bar</h2>
 <pre>[ui.status_line]                    # ~/.grok/config.toml
 type = "command"

@@ -178,6 +178,89 @@ class SiteClaims(unittest.TestCase):
             assert version is not None
             self.assertIn(f"Build {crate} {version.group(1)}", section)
 
+    def test_harness_names_match_ljos(self) -> None:
+        # Names `ljos onboard --harness` installs, checked against ljos
+        # develop e83534a83ad8112a50f7b55f180a8b831ab715db. Each source is
+        # the file in leidarljos/ljos that defines that install line.
+        # The tables are HARNESSES_EXAMPLE in crates/ljos-cli/src/lib.rs.
+        # docs/orgmode/integration.org lists the same names, including
+        # aider, and the code adds opencode-v2 as an opt-in shape.
+        text = page("docs/harnesses/index.html")
+        found = set(re.findall(r"ljos onboard --harness ([A-Za-z0-9-]+)", text))
+        shipped = {name for name, _source in HARNESSES}
+        # json prints the MCP entry. runner-with-a-command is an example
+        # shape in HARNESSES_EXAMPLE, and detect_runners skips runner-with-*.
+        expected = shipped | {"json", "runner-with-a-command"}
+        self.assertEqual(found, expected)
+        for name, source in HARNESSES:
+            self.assertIn(
+                f"ljos onboard --harness {name}\n",
+                text,
+                f"{name} from {source}",
+            )
+        for name, source in EXAMPLE_SHAPES:
+            self.assertIn(f'name = "{name}"', text, source)
+        for source in (
+            "crates/ljos-cli/src/lib.rs",
+            "crates/ljos-cli/src/runner_hooks.rs",
+            "crates/ljos-cli/assets/grok/ljos.json",
+            "docs/orgmode/integration.org",
+        ):
+            self.assertIn(source, text, source)
+        self.assertNotIn('name = "runner-a"', text)
+        self.assertNotIn('name = "runner-b"', text)
+        self.assertNotIn("/home/you/.cargo/bin/ljos-mcp", text)
+        self.assertNotIn("plus opencode and agy", text)
+        self.assertIn("UserPromptSubmit and SessionEnd", text)
+        self.assertIn(r'env_vars = [\"XDG_RUNTIME_DIR\"]', text)
+
+
+# (name, ljos source). Relay runners cite runner_hooks.rs, which writes
+# their hook file; the paths for those rows are still HARNESSES_EXAMPLE
+# in crates/ljos-cli/src/lib.rs. Plugin bodies cite the asset they copy.
+HARNESSES = (
+    ("opencode", "crates/ljos-cli/assets/opencode/ljos.ts"),
+    ("opencode-v2", "crates/ljos-cli/assets/opencode/ljos-v2.ts"),
+    ("hermes", "crates/ljos-cli/src/lib.rs"),
+    ("omp", "crates/ljos-cli/assets/omp/ljos.ts"),
+    ("claude", "crates/ljos-cli/src/lib.rs"),
+    ("codex", "crates/ljos-cli/src/lib.rs"),
+    ("antigravity", "crates/ljos-cli/src/lib.rs"),
+    ("cursor", "crates/ljos-cli/src/lib.rs"),
+    ("grok", "crates/ljos-cli/assets/grok/ljos.json"),
+    ("example-host", "crates/ljos-cli/src/lib.rs"),
+    ("shell", "crates/ljos-cli/src/lib.rs"),
+    ("windsurf", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("zed", "crates/ljos-cli/src/lib.rs"),
+    ("vscode", "crates/ljos-cli/src/lib.rs"),
+    ("claude-desktop", "crates/ljos-cli/src/lib.rs"),
+    ("gemini", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("amazonq", "crates/ljos-cli/src/lib.rs"),
+    ("kiro", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("copilot", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("factory", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("qwen", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("crush", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("cline", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("auggie", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("amp", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("goose", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("openhands", "crates/ljos-cli/src/runner_hooks.rs"),
+    ("continue", "crates/ljos-cli/src/lib.rs"),
+    ("roo", "crates/ljos-cli/src/lib.rs"),
+    ("kilo", "crates/ljos-cli/src/lib.rs"),
+    # aider_steps in lib.rs. Not a table in HARNESSES_EXAMPLE.
+    # Also named in docs/orgmode/integration.org.
+    ("aider", "crates/ljos-cli/src/lib.rs"),
+)
+
+# Placeholder tables in HARNESSES_EXAMPLE. Not runners a bare onboard finds.
+EXAMPLE_SHAPES = (
+    ("runner-with-a-command", "crates/ljos-cli/src/lib.rs"),
+    ("runner-with-a-config-file", "crates/ljos-cli/src/lib.rs"),
+    ("runner-with-a-json-config", "crates/ljos-cli/src/lib.rs"),
+)
+
 
 if __name__ == "__main__":
     unittest.main()
