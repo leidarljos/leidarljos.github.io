@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import re
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -18,8 +17,13 @@ class Text(HTMLParser):
         self.parts: list[str] = []
         self._in_title = False
         self._skip = 0
+        self.redirect = False
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "meta":
+            named = {key.lower(): (value or "") for key, value in attrs}
+            if named.get("http-equiv", "").lower() == "refresh":
+                self.redirect = True
         if tag in {"script", "style", "nav", "footer"}:
             self._skip += 1
         if tag == "title":
@@ -58,9 +62,12 @@ def main() -> None:
         raw = html.read_text(encoding="utf-8", errors="ignore")
         p = Text()
         p.feed(raw)
-        text = " ".join(p.parts)
-        if len(text) < 40:
+        # A meta refresh keeps an old address working. It is not a page.
+        # A body-length cutoff let the longer stubs through and would
+        # leave out a real page that happens to be short.
+        if p.redirect:
             continue
+        text = " ".join(p.parts)
         title = p.title.split("—")[0].strip() or html.stem
         docs.append({"url": url_for(html), "title": title, "text": text[:8000]})
     out = ROOT / "search-index.json"
