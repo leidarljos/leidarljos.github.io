@@ -34,7 +34,7 @@ The name is leiðarljós. The visual system already on the pages stays: ink, cre
 
 ## Evidence on Hand
 
-The landing page states recall@5 `0.949` and QA / ceiling `0.549 / 0.634` for the fused arm. Those figures are not to be rewritten. No further measurements are invented here.
+The landing page states recall@5 `0.949` and QA / ceiling `0.549 / 0.634` for the fused arm. Those figures are not to be rewritten. Their public source is the LongMemEval_S part of the packset explanation, https://leidarljos.github.io/packset/explanation.html#what-a-search-ranks. No further measurements are invented here.
 
 ## Product Principles
 

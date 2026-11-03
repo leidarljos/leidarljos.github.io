@@ -189,7 +189,7 @@ ljos search fuse</pre>
       </figure>
 
       <figure class="plate measure-plate" aria-labelledby="fig-measure">
-        <figcaption id="fig-measure"><span>Fig. 4</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with multilingual-e5-large; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical. Writes only on Remember: and Prefer:.</figcaption>
+        <figcaption id="fig-measure"><span>Fig. 4</span> LongMemEval_S, n = 470 answerable questions, session retrieval. CombMNZ fuses BM25+ with e5-large-v2; the default install encodes with bge-small-en-v1.5, and without the encoder search stays lexical. Writes only on Remember: and Prefer:.</figcaption>
         <table>
           <thead>
             <tr><th>arm</th><th>recall@5</th><th>QA / ceiling</th></tr>
@@ -199,7 +199,7 @@ ljos search fuse</pre>
             <tr><td>CombMNZ fused</td><td>0.949</td><td>0.549 / 0.634</td></tr>
           </tbody>
         </table>
-        <p class="quiet">QA for CombMNZ fused uses a local 7&nbsp;B reader and judge, top five sessions, against the labelled-session ceiling. Retrieval source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/longmemeval.rs"><code>crates/packset-daemon/examples/longmemeval.rs</code></a> in packset. Data held privately. <a href="/docs/compare/">Compare</a> · <a href="https://leidarljos.github.io/packset/explanation.html">packset explanation</a>.</p>
+        <p class="quiet">QA for CombMNZ fused uses a local 7&nbsp;B reader and judge, top five sessions, against the labelled-session ceiling. Retrieval source: <a href="https://github.com/leidarljos/packset/blob/main/crates/packset-daemon/examples/longmemeval.rs"><code>crates/packset-daemon/examples/longmemeval.rs</code></a> in packset. Data held privately. Numbers: <a href="https://leidarljos.github.io/packset/explanation.html#what-a-search-ranks">packset explanation</a> · <a href="/docs/compare/">Compare</a>.</p>
       </figure>
 
       <figure class="plate measure-plate" aria-labelledby="fig-install">
@@ -210,7 +210,7 @@ ljos search fuse</pre>
           <div><dt>packsetd resident</dt><dd>15 MB</dd></div>
           <div><dt>search p50 / p95</dt><dd>3.3 / 4.1 ms</dd></div>
         </dl>
-        <p class="quiet">281 claims in the pack, one process per query. <a href="/docs/compare/#install-cost">Method, script and raw logs</a>.</p>
+        <p class="quiet">281 claims in the pack, one process per query. Numbers: <a href="https://github.com/leidarljos/leidarljos.github.io/tree/main/measurements/2026-10-10-install"><code>measurements/2026-10-10-install</code></a>. <a href="/docs/compare/#install-cost">Method and script</a>.</p>
       </figure>
 
       <section class="band" aria-labelledby="crates-h">
