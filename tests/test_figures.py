@@ -14,7 +14,7 @@ SITE_TREE = "https://github.com/leidarljos/leidarljos.github.io/tree/main/"
 
 PACKSET_LME = "https://leidarljos.github.io/packset/explanation.html#what-a-search-ranks"
 PACKSET_080 = "https://github.com/leidarljos/packset/blob/main/CHANGELOG.md#080-2026-09-12"
-INSTALL_RUN = SITE_TREE + "measurements/2026-10-10-install"
+INSTALL_RUN = SITE_TREE + "measurements/2026-11-03-install"
 DEMO_CAST = "/demo/ljos-demo.cast"
 
 FUSED_QA = (
@@ -45,25 +45,25 @@ FIGURES = (
     ),
     (
         "index.html",
-        "4 min 20 s",
+        "243 s + 68 s",
         INSTALL_RUN,
-        ("install ljos: 170 s wall", "install packset: 90 s wall"),
+        ("install ljos: 243 s wall", "install packset: 68 s wall"),
     ),
     (
         "index.html",
-        "45 MB",
+        "63.3 MB",
         INSTALL_RUN,
         (
-            "binary ljos: 12.2 MB",
-            "binary ljos-mcp: 16.0 MB",
-            "binary packset: 3.9 MB",
-            "binary packset-mcp: 7.5 MB",
-            "binary packsetd: 5.8 MB",
+            "binary ljos: 22.0 MB",
+            "binary ljos-mcp: 23.7 MB",
+            "binary packset: 3.8 MB",
+            "binary packset-mcp: 7.7 MB",
+            "binary packsetd: 6.1 MB",
         ),
     ),
-    ("index.html", "15 MB", INSTALL_RUN, ("packsetd rss_after_search: 14.7 MB",)),
-    ("index.html", "3.3 / 4.1 ms", INSTALL_RUN, ("p50 3.3 ms, p95 4.1 ms",)),
-    ("index.html", "281 claims in the pack", INSTALL_RUN, ("281 live claims",)),
+    ("index.html", "19.1 MB", INSTALL_RUN, ("packsetd rss_after_search: 19.1 MB",)),
+    ("index.html", "8.5 / 9.6 ms", INSTALL_RUN, ("p50 8.5 ms, p95 9.6 ms",)),
+    ("index.html", "399 claims in the pack", INSTALL_RUN, ("399 live claims",)),
     (
         "docs/island/index.html",
         "hit@1 0.377 against the fused panel's 0.889",
