@@ -157,9 +157,10 @@ class SiteClaims(unittest.TestCase):
         for name, size in binaries:
             self.assertIn(f"{name} {size}", section)
 
-        idle = field(r"packsetd rss_idle: ([\d.]+) MB")
-        after = field(r"packsetd rss_after_search: ([\d.]+) MB")
-        self.assertIn(f"{idle} MB idle, {after} MB", section)
+        # kB / 1024, printed as MB by summaries older than the MiB label.
+        idle = field(r"packsetd rss_idle: ([\d.]+) Mi?B")
+        after = field(r"packsetd rss_after_search: ([\d.]+) Mi?B")
+        self.assertIn(f"{idle} MiB idle, {after} MiB", section)
 
         live = field(r"pack size during the search runs: (\d+) live claims")
         self.assertIn(f"{live} claims", section)

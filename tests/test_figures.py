@@ -35,14 +35,15 @@ def install_figures() -> tuple[tuple[str, str, str, tuple[str, ...]], ...]:
     binaries = re.findall(r"^binary \S+: ([\d.]+) MB$", said, re.M)
     if len(binaries) != 5:
         raise AssertionError(f"{INSTALL_SUMMARY.name} lists {len(binaries)} binaries, not 5")
-    rss = line(r"^packsetd rss_after_search: ([\d.]+) MB$")
+    # This run's summary.txt is kept as printed, labelled MB; its value is kB / 1024.
+    rss = line(r"^packsetd rss_after_search: ([\d.]+) Mi?B$")
     search = line(r"^search .*: p50 ([\d.]+) ms, p95 ([\d.]+) ms$")
     live = line(r"^pack size during the search runs: (\d+) live claims$")
     sizes = tuple(re.findall(r"^binary .*$", said, re.M))
     return (
         ("index.html", f"{ljos[1]} s + {packset[1]} s", INSTALL_RUN, (ljos[0], packset[0])),
         ("index.html", f"{sum(map(float, binaries)):.1f} MB", INSTALL_RUN, sizes),
-        ("index.html", f"{rss[1]} MB", INSTALL_RUN, (rss[0],)),
+        ("index.html", f"{rss[1]} MiB", INSTALL_RUN, (rss[0],)),
         ("index.html", f"{search[1]} / {search[2]} ms", INSTALL_RUN, (search[0],)),
         ("index.html", f"{live[1]} claims in the pack", INSTALL_RUN, (live[0],)),
     )
