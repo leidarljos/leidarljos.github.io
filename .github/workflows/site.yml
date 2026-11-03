@@ -1,0 +1,26 @@
+# Emacs 29.3 is the build install-emacs.sh measures. Ubuntu 24.04 is the
+# GitHub-hosted image that still packages it as emacs-nox 1:29.3+1-1ubuntu2.
+name: site
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install pinned Emacs
+        run: .github/workflows/install-emacs.sh
+
+      - name: Site claims
+        run: python3 -m unittest discover tests
+
+      - name: Rebuild handbook
+        run: ./org/build.sh
+
+      - name: Committed handbook HTML matches the rebuild
+        run: .github/workflows/check-handbook.sh
