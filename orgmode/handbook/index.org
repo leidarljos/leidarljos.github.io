@@ -17,6 +17,9 @@ contract, and the failure that looks like success.
 - consensus :: DeGroot / Friedkin–Johnsen. The settle is the consensus.
 
 * Notes
+:PROPERTIES:
+:CUSTOM_ID: notes
+:END:
 
 - [[file:write.org][Write]] -- Remember is a speech act
 - [[file:cards.org][Cards]] -- Overflow is an error
