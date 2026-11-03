@@ -1,0 +1,3 @@
+rss_idle_kb 4676
+rss_seeded_kb 18976
+rss_after_search_kb 19572

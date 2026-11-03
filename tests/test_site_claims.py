@@ -5,6 +5,7 @@ from __future__ import annotations
 import html
 import re
 import unittest
+from decimal import Decimal
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -124,6 +125,58 @@ class SiteClaims(unittest.TestCase):
                 if not target.is_file():
                     missing.append(f"{path.relative_to(ROOT)} -> {raw}")
         self.assertEqual(missing, [])
+
+    def test_install_table_matches_summary(self) -> None:
+        """The install-cost table quotes the latest measurements/*-install run."""
+        runs = sorted(
+            p
+            for p in (ROOT / "measurements").glob("*-install")
+            if (p / "summary.txt").is_file()
+        )
+        self.assertTrue(runs)
+        latest = runs[-1]
+        summary = (latest / "summary.txt").read_text(encoding="utf-8")
+        text = page("docs/compare/index.html")
+        self.assertIn(f"measurements/{latest.name}", text)
+        section = text.split('id="install-cost"', 1)[1].split("</table>", 1)[0]
+
+        def field(pattern: str) -> str:
+            match = re.search(pattern, summary)
+            self.assertIsNotNone(match, pattern)
+            assert match is not None
+            return match.group(1)
+
+        self.assertIn(f">{field(r'install ljos: (\d+) s wall')} s<", section)
+        self.assertIn(f">{field(r'install packset: (\d+) s wall')} s<", section)
+
+        binaries = re.findall(r"binary (\S+): ([\d.]+) MB", summary)
+        self.assertGreaterEqual(len(binaries), 1)
+        # The cell is the sum of the one-decimal megabytes summary.txt already printed.
+        total = sum(Decimal(size) for _, size in binaries)
+        self.assertIn(f">{total:.1f} MB<", section)
+        for name, size in binaries:
+            self.assertIn(f"{name} {size}", section)
+
+        idle = field(r"packsetd rss_idle: ([\d.]+) MB")
+        after = field(r"packsetd rss_after_search: ([\d.]+) MB")
+        self.assertIn(f"{idle} MB idle, {after} MB", section)
+
+        live = field(r"pack size during the search runs: (\d+) live claims")
+        self.assertIn(f"{live} claims", section)
+        self.assertIn(
+            f"{field(r'p50 ([\d.]+) ms')} ms / {field(r'p95 ([\d.]+) ms')} ms",
+            section,
+        )
+        self.assertIn(f"n = {field(r'n=(\d+)')}", section)
+
+        for crate in ("ljos", "packset"):
+            log = (latest / f"install-{crate}.log").read_text(
+                encoding="utf-8", errors="replace"
+            )
+            version = re.search(rf"Installed package `{crate} v([^`]+)`", log)
+            self.assertIsNotNone(version, crate)
+            assert version is not None
+            self.assertIn(f"Build {crate} {version.group(1)}", section)
 
 
 if __name__ == "__main__":

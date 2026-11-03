@@ -1,0 +1,49 @@
+seeded 422 claims in 3.3 s
+packset: up on http://127.0.0.1:8799 (packsetd ok)
+{
+  "home": "/tmp/ljos-measure.3LyOrl/pack",
+  "version": "0.17.3",
+  "commit": "unknown",
+  "workspace": "measure",
+  "set": "",
+  "live": 399,
+  "live_cap": 20000,
+  "tombstone": 0,
+  "expired": 23,
+  "live_by_kind": {
+    "lesson": 399
+  },
+  "tombstone_by_kind": {},
+  "forgotten_by_reason": {},
+  "expired_by_kind": {
+    "lesson": 23
+  },
+  "last_write_ts": "2026-11-03T02:03:45.425Z",
+  "milli": {
+    "binary": null,
+    "index_dir": "/tmp/ljos-measure.3LyOrl/pack/memory.milli",
+    "index_ready": false
+  },
+  "embedder": {
+    "enabled": true,
+    "binary": null,
+    "available": false,
+    "answering": null
+  },
+  "rerank": {
+    "enabled": false,
+    "available": false,
+    "depth": 20
+  },
+  "panel": {
+    "fuse": "combmnz",
+    "diversify": "mmr",
+    "decay": "fsrs"
+  },
+  "search": {
+    "ranks": [
+      "fused",
+      "relevance"
+    ]
+  }
+}

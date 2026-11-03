@@ -1,0 +1,5 @@
+packset: remember: unknown flag -s DONE` closes it when the work is accepted tracker git: committed chore(issues): demo-...; put -- before an argument that starts with a dash
+
+usage: packset remember [--workspace WS] TEXT   one lesson, two sentences at most
+
+-h, --help prints this and runs nothing; -- ends the flags
