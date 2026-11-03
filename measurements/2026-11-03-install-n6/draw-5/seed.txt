@@ -1,0 +1,56 @@
+# run: scripts/measure-install.sh measurements/2026-11-03-install-n6 2 6
+# command: packset remember --workspace measure CLAIM, one per claim; packset status measure
+# date: 2026-11-03T09:44:57Z
+# host: Linux 6.12.94+ x86_64
+# cpu: Intel(R) Xeon(R) Processor (8 threads)
+# n: 6 draws
+# draw: 5 of 6
+seeded 428 claims in 3.4 s
+packset: up on http://127.0.0.1:8799 (packsetd ok)
+{
+  "home": "/tmp/ljos-measure.aEWf5t/draw-5/pack",
+  "version": "0.17.3",
+  "commit": "unknown",
+  "workspace": "measure",
+  "set": "",
+  "live": 404,
+  "live_cap": 20000,
+  "tombstone": 0,
+  "expired": 24,
+  "live_by_kind": {
+    "lesson": 404
+  },
+  "tombstone_by_kind": {},
+  "forgotten_by_reason": {},
+  "expired_by_kind": {
+    "lesson": 24
+  },
+  "last_write_ts": "2026-11-03T09:45:00.681Z",
+  "milli": {
+    "binary": null,
+    "index_dir": "/tmp/ljos-measure.aEWf5t/draw-5/pack/memory.milli",
+    "index_ready": false
+  },
+  "embedder": {
+    "enabled": true,
+    "binary": null,
+    "available": false,
+    "answering": null
+  },
+  "rerank": {
+    "enabled": false,
+    "available": false,
+    "depth": 20
+  },
+  "panel": {
+    "fuse": "combmnz",
+    "diversify": "mmr",
+    "decay": "fsrs"
+  },
+  "search": {
+    "ranks": [
+      "fused",
+      "relevance"
+    ]
+  }
+}

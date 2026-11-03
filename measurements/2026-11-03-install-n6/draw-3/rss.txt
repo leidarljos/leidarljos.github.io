@@ -1,0 +1,10 @@
+# run: scripts/measure-install.sh measurements/2026-11-03-install-n6 2 6
+# command: VmRSS of packsetd from /proc/PID/status, kB
+# date: 2026-11-03T09:29:12Z
+# host: Linux 6.12.94+ x86_64
+# cpu: Intel(R) Xeon(R) Processor (8 threads)
+# n: 6 draws
+# draw: 3 of 6
+rss_idle_kb 4612
+rss_seeded_kb 18900
+rss_after_search_kb 19544

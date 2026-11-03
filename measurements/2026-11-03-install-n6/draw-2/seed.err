@@ -1,0 +1,22 @@
+# run: scripts/measure-install.sh measurements/2026-11-03-install-n6 2 6
+# command: stderr of packset remember
+# date: 2026-11-03T09:24:20Z
+# host: Linux 6.12.94+ x86_64
+# cpu: Intel(R) Xeon(R) Processor (8 threads)
+# n: 6 draws
+# draw: 2 of 6
+packset: remember: unknown flag --harness json prints that entry and nothing else.; put -- before an argument that starts with a dash
+
+usage: packset remember [--workspace WS] TEXT   one lesson, two sentences at most
+
+-h, --help prints this and runs nothing; -- ends the flags
+packset: remember: unknown flag --harness all is that search from a script.; put -- before an argument that starts with a dash
+
+usage: packset remember [--workspace WS] TEXT   one lesson, two sentences at most
+
+-h, --help prints this and runs nothing; -- ends the flags
+packset: remember: unknown flag -s DONE` closes it when the work is accepted tracker git: committed chore(issues): demo-...; put -- before an argument that starts with a dash
+
+usage: packset remember [--workspace WS] TEXT   one lesson, two sentences at most
+
+-h, --help prints this and runs nothing; -- ends the flags

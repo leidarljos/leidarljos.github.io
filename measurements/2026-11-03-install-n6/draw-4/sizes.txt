@@ -1,0 +1,13 @@
+# run: scripts/measure-install.sh measurements/2026-11-03-install-n6 2 6
+# command: ls -l /tmp/ljos-measure.aEWf5t/draw-4/root/bin
+# date: 2026-11-03T09:34:05Z
+# host: Linux 6.12.94+ x86_64
+# cpu: Intel(R) Xeon(R) Processor (8 threads)
+# n: 6 draws
+# draw: 4 of 6
+total 61792
+-rwxr-xr-x 1 ubuntu ubuntu 22026920 Nov  3 09:32 ljos
+-rwxr-xr-x 1 ubuntu ubuntu 23737496 Nov  3 09:32 ljos-mcp
+-rwxr-xr-x 1 ubuntu ubuntu  3840984 Nov  3 09:33 packset
+-rwxr-xr-x 1 ubuntu ubuntu  6055152 Nov  3 09:34 packsetd
+-rwxr-xr-x 1 ubuntu ubuntu  7673184 Nov  3 09:34 packset-mcp
