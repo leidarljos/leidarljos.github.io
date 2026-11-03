@@ -139,7 +139,7 @@
             <tr><td>Search, p50 / p95</td><td>8.5 ms / 9.6 ms</td><td>one <code>packset search</code> process per query, lexical, 399 claims, n = 300</td></tr>
           </tbody>
         </table>
-        <p>Two jobs, the script default, with 15 GB available. A build on an idle machine with every core should be faster. The claims are sentences taken from this site's own pages.</p>
+        <p>The p95 is the value at sorted position <code>int(0.95 n)</code> of the n = 300 runs, counting from zero. Two jobs, the script default, with 15 GB available. A build on an idle machine with every core should be faster. The claims are sentences taken from this site's own pages.</p>
 
         <h2>policyd is argv law</h2>
         <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>ljos-policyd</code> is the trusted computing base when it is on <code>PATH</code> or <code>POLICYD_BIN</code>: it prints allow or deny. Reloading a pack is not a check. <a href="https://leidarljos.github.io/ljos-policyd/">ljos-policyd docs</a> · <a href="/handbook/argv/">Argv field note</a>.</p>
