@@ -205,12 +205,12 @@ ljos search fuse</pre>
       <figure class="plate measure-plate" aria-labelledby="fig-install">
         <figcaption id="fig-install"><span>Fig. 5</span> Install cost of the same local stack, packset and ljos, built with <code>cargo install</code> from crates.io on one 8-thread Xeon with two build jobs. Lexical search, no encoder.</figcaption>
         <dl class="figs">
-          <div><dt>build, both crates</dt><dd>243 s + 68 s</dd></div>
-          <div><dt>binaries on disk</dt><dd>63.3 MB</dd></div>
-          <div><dt>packsetd resident</dt><dd>19.1 MiB</dd></div>
-          <div><dt>search p50 / p95</dt><dd>8.5 / 9.6 ms</dd></div>
+          <div><dt>build, both crates</dt><dd>191 s + 95 s</dd><dd class="iqr">IQR 188–192 s + 95–96 s</dd></div>
+          <div><dt>binaries on disk</dt><dd>63.3 MB</dd><dd class="iqr">IQR 63.3–63.3 MB</dd></div>
+          <div><dt>packsetd resident</dt><dd>19.1 MiB</dd><dd class="iqr">IQR 19.1–19.2 MiB</dd></div>
+          <div><dt>search p50 / p95</dt><dd>8.0 / 8.4 ms</dd><dd class="iqr">IQR 7.8–8.1 ms</dd></div>
         </dl>
-        <p class="quiet">399 claims in the pack, one search process per query. Numbers from 3&nbsp;Nov&nbsp;2026: <a href="https://github.com/leidarljos/leidarljos.github.io/tree/main/measurements/2026-11-03-install"><code>measurements/2026-11-03-install</code></a>. <a href="/docs/compare/#install-cost">Method and script</a>.</p>
+        <p class="quiet">Medians of n = 6 fresh installs, with the interquartile range below each. 404 claims in the pack, one search process per query, n = 1,800 searches over the six draws. Numbers from 3&nbsp;Nov&nbsp;2026: <a href="https://github.com/leidarljos/leidarljos.github.io/tree/main/measurements/2026-11-03-install-n6"><code>measurements/2026-11-03-install-n6</code></a>. <a href="/docs/compare/#install-cost">Method and script</a>.</p>
       </figure>
 
       <section class="band" aria-labelledby="crates-h">

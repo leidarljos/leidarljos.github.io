@@ -127,10 +127,10 @@ class SiteClaims(unittest.TestCase):
         self.assertEqual(missing, [])
 
     def test_install_table_matches_summary(self) -> None:
-        """The install-cost table quotes the latest measurements/*-install run."""
+        """The install-cost table quotes the latest measurements/*-install* run."""
         runs = sorted(
             p
-            for p in (ROOT / "measurements").glob("*-install")
+            for p in (ROOT / "measurements").glob("*-install*")
             if (p / "summary.txt").is_file()
         )
         self.assertTrue(runs)
@@ -140,44 +140,53 @@ class SiteClaims(unittest.TestCase):
         self.assertIn(f"measurements/{latest.name}", text)
         section = text.split('id="install-cost"', 1)[1].split("</table>", 1)[0]
 
-        def field(pattern: str) -> str:
-            match = re.search(pattern, summary)
+        def field(pattern: str) -> re.Match[str]:
+            match = re.search(pattern, summary, re.M)
             self.assertIsNotNone(match, pattern)
             assert match is not None
-            return match.group(1)
+            return match
 
-        self.assertIn(f">{field(r'install ljos: (\d+) s wall')} s<", section)
-        self.assertIn(f">{field(r'install packset: (\d+) s wall')} s<", section)
+        def stat(label: str, unit: str) -> str:
+            m = field(rf"^{label}: median ([\d.]+) {unit} \(IQR ([\d.]+)-([\d.]+) {unit}\)")
+            return f"{m[1]} {unit}, IQR {m[2]}–{m[3]} {unit}"
 
-        binaries = re.findall(r"binary (\S+): ([\d.]+) MB", summary)
+        draws = field(r"^run: (\d+) draws")[1]
+        for crate in ("ljos", "packset"):
+            wall = field(rf"^install {crate} (\S+) wall: ")
+            self.assertIn(f"<td>Build {crate} {wall[1]}</td>", section)
+            self.assertIn(f">{stat(rf'install {crate} \S+ wall', 's')}<", section)
+
+        binaries = re.findall(r"^binary (\S+): median ([\d.]+) MB", summary, re.M)
         self.assertGreaterEqual(len(binaries), 1)
-        # The cell is the sum of the one-decimal megabytes summary.txt already printed.
+        # The cell is the sum of the one-decimal medians summary.txt already printed.
         total = sum(Decimal(size) for _, size in binaries)
-        self.assertIn(f">{total:.1f} MB<", section)
+        self.assertIn(f">{total:.1f} MB, IQR", section)
+        self.assertIn(f">{stat('binaries on disk', 'MB')}<", section)
         for name, size in binaries:
             self.assertIn(f"{name} {size}", section)
 
-        # kB / 1024, printed as MB by summaries older than the MiB label.
-        idle = field(r"packsetd rss_idle: ([\d.]+) Mi?B")
-        after = field(r"packsetd rss_after_search: ([\d.]+) Mi?B")
-        self.assertIn(f"{idle} MiB idle, {after} MiB", section)
+        idle = stat("packsetd rss_idle", "MiB")
+        after = stat("packsetd rss_after_search", "MiB")
+        self.assertIn(f">{idle.replace(' MiB,', ' MiB idle,', 1)}; {after}<", section)
 
-        live = field(r"pack size during the search runs: (\d+) live claims")
+        live = field(r"^live claims during the search runs: median (\d+) ")[1]
         self.assertIn(f"{live} claims", section)
-        self.assertIn(
-            f"{field(r'p50 ([\d.]+) ms')} ms / {field(r'p95 ([\d.]+) ms')} ms",
-            section,
-        )
-        self.assertIn(f"n = {field(r'n=(\d+)')}", section)
+        search = field(r"^search .*: median ([\d.]+) ms \(IQR ([\d.]+)-([\d.]+) ms\), n=(\d+), p95 ([\d.]+) ms$")
+        self.assertIn(f">{search[1]} ms / {search[5]} ms, IQR {search[2]}–{search[3]} ms<", section)
+        self.assertIn(f"n = {int(search[4]):,} over", section)
+        self.assertEqual(section.count(f"n = {draws}<"), 4)
 
         for crate in ("ljos", "packset"):
-            log = (latest / f"install-{crate}.log").read_text(
-                encoding="utf-8", errors="replace"
-            )
-            version = re.search(rf"Installed package `{crate} v([^`]+)`", log)
-            self.assertIsNotNone(version, crate)
-            assert version is not None
-            self.assertIn(f"Build {crate} {version.group(1)}", section)
+            logs = sorted(latest.glob(f"draw-*/install-{crate}.log"))
+            self.assertEqual(len(logs), int(draws), crate)
+            for log in logs:
+                version = re.search(
+                    rf"Installed package `{crate} v([^`]+)`",
+                    log.read_text(encoding="utf-8", errors="replace"),
+                )
+                self.assertIsNotNone(version, log)
+                assert version is not None
+                self.assertIn(f"Build {crate} {version.group(1)}", section)
 
     def test_harness_names_match_ljos(self) -> None:
         # Names `ljos onboard --harness` installs, checked against ljos

@@ -897,6 +897,14 @@ table caption {
   color: var(--fg);
   line-height: 1.1;
 }
+.figs dd.iqr {
+  margin-top: 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--mute-2);
+}
 @media (max-width: 720px) {
   .figs { grid-template-columns: 1fr 1fr; }
   .figs > div:nth-child(3) { padding-left: 0.2rem; border-left: 0; }

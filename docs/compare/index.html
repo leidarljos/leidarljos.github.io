@@ -126,20 +126,20 @@
         </table>
 
         <h2 id="install-cost">What a default install costs</h2>
-        <p>Measured on 3 November 2026 on one shared box: an 8-thread Intel Xeon, 47 GB of RAM, 15 GB available, rustc 1.99.1. Each crate was built from crates.io in a fresh <code>CARGO_HOME</code> and target directory with <code>cargo install --locked -j 2</code>, packset after ljos. The encoder is not part of this install, so search is lexical. Script: <a href="https://github.com/leidarljos/leidarljos.github.io/blob/main/scripts/measure-install.sh"><code>scripts/measure-install.sh</code></a>; raw logs: <a href="https://github.com/leidarljos/leidarljos.github.io/tree/main/measurements/2026-11-03-install"><code>measurements/2026-11-03-install</code></a>.</p>
+        <p>Measured on 3 November 2026 on one shared box: an 8-thread Intel Xeon, 47 GB of RAM, 15 GB available, rustc 1.99.1. There were six draws. In each, both crates were built from crates.io into a fresh prefix with <code>cargo install --locked -j 2</code>, each in its own fresh <code>CARGO_HOME</code> and target directory; ljos went first in draws 1, 4 and 5, packset in draws 2, 3 and 6. Each draw then started its own packsetd, seeded the same 431 sentences, of which packset accepted 428, and timed 300 fresh <code>packset search</code> processes. The encoder is not part of this install, so search is lexical. Each value is the median over the six draws, with the interquartile range (IQR) beside it. Script: <a href="https://github.com/leidarljos/leidarljos.github.io/blob/main/scripts/measure-install.sh"><code>scripts/measure-install.sh</code></a>; raw logs: <a href="https://github.com/leidarljos/leidarljos.github.io/tree/main/measurements/2026-11-03-install-n6"><code>measurements/2026-11-03-install-n6</code></a>.</p>
         <table>
           <thead>
             <tr><th>Measure</th><th>Value</th><th>Note</th></tr>
           </thead>
           <tbody>
-            <tr><td>Build ljos 0.37.0</td><td>243 s</td><td>includes the crates.io index and source downloads</td></tr>
-            <tr><td>Build packset 0.17.3</td><td>68 s</td><td>reuses the downloads from the ljos build</td></tr>
-            <tr><td>Binaries on disk</td><td>63.3 MB</td><td>ljos 22.0, ljos-mcp 23.7, packset 3.8, packset-mcp 7.7, packsetd 6.1</td></tr>
-            <tr><td>packsetd resident memory</td><td>4.6 MiB idle, 19.1 MiB</td><td>the second after 399 claims and 330 searches</td></tr>
-            <tr><td>Search, p50 / p95</td><td>8.5 ms / 9.6 ms</td><td>one <code>packset search</code> process per query, lexical, 399 claims, n = 300</td></tr>
+            <tr><td>Build ljos 0.37.0</td><td>191 s, IQR 188–192 s</td><td>includes the crates.io index and source downloads; n = 6</td></tr>
+            <tr><td>Build packset 0.17.3</td><td>95 s, IQR 95–96 s</td><td>includes its own index and source downloads; n = 6</td></tr>
+            <tr><td>Binaries on disk</td><td>63.3 MB, IQR 63.3–63.3 MB</td><td>medians ljos 22.0, ljos-mcp 23.7, packset 3.8, packset-mcp 7.7, packsetd 6.1; n = 6</td></tr>
+            <tr><td>packsetd resident memory</td><td>4.6 MiB idle, IQR 4.6–4.6 MiB; 19.1 MiB, IQR 19.1–19.2 MiB</td><td>the second after 404 claims and 330 searches; n = 6</td></tr>
+            <tr><td>Search, p50 / p95</td><td>8.0 ms / 8.4 ms, IQR 7.8–8.1 ms</td><td>one <code>packset search</code> process per query, lexical, 404 claims, n = 1,800 over six draws</td></tr>
           </tbody>
         </table>
-        <p>The p95 is the value at sorted position <code>int(0.95 n)</code> of the n = 300 runs, counting from zero. Two jobs, the script default, with 15 GB available. A build on an idle machine with every core should be faster. The claims are sentences taken from this site's own pages.</p>
+        <p>The quartiles and the p95 interpolate linearly between sorted values, as Python's <code>statistics.quantiles</code> does with <code>method="inclusive"</code>. Two jobs, the script default, with 15 GB available. A build on an idle machine with every core should be faster. The claims are sentences taken from this site's own pages.</p>
 
         <h2>policyd is argv law</h2>
         <p><code>ljos policy -- argv</code> prints the line and any pack rule that matches it. <code>ljos rule</code> writes that law into the pack. <code>ljos-policyd</code> is the trusted computing base when it is on <code>PATH</code> or <code>POLICYD_BIN</code>: it prints allow or deny. Reloading a pack is not a check. <a href="https://leidarljos.github.io/ljos-policyd/">ljos-policyd docs</a> · <a href="/handbook/argv/">Argv field note</a>.</p>
