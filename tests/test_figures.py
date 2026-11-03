@@ -17,6 +17,37 @@ PACKSET_080 = "https://github.com/leidarljos/packset/blob/main/CHANGELOG.md#080-
 INSTALL_RUN = SITE_TREE + "measurements/2026-11-03-install"
 DEMO_CAST = "/demo/ljos-demo.cast"
 
+INSTALL_SUMMARY = ROOT / "measurements/2026-11-03-install/summary.txt"
+
+
+def install_figures() -> tuple[tuple[str, str, str, tuple[str, ...]], ...]:
+    """Fig. 5 as summary.txt says the page should print it, each with the lines it comes from."""
+    said = INSTALL_SUMMARY.read_text(encoding="utf-8")
+
+    def line(pattern: str) -> re.Match[str]:
+        found = re.search(pattern, said, re.M)
+        if found is None:
+            raise AssertionError(f"{INSTALL_SUMMARY.name} has no line like {pattern!r}")
+        return found
+
+    ljos = line(r"^install ljos: (\d+) s wall.*$")
+    packset = line(r"^install packset: (\d+) s wall.*$")
+    binaries = re.findall(r"^binary \S+: ([\d.]+) MB$", said, re.M)
+    if len(binaries) != 5:
+        raise AssertionError(f"{INSTALL_SUMMARY.name} lists {len(binaries)} binaries, not 5")
+    rss = line(r"^packsetd rss_after_search: ([\d.]+) MB$")
+    search = line(r"^search .*: p50 ([\d.]+) ms, p95 ([\d.]+) ms$")
+    live = line(r"^pack size during the search runs: (\d+) live claims$")
+    sizes = tuple(re.findall(r"^binary .*$", said, re.M))
+    return (
+        ("index.html", f"{ljos[1]} s + {packset[1]} s", INSTALL_RUN, (ljos[0], packset[0])),
+        ("index.html", f"{sum(map(float, binaries)):.1f} MB", INSTALL_RUN, sizes),
+        ("index.html", f"{rss[1]} MB", INSTALL_RUN, (rss[0],)),
+        ("index.html", f"{search[1]} / {search[2]} ms", INSTALL_RUN, (search[0],)),
+        ("index.html", f"{live[1]} claims in the pack", INSTALL_RUN, (live[0],)),
+    )
+
+
 FUSED_QA = (
     "labelled sessions (oracle) 0.778 0.405 0.982 0.467 0.938 0.504 0.634",
     "sessions, fused panel 0.792 0.355 0.911 0.300 0.891 0.323 0.549",
@@ -37,33 +68,8 @@ FIGURES = (
         ("Qwen2.5-7B-Instruct", "as reader and judge", "top five sessions"),
     ),
     ("index.html", "about a minute long", DEMO_CAST, ()),
-    (
-        "index.html",
-        "8-thread Xeon with two build jobs",
-        INSTALL_RUN,
-        ("Xeon(R) Processor (8 threads)", "jobs: 2"),
-    ),
-    (
-        "index.html",
-        "243 s + 68 s",
-        INSTALL_RUN,
-        ("install ljos: 243 s wall", "install packset: 68 s wall"),
-    ),
-    (
-        "index.html",
-        "63.3 MB",
-        INSTALL_RUN,
-        (
-            "binary ljos: 22.0 MB",
-            "binary ljos-mcp: 23.7 MB",
-            "binary packset: 3.8 MB",
-            "binary packset-mcp: 7.7 MB",
-            "binary packsetd: 6.1 MB",
-        ),
-    ),
-    ("index.html", "19.1 MB", INSTALL_RUN, ("packsetd rss_after_search: 19.1 MB",)),
-    ("index.html", "8.5 / 9.6 ms", INSTALL_RUN, ("p50 8.5 ms, p95 9.6 ms",)),
-    ("index.html", "399 claims in the pack", INSTALL_RUN, ("399 live claims",)),
+    ("index.html", "8-thread Xeon with two build jobs", INSTALL_RUN, ()),
+    *install_figures(),
     (
         "docs/island/index.html",
         "hit@1 0.377 against the fused panel's 0.889",
@@ -121,8 +127,7 @@ class Figures(unittest.TestCase):
             if path is None:
                 continue
             self.assertTrue(path.exists(), source)
-            files = sorted(p for p in path.iterdir() if p.is_file()) if path.is_dir() else [path]
-            said = "\n".join(p.read_text(encoding="utf-8") for p in files)
+            said = (path / "summary.txt" if path.is_dir() else path).read_text(encoding="utf-8")
             for quote in quotes:
                 self.assertIn(quote, said, f"{source} for {figure!r}")
 
