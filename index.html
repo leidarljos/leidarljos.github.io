@@ -122,7 +122,7 @@ ljos search fuse</pre>
             <p>A coding agent with a shell can push, delete, or pipe a download into <code>sh</code> on its own judgement.</p>
           </div>
         </div>
-        <p class="why-answer">ljos writes a memory when you say <code>Remember:</code> or <code>Prefer:</code>. At session end it reads the transcript and keeps up to five sentences. That read is on by default. Set <code>LJOS_EXTRACT=off</code> to turn it off. It keeps memory in plain local files you can read, and warns when a shell command matches a fixed rule. It never blocks. Jev is an optional hosted decision model. <code>jev.toml</code> sets its host. With Jev on, the prompt and the candidate memories leave the machine. See the <a href="https://github.com/leidarljos/ljos/blob/main/docs/privacy.md">privacy note</a>.</p>
+        <p class="why-answer">ljos writes a memory on <code>Remember:</code> and on <code>Prefer:</code>. A session-end pass can keep five transcript sentences; leave <code>LJOS_EXTRACT</code> unset for that, or set it to <code>off</code>. Memory lives in plain local files you can read. A shell command that matches a fixed rule draws a warning; the check never blocks. Jev is an optional hosted decision model. <code>jev.toml</code> sets its host. With Jev on, the prompt and the candidate memories leave the machine. See the <a href="https://github.com/leidarljos/ljos/blob/main/docs/privacy.md">privacy note</a>.</p>
       </section>
 
       <section class="band" aria-labelledby="loop-h">
@@ -175,7 +175,7 @@ ljos search fuse</pre>
             <li>
               <strong>claims</strong>
               <span class="crate">claimdag</span>
-              <p>One live claim per holder per ticket. A second claim on a held ticket is recorded and labelled <code>claim-conflict</code>. A claim that would cycle the graph is recorded and labelled <code>graph-cycle</code>.</p>
+              <p>One live claim per holder per ticket. A second claim on a held ticket gets the <code>claim-conflict</code> label. A cycle in the graph gets the <code>graph-cycle</code> label.</p>
               <span class="touch">sit claims · finish completes</span>
             </li>
           </ul>
