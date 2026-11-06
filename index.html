@@ -61,7 +61,7 @@
       <header class="hero-journal">
         <h1>Write one claim. Search it back.</h1>
         <p class="rule" aria-hidden="true"></p>
-        <p class="lead">ljos gives coding agents a memory, a work tracker, and a check on every shell command. Claude Code and Codex are such agents, as are opencode and agy. Cursor is one too. It writes one claim when you say Remember: or Prefer:, then searches that claim back. At session end it reads the transcript and keeps up to five sentences. That read is on by default. Set <code>LJOS_EXTRACT=off</code> to turn it off. Memory stays on your machine unless you turn on a remote judge.</p>
+        <p class="lead">ljos gives coding agents a memory, a work tracker, and a warning on every shell command. Claude Code and Codex are such agents, as are opencode and agy. Cursor is one too. It writes one claim when you say Remember: or Prefer:, then searches that claim back. At session end it reads the transcript and keeps up to five sentences. That read is on by default. Set <code>LJOS_EXTRACT=off</code> to turn it off. Memory stays on your machine unless you turn on a remote judge.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="/docs/start/">Write one claim</a>
           <a class="btn btn-ghost" href="/docs/sit/">How sitting works</a>
@@ -122,7 +122,7 @@ ljos search fuse</pre>
             <p>A coding agent with a shell can push, delete, or pipe a download into <code>sh</code> on its own judgement.</p>
           </div>
         </div>
-        <p class="why-answer">ljos writes a memory when you say <code>Remember:</code> or <code>Prefer:</code>. At session end it reads the transcript and keeps up to five sentences. That read is on by default. Set <code>LJOS_EXTRACT=off</code> to turn it off. It keeps memory in plain local files you can read, and checks each shell command against fixed rules before it runs. No model sits in the write path or the check, and it all runs on a CPU.</p>
+        <p class="why-answer">ljos writes a memory when you say <code>Remember:</code> or <code>Prefer:</code>. At session end it reads the transcript and keeps up to five sentences. That read is on by default. Set <code>LJOS_EXTRACT=off</code> to turn it off. It keeps memory in plain local files you can read, and warns when a shell command matches a fixed rule. It never blocks. No model sits in the write path or the check, and it all runs on a CPU.</p>
       </section>
 
       <section class="band" aria-labelledby="loop-h">
