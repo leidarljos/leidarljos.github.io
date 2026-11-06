@@ -134,7 +134,7 @@ ljos search fuse</pre>
             <li>
               <span class="n">01</span>
               <h3>Sit</h3>
-              <p><code>ljos sitting ID</code> opens the ticket: doctor, sync, cards, due, island, blockers, playbook, recall, timeline, then the claim. It refuses a ticket with open blockers.</p>
+              <p><code>ljos sitting ID</code> opens the ticket: doctor, sync, cards, due, island, blockers, playbook, recall, timeline, then the claim. It records the claim and labels it <code>children-open</code> when the ticket has open blockers.</p>
             </li>
             <li>
               <span class="n">02</span>
@@ -175,7 +175,7 @@ ljos search fuse</pre>
             <li>
               <strong>claims</strong>
               <span class="crate">claimdag</span>
-              <p>One live claim per holder per ticket. A second claim on a held ticket is refused.</p>
+              <p>One live claim per holder per ticket. A second claim on a held ticket is recorded and labelled <code>claim-conflict</code>. A claim that would cycle the graph is recorded and labelled <code>graph-cycle</code>.</p>
               <span class="touch">sit claims · finish completes</span>
             </li>
           </ul>
